@@ -119,9 +119,9 @@
 		9EAC145E143E5820005AD99C /* ZAttributedString.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EAC145D143E5820005AD99C /* ZAttributedString.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9EAC1462143E5820005AD99C /* ZFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EAC1461143E5820005AD99C /* ZFont.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9EAC1467143E5820005AD99C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EAC1466143E5820005AD99C /* main.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		9EAC146A143E5820005AD99C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EAC1469143E5820005AD99C /* AppDelegate.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		9EAC146D143E5820005AD99C /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EAC146C143E5820005AD99C /* RootViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		9EAC1470143E5820005AD99C /* HelloWorldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EAC146F143E5820005AD99C /* HelloWorldLayer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		9EAC146A143E5820005AD99C /* JBAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EAC1469143E5820005AD99C /* JBAppDelegate.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		9EAC146D143E5820005AD99C /* JBRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EAC146C143E5820005AD99C /* JBRootViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		9EAC1470143E5820005AD99C /* JBGameLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EAC146F143E5820005AD99C /* JBGameLayer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -353,13 +353,13 @@
 		9EAC1463143E5820005AD99C /* LICENSE_FontLabel.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = LICENSE_FontLabel.txt; path = libs/LICENSE_FontLabel.txt; sourceTree = "<group>"; };
 		9EAC1465143E5820005AD99C /* Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
 		9EAC1466143E5820005AD99C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		9EAC1468143E5820005AD99C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		9EAC1469143E5820005AD99C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		9EAC146B143E5820005AD99C /* RootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
-		9EAC146C143E5820005AD99C /* RootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
-		9EAC146E143E5820005AD99C /* HelloWorldLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelloWorldLayer.h; sourceTree = "<group>"; };
-		9EAC146F143E5820005AD99C /* HelloWorldLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloWorldLayer.m; sourceTree = "<group>"; };
-		9EAC1471143E5820005AD99C /* GameConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameConfig.h; sourceTree = "<group>"; };
+		9EAC1468143E5820005AD99C /* JBAppDelegate.h */ = {isa = PBXFileReference; path = JBAppDelegate.h; sourceTree = "<group>"; };
+		9EAC1469143E5820005AD99C /* JBAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JBAppDelegate.m; sourceTree = "<group>"; };
+		9EAC146B143E5820005AD99C /* JBRootViewController.h */ = {isa = PBXFileReference; path = JBRootViewController.h; sourceTree = "<group>"; };
+		9EAC146C143E5820005AD99C /* JBRootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JBRootViewController.m; sourceTree = "<group>"; };
+		9EAC146E143E5820005AD99C /* JBGameLayer.h */ = {isa = PBXFileReference; path = JBGameLayer.h; sourceTree = "<group>"; };
+		9EAC146F143E5820005AD99C /* JBGameLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JBGameLayer.m; sourceTree = "<group>"; };
+		9EAC1471143E5820005AD99C /* JBGameConfig.h */ = {isa = PBXFileReference; path = JBGameConfig.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -416,13 +416,16 @@
 		9EAC1316143E581F005AD99C /* JBump */ = {
 			isa = PBXGroup;
 			children = (
-				9EAC1468143E5820005AD99C /* AppDelegate.h */,
-				9EAC1469143E5820005AD99C /* AppDelegate.m */,
-				9EAC146B143E5820005AD99C /* RootViewController.h */,
-				9EAC146C143E5820005AD99C /* RootViewController.m */,
-				9EAC146E143E5820005AD99C /* HelloWorldLayer.h */,
-				9EAC146F143E5820005AD99C /* HelloWorldLayer.m */,
-				9EAC1471143E5820005AD99C /* GameConfig.h */,
+				9EAC1468143E5820005AD99C /* JBAppDelegate.h */,
+				9EAC1469143E5820005AD99C /* JBAppDelegate.m */,
+				9EAC146B143E5820005AD99C /* JBRootViewController.h */,
+				9EAC146C143E5820005AD99C /* JBRootViewController.m */,
+				9EAC146E143E5820005AD99C /* JBGameLayer.h */,
+				9EAC146F143E5820005AD99C /* JBGameLayer.m */,
+				9EAC1471143E5820005AD99C /* JBGameConfig.h */,
+				9EAC147B143E5C9B005AD99C /* Menu */,
+				9EAC147C143E5CB1005AD99C /* Store */,
+				9EAC147D143E5CBD005AD99C /* Game */,
 				9EAC1317143E581F005AD99C /* Resources */,
 				9EAC132B143E581F005AD99C /* libs */,
 				9EAC1464143E5820005AD99C /* Supporting Files */,
@@ -758,6 +761,27 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		9EAC147B143E5C9B005AD99C /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Menu;
+			sourceTree = "<group>";
+		};
+		9EAC147C143E5CB1005AD99C /* Store */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Store;
+			sourceTree = "<group>";
+		};
+		9EAC147D143E5CBD005AD99C /* Game */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Game;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -923,9 +947,9 @@
 				9EAC145E143E5820005AD99C /* ZAttributedString.m in Sources */,
 				9EAC1462143E5820005AD99C /* ZFont.m in Sources */,
 				9EAC1467143E5820005AD99C /* main.m in Sources */,
-				9EAC146A143E5820005AD99C /* AppDelegate.m in Sources */,
-				9EAC146D143E5820005AD99C /* RootViewController.m in Sources */,
-				9EAC1470143E5820005AD99C /* HelloWorldLayer.m in Sources */,
+				9EAC146A143E5820005AD99C /* JBAppDelegate.m in Sources */,
+				9EAC146D143E5820005AD99C /* JBRootViewController.m in Sources */,
+				9EAC1470143E5820005AD99C /* JBGameLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
