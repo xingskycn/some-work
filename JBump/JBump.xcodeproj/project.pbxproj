@@ -7,6 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		66CB8402143E706B007DDF27 /* JBMapStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 66CB8401143E706B007DDF27 /* JBMapStore.m */; };
+		66CB8406143E7076007DDF27 /* JBMapStoreDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 66CB8405143E7076007DDF27 /* JBMapStoreDevice.m */; };
+		66CB8409143E708A007DDF27 /* JBMapStoreOnline.m in Sources */ = {isa = PBXBuildFile; fileRef = 66CB8408143E708A007DDF27 /* JBMapStoreOnline.m */; };
+		66CB840C143E709D007DDF27 /* JBSkinStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 66CB840B143E709D007DDF27 /* JBSkinStore.m */; };
+		66CB840F143E70AB007DDF27 /* JBSkinStoreDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 66CB840E143E70AB007DDF27 /* JBSkinStoreDevice.m */; };
+		66CB8412143E70B7007DDF27 /* JBSkinStoreOnline.m in Sources */ = {isa = PBXBuildFile; fileRef = 66CB8411143E70B7007DDF27 /* JBSkinStoreOnline.m */; };
+		66CB8415143E7172007DDF27 /* JBRay.m in Sources */ = {isa = PBXBuildFile; fileRef = 66CB8414143E7172007DDF27 /* JBRay.m */; };
+		66CB8418143E7181007DDF27 /* JBMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 66CB8417143E7181007DDF27 /* JBMap.m */; };
+		66CB841B143E718F007DDF27 /* JBMapField.m in Sources */ = {isa = PBXBuildFile; fileRef = 66CB841A143E718F007DDF27 /* JBMapField.m */; };
+		66CB841E143E7199007DDF27 /* JBHero.m in Sources */ = {isa = PBXBuildFile; fileRef = 66CB841D143E7199007DDF27 /* JBHero.m */; };
+		66CB8421143E71A2007DDF27 /* JBTavern.m in Sources */ = {isa = PBXBuildFile; fileRef = 66CB8420143E71A2007DDF27 /* JBTavern.m */; };
+		66CB8424143E71AF007DDF27 /* JBHeroArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 66CB8423143E71AF007DDF27 /* JBHeroArray.m */; };
+		66CB8427143E71DB007DDF27 /* JBForeignAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 66CB8426143E71DB007DDF27 /* JBForeignAdapter.m */; };
+		66CB842A143E71F1007DDF27 /* JBAIAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 66CB8429143E71F1007DDF27 /* JBAIAdapter.m */; };
+		66CB842D143E7208007DDF27 /* JBWebAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 66CB842C143E7208007DDF27 /* JBWebAdapter.m */; };
+		66CB8430143E7212007DDF27 /* JBBTAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 66CB842F143E7212007DDF27 /* JBBTAdapter.m */; };
+		66CB8433143E72AA007DDF27 /* JBHeroSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 66CB8432143E72AA007DDF27 /* JBHeroSprite.m */; };
+		66CB8436143E72B7007DDF27 /* JBMapSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 66CB8435143E72B7007DDF27 /* JBMapSprite.m */; };
+		66CB8439143E72D8007DDF27 /* JBMenuBackLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 66CB8438143E72D8007DDF27 /* JBMenuBackLayer.m */; };
 		9EAC1307143E581F005AD99C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EAC1306143E581F005AD99C /* QuartzCore.framework */; };
 		9EAC1309143E581F005AD99C /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EAC1308143E581F005AD99C /* OpenGLES.framework */; };
 		9EAC130B143E581F005AD99C /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EAC130A143E581F005AD99C /* OpenAL.framework */; };
@@ -125,6 +144,44 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		66CB8400143E706B007DDF27 /* JBMapStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBMapStore.h; sourceTree = "<group>"; };
+		66CB8401143E706B007DDF27 /* JBMapStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBMapStore.m; sourceTree = "<group>"; };
+		66CB8404143E7076007DDF27 /* JBMapStoreDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBMapStoreDevice.h; sourceTree = "<group>"; };
+		66CB8405143E7076007DDF27 /* JBMapStoreDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBMapStoreDevice.m; sourceTree = "<group>"; };
+		66CB8407143E708A007DDF27 /* JBMapStoreOnline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBMapStoreOnline.h; sourceTree = "<group>"; };
+		66CB8408143E708A007DDF27 /* JBMapStoreOnline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBMapStoreOnline.m; sourceTree = "<group>"; };
+		66CB840A143E709D007DDF27 /* JBSkinStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBSkinStore.h; sourceTree = "<group>"; };
+		66CB840B143E709D007DDF27 /* JBSkinStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBSkinStore.m; sourceTree = "<group>"; };
+		66CB840D143E70AA007DDF27 /* JBSkinStoreDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBSkinStoreDevice.h; sourceTree = "<group>"; };
+		66CB840E143E70AB007DDF27 /* JBSkinStoreDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBSkinStoreDevice.m; sourceTree = "<group>"; };
+		66CB8410143E70B7007DDF27 /* JBSkinStoreOnline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBSkinStoreOnline.h; sourceTree = "<group>"; };
+		66CB8411143E70B7007DDF27 /* JBSkinStoreOnline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBSkinStoreOnline.m; sourceTree = "<group>"; };
+		66CB8413143E7172007DDF27 /* JBRay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBRay.h; sourceTree = "<group>"; };
+		66CB8414143E7172007DDF27 /* JBRay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBRay.m; sourceTree = "<group>"; };
+		66CB8416143E7181007DDF27 /* JBMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBMap.h; sourceTree = "<group>"; };
+		66CB8417143E7181007DDF27 /* JBMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBMap.m; sourceTree = "<group>"; };
+		66CB8419143E718F007DDF27 /* JBMapField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBMapField.h; sourceTree = "<group>"; };
+		66CB841A143E718F007DDF27 /* JBMapField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBMapField.m; sourceTree = "<group>"; };
+		66CB841C143E7199007DDF27 /* JBHero.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBHero.h; sourceTree = "<group>"; };
+		66CB841D143E7199007DDF27 /* JBHero.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBHero.m; sourceTree = "<group>"; };
+		66CB841F143E71A2007DDF27 /* JBTavern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBTavern.h; sourceTree = "<group>"; };
+		66CB8420143E71A2007DDF27 /* JBTavern.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBTavern.m; sourceTree = "<group>"; };
+		66CB8422143E71AE007DDF27 /* JBHeroArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBHeroArray.h; sourceTree = "<group>"; };
+		66CB8423143E71AF007DDF27 /* JBHeroArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBHeroArray.m; sourceTree = "<group>"; };
+		66CB8425143E71DB007DDF27 /* JBForeignAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBForeignAdapter.h; sourceTree = "<group>"; };
+		66CB8426143E71DB007DDF27 /* JBForeignAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBForeignAdapter.m; sourceTree = "<group>"; };
+		66CB8428143E71F1007DDF27 /* JBAIAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBAIAdapter.h; sourceTree = "<group>"; };
+		66CB8429143E71F1007DDF27 /* JBAIAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBAIAdapter.m; sourceTree = "<group>"; };
+		66CB842B143E7208007DDF27 /* JBWebAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBWebAdapter.h; sourceTree = "<group>"; };
+		66CB842C143E7208007DDF27 /* JBWebAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBWebAdapter.m; sourceTree = "<group>"; };
+		66CB842E143E7212007DDF27 /* JBBTAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBBTAdapter.h; sourceTree = "<group>"; };
+		66CB842F143E7212007DDF27 /* JBBTAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBBTAdapter.m; sourceTree = "<group>"; };
+		66CB8431143E72A9007DDF27 /* JBHeroSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBHeroSprite.h; sourceTree = "<group>"; };
+		66CB8432143E72AA007DDF27 /* JBHeroSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBHeroSprite.m; sourceTree = "<group>"; };
+		66CB8434143E72B7007DDF27 /* JBMapSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBMapSprite.h; sourceTree = "<group>"; };
+		66CB8435143E72B7007DDF27 /* JBMapSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBMapSprite.m; sourceTree = "<group>"; };
+		66CB8437143E72D8007DDF27 /* JBMenuBackLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBMenuBackLayer.h; sourceTree = "<group>"; };
+		66CB8438143E72D8007DDF27 /* JBMenuBackLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBMenuBackLayer.m; sourceTree = "<group>"; };
 		9EAC1302143E581F005AD99C /* JBump.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JBump.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EAC1306143E581F005AD99C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		9EAC1308143E581F005AD99C /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -353,13 +410,13 @@
 		9EAC1463143E5820005AD99C /* LICENSE_FontLabel.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = LICENSE_FontLabel.txt; path = libs/LICENSE_FontLabel.txt; sourceTree = "<group>"; };
 		9EAC1465143E5820005AD99C /* Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
 		9EAC1466143E5820005AD99C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		9EAC1468143E5820005AD99C /* JBAppDelegate.h */ = {isa = PBXFileReference; path = JBAppDelegate.h; sourceTree = "<group>"; };
+		9EAC1468143E5820005AD99C /* JBAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JBAppDelegate.h; sourceTree = "<group>"; };
 		9EAC1469143E5820005AD99C /* JBAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JBAppDelegate.m; sourceTree = "<group>"; };
-		9EAC146B143E5820005AD99C /* JBRootViewController.h */ = {isa = PBXFileReference; path = JBRootViewController.h; sourceTree = "<group>"; };
+		9EAC146B143E5820005AD99C /* JBRootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JBRootViewController.h; sourceTree = "<group>"; };
 		9EAC146C143E5820005AD99C /* JBRootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JBRootViewController.m; sourceTree = "<group>"; };
-		9EAC146E143E5820005AD99C /* JBGameLayer.h */ = {isa = PBXFileReference; path = JBGameLayer.h; sourceTree = "<group>"; };
+		9EAC146E143E5820005AD99C /* JBGameLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JBGameLayer.h; sourceTree = "<group>"; };
 		9EAC146F143E5820005AD99C /* JBGameLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JBGameLayer.m; sourceTree = "<group>"; };
-		9EAC1471143E5820005AD99C /* JBGameConfig.h */ = {isa = PBXFileReference; path = JBGameConfig.h; sourceTree = "<group>"; };
+		9EAC1471143E5820005AD99C /* JBGameConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JBGameConfig.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -381,6 +438,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		66CB843A143E72F3007DDF27 /* adapter */ = {
+			isa = PBXGroup;
+			children = (
+				66CB8425143E71DB007DDF27 /* JBForeignAdapter.h */,
+				66CB8426143E71DB007DDF27 /* JBForeignAdapter.m */,
+				66CB8428143E71F1007DDF27 /* JBAIAdapter.h */,
+				66CB8429143E71F1007DDF27 /* JBAIAdapter.m */,
+				66CB842B143E7208007DDF27 /* JBWebAdapter.h */,
+				66CB842C143E7208007DDF27 /* JBWebAdapter.m */,
+				66CB842E143E7212007DDF27 /* JBBTAdapter.h */,
+				66CB842F143E7212007DDF27 /* JBBTAdapter.m */,
+			);
+			name = adapter;
+			sourceTree = "<group>";
+		};
 		9EAC12F7143E581F005AD99C = {
 			isa = PBXGroup;
 			children = (
@@ -420,8 +492,6 @@
 				9EAC1469143E5820005AD99C /* JBAppDelegate.m */,
 				9EAC146B143E5820005AD99C /* JBRootViewController.h */,
 				9EAC146C143E5820005AD99C /* JBRootViewController.m */,
-				9EAC146E143E5820005AD99C /* JBGameLayer.h */,
-				9EAC146F143E5820005AD99C /* JBGameLayer.m */,
 				9EAC1471143E5820005AD99C /* JBGameConfig.h */,
 				9EAC147B143E5C9B005AD99C /* Menu */,
 				9EAC147C143E5CB1005AD99C /* Store */,
@@ -764,6 +834,8 @@
 		9EAC147B143E5C9B005AD99C /* Menu */ = {
 			isa = PBXGroup;
 			children = (
+				66CB8437143E72D8007DDF27 /* JBMenuBackLayer.h */,
+				66CB8438143E72D8007DDF27 /* JBMenuBackLayer.m */,
 			);
 			name = Menu;
 			sourceTree = "<group>";
@@ -771,6 +843,18 @@
 		9EAC147C143E5CB1005AD99C /* Store */ = {
 			isa = PBXGroup;
 			children = (
+				66CB8400143E706B007DDF27 /* JBMapStore.h */,
+				66CB8401143E706B007DDF27 /* JBMapStore.m */,
+				66CB8404143E7076007DDF27 /* JBMapStoreDevice.h */,
+				66CB8405143E7076007DDF27 /* JBMapStoreDevice.m */,
+				66CB8407143E708A007DDF27 /* JBMapStoreOnline.h */,
+				66CB8408143E708A007DDF27 /* JBMapStoreOnline.m */,
+				66CB840A143E709D007DDF27 /* JBSkinStore.h */,
+				66CB840B143E709D007DDF27 /* JBSkinStore.m */,
+				66CB840D143E70AA007DDF27 /* JBSkinStoreDevice.h */,
+				66CB840E143E70AB007DDF27 /* JBSkinStoreDevice.m */,
+				66CB8410143E70B7007DDF27 /* JBSkinStoreOnline.h */,
+				66CB8411143E70B7007DDF27 /* JBSkinStoreOnline.m */,
 			);
 			name = Store;
 			sourceTree = "<group>";
@@ -778,6 +862,25 @@
 		9EAC147D143E5CBD005AD99C /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				66CB843A143E72F3007DDF27 /* adapter */,
+				9EAC146E143E5820005AD99C /* JBGameLayer.h */,
+				9EAC146F143E5820005AD99C /* JBGameLayer.m */,
+				66CB8413143E7172007DDF27 /* JBRay.h */,
+				66CB8414143E7172007DDF27 /* JBRay.m */,
+				66CB8416143E7181007DDF27 /* JBMap.h */,
+				66CB8417143E7181007DDF27 /* JBMap.m */,
+				66CB8419143E718F007DDF27 /* JBMapField.h */,
+				66CB841A143E718F007DDF27 /* JBMapField.m */,
+				66CB841C143E7199007DDF27 /* JBHero.h */,
+				66CB841D143E7199007DDF27 /* JBHero.m */,
+				66CB841F143E71A2007DDF27 /* JBTavern.h */,
+				66CB8420143E71A2007DDF27 /* JBTavern.m */,
+				66CB8422143E71AE007DDF27 /* JBHeroArray.h */,
+				66CB8423143E71AF007DDF27 /* JBHeroArray.m */,
+				66CB8431143E72A9007DDF27 /* JBHeroSprite.h */,
+				66CB8432143E72AA007DDF27 /* JBHeroSprite.m */,
+				66CB8434143E72B7007DDF27 /* JBMapSprite.h */,
+				66CB8435143E72B7007DDF27 /* JBMapSprite.m */,
 			);
 			name = Game;
 			sourceTree = "<group>";
@@ -950,6 +1053,25 @@
 				9EAC146A143E5820005AD99C /* JBAppDelegate.m in Sources */,
 				9EAC146D143E5820005AD99C /* JBRootViewController.m in Sources */,
 				9EAC1470143E5820005AD99C /* JBGameLayer.m in Sources */,
+				66CB8402143E706B007DDF27 /* JBMapStore.m in Sources */,
+				66CB8406143E7076007DDF27 /* JBMapStoreDevice.m in Sources */,
+				66CB8409143E708A007DDF27 /* JBMapStoreOnline.m in Sources */,
+				66CB840C143E709D007DDF27 /* JBSkinStore.m in Sources */,
+				66CB840F143E70AB007DDF27 /* JBSkinStoreDevice.m in Sources */,
+				66CB8412143E70B7007DDF27 /* JBSkinStoreOnline.m in Sources */,
+				66CB8415143E7172007DDF27 /* JBRay.m in Sources */,
+				66CB8418143E7181007DDF27 /* JBMap.m in Sources */,
+				66CB841B143E718F007DDF27 /* JBMapField.m in Sources */,
+				66CB841E143E7199007DDF27 /* JBHero.m in Sources */,
+				66CB8421143E71A2007DDF27 /* JBTavern.m in Sources */,
+				66CB8424143E71AF007DDF27 /* JBHeroArray.m in Sources */,
+				66CB8427143E71DB007DDF27 /* JBForeignAdapter.m in Sources */,
+				66CB842A143E71F1007DDF27 /* JBAIAdapter.m in Sources */,
+				66CB842D143E7208007DDF27 /* JBWebAdapter.m in Sources */,
+				66CB8430143E7212007DDF27 /* JBBTAdapter.m in Sources */,
+				66CB8433143E72AA007DDF27 /* JBHeroSprite.m in Sources */,
+				66CB8436143E72B7007DDF27 /* JBMapSprite.m in Sources */,
+				66CB8439143E72D8007DDF27 /* JBMenuBackLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -960,7 +1082,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Nils Ziehn (7C7LNBZ6S7)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Nils Ziehn (7C7LNBZ6S7)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -972,6 +1095,8 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PROVISIONING_PROFILE = "71CC3484-3B81-47F8-ABEA-41BBC549C49C";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "71CC3484-3B81-47F8-ABEA-41BBC549C49C";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1047,6 +1172,7 @@
 				9EAC1476143E5820005AD99C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
