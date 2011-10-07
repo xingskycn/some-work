@@ -18,7 +18,6 @@
 		66CB841B143E718F007DDF27 /* JBMapField.m in Sources */ = {isa = PBXBuildFile; fileRef = 66CB841A143E718F007DDF27 /* JBMapField.m */; };
 		66CB841E143E7199007DDF27 /* JBHero.m in Sources */ = {isa = PBXBuildFile; fileRef = 66CB841D143E7199007DDF27 /* JBHero.m */; };
 		66CB8421143E71A2007DDF27 /* JBTavern.m in Sources */ = {isa = PBXBuildFile; fileRef = 66CB8420143E71A2007DDF27 /* JBTavern.m */; };
-		66CB8424143E71AF007DDF27 /* JBHeroArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 66CB8423143E71AF007DDF27 /* JBHeroArray.m */; };
 		66CB8427143E71DB007DDF27 /* JBForeignAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 66CB8426143E71DB007DDF27 /* JBForeignAdapter.m */; };
 		66CB842A143E71F1007DDF27 /* JBAIAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 66CB8429143E71F1007DDF27 /* JBAIAdapter.m */; };
 		66CB842D143E7208007DDF27 /* JBWebAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 66CB842C143E7208007DDF27 /* JBWebAdapter.m */; };
@@ -26,6 +25,7 @@
 		66CB8433143E72AA007DDF27 /* JBHeroSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 66CB8432143E72AA007DDF27 /* JBHeroSprite.m */; };
 		66CB8436143E72B7007DDF27 /* JBMapSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 66CB8435143E72B7007DDF27 /* JBMapSprite.m */; };
 		66CB8439143E72D8007DDF27 /* JBMenuBackLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 66CB8438143E72D8007DDF27 /* JBMenuBackLayer.m */; };
+		66CB843D143EDEE1007DDF27 /* JBSkin.m in Sources */ = {isa = PBXBuildFile; fileRef = 66CB843C143EDEE0007DDF27 /* JBSkin.m */; };
 		9EAC1307143E581F005AD99C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EAC1306143E581F005AD99C /* QuartzCore.framework */; };
 		9EAC1309143E581F005AD99C /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EAC1308143E581F005AD99C /* OpenGLES.framework */; };
 		9EAC130B143E581F005AD99C /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EAC130A143E581F005AD99C /* OpenAL.framework */; };
@@ -166,8 +166,6 @@
 		66CB841D143E7199007DDF27 /* JBHero.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBHero.m; sourceTree = "<group>"; };
 		66CB841F143E71A2007DDF27 /* JBTavern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBTavern.h; sourceTree = "<group>"; };
 		66CB8420143E71A2007DDF27 /* JBTavern.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBTavern.m; sourceTree = "<group>"; };
-		66CB8422143E71AE007DDF27 /* JBHeroArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBHeroArray.h; sourceTree = "<group>"; };
-		66CB8423143E71AF007DDF27 /* JBHeroArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBHeroArray.m; sourceTree = "<group>"; };
 		66CB8425143E71DB007DDF27 /* JBForeignAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBForeignAdapter.h; sourceTree = "<group>"; };
 		66CB8426143E71DB007DDF27 /* JBForeignAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBForeignAdapter.m; sourceTree = "<group>"; };
 		66CB8428143E71F1007DDF27 /* JBAIAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBAIAdapter.h; sourceTree = "<group>"; };
@@ -182,6 +180,8 @@
 		66CB8435143E72B7007DDF27 /* JBMapSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBMapSprite.m; sourceTree = "<group>"; };
 		66CB8437143E72D8007DDF27 /* JBMenuBackLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBMenuBackLayer.h; sourceTree = "<group>"; };
 		66CB8438143E72D8007DDF27 /* JBMenuBackLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBMenuBackLayer.m; sourceTree = "<group>"; };
+		66CB843B143EDEE0007DDF27 /* JBSkin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBSkin.h; sourceTree = "<group>"; };
+		66CB843C143EDEE0007DDF27 /* JBSkin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBSkin.m; sourceTree = "<group>"; };
 		9EAC1302143E581F005AD99C /* JBump.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JBump.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EAC1306143E581F005AD99C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		9EAC1308143E581F005AD99C /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -875,12 +875,12 @@
 				66CB841D143E7199007DDF27 /* JBHero.m */,
 				66CB841F143E71A2007DDF27 /* JBTavern.h */,
 				66CB8420143E71A2007DDF27 /* JBTavern.m */,
-				66CB8422143E71AE007DDF27 /* JBHeroArray.h */,
-				66CB8423143E71AF007DDF27 /* JBHeroArray.m */,
 				66CB8431143E72A9007DDF27 /* JBHeroSprite.h */,
 				66CB8432143E72AA007DDF27 /* JBHeroSprite.m */,
 				66CB8434143E72B7007DDF27 /* JBMapSprite.h */,
 				66CB8435143E72B7007DDF27 /* JBMapSprite.m */,
+				66CB843B143EDEE0007DDF27 /* JBSkin.h */,
+				66CB843C143EDEE0007DDF27 /* JBSkin.m */,
 			);
 			name = Game;
 			sourceTree = "<group>";
@@ -1064,7 +1064,6 @@
 				66CB841B143E718F007DDF27 /* JBMapField.m in Sources */,
 				66CB841E143E7199007DDF27 /* JBHero.m in Sources */,
 				66CB8421143E71A2007DDF27 /* JBTavern.m in Sources */,
-				66CB8424143E71AF007DDF27 /* JBHeroArray.m in Sources */,
 				66CB8427143E71DB007DDF27 /* JBForeignAdapter.m in Sources */,
 				66CB842A143E71F1007DDF27 /* JBAIAdapter.m in Sources */,
 				66CB842D143E7208007DDF27 /* JBWebAdapter.m in Sources */,
@@ -1072,6 +1071,7 @@
 				66CB8433143E72AA007DDF27 /* JBHeroSprite.m in Sources */,
 				66CB8436143E72B7007DDF27 /* JBMapSprite.m in Sources */,
 				66CB8439143E72D8007DDF27 /* JBMenuBackLayer.m in Sources */,
+				66CB843D143EDEE1007DDF27 /* JBSkin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

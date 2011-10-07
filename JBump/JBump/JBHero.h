@@ -8,6 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
+@class CCSprite;
+@class JBSkin;
+
 @interface JBHero : NSObject
+
+@property (nonatomic, strong) NSString* heroID;
+
+@property (nonatomic, strong) NSString* name;
+@property (nonatomic, strong) NSString* further;
+
+@property (nonatomic, strong) JBSkin* skin;
+@property (nonatomic, strong) CCSprite* sprite;
+
 
 @end

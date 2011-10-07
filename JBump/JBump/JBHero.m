@@ -7,7 +7,18 @@
 //
 
 #import "JBHero.h"
+#import "cocos2d.h"
+#import "JBSkin.h"
+
 
 @implementation JBHero
+@synthesize heroID,name;
+@synthesize further;
+@synthesize skin;
+@synthesize sprite;
+
+
+
+
 
 @end
