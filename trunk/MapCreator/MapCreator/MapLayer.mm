@@ -9,6 +9,7 @@
 
 // Import the interfaces
 #import "MapLayer.h"
+#import "LineSprite.h"
 
 //Pixel to metres ratio. Box2D uses metres as the unit for measurement.
 //This ratio defines how many pixels correspond to 1 Box2D "metre"
@@ -37,7 +38,7 @@ enum {
 	MapLayer *layer = [MapLayer node];
 	
 	// add layer as a child to scene
-	[scene addChild: layer];
+	[scene addChild:layer z:0 tag:0];
 	
 	// return the scene
 	return scene;
@@ -69,7 +70,6 @@ enum {
         
         // enable touches
 		self.isTouchEnabled = YES;
-		
 		// enable accelerometer
 		self.isAccelerometerEnabled = YES;
 		
@@ -100,7 +100,9 @@ enum {
         //		flags += b2DebugDraw::e_pairBit;
         //		flags += b2DebugDraw::e_centerOfMassBit;
 		m_debugDraw->SetFlags(flags);
+    
         
+            
         [self schedule: @selector(tick:)];
     }
     return self;
@@ -108,23 +110,85 @@ enum {
 
 -(void) tick: (ccTime) dt
 {
-    float x,y,z;
-    [self.camera eyeX:&x eyeY:&y eyeZ:&z];
     
-    float newX = x+cameraVelocity.x;
-    float newY = y+cameraVelocity.y;
-    
-    UISlider* slider = ((AppDelegate *)[UIApplication sharedApplication].delegate ).slider;
-    float sliderPos = slider.value;
-    
-    [self.camera setCenterX:newX centerY:newY centerZ:0];
-    [self.camera setEyeX:newX eyeY:newY eyeZ:1];
-    [self setScale:1-sliderPos*0.5];
+    float sliderPos =0;
+    if (magnifier) {
+        sliderPos = magnifier.value;
+    }
+
+    [self setScale:1-sliderPos*0.75];
 }
 
 - (void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration
 {
     cameraVelocity = CGPointMake(cameraVelocity.x+acceleration.x,cameraVelocity.y+acceleration.y);
+}
+
+- (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    activeLine = [LineSprite node];
+    UITouch *touch = [touches anyObject];
+    CGPoint current = [touch locationInView:[touch view] ];
+    float x,y,z;
+    [self.camera centerX:&x centerY:&y centerZ:&z];
+    
+    float sliderPos =0;
+    if (magnifier) {
+        sliderPos = magnifier.value;
+    }
+    current = [[CCDirector sharedDirector] convertToGL:current];
+    current = CGPointMake(x +[[CCDirector sharedDirector] winSize].width/2 + 
+                          (current.x-[[CCDirector sharedDirector] winSize].width/2)/(1-sliderPos*0.5),
+                          y +[[CCDirector sharedDirector] winSize].height/2 + 
+                          (current.y-[[CCDirector sharedDirector] winSize].height/2)/(1-sliderPos*0.5));
+    [activeLine.pointArray addObject:NSStringFromCGPoint(current)];
+    
+    activeLine.visible = TRUE;
+    [self addChild:activeLine];
+}
+
+- (void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    UITouch *touch = [touches anyObject];
+    
+    CGPoint current = [touch locationInView:[touch view] ];
+    CGPoint last = [touch previousLocationInView:[touch view]];
+    
+    float x,y,z;
+    [self.camera centerX:&x centerY:&y centerZ:&z];
+    current = [[CCDirector sharedDirector] convertToGL:current];
+    last = [[CCDirector sharedDirector] convertToGL:last];
+    
+    float sliderPos =0;
+    if (magnifier) {
+        sliderPos = magnifier.value;
+    }
+    
+    current = CGPointMake((x+current.x)/(1-sliderPos*0.75),
+                          (y+current.y)/(1-sliderPos*0.75));
+    last = CGPointMake((x+last.x)/(1-sliderPos*0.75),
+                       (y+last.y)/(1-sliderPos*0.75));
+    
+    [activeLine.pointArray addObject:NSStringFromCGPoint(current)];
+    [activeLine.pointArray addObject:NSStringFromCGPoint(last)];
+    
+}
+
+- (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    UITouch *touch = [touches anyObject];
+    CGPoint current = [touch locationInView:[touch view] ];
+    float x,y,z;
+    [self.camera centerX:&x centerY:&y centerZ:&z];
+    
+    float sliderPos =0;
+    if (magnifier) {
+        sliderPos = magnifier.value;
+    }
+    current = CGPointMake((x+current.x)/(1-sliderPos*0.75),
+                          (y+current.y)/(1-sliderPos*0.75));
+
+    [activeLine.pointArray addObject:NSStringFromCGPoint(current)];
 }
 
 // on "dealloc" you need to release all your retained objects
