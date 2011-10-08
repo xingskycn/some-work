@@ -1,14 +1,14 @@
 //
-//  JBMenuViewController.m
+//  JBStoreViewController.m
 //  JBump
 //
 //  Created by Sebastian Pretscher on 08.10.11.
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "JBMenuViewController.h"
+#import "JBStoreViewController.h"
 
-@implementation JBMenuViewController
+@implementation JBStoreViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -55,10 +55,6 @@
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    
 }
 
 @end

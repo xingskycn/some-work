@@ -164,6 +164,12 @@
 		9E67F862144080A4000ED8F0 /* JBMenuStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E67F861144080A4000ED8F0 /* JBMenuStoryboard.storyboard */; };
 		9E67F8651440810D000ED8F0 /* JBMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E67F8641440810D000ED8F0 /* JBMenuViewController.m */; };
 		9E67F8671440A7E8000ED8F0 /* ClearButtonBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E67F8661440A7E8000ED8F0 /* ClearButtonBackground.png */; };
+		9E67F89A1440B90D000ED8F0 /* JBSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E67F8991440B90D000ED8F0 /* JBSegue.m */; };
+		9E67F89D1440BB8F000ED8F0 /* JBStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E67F89C1440BB8E000ED8F0 /* JBStoreViewController.m */; };
+		9E67F89F1440BE74000ED8F0 /* World1.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E67F89E1440BE74000ED8F0 /* World1.png */; };
+		9E67F8A21440C66B000ED8F0 /* JBSettingsViewVontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E67F8A11440C66B000ED8F0 /* JBSettingsViewVontroller.m */; };
+		9E67F8A51440C689000ED8F0 /* JBNewGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E67F8A41440C689000ED8F0 /* JBNewGameViewController.m */; };
+		9E67F8A81440C6A2000ED8F0 /* JBQuickGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E67F8A71440C6A2000ED8F0 /* JBQuickGameViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -487,6 +493,17 @@
 		9E67F8631440810D000ED8F0 /* JBMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBMenuViewController.h; sourceTree = "<group>"; };
 		9E67F8641440810D000ED8F0 /* JBMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBMenuViewController.m; sourceTree = "<group>"; };
 		9E67F8661440A7E8000ED8F0 /* ClearButtonBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ClearButtonBackground.png; sourceTree = "<group>"; };
+		9E67F8981440B90C000ED8F0 /* JBSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBSegue.h; sourceTree = "<group>"; };
+		9E67F8991440B90D000ED8F0 /* JBSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBSegue.m; sourceTree = "<group>"; };
+		9E67F89B1440BB8E000ED8F0 /* JBStoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBStoreViewController.h; sourceTree = "<group>"; };
+		9E67F89C1440BB8E000ED8F0 /* JBStoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBStoreViewController.m; sourceTree = "<group>"; };
+		9E67F89E1440BE74000ED8F0 /* World1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = World1.png; sourceTree = "<group>"; };
+		9E67F8A01440C66B000ED8F0 /* JBSettingsViewVontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBSettingsViewVontroller.h; sourceTree = "<group>"; };
+		9E67F8A11440C66B000ED8F0 /* JBSettingsViewVontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBSettingsViewVontroller.m; sourceTree = "<group>"; };
+		9E67F8A31440C689000ED8F0 /* JBNewGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBNewGameViewController.h; sourceTree = "<group>"; };
+		9E67F8A41440C689000ED8F0 /* JBNewGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBNewGameViewController.m; sourceTree = "<group>"; };
+		9E67F8A61440C6A2000ED8F0 /* JBQuickGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBQuickGameViewController.h; sourceTree = "<group>"; };
+		9E67F8A71440C6A2000ED8F0 /* JBQuickGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBQuickGameViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -564,6 +581,7 @@
 		9E67F6771440723D000ED8F0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9E67F89E1440BE74000ED8F0 /* World1.png */,
 				9E67F8661440A7E8000ED8F0 /* ClearButtonBackground.png */,
 				9E67F6781440723D000ED8F0 /* Default.png */,
 				9E67F67A1440723D000ED8F0 /* fps_images.png */,
@@ -1038,6 +1056,16 @@
 				9E67F861144080A4000ED8F0 /* JBMenuStoryboard.storyboard */,
 				9E67F8631440810D000ED8F0 /* JBMenuViewController.h */,
 				9E67F8641440810D000ED8F0 /* JBMenuViewController.m */,
+				9E67F8981440B90C000ED8F0 /* JBSegue.h */,
+				9E67F8991440B90D000ED8F0 /* JBSegue.m */,
+				9E67F89B1440BB8E000ED8F0 /* JBStoreViewController.h */,
+				9E67F89C1440BB8E000ED8F0 /* JBStoreViewController.m */,
+				9E67F8A01440C66B000ED8F0 /* JBSettingsViewVontroller.h */,
+				9E67F8A11440C66B000ED8F0 /* JBSettingsViewVontroller.m */,
+				9E67F8A31440C689000ED8F0 /* JBNewGameViewController.h */,
+				9E67F8A41440C689000ED8F0 /* JBNewGameViewController.m */,
+				9E67F8A61440C6A2000ED8F0 /* JBQuickGameViewController.h */,
+				9E67F8A71440C6A2000ED8F0 /* JBQuickGameViewController.m */,
 			);
 			name = Menu;
 			sourceTree = "<group>";
@@ -1104,6 +1132,7 @@
 				9E67F8491440723F000ED8F0 /* blocks.png in Resources */,
 				9E67F862144080A4000ED8F0 /* JBMenuStoryboard.storyboard in Resources */,
 				9E67F8671440A7E8000ED8F0 /* ClearButtonBackground.png in Resources */,
+				9E67F89F1440BE74000ED8F0 /* World1.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1251,6 +1280,11 @@
 				9E67F85C1440785A000ED8F0 /* JBMapObject.m in Sources */,
 				9E67F86014407BB8000ED8F0 /* JBMenuLayer.m in Sources */,
 				9E67F8651440810D000ED8F0 /* JBMenuViewController.m in Sources */,
+				9E67F89A1440B90D000ED8F0 /* JBSegue.m in Sources */,
+				9E67F89D1440BB8F000ED8F0 /* JBStoreViewController.m in Sources */,
+				9E67F8A21440C66B000ED8F0 /* JBSettingsViewVontroller.m in Sources */,
+				9E67F8A51440C689000ED8F0 /* JBNewGameViewController.m in Sources */,
+				9E67F8A81440C6A2000ED8F0 /* JBQuickGameViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
