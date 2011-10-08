@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JBAppDelegate.h"
 
 int main(int argc, char *argv[]) {
     

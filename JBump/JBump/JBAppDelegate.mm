@@ -16,8 +16,9 @@
 
 @implementation JBAppDelegate
 
-@synthesize window;
+@synthesize window = _window;
 @synthesize menuStoryboard;
+@synthesize viewController;
 
 - (void) removeStartupFlicker
 {
@@ -118,9 +119,14 @@
     self.menuStoryboard = [UIStoryboard storyboardWithName:@"JBMenuStoryboard" bundle:nil];
     
     JBMenuViewController *menuController = [self.menuStoryboard instantiateInitialViewController];
-    [self.menuStoryboard retain];
     
-    [viewController.view addSubview:menuController.view];
+    [viewController addChildViewController:menuController];
+    
+    UIView *animationsView = [[UIView alloc] initWithFrame:viewController.view.frame];
+    
+    [animationsView addSubview:menuController.view];
+    
+    [viewController.view addSubview:animationsView];
 }
 
 
