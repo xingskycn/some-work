@@ -23,4 +23,8 @@
 +(CCScene *) scene;
 
 
+// mode 1 means add entity mode, mode 0 means brush mode
+- (void)enteredMode:(int)mode;
+
+
 @end

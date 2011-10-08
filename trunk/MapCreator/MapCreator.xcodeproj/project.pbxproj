@@ -160,8 +160,9 @@
 		660D20221440789900295AAA /* GLES-Render.mm in Sources */ = {isa = PBXBuildFile; fileRef = 660D20211440789900295AAA /* GLES-Render.mm */; };
 		660D20251440789900295AAA /* blocks.png in Resources */ = {isa = PBXBuildFile; fileRef = 660D20241440789900295AAA /* blocks.png */; };
 		660D20311440794200295AAA /* Map.m in Sources */ = {isa = PBXBuildFile; fileRef = 660D20301440794100295AAA /* Map.m */; };
-		660D203D144081A900295AAA /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 660D203B144081A800295AAA /* MapViewController.m */; };
+		660D203D144081A900295AAA /* MapViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 660D203B144081A800295AAA /* MapViewController.mm */; };
 		660D203E144081A900295AAA /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 660D203C144081A800295AAA /* MapViewController.xib */; };
+		660D20441440BC8700295AAA /* redbrush.png in Resources */ = {isa = PBXBuildFile; fileRef = 660D20431440BC8700295AAA /* redbrush.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -479,8 +480,9 @@
 		660D202F1440794100295AAA /* Map.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Map.h; sourceTree = "<group>"; };
 		660D20301440794100295AAA /* Map.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Map.m; sourceTree = "<group>"; };
 		660D203A144081A800295AAA /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
-		660D203B144081A800295AAA /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		660D203B144081A800295AAA /* MapViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MapViewController.mm; sourceTree = "<group>"; };
 		660D203C144081A800295AAA /* MapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
+		660D20431440BC8700295AAA /* redbrush.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redbrush.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -542,7 +544,7 @@
 				660D202F1440794100295AAA /* Map.h */,
 				660D20301440794100295AAA /* Map.m */,
 				660D203A144081A800295AAA /* MapViewController.h */,
-				660D203B144081A800295AAA /* MapViewController.m */,
+				660D203B144081A800295AAA /* MapViewController.mm */,
 				660D203C144081A800295AAA /* MapViewController.xib */,
 				660D201A1440789900295AAA /* RootViewController.h */,
 				660D201B1440789900295AAA /* RootViewController.m */,
@@ -561,6 +563,7 @@
 		660D1E531440789600295AAA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				660D20431440BC8700295AAA /* redbrush.png */,
 				660D1E541440789600295AAA /* Default.png */,
 				660D1E561440789600295AAA /* fps_images.png */,
 				660D1E581440789600295AAA /* Icon-72.png */,
@@ -1078,6 +1081,7 @@
 				660D1E661440789600295AAA /* iTunesArtwork in Resources */,
 				660D20251440789900295AAA /* blocks.png in Resources */,
 				660D203E144081A900295AAA /* MapViewController.xib in Resources */,
+				660D20441440BC8700295AAA /* redbrush.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1223,7 +1227,7 @@
 				660D201F1440789900295AAA /* MapLayer.mm in Sources */,
 				660D20221440789900295AAA /* GLES-Render.mm in Sources */,
 				660D20311440794200295AAA /* Map.m in Sources */,
-				660D203D144081A900295AAA /* MapViewController.m in Sources */,
+				660D203D144081A900295AAA /* MapViewController.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

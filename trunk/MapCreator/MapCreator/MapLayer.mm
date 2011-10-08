@@ -103,6 +103,11 @@ enum {
     return self;
 }
 
+- (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    NSLog(@"touch?");
+}
+
 
 // on "dealloc" you need to release all your retained objects
 - (void) dealloc
@@ -116,4 +121,11 @@ enum {
 	// don't forget to call "super dealloc"
 	[super dealloc];
 }
+
+- (void)enteredMode:(int)mode
+{
+    
+}
+
+
 @end

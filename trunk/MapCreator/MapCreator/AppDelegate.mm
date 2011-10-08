@@ -12,6 +12,7 @@
 #import "GameConfig.h"
 #import "MapLayer.h"
 #import "RootViewController.h"
+#import "MapViewController.h"
 
 @implementation AppDelegate
 
@@ -94,10 +95,17 @@
 	
 	
 	// make the OpenGLView a child of the view controller
-	[viewController setView:glView];
+	[viewController.view addSubview:glView];
+    viewController.view.autoresizingMask = 0;
+    viewController.view.frame = CGRectMake(0, 0, 480, 320);
+    
+    
+    MapViewController* mapViewController = [[MapViewController alloc] initWithNibName:@"MapViewController" bundle:NULL];
+    
+    [viewController.view addSubview:mapViewController.view];
 	
 	// make the View Controller a child of the main window
-	[window addSubview: viewController.view];
+	[window addSubview:viewController.view];
 	
 	[window makeKeyAndVisible];
 	
