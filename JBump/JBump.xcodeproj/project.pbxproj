@@ -171,6 +171,7 @@
 		9E67F8A51440C689000ED8F0 /* JBNewGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E67F8A41440C689000ED8F0 /* JBNewGameViewController.m */; };
 		9E67F8A81440C6A2000ED8F0 /* JBQuickGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E67F8A71440C6A2000ED8F0 /* JBQuickGameViewController.m */; };
 		9E67F8AE1440CB5B000ED8F0 /* JBAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E67F8AD1440CB5B000ED8F0 /* JBAboutViewController.m */; };
+		9E67F8B61440D4C8000ED8F0 /* JBBluetoothAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E67F8B51440D4C8000ED8F0 /* JBBluetoothAdapter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -507,6 +508,8 @@
 		9E67F8A71440C6A2000ED8F0 /* JBQuickGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBQuickGameViewController.m; sourceTree = "<group>"; };
 		9E67F8AC1440CB5B000ED8F0 /* JBAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBAboutViewController.h; sourceTree = "<group>"; };
 		9E67F8AD1440CB5B000ED8F0 /* JBAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBAboutViewController.m; sourceTree = "<group>"; };
+		9E67F8B41440D4C8000ED8F0 /* JBBluetoothAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBBluetoothAdapter.h; sourceTree = "<group>"; };
+		9E67F8B51440D4C8000ED8F0 /* JBBluetoothAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBBluetoothAdapter.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1079,6 +1082,8 @@
 		9E67F8AF1440D3B8000ED8F0 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				9E67F8B41440D4C8000ED8F0 /* JBBluetoothAdapter.h */,
+				9E67F8B51440D4C8000ED8F0 /* JBBluetoothAdapter.m */,
 			);
 			name = Network;
 			sourceTree = "<group>";
@@ -1299,6 +1304,7 @@
 				9E67F8A51440C689000ED8F0 /* JBNewGameViewController.m in Sources */,
 				9E67F8A81440C6A2000ED8F0 /* JBQuickGameViewController.m in Sources */,
 				9E67F8AE1440CB5B000ED8F0 /* JBAboutViewController.m in Sources */,
+				9E67F8B61440D4C8000ED8F0 /* JBBluetoothAdapter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
