@@ -99,15 +99,32 @@ enum {
         //		flags += b2DebugDraw::e_pairBit;
         //		flags += b2DebugDraw::e_centerOfMassBit;
 		m_debugDraw->SetFlags(flags);
+        
+        [self schedule: @selector(tick:)];
     }
     return self;
 }
 
-- (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+-(void) tick: (ccTime) dt
 {
-    NSLog(@"touch?");
+    float x,y,z;
+    [self.camera eyeX:&x eyeY:&y eyeZ:&z];
+    
+    float newX = x*PTM_RATIO - [[CCDirector sharedDirector] winSize].width/2;
+    float newY = y*PTM_RATIO - [[CCDirector sharedDirector] winSize].height/2;
+    
+    UISlider* slider = ((AppDelegate *)[UIApplication sharedApplication].delegate ).slider;
+    float sliderPos = slider.value;
+    
+    [self.camera setCenterX:newX centerY:newY centerZ:0];
+    [self.camera setEyeX:newX eyeY:newY eyeZ:1];
+    [self setScale:1-sliderPos*0.5];
 }
 
+- (void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration
+{
+    cameraVelocity = CGPointMake(cameraVelocity.x+acceleration.x,cameraVelocity.y+acceleration.y);
+}
 
 // on "dealloc" you need to release all your retained objects
 - (void) dealloc
