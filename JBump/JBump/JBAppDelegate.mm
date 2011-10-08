@@ -10,12 +10,14 @@
 
 #import "JBAppDelegate.h"
 #import "GameConfig.h"
-#import "JBHelloWorldLayer.h"
+#import "JBMenuLayer.h"
 #import "JBRootViewController.h"
+#import "JBMenuViewController.h"
 
 @implementation JBAppDelegate
 
 @synthesize window;
+@synthesize menuStoryboard;
 
 - (void) removeStartupFlicker
 {
@@ -94,7 +96,7 @@
 	
 	
 	// make the OpenGLView a child of the view controller
-	[viewController setView:glView];
+	[viewController.view addSubview:glView];
 	
 	// make the View Controller a child of the main window
 	[window addSubview: viewController.view];
@@ -111,7 +113,14 @@
 	[self removeStartupFlicker];
 	
 	// Run the intro Scene
-	[[CCDirector sharedDirector] runWithScene: [JBHelloWorldLayer scene]];
+	[[CCDirector sharedDirector] runWithScene: [JBMenuLayer scene]];
+    
+    self.menuStoryboard = [UIStoryboard storyboardWithName:@"JBMenuStoryboard" bundle:nil];
+    
+    JBMenuViewController *menuController = [self.menuStoryboard instantiateInitialViewController];
+    [self.menuStoryboard retain];
+    
+    [viewController.view addSubview:menuController.view];
 }
 
 

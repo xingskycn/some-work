@@ -160,6 +160,10 @@
 		9E67F8461440723F000ED8F0 /* GLES-Render.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9E67F8451440723F000ED8F0 /* GLES-Render.mm */; };
 		9E67F8491440723F000ED8F0 /* blocks.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E67F8481440723F000ED8F0 /* blocks.png */; };
 		9E67F85C1440785A000ED8F0 /* JBMapObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E67F85B1440785A000ED8F0 /* JBMapObject.m */; };
+		9E67F86014407BB8000ED8F0 /* JBMenuLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E67F85F14407BB8000ED8F0 /* JBMenuLayer.m */; };
+		9E67F862144080A4000ED8F0 /* JBMenuStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E67F861144080A4000ED8F0 /* JBMenuStoryboard.storyboard */; };
+		9E67F8651440810D000ED8F0 /* JBMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E67F8641440810D000ED8F0 /* JBMenuViewController.m */; };
+		9E67F8671440A7E8000ED8F0 /* ClearButtonBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E67F8661440A7E8000ED8F0 /* ClearButtonBackground.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -464,11 +468,11 @@
 		9E67F8361440723F000ED8F0 /* LICENSE_Box2D.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = LICENSE_Box2D.txt; path = libs/LICENSE_Box2D.txt; sourceTree = "<group>"; };
 		9E67F8381440723F000ED8F0 /* Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
 		9E67F8391440723F000ED8F0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		9E67F83B1440723F000ED8F0 /* JBAppDelegate.h */ = {isa = PBXFileReference; path = JBAppDelegate.h; sourceTree = "<group>"; };
+		9E67F83B1440723F000ED8F0 /* JBAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JBAppDelegate.h; sourceTree = "<group>"; };
 		9E67F83C1440723F000ED8F0 /* JBAppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = JBAppDelegate.mm; sourceTree = "<group>"; };
-		9E67F83E1440723F000ED8F0 /* JBRootViewController.h */ = {isa = PBXFileReference; path = JBRootViewController.h; sourceTree = "<group>"; };
+		9E67F83E1440723F000ED8F0 /* JBRootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JBRootViewController.h; sourceTree = "<group>"; };
 		9E67F83F1440723F000ED8F0 /* JBRootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JBRootViewController.m; sourceTree = "<group>"; };
-		9E67F8411440723F000ED8F0 /* JBHelloWorldLayer.h */ = {isa = PBXFileReference; path = JBHelloWorldLayer.h; sourceTree = "<group>"; };
+		9E67F8411440723F000ED8F0 /* JBHelloWorldLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JBHelloWorldLayer.h; sourceTree = "<group>"; };
 		9E67F8421440723F000ED8F0 /* JBHelloWorldLayer.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = JBHelloWorldLayer.mm; sourceTree = "<group>"; };
 		9E67F8441440723F000ED8F0 /* GLES-Render.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GLES-Render.h"; sourceTree = "<group>"; };
 		9E67F8451440723F000ED8F0 /* GLES-Render.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = "GLES-Render.mm"; sourceTree = "<group>"; };
@@ -477,6 +481,12 @@
 		9E67F8591440785A000ED8F0 /* JBMapEntities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBMapEntities.h; sourceTree = "<group>"; };
 		9E67F85A1440785A000ED8F0 /* JBMapObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBMapObject.h; sourceTree = "<group>"; };
 		9E67F85B1440785A000ED8F0 /* JBMapObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBMapObject.m; sourceTree = "<group>"; };
+		9E67F85E14407BB8000ED8F0 /* JBMenuLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBMenuLayer.h; sourceTree = "<group>"; };
+		9E67F85F14407BB8000ED8F0 /* JBMenuLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBMenuLayer.m; sourceTree = "<group>"; };
+		9E67F861144080A4000ED8F0 /* JBMenuStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = JBMenuStoryboard.storyboard; sourceTree = "<group>"; };
+		9E67F8631440810D000ED8F0 /* JBMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBMenuViewController.h; sourceTree = "<group>"; };
+		9E67F8641440810D000ED8F0 /* JBMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBMenuViewController.m; sourceTree = "<group>"; };
+		9E67F8661440A7E8000ED8F0 /* ClearButtonBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ClearButtonBackground.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -533,6 +543,7 @@
 		9E67F6761440723D000ED8F0 /* JBump */ = {
 			isa = PBXGroup;
 			children = (
+				9E67F85D14407B8A000ED8F0 /* Menu */,
 				9E67F8531440780E000ED8F0 /* Map */,
 				9E67F83B1440723F000ED8F0 /* JBAppDelegate.h */,
 				9E67F83C1440723F000ED8F0 /* JBAppDelegate.mm */,
@@ -553,6 +564,7 @@
 		9E67F6771440723D000ED8F0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9E67F8661440A7E8000ED8F0 /* ClearButtonBackground.png */,
 				9E67F6781440723D000ED8F0 /* Default.png */,
 				9E67F67A1440723D000ED8F0 /* fps_images.png */,
 				9E67F67C1440723D000ED8F0 /* Icon-72.png */,
@@ -1018,6 +1030,18 @@
 			name = Map;
 			sourceTree = "<group>";
 		};
+		9E67F85D14407B8A000ED8F0 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				9E67F85E14407BB8000ED8F0 /* JBMenuLayer.h */,
+				9E67F85F14407BB8000ED8F0 /* JBMenuLayer.m */,
+				9E67F861144080A4000ED8F0 /* JBMenuStoryboard.storyboard */,
+				9E67F8631440810D000ED8F0 /* JBMenuViewController.h */,
+				9E67F8641440810D000ED8F0 /* JBMenuViewController.m */,
+			);
+			name = Menu;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1078,6 +1102,8 @@
 				9E67F6871440723D000ED8F0 /* Icon@2x.png in Resources */,
 				9E67F68A1440723D000ED8F0 /* iTunesArtwork in Resources */,
 				9E67F8491440723F000ED8F0 /* blocks.png in Resources */,
+				9E67F862144080A4000ED8F0 /* JBMenuStoryboard.storyboard in Resources */,
+				9E67F8671440A7E8000ED8F0 /* ClearButtonBackground.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1223,6 +1249,8 @@
 				9E67F8431440723F000ED8F0 /* JBHelloWorldLayer.mm in Sources */,
 				9E67F8461440723F000ED8F0 /* GLES-Render.mm in Sources */,
 				9E67F85C1440785A000ED8F0 /* JBMapObject.m in Sources */,
+				9E67F86014407BB8000ED8F0 /* JBMenuLayer.m in Sources */,
+				9E67F8651440810D000ED8F0 /* JBMenuViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
