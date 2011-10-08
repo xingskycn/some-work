@@ -154,11 +154,12 @@
 		9E67F8311440723F000ED8F0 /* b2RevoluteJoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E67F8301440723F000ED8F0 /* b2RevoluteJoint.cpp */; };
 		9E67F8341440723F000ED8F0 /* b2WeldJoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E67F8331440723F000ED8F0 /* b2WeldJoint.cpp */; };
 		9E67F83A1440723F000ED8F0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E67F8391440723F000ED8F0 /* main.m */; };
-		9E67F83D1440723F000ED8F0 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9E67F83C1440723F000ED8F0 /* AppDelegate.mm */; };
-		9E67F8401440723F000ED8F0 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E67F83F1440723F000ED8F0 /* RootViewController.m */; };
-		9E67F8431440723F000ED8F0 /* HelloWorldLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9E67F8421440723F000ED8F0 /* HelloWorldLayer.mm */; };
+		9E67F83D1440723F000ED8F0 /* JBAppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9E67F83C1440723F000ED8F0 /* JBAppDelegate.mm */; };
+		9E67F8401440723F000ED8F0 /* JBRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E67F83F1440723F000ED8F0 /* JBRootViewController.m */; };
+		9E67F8431440723F000ED8F0 /* JBHelloWorldLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9E67F8421440723F000ED8F0 /* JBHelloWorldLayer.mm */; };
 		9E67F8461440723F000ED8F0 /* GLES-Render.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9E67F8451440723F000ED8F0 /* GLES-Render.mm */; };
 		9E67F8491440723F000ED8F0 /* blocks.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E67F8481440723F000ED8F0 /* blocks.png */; };
+		9E67F85C1440785A000ED8F0 /* JBMapObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E67F85B1440785A000ED8F0 /* JBMapObject.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -463,16 +464,19 @@
 		9E67F8361440723F000ED8F0 /* LICENSE_Box2D.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = LICENSE_Box2D.txt; path = libs/LICENSE_Box2D.txt; sourceTree = "<group>"; };
 		9E67F8381440723F000ED8F0 /* Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
 		9E67F8391440723F000ED8F0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		9E67F83B1440723F000ED8F0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		9E67F83C1440723F000ED8F0 /* AppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
-		9E67F83E1440723F000ED8F0 /* RootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
-		9E67F83F1440723F000ED8F0 /* RootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
-		9E67F8411440723F000ED8F0 /* HelloWorldLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelloWorldLayer.h; sourceTree = "<group>"; };
-		9E67F8421440723F000ED8F0 /* HelloWorldLayer.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = HelloWorldLayer.mm; sourceTree = "<group>"; };
+		9E67F83B1440723F000ED8F0 /* JBAppDelegate.h */ = {isa = PBXFileReference; path = JBAppDelegate.h; sourceTree = "<group>"; };
+		9E67F83C1440723F000ED8F0 /* JBAppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = JBAppDelegate.mm; sourceTree = "<group>"; };
+		9E67F83E1440723F000ED8F0 /* JBRootViewController.h */ = {isa = PBXFileReference; path = JBRootViewController.h; sourceTree = "<group>"; };
+		9E67F83F1440723F000ED8F0 /* JBRootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JBRootViewController.m; sourceTree = "<group>"; };
+		9E67F8411440723F000ED8F0 /* JBHelloWorldLayer.h */ = {isa = PBXFileReference; path = JBHelloWorldLayer.h; sourceTree = "<group>"; };
+		9E67F8421440723F000ED8F0 /* JBHelloWorldLayer.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = JBHelloWorldLayer.mm; sourceTree = "<group>"; };
 		9E67F8441440723F000ED8F0 /* GLES-Render.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GLES-Render.h"; sourceTree = "<group>"; };
 		9E67F8451440723F000ED8F0 /* GLES-Render.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = "GLES-Render.mm"; sourceTree = "<group>"; };
 		9E67F8471440723F000ED8F0 /* GameConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameConfig.h; sourceTree = "<group>"; };
 		9E67F8481440723F000ED8F0 /* blocks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blocks.png; path = Resources/blocks.png; sourceTree = "<group>"; };
+		9E67F8591440785A000ED8F0 /* JBMapEntities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBMapEntities.h; sourceTree = "<group>"; };
+		9E67F85A1440785A000ED8F0 /* JBMapObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBMapObject.h; sourceTree = "<group>"; };
+		9E67F85B1440785A000ED8F0 /* JBMapObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBMapObject.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -529,12 +533,13 @@
 		9E67F6761440723D000ED8F0 /* JBump */ = {
 			isa = PBXGroup;
 			children = (
-				9E67F83B1440723F000ED8F0 /* AppDelegate.h */,
-				9E67F83C1440723F000ED8F0 /* AppDelegate.mm */,
-				9E67F83E1440723F000ED8F0 /* RootViewController.h */,
-				9E67F83F1440723F000ED8F0 /* RootViewController.m */,
-				9E67F8411440723F000ED8F0 /* HelloWorldLayer.h */,
-				9E67F8421440723F000ED8F0 /* HelloWorldLayer.mm */,
+				9E67F8531440780E000ED8F0 /* Map */,
+				9E67F83B1440723F000ED8F0 /* JBAppDelegate.h */,
+				9E67F83C1440723F000ED8F0 /* JBAppDelegate.mm */,
+				9E67F83E1440723F000ED8F0 /* JBRootViewController.h */,
+				9E67F83F1440723F000ED8F0 /* JBRootViewController.m */,
+				9E67F8411440723F000ED8F0 /* JBHelloWorldLayer.h */,
+				9E67F8421440723F000ED8F0 /* JBHelloWorldLayer.mm */,
 				9E67F8441440723F000ED8F0 /* GLES-Render.h */,
 				9E67F8451440723F000ED8F0 /* GLES-Render.mm */,
 				9E67F8471440723F000ED8F0 /* GameConfig.h */,
@@ -1003,6 +1008,16 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		9E67F8531440780E000ED8F0 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				9E67F8591440785A000ED8F0 /* JBMapEntities.h */,
+				9E67F85A1440785A000ED8F0 /* JBMapObject.h */,
+				9E67F85B1440785A000ED8F0 /* JBMapObject.m */,
+			);
+			name = Map;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1203,10 +1218,11 @@
 				9E67F8311440723F000ED8F0 /* b2RevoluteJoint.cpp in Sources */,
 				9E67F8341440723F000ED8F0 /* b2WeldJoint.cpp in Sources */,
 				9E67F83A1440723F000ED8F0 /* main.m in Sources */,
-				9E67F83D1440723F000ED8F0 /* AppDelegate.mm in Sources */,
-				9E67F8401440723F000ED8F0 /* RootViewController.m in Sources */,
-				9E67F8431440723F000ED8F0 /* HelloWorldLayer.mm in Sources */,
+				9E67F83D1440723F000ED8F0 /* JBAppDelegate.mm in Sources */,
+				9E67F8401440723F000ED8F0 /* JBRootViewController.m in Sources */,
+				9E67F8431440723F000ED8F0 /* JBHelloWorldLayer.mm in Sources */,
 				9E67F8461440723F000ED8F0 /* GLES-Render.mm in Sources */,
+				9E67F85C1440785A000ED8F0 /* JBMapObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1302,6 +1318,7 @@
 				9E67F84E1440723F000ED8F0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

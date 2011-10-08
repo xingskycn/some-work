@@ -8,12 +8,12 @@
 
 #import "cocos2d.h"
 
-#import "AppDelegate.h"
+#import "JBAppDelegate.h"
 #import "GameConfig.h"
-#import "HelloWorldLayer.h"
-#import "RootViewController.h"
+#import "JBHelloWorldLayer.h"
+#import "JBRootViewController.h"
 
-@implementation AppDelegate
+@implementation JBAppDelegate
 
 @synthesize window;
 
@@ -53,7 +53,7 @@
 	CCDirector *director = [CCDirector sharedDirector];
 	
 	// Init the View Controller
-	viewController = [[RootViewController alloc] initWithNibName:nil bundle:nil];
+	viewController = [[JBRootViewController alloc] initWithNibName:nil bundle:nil];
 	viewController.wantsFullScreenLayout = YES;
 	
 	//
@@ -111,7 +111,7 @@
 	[self removeStartupFlicker];
 	
 	// Run the intro Scene
-	[[CCDirector sharedDirector] runWithScene: [HelloWorldLayer scene]];
+	[[CCDirector sharedDirector] runWithScene: [JBHelloWorldLayer scene]];
 }
 
 

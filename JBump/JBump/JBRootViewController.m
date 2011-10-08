@@ -13,10 +13,10 @@
 
 #import "cocos2d.h"
 
-#import "RootViewController.h"
+#import "JBRootViewController.h"
 #import "GameConfig.h"
 
-@implementation RootViewController
+@implementation JBRootViewController
 
 /*
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.

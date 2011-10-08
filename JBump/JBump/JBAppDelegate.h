@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@class RootViewController;
+@class JBRootViewController;
 
-@interface AppDelegate : NSObject <UIApplicationDelegate> {
+@interface JBAppDelegate : NSObject <UIApplicationDelegate> {
 	UIWindow			*window;
-	RootViewController	*viewController;
+	JBRootViewController	*viewController;
 }
 
 @property (nonatomic, retain) UIWindow *window;

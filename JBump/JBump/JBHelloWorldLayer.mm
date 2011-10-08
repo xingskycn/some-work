@@ -8,7 +8,7 @@
 
 
 // Import the interfaces
-#import "HelloWorldLayer.h"
+#import "JBHelloWorldLayer.h"
 
 //Pixel to metres ratio. Box2D uses metres as the unit for measurement.
 //This ratio defines how many pixels correspond to 1 Box2D "metre"
@@ -25,7 +25,7 @@ enum {
 
 
 // HelloWorldLayer implementation
-@implementation HelloWorldLayer
+@implementation JBHelloWorldLayer
 
 +(CCScene *) scene
 {
@@ -33,7 +33,7 @@ enum {
 	CCScene *scene = [CCScene node];
 	
 	// 'layer' is an autorelease object.
-	HelloWorldLayer *layer = [HelloWorldLayer node];
+	JBHelloWorldLayer *layer = [JBHelloWorldLayer node];
 	
 	// add layer as a child to scene
 	[scene addChild: layer];
