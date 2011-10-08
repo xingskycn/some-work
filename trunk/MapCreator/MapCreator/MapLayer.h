@@ -20,6 +20,8 @@
     CGPoint cameraVelocity;
 }
 
+@property (nonatomic, retain) UISlider* magnifier;
+
 // returns a CCScene that contains the HelloWorldLayer as the only child
 +(CCScene *) scene;
 

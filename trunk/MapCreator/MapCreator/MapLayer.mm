@@ -26,6 +26,7 @@ enum {
 
 // MapLayer implementation
 @implementation MapLayer
+@synthesize magnifier;
 
 +(CCScene *) scene
 {
@@ -110,8 +111,8 @@ enum {
     float x,y,z;
     [self.camera eyeX:&x eyeY:&y eyeZ:&z];
     
-    float newX = x*PTM_RATIO - [[CCDirector sharedDirector] winSize].width/2;
-    float newY = y*PTM_RATIO - [[CCDirector sharedDirector] winSize].height/2;
+    float newX = x+cameraVelocity.x;
+    float newY = y+cameraVelocity.y;
     
     UISlider* slider = ((AppDelegate *)[UIApplication sharedApplication].delegate ).slider;
     float sliderPos = slider.value;
