@@ -1,0 +1,371 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		663ADB31143E0A950063160F /* JBSkinStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 663ADB30143E0A950063160F /* JBSkinStore.m */; };
+		663ADB34143E0AA30063160F /* JBSkinStoreDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 663ADB33143E0AA30063160F /* JBSkinStoreDevice.m */; };
+		663ADB37143E0AB00063160F /* JBSkinStoreOnline.m in Sources */ = {isa = PBXBuildFile; fileRef = 663ADB36143E0AB00063160F /* JBSkinStoreOnline.m */; };
+		663ADB3A143E0AC40063160F /* JBSkin.m in Sources */ = {isa = PBXBuildFile; fileRef = 663ADB39143E0AC40063160F /* JBSkin.m */; };
+		6648A73A143C6DEB00B94690 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6648A739143C6DEB00B94690 /* UIKit.framework */; };
+		6648A73C143C6DEB00B94690 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6648A73B143C6DEB00B94690 /* Foundation.framework */; };
+		6648A73E143C6DEB00B94690 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6648A73D143C6DEB00B94690 /* CoreGraphics.framework */; };
+		6648A744143C6DEB00B94690 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6648A742143C6DEB00B94690 /* InfoPlist.strings */; };
+		6648A746143C6DEB00B94690 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6648A745143C6DEB00B94690 /* main.m */; };
+		6648A74A143C6DEB00B94690 /* JBAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6648A749143C6DEB00B94690 /* JBAppDelegate.m */; };
+		6648A74D143C6DEB00B94690 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6648A74B143C6DEB00B94690 /* MainStoryboard.storyboard */; };
+		6648A750143C6DEB00B94690 /* JBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6648A74F143C6DEB00B94690 /* JBViewController.m */; };
+		66B243D7143CA8D800FC9B2B /* JBMapStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B243D6143CA8D800FC9B2B /* JBMapStore.m */; };
+		66B243DA143CA9BB00FC9B2B /* JBMapStoreDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B243D9143CA9BB00FC9B2B /* JBMapStoreDevice.m */; };
+		66BED945143D9109004C7739 /* JBMapStoreOnline.m in Sources */ = {isa = PBXBuildFile; fileRef = 66BED944143D9109004C7739 /* JBMapStoreOnline.m */; };
+		66BED948143D9181004C7739 /* JBMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 66BED947143D9180004C7739 /* JBMap.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		663ADB2F143E0A950063160F /* JBSkinStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBSkinStore.h; sourceTree = "<group>"; };
+		663ADB30143E0A950063160F /* JBSkinStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBSkinStore.m; sourceTree = "<group>"; };
+		663ADB32143E0AA30063160F /* JBSkinStoreDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBSkinStoreDevice.h; sourceTree = "<group>"; };
+		663ADB33143E0AA30063160F /* JBSkinStoreDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBSkinStoreDevice.m; sourceTree = "<group>"; };
+		663ADB35143E0AB00063160F /* JBSkinStoreOnline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBSkinStoreOnline.h; sourceTree = "<group>"; };
+		663ADB36143E0AB00063160F /* JBSkinStoreOnline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBSkinStoreOnline.m; sourceTree = "<group>"; };
+		663ADB38143E0AC40063160F /* JBSkin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBSkin.h; sourceTree = "<group>"; };
+		663ADB39143E0AC40063160F /* JBSkin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBSkin.m; sourceTree = "<group>"; };
+		6648A735143C6DEB00B94690 /* JBUMPB0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JBUMPB0.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6648A739143C6DEB00B94690 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		6648A73B143C6DEB00B94690 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		6648A73D143C6DEB00B94690 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		6648A741143C6DEB00B94690 /* JBUMPB0-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "JBUMPB0-Info.plist"; sourceTree = "<group>"; };
+		6648A743143C6DEB00B94690 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		6648A745143C6DEB00B94690 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		6648A747143C6DEB00B94690 /* JBUMPB0-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JBUMPB0-Prefix.pch"; sourceTree = "<group>"; };
+		6648A748143C6DEB00B94690 /* JBAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JBAppDelegate.h; sourceTree = "<group>"; };
+		6648A749143C6DEB00B94690 /* JBAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JBAppDelegate.m; sourceTree = "<group>"; };
+		6648A74C143C6DEB00B94690 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		6648A74E143C6DEB00B94690 /* JBViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JBViewController.h; sourceTree = "<group>"; };
+		6648A74F143C6DEB00B94690 /* JBViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JBViewController.m; sourceTree = "<group>"; };
+		66B243D5143CA8D800FC9B2B /* JBMapStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBMapStore.h; sourceTree = "<group>"; };
+		66B243D6143CA8D800FC9B2B /* JBMapStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBMapStore.m; sourceTree = "<group>"; };
+		66B243D8143CA9BB00FC9B2B /* JBMapStoreDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBMapStoreDevice.h; sourceTree = "<group>"; };
+		66B243D9143CA9BB00FC9B2B /* JBMapStoreDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBMapStoreDevice.m; sourceTree = "<group>"; };
+		66BED943143D9109004C7739 /* JBMapStoreOnline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBMapStoreOnline.h; sourceTree = "<group>"; };
+		66BED944143D9109004C7739 /* JBMapStoreOnline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBMapStoreOnline.m; sourceTree = "<group>"; };
+		66BED946143D9180004C7739 /* JBMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBMap.h; sourceTree = "<group>"; };
+		66BED947143D9180004C7739 /* JBMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBMap.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6648A732143C6DEB00B94690 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6648A73A143C6DEB00B94690 /* UIKit.framework in Frameworks */,
+				6648A73C143C6DEB00B94690 /* Foundation.framework in Frameworks */,
+				6648A73E143C6DEB00B94690 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		663ADB2D143E0A790063160F /* Skins */ = {
+			isa = PBXGroup;
+			children = (
+				663ADB2F143E0A950063160F /* JBSkinStore.h */,
+				663ADB30143E0A950063160F /* JBSkinStore.m */,
+				663ADB32143E0AA30063160F /* JBSkinStoreDevice.h */,
+				663ADB33143E0AA30063160F /* JBSkinStoreDevice.m */,
+				663ADB35143E0AB00063160F /* JBSkinStoreOnline.h */,
+				663ADB36143E0AB00063160F /* JBSkinStoreOnline.m */,
+				663ADB38143E0AC40063160F /* JBSkin.h */,
+				663ADB39143E0AC40063160F /* JBSkin.m */,
+			);
+			name = Skins;
+			sourceTree = "<group>";
+		};
+		6648A72A143C6DEB00B94690 = {
+			isa = PBXGroup;
+			children = (
+				6648A73F143C6DEB00B94690 /* JBUMPB0 */,
+				6648A738143C6DEB00B94690 /* Frameworks */,
+				6648A736143C6DEB00B94690 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		6648A736143C6DEB00B94690 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6648A735143C6DEB00B94690 /* JBUMPB0.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6648A738143C6DEB00B94690 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6648A739143C6DEB00B94690 /* UIKit.framework */,
+				6648A73B143C6DEB00B94690 /* Foundation.framework */,
+				6648A73D143C6DEB00B94690 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6648A73F143C6DEB00B94690 /* JBUMPB0 */ = {
+			isa = PBXGroup;
+			children = (
+				663ADB2D143E0A790063160F /* Skins */,
+				66B243D4143CA8A500FC9B2B /* Models */,
+				66B243D3143CA89A00FC9B2B /* Maps */,
+				66B243D0143CA87300FC9B2B /* Init */,
+				66B243D2143CA88600FC9B2B /* Physics */,
+				6648A740143C6DEB00B94690 /* Supporting Files */,
+			);
+			path = JBUMPB0;
+			sourceTree = "<group>";
+		};
+		6648A740143C6DEB00B94690 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6648A741143C6DEB00B94690 /* JBUMPB0-Info.plist */,
+				6648A742143C6DEB00B94690 /* InfoPlist.strings */,
+				6648A745143C6DEB00B94690 /* main.m */,
+				6648A747143C6DEB00B94690 /* JBUMPB0-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		66B243D0143CA87300FC9B2B /* Init */ = {
+			isa = PBXGroup;
+			children = (
+				6648A748143C6DEB00B94690 /* JBAppDelegate.h */,
+				6648A749143C6DEB00B94690 /* JBAppDelegate.m */,
+				6648A74B143C6DEB00B94690 /* MainStoryboard.storyboard */,
+				6648A74E143C6DEB00B94690 /* JBViewController.h */,
+				6648A74F143C6DEB00B94690 /* JBViewController.m */,
+			);
+			name = Init;
+			sourceTree = "<group>";
+		};
+		66B243D2143CA88600FC9B2B /* Physics */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Physics;
+			sourceTree = "<group>";
+		};
+		66B243D3143CA89A00FC9B2B /* Maps */ = {
+			isa = PBXGroup;
+			children = (
+				66B243D5143CA8D800FC9B2B /* JBMapStore.h */,
+				66B243D6143CA8D800FC9B2B /* JBMapStore.m */,
+				66B243D8143CA9BB00FC9B2B /* JBMapStoreDevice.h */,
+				66B243D9143CA9BB00FC9B2B /* JBMapStoreDevice.m */,
+				66BED943143D9109004C7739 /* JBMapStoreOnline.h */,
+				66BED944143D9109004C7739 /* JBMapStoreOnline.m */,
+				66BED946143D9180004C7739 /* JBMap.h */,
+				66BED947143D9180004C7739 /* JBMap.m */,
+			);
+			name = Maps;
+			sourceTree = "<group>";
+		};
+		66B243D4143CA8A500FC9B2B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6648A734143C6DEB00B94690 /* JBUMPB0 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6648A753143C6DEB00B94690 /* Build configuration list for PBXNativeTarget "JBUMPB0" */;
+			buildPhases = (
+				6648A731143C6DEB00B94690 /* Sources */,
+				6648A732143C6DEB00B94690 /* Frameworks */,
+				6648A733143C6DEB00B94690 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = JBUMPB0;
+			productName = JBUMPB0;
+			productReference = 6648A735143C6DEB00B94690 /* JBUMPB0.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6648A72C143C6DEB00B94690 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = "TU Munich";
+			};
+			buildConfigurationList = 6648A72F143C6DEB00B94690 /* Build configuration list for PBXProject "JBUMPB0" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 6648A72A143C6DEB00B94690;
+			productRefGroup = 6648A736143C6DEB00B94690 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6648A734143C6DEB00B94690 /* JBUMPB0 */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6648A733143C6DEB00B94690 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6648A744143C6DEB00B94690 /* InfoPlist.strings in Resources */,
+				6648A74D143C6DEB00B94690 /* MainStoryboard.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6648A731143C6DEB00B94690 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6648A746143C6DEB00B94690 /* main.m in Sources */,
+				6648A74A143C6DEB00B94690 /* JBAppDelegate.m in Sources */,
+				6648A750143C6DEB00B94690 /* JBViewController.m in Sources */,
+				66B243D7143CA8D800FC9B2B /* JBMapStore.m in Sources */,
+				66B243DA143CA9BB00FC9B2B /* JBMapStoreDevice.m in Sources */,
+				66BED945143D9109004C7739 /* JBMapStoreOnline.m in Sources */,
+				66BED948143D9181004C7739 /* JBMap.m in Sources */,
+				663ADB31143E0A950063160F /* JBSkinStore.m in Sources */,
+				663ADB34143E0AA30063160F /* JBSkinStoreDevice.m in Sources */,
+				663ADB37143E0AB00063160F /* JBSkinStoreOnline.m in Sources */,
+				663ADB3A143E0AC40063160F /* JBSkin.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		6648A742143C6DEB00B94690 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6648A743143C6DEB00B94690 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		6648A74B143C6DEB00B94690 /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6648A74C143C6DEB00B94690 /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		6648A751143C6DEB00B94690 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		6648A752143C6DEB00B94690 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		6648A754143C6DEB00B94690 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "JBUMPB0/JBUMPB0-Prefix.pch";
+				INFOPLIST_FILE = "JBUMPB0/JBUMPB0-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		6648A755143C6DEB00B94690 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "JBUMPB0/JBUMPB0-Prefix.pch";
+				INFOPLIST_FILE = "JBUMPB0/JBUMPB0-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6648A72F143C6DEB00B94690 /* Build configuration list for PBXProject "JBUMPB0" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6648A751143C6DEB00B94690 /* Debug */,
+				6648A752143C6DEB00B94690 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6648A753143C6DEB00B94690 /* Build configuration list for PBXNativeTarget "JBUMPB0" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6648A754143C6DEB00B94690 /* Debug */,
+				6648A755143C6DEB00B94690 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6648A72C143C6DEB00B94690 /* Project object */;
+}
