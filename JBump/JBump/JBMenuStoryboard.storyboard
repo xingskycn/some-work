@@ -106,6 +106,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
+                    <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -274,26 +275,6 @@
             <point key="canvasLocation" x="708" y="1030"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="JBAboutViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/JBAboutViewController.h"/>
-        </class>
-        <class className="JBMenuViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/JBMenuViewController.h"/>
-        </class>
-        <class className="JBNewGameViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/JBNewGameViewController.h"/>
-        </class>
-        <class className="JBQuickGameViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/JBQuickGameViewController.h"/>
-        </class>
-        <class className="JBSettingsViewVontroller" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/JBSettingsViewVontroller.h"/>
-        </class>
-        <class className="JBStoreViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/JBStoreViewController.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <nil key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

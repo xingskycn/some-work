@@ -563,6 +563,7 @@
 		9E67F6761440723D000ED8F0 /* JBump */ = {
 			isa = PBXGroup;
 			children = (
+				9E67F8AF1440D3B8000ED8F0 /* Network */,
 				9E67F85D14407B8A000ED8F0 /* Menu */,
 				9E67F8531440780E000ED8F0 /* Map */,
 				9E67F83B1440723F000ED8F0 /* JBAppDelegate.h */,
@@ -1073,6 +1074,13 @@
 				9E67F8AD1440CB5B000ED8F0 /* JBAboutViewController.m */,
 			);
 			name = Menu;
+			sourceTree = "<group>";
+		};
+		9E67F8AF1440D3B8000ED8F0 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
