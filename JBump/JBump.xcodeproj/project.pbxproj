@@ -15,6 +15,7 @@
 		66E141DE14421CC500F47D83 /* JBBrushManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E141DD14421CC400F47D83 /* JBBrushManager.m */; };
 		66E141E11442344800F47D83 /* JBMapItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E141E01442344700F47D83 /* JBMapItem.m */; };
 		66E141E31442414C00F47D83 /* cross.png in Resources */ = {isa = PBXBuildFile; fileRef = 66E141E21442414C00F47D83 /* cross.png */; };
+		66E141E6144243CB00F47D83 /* redbrush.png in Resources */ = {isa = PBXBuildFile; fileRef = 66E141E5144243CB00F47D83 /* redbrush.png */; };
 		9E67F6671440723D000ED8F0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E67F6661440723D000ED8F0 /* QuartzCore.framework */; };
 		9E67F6691440723D000ED8F0 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E67F6681440723D000ED8F0 /* OpenGLES.framework */; };
 		9E67F66B1440723D000ED8F0 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E67F66A1440723D000ED8F0 /* OpenAL.framework */; };
@@ -212,6 +213,7 @@
 		66E141DF1442344700F47D83 /* JBMapItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBMapItem.h; sourceTree = "<group>"; };
 		66E141E01442344700F47D83 /* JBMapItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBMapItem.m; sourceTree = "<group>"; };
 		66E141E21442414C00F47D83 /* cross.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cross.png; sourceTree = "<group>"; };
+		66E141E5144243CB00F47D83 /* redbrush.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redbrush.png; sourceTree = "<group>"; };
 		9E67F6621440723D000ED8F0 /* JBump.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JBump.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E67F6661440723D000ED8F0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		9E67F6681440723D000ED8F0 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -604,6 +606,14 @@
 			name = MapCreator;
 			sourceTree = "<group>";
 		};
+		66E141E4144243C000F47D83 /* brush */ = {
+			isa = PBXGroup;
+			children = (
+				66E141E5144243CB00F47D83 /* redbrush.png */,
+			);
+			name = brush;
+			sourceTree = "<group>";
+		};
 		9E67F6571440723D000ED8F0 = {
 			isa = PBXGroup;
 			children = (
@@ -664,6 +674,7 @@
 		9E67F6771440723D000ED8F0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				66E141E4144243C000F47D83 /* brush */,
 				9EE890C81441D827002099FA /* enteties */,
 				9E8819CE1440F6DE00A4E421 /* chars */,
 				9E67F89E1440BE74000ED8F0 /* World1.png */,
@@ -1301,6 +1312,7 @@
 				9E8819DA1440F71900A4E421 /* scel_2.png in Resources */,
 				9EE890CA1441D85B002099FA /* entity_1.png in Resources */,
 				66E141E31442414C00F47D83 /* cross.png in Resources */,
+				66E141E6144243CB00F47D83 /* redbrush.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

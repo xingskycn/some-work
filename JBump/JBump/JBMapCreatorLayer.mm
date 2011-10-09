@@ -113,7 +113,7 @@ CGFloat DistanceBetweenPoints(CGPoint point1,CGPoint point2)
                 JBEntity* us = ((JBEntity *)userSelection);
                 NSDate* now = [NSDate date];
                 float delta = [now timeIntervalSinceReferenceDate]-[creationTimeEntity timeIntervalSinceReferenceDate];
-                if (delta>0.5f) {
+                if (delta>0.3f) {
                     self.activeEntity = [CCSprite spriteWithFile:us.imageLocal];
                     self.activeEntity.position = current;
                     NSMutableDictionary* historyDict = [NSMutableDictionary dictionary];
