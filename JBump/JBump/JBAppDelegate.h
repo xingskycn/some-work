@@ -19,4 +19,7 @@
 @property (nonatomic, retain) UIStoryboard *menuStoryboard;
 @property (nonatomic, retain) JBRootViewController *viewController;
 
+- (void)saveRessourceImages;
+- (void)saveRessourceEntities;
+
 @end

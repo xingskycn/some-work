@@ -170,6 +170,22 @@
 		9E67F8A21440C66B000ED8F0 /* JBSettingsViewVontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E67F8A11440C66B000ED8F0 /* JBSettingsViewVontroller.m */; };
 		9E67F8A51440C689000ED8F0 /* JBNewGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E67F8A41440C689000ED8F0 /* JBNewGameViewController.m */; };
 		9E67F8A81440C6A2000ED8F0 /* JBQuickGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E67F8A71440C6A2000ED8F0 /* JBQuickGameViewController.m */; };
+		9E67F8AE1440CB5B000ED8F0 /* JBAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E67F8AD1440CB5B000ED8F0 /* JBAboutViewController.m */; };
+		9E67F8B61440D4C8000ED8F0 /* JBBluetoothAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E67F8B51440D4C8000ED8F0 /* JBBluetoothAdapter.m */; };
+		9E8819CA1440E82600A4E421 /* JBSkin.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E8819C91440E82600A4E421 /* JBSkin.m */; };
+		9E8819CD1440EA9D00A4E421 /* JBSkinManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E8819CC1440EA9D00A4E421 /* JBSkinManager.m */; };
+		9E8819D51440F71900A4E421 /* bird_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E8819CF1440F71900A4E421 /* bird_1.png */; };
+		9E8819D61440F71900A4E421 /* bull_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E8819D01440F71900A4E421 /* bull_1.png */; };
+		9E8819D71440F71900A4E421 /* bunny_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E8819D11440F71900A4E421 /* bunny_1.png */; };
+		9E8819D81440F71900A4E421 /* bunny_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E8819D21440F71900A4E421 /* bunny_2.png */; };
+		9E8819D91440F71900A4E421 /* scel_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E8819D31440F71900A4E421 /* scel_1.png */; };
+		9E8819DA1440F71900A4E421 /* scel_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E8819D41440F71900A4E421 /* scel_2.png */; };
+		9E8819DD144109FE00A4E421 /* JBSettingsViewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E8819DC144109FE00A4E421 /* JBSettingsViewTableViewCell.m */; };
+		9EE890C41441D0C6002099FA /* JBEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EE890C31441D0C6002099FA /* JBEntity.m */; };
+		9EE890C71441D0D3002099FA /* JBEntityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EE890C61441D0D3002099FA /* JBEntityManager.m */; };
+		9EE890CA1441D85B002099FA /* entity_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EE890C91441D85B002099FA /* entity_1.png */; };
+		9EE890CE1441DEB7002099FA /* JBMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EE890CD1441DEB7002099FA /* JBMap.m */; };
+		9EE890D11441DEC3002099FA /* JBMapManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EE890D01441DEC3002099FA /* JBMapManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -504,6 +520,31 @@
 		9E67F8A41440C689000ED8F0 /* JBNewGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBNewGameViewController.m; sourceTree = "<group>"; };
 		9E67F8A61440C6A2000ED8F0 /* JBQuickGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBQuickGameViewController.h; sourceTree = "<group>"; };
 		9E67F8A71440C6A2000ED8F0 /* JBQuickGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBQuickGameViewController.m; sourceTree = "<group>"; };
+		9E67F8AC1440CB5B000ED8F0 /* JBAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBAboutViewController.h; sourceTree = "<group>"; };
+		9E67F8AD1440CB5B000ED8F0 /* JBAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBAboutViewController.m; sourceTree = "<group>"; };
+		9E67F8B41440D4C8000ED8F0 /* JBBluetoothAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBBluetoothAdapter.h; sourceTree = "<group>"; };
+		9E67F8B51440D4C8000ED8F0 /* JBBluetoothAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBBluetoothAdapter.m; sourceTree = "<group>"; };
+		9E8819C81440E82600A4E421 /* JBSkin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBSkin.h; sourceTree = "<group>"; };
+		9E8819C91440E82600A4E421 /* JBSkin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBSkin.m; sourceTree = "<group>"; };
+		9E8819CB1440EA9D00A4E421 /* JBSkinManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBSkinManager.h; sourceTree = "<group>"; };
+		9E8819CC1440EA9D00A4E421 /* JBSkinManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBSkinManager.m; sourceTree = "<group>"; };
+		9E8819CF1440F71900A4E421 /* bird_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bird_1.png; sourceTree = "<group>"; };
+		9E8819D01440F71900A4E421 /* bull_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bull_1.png; sourceTree = "<group>"; };
+		9E8819D11440F71900A4E421 /* bunny_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bunny_1.png; sourceTree = "<group>"; };
+		9E8819D21440F71900A4E421 /* bunny_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bunny_2.png; sourceTree = "<group>"; };
+		9E8819D31440F71900A4E421 /* scel_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scel_1.png; sourceTree = "<group>"; };
+		9E8819D41440F71900A4E421 /* scel_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scel_2.png; sourceTree = "<group>"; };
+		9E8819DB144109FE00A4E421 /* JBSettingsViewTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBSettingsViewTableViewCell.h; sourceTree = "<group>"; };
+		9E8819DC144109FE00A4E421 /* JBSettingsViewTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBSettingsViewTableViewCell.m; sourceTree = "<group>"; };
+		9EE890C21441D0C6002099FA /* JBEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBEntity.h; sourceTree = "<group>"; };
+		9EE890C31441D0C6002099FA /* JBEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBEntity.m; sourceTree = "<group>"; };
+		9EE890C51441D0D3002099FA /* JBEntityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBEntityManager.h; sourceTree = "<group>"; };
+		9EE890C61441D0D3002099FA /* JBEntityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBEntityManager.m; sourceTree = "<group>"; };
+		9EE890C91441D85B002099FA /* entity_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = entity_1.png; sourceTree = "<group>"; };
+		9EE890CC1441DEB7002099FA /* JBMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBMap.h; sourceTree = "<group>"; };
+		9EE890CD1441DEB7002099FA /* JBMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBMap.m; sourceTree = "<group>"; };
+		9EE890CF1441DEC3002099FA /* JBMapManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBMapManager.h; sourceTree = "<group>"; };
+		9EE890D01441DEC3002099FA /* JBMapManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBMapManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -560,6 +601,10 @@
 		9E67F6761440723D000ED8F0 /* JBump */ = {
 			isa = PBXGroup;
 			children = (
+				9EE890CB1441DE4B002099FA /* Map */,
+				9EE890BA1441C3BB002099FA /* Entities */,
+				9E8819C61440E7EE00A4E421 /* Skins */,
+				9E67F8AF1440D3B8000ED8F0 /* Network */,
 				9E67F85D14407B8A000ED8F0 /* Menu */,
 				9E67F8531440780E000ED8F0 /* Map */,
 				9E67F83B1440723F000ED8F0 /* JBAppDelegate.h */,
@@ -581,6 +626,8 @@
 		9E67F6771440723D000ED8F0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9EE890C81441D827002099FA /* enteties */,
+				9E8819CE1440F6DE00A4E421 /* chars */,
 				9E67F89E1440BE74000ED8F0 /* World1.png */,
 				9E67F8661440A7E8000ED8F0 /* ClearButtonBackground.png */,
 				9E67F6781440723D000ED8F0 /* Default.png */,
@@ -1066,8 +1113,75 @@
 				9E67F8A41440C689000ED8F0 /* JBNewGameViewController.m */,
 				9E67F8A61440C6A2000ED8F0 /* JBQuickGameViewController.h */,
 				9E67F8A71440C6A2000ED8F0 /* JBQuickGameViewController.m */,
+				9E67F8AC1440CB5B000ED8F0 /* JBAboutViewController.h */,
+				9E67F8AD1440CB5B000ED8F0 /* JBAboutViewController.m */,
+				9E8819DB144109FE00A4E421 /* JBSettingsViewTableViewCell.h */,
+				9E8819DC144109FE00A4E421 /* JBSettingsViewTableViewCell.m */,
 			);
 			name = Menu;
+			sourceTree = "<group>";
+		};
+		9E67F8AF1440D3B8000ED8F0 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				9E67F8B41440D4C8000ED8F0 /* JBBluetoothAdapter.h */,
+				9E67F8B51440D4C8000ED8F0 /* JBBluetoothAdapter.m */,
+			);
+			name = Network;
+			sourceTree = "<group>";
+		};
+		9E8819C61440E7EE00A4E421 /* Skins */ = {
+			isa = PBXGroup;
+			children = (
+				9E8819C81440E82600A4E421 /* JBSkin.h */,
+				9E8819C91440E82600A4E421 /* JBSkin.m */,
+				9E8819CB1440EA9D00A4E421 /* JBSkinManager.h */,
+				9E8819CC1440EA9D00A4E421 /* JBSkinManager.m */,
+			);
+			name = Skins;
+			sourceTree = "<group>";
+		};
+		9E8819CE1440F6DE00A4E421 /* chars */ = {
+			isa = PBXGroup;
+			children = (
+				9E8819CF1440F71900A4E421 /* bird_1.png */,
+				9E8819D01440F71900A4E421 /* bull_1.png */,
+				9E8819D11440F71900A4E421 /* bunny_1.png */,
+				9E8819D21440F71900A4E421 /* bunny_2.png */,
+				9E8819D31440F71900A4E421 /* scel_1.png */,
+				9E8819D41440F71900A4E421 /* scel_2.png */,
+			);
+			name = chars;
+			sourceTree = "<group>";
+		};
+		9EE890BA1441C3BB002099FA /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				9EE890C21441D0C6002099FA /* JBEntity.h */,
+				9EE890C31441D0C6002099FA /* JBEntity.m */,
+				9EE890C51441D0D3002099FA /* JBEntityManager.h */,
+				9EE890C61441D0D3002099FA /* JBEntityManager.m */,
+			);
+			name = Entities;
+			sourceTree = "<group>";
+		};
+		9EE890C81441D827002099FA /* enteties */ = {
+			isa = PBXGroup;
+			children = (
+				9EE890C91441D85B002099FA /* entity_1.png */,
+			);
+			name = enteties;
+			sourceTree = "<group>";
+		};
+		9EE890CB1441DE4B002099FA /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				9EE890CC1441DEB7002099FA /* JBMap.h */,
+				9EE890CD1441DEB7002099FA /* JBMap.m */,
+				9EE890CF1441DEC3002099FA /* JBMapManager.h */,
+				9EE890D01441DEC3002099FA /* JBMapManager.m */,
+			);
+			name = Map;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1133,6 +1247,13 @@
 				9E67F862144080A4000ED8F0 /* JBMenuStoryboard.storyboard in Resources */,
 				9E67F8671440A7E8000ED8F0 /* ClearButtonBackground.png in Resources */,
 				9E67F89F1440BE74000ED8F0 /* World1.png in Resources */,
+				9E8819D51440F71900A4E421 /* bird_1.png in Resources */,
+				9E8819D61440F71900A4E421 /* bull_1.png in Resources */,
+				9E8819D71440F71900A4E421 /* bunny_1.png in Resources */,
+				9E8819D81440F71900A4E421 /* bunny_2.png in Resources */,
+				9E8819D91440F71900A4E421 /* scel_1.png in Resources */,
+				9E8819DA1440F71900A4E421 /* scel_2.png in Resources */,
+				9EE890CA1441D85B002099FA /* entity_1.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1285,6 +1406,15 @@
 				9E67F8A21440C66B000ED8F0 /* JBSettingsViewVontroller.m in Sources */,
 				9E67F8A51440C689000ED8F0 /* JBNewGameViewController.m in Sources */,
 				9E67F8A81440C6A2000ED8F0 /* JBQuickGameViewController.m in Sources */,
+				9E67F8AE1440CB5B000ED8F0 /* JBAboutViewController.m in Sources */,
+				9E67F8B61440D4C8000ED8F0 /* JBBluetoothAdapter.m in Sources */,
+				9E8819CA1440E82600A4E421 /* JBSkin.m in Sources */,
+				9E8819CD1440EA9D00A4E421 /* JBSkinManager.m in Sources */,
+				9E8819DD144109FE00A4E421 /* JBSettingsViewTableViewCell.m in Sources */,
+				9EE890C41441D0C6002099FA /* JBEntity.m in Sources */,
+				9EE890C71441D0D3002099FA /* JBEntityManager.m in Sources */,
+				9EE890CE1441DEB7002099FA /* JBMap.m in Sources */,
+				9EE890D11441DEC3002099FA /* JBMapManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
