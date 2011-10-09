@@ -8,53 +8,33 @@
 
 #import "JBMapCreatorViewController.h"
 
+#import "JBEntity.h"
+#import "JBEntityManager.h"
+
+#import "JBMap.h"
+#import "JBMapManager.h"
+
+
 @implementation JBMapCreatorViewController
+@synthesize availableBrushesArray,availableEntitiesArray;
+@synthesize mapCreatorLayer;
+@synthesize sideView,kindChooser,contentsTable,openButton,menuContainer,magnifier,sidebarClosed;
+@synthesize forwarder;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+CGFloat DistanceBetweenTwoPoints(CGPoint point1,CGPoint point2)
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
+    CGFloat dx = point2.x - point1.x;
+    CGFloat dy = point2.y - point1.y;
+    return sqrt(dx*dx + dy*dy );
+};
 
-- (void)didReceiveMemoryWarning
-{
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
-}
-
-#pragma mark - View lifecycle
-
-/*
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView
-{
-}
-*/
-
-/*
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-}
-*/
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+    self.availableEntitiesArray = [JBEntityManager getAllEnteties];
+    self.availableBrushesArray = [JB
+    
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
+
 
 @end

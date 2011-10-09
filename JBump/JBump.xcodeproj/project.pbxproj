@@ -11,6 +11,8 @@
 		66E141D21442175700F47D83 /* JBLineSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E141D11442175700F47D83 /* JBLineSprite.m */; };
 		66E141D51442177400F47D83 /* JBMapCreatorLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E141D41442177400F47D83 /* JBMapCreatorLayer.m */; };
 		66E141D8144217A800F47D83 /* JBTouchForwardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E141D7144217A800F47D83 /* JBTouchForwardView.m */; };
+		66E141DB14421CA300F47D83 /* JBBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E141DA14421CA300F47D83 /* JBBrush.m */; };
+		66E141DE14421CC500F47D83 /* JBBrushManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E141DD14421CC400F47D83 /* JBBrushManager.m */; };
 		9E67F6671440723D000ED8F0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E67F6661440723D000ED8F0 /* QuartzCore.framework */; };
 		9E67F6691440723D000ED8F0 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E67F6681440723D000ED8F0 /* OpenGLES.framework */; };
 		9E67F66B1440723D000ED8F0 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E67F66A1440723D000ED8F0 /* OpenAL.framework */; };
@@ -201,6 +203,10 @@
 		66E141D41442177400F47D83 /* JBMapCreatorLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBMapCreatorLayer.m; sourceTree = "<group>"; };
 		66E141D6144217A800F47D83 /* JBTouchForwardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBTouchForwardView.h; sourceTree = "<group>"; };
 		66E141D7144217A800F47D83 /* JBTouchForwardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBTouchForwardView.m; sourceTree = "<group>"; };
+		66E141D914421CA300F47D83 /* JBBrush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBBrush.h; sourceTree = "<group>"; };
+		66E141DA14421CA300F47D83 /* JBBrush.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBBrush.m; sourceTree = "<group>"; };
+		66E141DC14421CC400F47D83 /* JBBrushManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBBrushManager.h; sourceTree = "<group>"; };
+		66E141DD14421CC400F47D83 /* JBBrushManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBBrushManager.m; sourceTree = "<group>"; };
 		9E67F6621440723D000ED8F0 /* JBump.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JBump.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E67F6661440723D000ED8F0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		9E67F6681440723D000ED8F0 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -629,7 +635,7 @@
 			isa = PBXGroup;
 			children = (
 				9EE890CB1441DE4B002099FA /* Map */,
-				9EE890BA1441C3BB002099FA /* Entities */,
+				9EE890BA1441C3BB002099FA /* Entities/Brushes */,
 				9E8819C61440E7EE00A4E421 /* Skins */,
 				9E67F8AF1440D3B8000ED8F0 /* Network */,
 				9E67F85D14407B8A000ED8F0 /* Menu */,
@@ -1181,15 +1187,19 @@
 			name = chars;
 			sourceTree = "<group>";
 		};
-		9EE890BA1441C3BB002099FA /* Entities */ = {
+		9EE890BA1441C3BB002099FA /* Entities/Brushes */ = {
 			isa = PBXGroup;
 			children = (
 				9EE890C21441D0C6002099FA /* JBEntity.h */,
 				9EE890C31441D0C6002099FA /* JBEntity.m */,
 				9EE890C51441D0D3002099FA /* JBEntityManager.h */,
 				9EE890C61441D0D3002099FA /* JBEntityManager.m */,
+				66E141D914421CA300F47D83 /* JBBrush.h */,
+				66E141DA14421CA300F47D83 /* JBBrush.m */,
+				66E141DC14421CC400F47D83 /* JBBrushManager.h */,
+				66E141DD14421CC400F47D83 /* JBBrushManager.m */,
 			);
-			name = Entities;
+			name = Entities/Brushes;
 			sourceTree = "<group>";
 		};
 		9EE890C81441D827002099FA /* enteties */ = {
@@ -1447,6 +1457,8 @@
 				66E141D21442175700F47D83 /* JBLineSprite.m in Sources */,
 				66E141D51442177400F47D83 /* JBMapCreatorLayer.m in Sources */,
 				66E141D8144217A800F47D83 /* JBTouchForwardView.m in Sources */,
+				66E141DB14421CA300F47D83 /* JBBrush.m in Sources */,
+				66E141DE14421CC500F47D83 /* JBBrushManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
