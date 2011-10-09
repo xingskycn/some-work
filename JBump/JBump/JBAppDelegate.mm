@@ -72,6 +72,8 @@
 								   pixelFormat:kEAGLColorFormatRGB565	// kEAGLColorFormatRGBA8
 								   depthFormat:0						// GL_DEPTH_COMPONENT16_OES
 						];
+    
+    glView.multipleTouchEnabled = YES;
 	
 	// attach the openglView to the director
 	[director setOpenGLView:glView];
