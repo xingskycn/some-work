@@ -8,9 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+@class JBSkin;
+
 @interface JBSkinManager : NSObject
 
 + (NSMutableArray*)getAllSkins;
 + (bool)saveNewSkin:(NSMutableDictionary*)skinDict withThumbnail:(UIImage*)thumbnail andSkin:(UIImage*)skin;
++ (JBSkin*)getSkinWithID:(NSString*)skinID;
 
 @end
