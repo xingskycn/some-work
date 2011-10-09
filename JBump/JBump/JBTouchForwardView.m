@@ -14,11 +14,14 @@
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event
 {
     UIView* result = [super hitTest:point withEvent:event];
-    if (result && result!=self && ![result isKindOfClass:[JBTouchForwardView class]]) {
+    NSLog(@"result: %@", result);
+    if (![result isKindOfClass:[JBTouchForwardView class]]) {
         return result;
     }
+    if (result==self) {
+        return receiver;
+    }
     return nil;
-    //return receiver;
 }
 
 

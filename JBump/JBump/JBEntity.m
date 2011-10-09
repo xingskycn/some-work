@@ -10,14 +10,6 @@
 
 @implementation JBEntity
 
-@synthesize entityID;
-@synthesize entityImage;
-@synthesize localImage;
-@synthesize imageURL;
-@synthesize name;
-@synthesize further;
-@synthesize friction;
-@synthesize restitution;
 @synthesize position;
 @synthesize size;
 
@@ -25,9 +17,9 @@
     self = [super init];
     
     if (self) {
-        self.entityID = [entityDict objectForKey:@"entityID"];
-        self.entityImage = [entityDict objectForKey:@"entityImage"];
-        self.localImage = [entityDict objectForKey:@"imageLocation"];
+        self.ID = [entityDict objectForKey:@"entityID"];
+        self.image = [entityDict objectForKey:@"entityImage"];
+        self.imageLocal = [entityDict objectForKey:@"imageLocation"];
         self.imageURL = [entityDict objectForKey:@"imageURL"];
         self.name = [entityDict objectForKey:@"name"];
         self.further = [entityDict objectForKey:@"further"];

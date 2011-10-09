@@ -8,16 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@interface JBEntity : NSObject
+#import "JBMapItem.h"
 
-@property (nonatomic, retain)NSString *entityID;
-@property (nonatomic, retain)UIImage *entityImage;
-@property (nonatomic, retain)NSString *localImage;
-@property (nonatomic, retain)NSString *imageURL;
-@property (nonatomic, retain)NSString *name;
-@property (nonatomic, retain)NSString *further;
-@property (assign)float friction;
-@property (assign)float restitution;
+@interface JBEntity : JBMapItem
+
 @property (assign)CGPoint position;
 @property (assign)CGSize size;
 

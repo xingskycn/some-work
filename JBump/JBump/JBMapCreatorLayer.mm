@@ -10,6 +10,10 @@
 
 #import "JBLineSprite.h"
 
+#import "JBMapItem.h"
+#import "JBBrush.h"
+#import "JBEntity.h"
+
 #define jbSCROLLSPEED 1.5f
 
 @interface JBMapCreatorLayer()
@@ -88,38 +92,34 @@ CGFloat DistanceBetweenPoints(CGPoint point1,CGPoint point2)
             current = CGPointMake(x+(current.x)/(1-sliderPos*0.75)-180/(1-sliderPos*0.75)*sliderPos,
                                   y+(current.y)/(1-sliderPos*0.75)-120/(1-sliderPos*0.75)*sliderPos);
             
-            if ([[userSelection objectForKey:@"kind" ] isEqualToString:@"brush"]) {
+            if ([userSelection isKindOfClass:[JBBrush class]]) {
                 if (!self.activeLine) {
+                    JBBrush* us = ((JBBrush *)userSelection);
+                    
                     self.activeLine = [JBLineSprite node];
-                    NSMutableDictionary* historyDict = [[userSelection mutableCopy] autorelease];
-                    self.activeLine.historyObj = historyDict;
-                    [historyDict setObject:self.activeLine forKey:@"sprite"];
-                    
+                    NSMutableDictionary* historyDict = [NSMutableDictionary dictionary];;
                     [self.history addObject:historyDict];
-                    activeLine.red = [[userSelection objectForKey:@"red"] floatValue];
-                    activeLine.green = [[userSelection objectForKey:@"green"] floatValue];
-                    activeLine.blue = [[userSelection objectForKey:@"blue"] floatValue];
-                    activeLine.alpha = [[userSelection objectForKey:@"alpha"] floatValue];
+                    [historyDict setObject:self.activeLine forKey:@"sprite"];
+                    [historyDict setObject:userSelection forKey:@"mapItem"];
+                    activeLine.red = us.red;
+                    activeLine.green = us.green;
+                    activeLine.blue = us.blue;
+                    activeLine.alpha = us.alpha;
                     [activeLine.pointArray addObject:NSStringFromCGPoint(current)];
-                    
                     activeLine.visible = TRUE;
-                    if ([[userSelection objectForKey:@"kind" ] isEqualToString:@"brush"]) {
-                        activeLine.red = [[userSelection objectForKey:@"red"] floatValue];
-                        activeLine.green = [[userSelection objectForKey:@"green"] floatValue];
-                        activeLine.blue = [[userSelection objectForKey:@"blue"] floatValue];
-                        activeLine.alpha = [[userSelection objectForKey:@"alpha"] floatValue];
-                    }
                     [self addChild:activeLine];
                 }
-            }else if ([[userSelection objectForKey:@"kind" ] isEqualToString:@"entity"]) {
+            }else if ([userSelection isKindOfClass:[JBEntity class]]) {
+                JBEntity* us = ((JBEntity *)userSelection);
                 NSDate* now = [NSDate date];
                 float delta = [now timeIntervalSinceReferenceDate]-[creationTimeEntity timeIntervalSinceReferenceDate];
                 if (delta>0.5f) {
-                    self.activeEntity = [CCSprite spriteWithFile:[userSelection objectForKey:@"imageLocation"]];
+                    self.activeEntity = [CCSprite spriteWithFile:us.imageLocal];
                     self.activeEntity.position = current;
-                    NSMutableDictionary* historyDict = [[userSelection mutableCopy] autorelease];
-                    [historyDict setObject:self.activeEntity forKey:@"sprite"];
+                    NSMutableDictionary* historyDict = [NSMutableDictionary dictionary];
                     [self.history addObject:historyDict];
+                    [historyDict setObject:self.activeEntity forKey:@"sprite"];
+                    [historyDict setObject:userSelection forKey:@"mapItem"];
                     [self addChild:self.activeEntity];
                     self.creationTimeEntity = now;
                 }
@@ -166,7 +166,7 @@ CGFloat DistanceBetweenPoints(CGPoint point1,CGPoint point2)
                     return;
                 }else{
                     [self removeChild:activeLine cleanup:YES];
-                    [self.history removeObject:activeLine.historyObj];
+                    [self.history removeLastObject];
                     self.activeLine = nil;
                 }
             }else if(activeEntity){

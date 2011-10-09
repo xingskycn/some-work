@@ -8,19 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface JBBrush : NSObject
+#import "JBMapItem.h"
 
-@property (nonatomic, retain) NSString* type;
-@property (nonatomic, retain) NSString* brushID;
-@property (nonatomic, retain) NSString* brushName;
-@property (nonatomic, retain) NSString* further;
-
-@property (nonatomic, retain) UIImage* thumbnail;
-@property (nonatomic, retain) NSString* thumbnailLocation;
-@property (nonatomic, retain) NSString* thumbnailURL;
-
-@property (assign) float friction;
-@property (assign) float restitution;
+@interface JBBrush : JBMapItem
 
 @property (assign) float red;
 @property (assign) float green;

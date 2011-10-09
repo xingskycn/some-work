@@ -8,11 +8,13 @@
 
 #import "JBMapCreatorViewController.h"
 
-#import "JBEntity.h"
-#import "JBEntityManager.h"
-
 #import "JBMap.h"
 #import "JBMapManager.h"
+
+#import "JBMapItem.h"
+
+#import "JBEntity.h"
+#import "JBEntityManager.h"
 
 #import "JBBrush.h"
 #import "JBBrushManager.h"
@@ -38,10 +40,21 @@ CGFloat DistanceBetweenTwoPoints(CGPoint point1,CGPoint point2)
 {
     self.availableEntitiesArray = [JBEntityManager getAllEnteties];
     self.availableBrushesArray = [JBBrushManager getAllBrushes];
+    
+    self.sideView.receiver = [[CCDirector sharedDirector] openGLView];
+    self.forwarder.receiver = [[CCDirector sharedDirector] openGLView];
+    
+    CCScene* scene = [JBMapCreatorLayer scene];
+    self.mapCreatorLayer = (JBMapCreatorLayer *)[scene getChildByTag:0];
     self.mapCreatorLayer.magnifier = self.magnifier;
     
-    [contentsTable selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];
-    self.mapCreatorLayer.userSelection = [availableBrushesArray objectAtIndex:0];
+    [[CCDirector sharedDirector] replaceScene:scene];
+    
+    if (self.availableBrushesArray.count) {
+        [contentsTable selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];
+        self.mapCreatorLayer.userSelection = [availableBrushesArray objectAtIndex:0];
+    }
+    
 }
 
 - (void)viedDidUnload{
@@ -89,11 +102,15 @@ CGFloat DistanceBetweenTwoPoints(CGPoint point1,CGPoint point2)
     [contentsTable reloadData];
     
     if (kindChooser.selectedSegmentIndex == 0) {
-        mapCreatorLayer.userSelection = [availableBrushesArray objectAtIndex:0];
-        [contentsTable selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];
+        if (self.availableBrushesArray.count) {
+            [contentsTable selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];
+            self.mapCreatorLayer.userSelection = [availableBrushesArray objectAtIndex:0];
+        }
     }else if (kindChooser.selectedSegmentIndex == 1) {
-        mapCreatorLayer.userSelection = [availableEntitiesArray objectAtIndex:0];
-        [contentsTable selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];
+        if (self.availableEntitiesArray.count) {
+            mapCreatorLayer.userSelection = [availableEntitiesArray objectAtIndex:0];
+            [contentsTable selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];
+        }
     }
     
     oldEditStyle = kindChooser.selectedSegmentIndex;
@@ -118,7 +135,7 @@ CGFloat DistanceBetweenTwoPoints(CGPoint point1,CGPoint point2)
 }
 
 - (IBAction)backButtonPressed:(id)sender {
-    NSMutableArray* entityArray = [NSMutableArray new];
+    /*NSMutableArray* entityArray = [NSMutableArray new];
     NSMutableArray* curvesArray = [NSMutableArray new];
     
     for(NSMutableDictionary* dict in mapCreatorLayer.history)
@@ -158,7 +175,7 @@ CGFloat DistanceBetweenTwoPoints(CGPoint point1,CGPoint point2)
     }
     
     [entityArray release];
-    [curvesArray release]; 
+    [curvesArray release];*/ 
 }
 
 - (int)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -186,10 +203,10 @@ CGFloat DistanceBetweenTwoPoints(CGPoint point1,CGPoint point2)
             cell.detailTextLabel.numberOfLines = 2;
             cell.detailTextLabel.lineBreakMode = UILineBreakModeWordWrap;
         }
-        NSDictionary* brushDict = [availableBrushesArray objectAtIndex:indexPath.row];
-        cell.imageView.image = [brushDict objectForKey:@"image"];
-        cell.textLabel.text = [brushDict objectForKey:@"name"];
-        cell.detailTextLabel.text = [brushDict objectForKey:@"further"];
+        JBBrush* brush = [availableBrushesArray objectAtIndex:indexPath.row];
+        cell.imageView.image = brush.image;
+        cell.textLabel.text = brush.name;
+        cell.detailTextLabel.text = brush.further;
     }else if (kindChooser.selectedSegmentIndex==1){
         cell = [tableView dequeueReusableCellWithIdentifier:@"entityCell"];
         if (!cell) {
@@ -200,10 +217,10 @@ CGFloat DistanceBetweenTwoPoints(CGPoint point1,CGPoint point2)
             cell.detailTextLabel.numberOfLines = 2;
             cell.detailTextLabel.lineBreakMode = UILineBreakModeWordWrap;
         }
-        NSDictionary* entityDict = [availableEntitiesArray objectAtIndex:indexPath.row];
-        cell.imageView.image = [entityDict objectForKey:@"image"];
-        cell.textLabel.text = [entityDict objectForKey:@"name"];
-        cell.detailTextLabel.text = [entityDict objectForKey:@"further"];
+        JBEntity* entity = [availableEntitiesArray objectAtIndex:indexPath.row];
+        cell.imageView.image = entity.image;
+        cell.textLabel.text = entity.name;
+        cell.detailTextLabel.text = entity.further;
     }else{
         cell = [tableView dequeueReusableCellWithIdentifier:@"historyCell"];
         if (!cell) {
@@ -215,9 +232,10 @@ CGFloat DistanceBetweenTwoPoints(CGPoint point1,CGPoint point2)
             cell.detailTextLabel.lineBreakMode = UILineBreakModeWordWrap;
         }
         NSDictionary* historyDict = [mapCreatorLayer.history objectAtIndex:indexPath.row];
-        cell.imageView.image = [historyDict objectForKey:@"image"];
-        cell.textLabel.text = [historyDict objectForKey:@"name"];
-        cell.detailTextLabel.text = [historyDict objectForKey:@"further"];
+        JBMapItem* historyItem = [historyDict objectForKey:@"mapItem"];
+        cell.imageView.image = historyItem.image;
+        cell.textLabel.text = historyItem.name;
+        cell.detailTextLabel.text = historyItem.further;
     }
     
     return cell;
