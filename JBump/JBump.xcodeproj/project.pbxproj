@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		66E141CF1442173600F47D83 /* JBMapCreatorViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 66E141CE1442173600F47D83 /* JBMapCreatorViewController.mm */; };
+		66E141D21442175700F47D83 /* JBLineSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E141D11442175700F47D83 /* JBLineSprite.m */; };
+		66E141D51442177400F47D83 /* JBMapCreatorLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E141D41442177400F47D83 /* JBMapCreatorLayer.m */; };
+		66E141D8144217A800F47D83 /* JBTouchForwardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E141D7144217A800F47D83 /* JBTouchForwardView.m */; };
 		9E67F6671440723D000ED8F0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E67F6661440723D000ED8F0 /* QuartzCore.framework */; };
 		9E67F6691440723D000ED8F0 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E67F6681440723D000ED8F0 /* OpenGLES.framework */; };
 		9E67F66B1440723D000ED8F0 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E67F66A1440723D000ED8F0 /* OpenAL.framework */; };
@@ -189,6 +193,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		66E141CD1442173600F47D83 /* JBMapCreatorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBMapCreatorViewController.h; sourceTree = "<group>"; };
+		66E141CE1442173600F47D83 /* JBMapCreatorViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = JBMapCreatorViewController.mm; sourceTree = "<group>"; };
+		66E141D01442175700F47D83 /* JBLineSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBLineSprite.h; sourceTree = "<group>"; };
+		66E141D11442175700F47D83 /* JBLineSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBLineSprite.m; sourceTree = "<group>"; };
+		66E141D31442177400F47D83 /* JBMapCreatorLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBMapCreatorLayer.h; sourceTree = "<group>"; };
+		66E141D41442177400F47D83 /* JBMapCreatorLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBMapCreatorLayer.m; sourceTree = "<group>"; };
+		66E141D6144217A800F47D83 /* JBTouchForwardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBTouchForwardView.h; sourceTree = "<group>"; };
+		66E141D7144217A800F47D83 /* JBTouchForwardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBTouchForwardView.m; sourceTree = "<group>"; };
 		9E67F6621440723D000ED8F0 /* JBump.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JBump.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E67F6661440723D000ED8F0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		9E67F6681440723D000ED8F0 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -566,6 +578,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		66E141CB144215E700F47D83 /* MapCreator */ = {
+			isa = PBXGroup;
+			children = (
+				66E141CD1442173600F47D83 /* JBMapCreatorViewController.h */,
+				66E141CE1442173600F47D83 /* JBMapCreatorViewController.mm */,
+				66E141D01442175700F47D83 /* JBLineSprite.h */,
+				66E141D11442175700F47D83 /* JBLineSprite.m */,
+				66E141D31442177400F47D83 /* JBMapCreatorLayer.h */,
+				66E141D41442177400F47D83 /* JBMapCreatorLayer.m */,
+				66E141D6144217A800F47D83 /* JBTouchForwardView.h */,
+				66E141D7144217A800F47D83 /* JBTouchForwardView.m */,
+			);
+			name = MapCreator;
+			sourceTree = "<group>";
+		};
 		9E67F6571440723D000ED8F0 = {
 			isa = PBXGroup;
 			children = (
@@ -1176,6 +1203,7 @@
 		9EE890CB1441DE4B002099FA /* Map */ = {
 			isa = PBXGroup;
 			children = (
+				66E141CB144215E700F47D83 /* MapCreator */,
 				9EE890CC1441DEB7002099FA /* JBMap.h */,
 				9EE890CD1441DEB7002099FA /* JBMap.m */,
 				9EE890CF1441DEC3002099FA /* JBMapManager.h */,
@@ -1415,6 +1443,10 @@
 				9EE890C71441D0D3002099FA /* JBEntityManager.m in Sources */,
 				9EE890CE1441DEB7002099FA /* JBMap.m in Sources */,
 				9EE890D11441DEC3002099FA /* JBMapManager.m in Sources */,
+				66E141CF1442173600F47D83 /* JBMapCreatorViewController.mm in Sources */,
+				66E141D21442175700F47D83 /* JBLineSprite.m in Sources */,
+				66E141D51442177400F47D83 /* JBMapCreatorLayer.m in Sources */,
+				66E141D8144217A800F47D83 /* JBTouchForwardView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -25,6 +25,12 @@
 @synthesize magnifier,brushArray, entityArray,mapLayer;
 @synthesize sidebarClosed;
 
+CGFloat DistanceBetweenTwoPoints(CGPoint point1,CGPoint point2)
+{
+    CGFloat dx = point2.x - point1.x;
+    CGFloat dy = point2.y - point1.y;
+    return sqrt(dx*dx + dy*dy );
+};
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -200,6 +206,51 @@
 }
 
 - (IBAction)backButtonPressed:(id)sender {
+    NSMutableArray* entityArray = [NSMutableArray new];
+    NSMutableArray* curvesArray = [NSMutableArray new];
+    
+    for(NSMutableDictionary* dict in mapLayer.history)
+    {
+        if ([[dict objectForKey:@"kind"] isEqualToString:@"entity"]) {
+            NSMutableDictionary* entityDict = [NSMutableDictionary new];
+            [entityDict setObject:[dict objectForKey:@"entityID"] forKey:@"entityID"];
+            CCSprite* sprite = [dict objectForKey:@"sprite"];
+            [entityDict setObject:NSStringFromCGPoint([sprite position]) forKey:@"position"];
+            [mapLayer removeChild:sprite cleanup:YES];
+            [entityDict release];
+        }else if([[dict objectForKey:@"kind"] isEqualToString:@"brush"]){
+            NSMutableArray* pointsArray = ((LineSprite *)[dict objectForKey:@"sprite"]).pointArray;
+            if (pointsArray.count>1) {
+                NSMutableArray* savePointsArray = [NSMutableArray new];
+                CGPoint start = CGPointFromString([pointsArray objectAtIndex:0]);
+                for(int i = 1; i < [pointsArray count]; i+=2)
+                {
+                    CGPoint end = CGPointFromString([pointsArray objectAtIndex:i]);
+                    if (DistanceBetweenTwoPoints(start, end)>15) {
+                        [pointsArray addObject:NSStringFromCGPoint(start)];
+                        start = end;
+                    }
+                }
+                [pointsArray addObject:NSStringFromCGPoint(start)];
+                NSMutableDictionary* saveDict = [NSMutableDictionary new];
+                NSString* type = [dict objectForKey:@"type"];
+                if (type) {
+                    [saveDict setObject:type forKey:@"type"];
+                    [saveDict setObject:savePointsArray forKey:@"curce"];
+                    [curvesArray addObject:saveDict];
+                }
+                [saveDict release];
+                [savePointsArray release];
+            }
+        }
+    }
+    
+    
+    
+    
+    [entityArray release];
+    [curvesArray release];
+    
     
 }
 
