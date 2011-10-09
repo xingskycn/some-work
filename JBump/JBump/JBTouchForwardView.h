@@ -10,4 +10,6 @@
 
 @interface JBTouchForwardView : UIView
 
+@property (nonatomic, assign) UIView* receiver;
+
 @end
