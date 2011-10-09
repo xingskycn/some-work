@@ -13,6 +13,7 @@
 #import "MapLayer.h"
 #import "RootViewController.h"
 #import "MapViewController.h"
+#import "TouchForwardView.h"
 
 @implementation AppDelegate
 
@@ -95,18 +96,24 @@
 	
 	
 	// make the OpenGLView a child of the view controller
-	[viewController.view addSubview:glView];
-    viewController.view.autoresizingMask = 0;
+	[viewController setView:glView];
+    /*viewController.view.autoresizingMask = 0;
+    viewController.view.autoresizesSubviews = NO;
+    
     viewController.view.frame = CGRectMake(0, 0, 480, 320);
+    glView.frame = CGRectMake(0, 0, 480, 320);*/
     
     
     MapViewController* mapViewController = [[MapViewController alloc] initWithNibName:@"MapViewController" bundle:NULL];
+    CCScene* scene = [MapLayer scene];
+    mapViewController.mapLayer = ((MapLayer *)[scene getChildByTag:0]);
     
     [viewController.view addSubview:mapViewController.view];
+    mapViewController.forwarder.receiver = glView;
 	
 	// make the View Controller a child of the main window
 	[window addSubview:viewController.view];
-	
+
 	[window makeKeyAndVisible];
 	
 	// Default texture format for PNG/BMP/TIFF/JPEG/GIF images
@@ -119,7 +126,8 @@
 	[self removeStartupFlicker];
 	
 	// Run the intro Scene
-	[[CCDirector sharedDirector] runWithScene: [MapLayer scene]];
+	[[CCDirector sharedDirector] runWithScene: scene];
+
 }
 
 

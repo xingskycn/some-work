@@ -26,12 +26,14 @@
     glEnable(GL_LINE_SMOOTH);
     
     if (visible) {
-        for(int i = 0; i < [pointArray count]; i+=2)
-        {
-            CGPoint start = CGPointFromString([pointArray objectAtIndex:i]);
-            CGPoint end = CGPointFromString([pointArray objectAtIndex:i+1]);
-            
-            ccDrawLine(start, end);
+        if (pointArray.count) {
+            CGPoint start = CGPointFromString([pointArray objectAtIndex:0]);
+            for(int i = 1; i < [pointArray count]; i+=2)
+            {
+                CGPoint end = CGPointFromString([pointArray objectAtIndex:i]);
+                ccDrawLine(start, end);
+                start = end;
+            }
         }
     }
 }

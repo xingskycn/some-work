@@ -10,6 +10,7 @@
 #import "MapViewController.h"
 
 #import "MapLayer.h"
+#import "TouchForwardView.h"
 
 @implementation MapViewController
 @synthesize editStyleControll;
@@ -17,6 +18,7 @@
 @synthesize ocBarButton;
 @synthesize menuContainer;
 @synthesize slideOutView;
+@synthesize forwarder;
 @synthesize magnifier,brushArray, entityArray,mapLayer;
 @synthesize sidebarClosed;
 
@@ -42,11 +44,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    //self.view.autoresizingMask = 0;
     self.view.clipsToBounds = YES;
+    //self.slideOutView.receiver = self.forwarder.receiver;
+    
     
     self.entityArray = [NSMutableArray array];
     self.brushArray = [NSMutableArray array];
+    mapLayer.magnifier = self.magnifier;
     
     NSMutableDictionary* entity1 = [NSMutableDictionary dictionary];
     [entity1 setObject:[UIImage imageNamed:@"Icon-Small.png"] forKey:@"image"];
@@ -95,6 +99,7 @@
     [self setEditStyleControll:nil];
     [self setContentsTable:nil];
     [self setOcBarButton:nil];
+    [self setForwarder:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -113,6 +118,7 @@
     [editStyleControll release];
     [contentsTable release];
     [ocBarButton release];
+    [forwarder release];
     [super dealloc];
 }
 - (IBAction)switchEditStyle:(id)sender {
@@ -191,12 +197,6 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"did select row!");
-}
-
-
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    NSLog(@"touches!!!");
 }
 
 @end

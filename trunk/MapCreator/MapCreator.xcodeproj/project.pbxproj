@@ -164,6 +164,7 @@
 		660D203E144081A900295AAA /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 660D203C144081A800295AAA /* MapViewController.xib */; };
 		660D20441440BC8700295AAA /* redbrush.png in Resources */ = {isa = PBXBuildFile; fileRef = 660D20431440BC8700295AAA /* redbrush.png */; };
 		660D20471440D41A00295AAA /* LineSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 660D20461440D41700295AAA /* LineSprite.m */; };
+		660D204E1440E42A00295AAA /* TouchForwardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 660D204D1440E42700295AAA /* TouchForwardView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -486,6 +487,8 @@
 		660D20431440BC8700295AAA /* redbrush.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redbrush.png; sourceTree = "<group>"; };
 		660D20451440D41500295AAA /* LineSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineSprite.h; sourceTree = "<group>"; };
 		660D20461440D41700295AAA /* LineSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineSprite.m; sourceTree = "<group>"; };
+		660D204C1440E42500295AAA /* TouchForwardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchForwardView.h; sourceTree = "<group>"; };
+		660D204D1440E42700295AAA /* TouchForwardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchForwardView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -561,6 +564,8 @@
 				660D1E531440789600295AAA /* Resources */,
 				660D1E671440789600295AAA /* libs */,
 				660D20131440789900295AAA /* Supporting Files */,
+				660D204C1440E42500295AAA /* TouchForwardView.h */,
+				660D204D1440E42700295AAA /* TouchForwardView.m */,
 			);
 			path = MapCreator;
 			sourceTree = "<group>";
@@ -1234,6 +1239,7 @@
 				660D20311440794200295AAA /* Map.m in Sources */,
 				660D203D144081A900295AAA /* MapViewController.mm in Sources */,
 				660D20471440D41A00295AAA /* LineSprite.m in Sources */,
+				660D204E1440E42A00295AAA /* TouchForwardView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
