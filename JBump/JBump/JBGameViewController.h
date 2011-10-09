@@ -10,8 +10,21 @@
 
 @class JBGameLayer;
 
-@interface JBGameViewController : UIViewController
+@interface JBGameViewController : UIViewController{
+    int sideViewState;
+}
 
 @property (nonatomic, retain)JBGameLayer *gameLayer;
+
+@property (retain, nonatomic) IBOutlet UIView *sideView;
+@property (retain, nonatomic) IBOutlet UIButton *popout;
+@property (retain, nonatomic) IBOutlet UIButton *popin;
+
+- (IBAction)jumpButtonPressed:(id)sender;
+- (IBAction)leftButtonPressed:(id)sender;
+- (IBAction)rightButtonPressed:(id)sender;
+- (IBAction)popinButtonPressed:(id)sender;
+- (IBAction)popoutButtonPressed:(id)sender;
+
 
 @end

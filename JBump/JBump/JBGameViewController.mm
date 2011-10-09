@@ -7,68 +7,112 @@
 //
 
 #import "JBGameViewController.h"
-#import "JBGameLayer.h";
+#import "JBGameLayer.h"
+
+
+@interface JBGameViewController()
+
+- (void)moveSideViewToState:(int)state;
+
+@end
+
 
 @implementation JBGameViewController
 
 @synthesize gameLayer;
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (void)didReceiveMemoryWarning
-{
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
-}
-
-#pragma mark - View lifecycle
-
-/*
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView
-{
-}
-*/
+@synthesize sideView;
+@synthesize popout;
+@synthesize popin;
 
 
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     CCScene* scene = [JBGameLayer scene];
     self.gameLayer = (JBGameLayer *)[scene getChildByTag:0];
-    
     [[CCDirector sharedDirector] replaceScene:scene];
+    
+    [self moveSideViewToState:sideViewState];
 }
 
 - (void)viewDidUnload
 {
+    [self setSideView:nil];
+    [self setPopout:nil];
+    [self setPopin:nil];
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
 - (void)dealloc {
     
     self.gameLayer=nil;
-    
+    [sideView release];
+    [popout release];
+    [popin release];
     [super dealloc];
 }
 
+- (IBAction)jumpButtonPressed:(id)sender {
+}
+- (IBAction)rightButtonPressed:(id)sender {
+}
+
+- (void)moveSideViewToState:(int)state
+{
+    if (state==0) {
+        sideView.frame = CGRectMake(452, 0, 170, 248);
+        popout.enabled = YES;
+        popin.enabled = NO;
+        popout.alpha = 1.f;
+        popin.alpha = .2f;
+    }else if(state==1){
+        sideView.frame = CGRectMake(310, 0, 170, 248);
+        popout.enabled = YES;
+        popin.enabled = YES;
+        popout.alpha = 1.f;
+        popin.alpha = 1.f;
+    }else{
+        sideView.frame = CGRectMake(100, 0, 380, 248);
+        popout.enabled = NO;
+        popin.enabled = YES;
+        popout.alpha = .2f;
+        popin.alpha = 1.f;
+    }
+}
+
+- (IBAction)popinButtonPressed:(id)sender {
+    if (sideViewState>0) {
+        sideViewState--;
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:0.4];
+        [UIView setAnimationBeginsFromCurrentState:YES];
+        [self moveSideViewToState:sideViewState];
+        [UIView commitAnimations];
+        
+    }
+    if (sideViewState==0) {
+        popin.enabled = NO;
+        popin.alpha = 0.2;
+    }
+}
+
+- (IBAction)popoutButtonPressed:(id)sender {
+    if (sideViewState<2) {
+        sideViewState++;
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:0.4];
+        [UIView setAnimationBeginsFromCurrentState:YES];
+        [self moveSideViewToState:sideViewState];
+        [UIView commitAnimations];
+        popin.enabled = YES;
+        popin.alpha = 1.f;
+    }
+    if (sideViewState==2) {
+        popout.enabled = NO;
+        popout.alpha = 0.2;
+    }
+}
+
+- (IBAction)leftButtonPressed:(id)sender {
+}
 @end

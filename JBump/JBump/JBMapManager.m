@@ -18,7 +18,7 @@ static NSString *filePath = @"maps";
        arenaImageLocation:(NSString *)arenaImageLocation 
   backgroundImageLocation:(NSString *)backgroundImageLocation 
      overlayImageLocation:(NSString *)overlayImageLocation
-          brushHistory:(NSMutableArray *)brushes
+             curveHistory:(NSMutableArray *)curves
             entityHistory:(NSMutableArray*)enteties
 {
     
@@ -86,7 +86,7 @@ static NSString *filePath = @"maps";
     }else {
         NSLog(@"Received no OverlayImageLocation");
     }
-    [mapDict setObject:brushes forKey:@"curves"];
+    [mapDict setObject:curves forKey:@"curves"];
     [mapDict setObject:enteties forKey:@"mapEnteties"];
 }
 
