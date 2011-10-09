@@ -44,7 +44,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="5Fz-8t-QPt">
-                                <rect key="frame" x="115" y="155" width="250" height="37"/>
+                                <rect key="frame" x="115" y="200" width="250" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Settings">
@@ -71,7 +71,7 @@
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="m3J-wV-zjZ">
-                                <rect key="frame" x="115" y="200" width="250" height="37"/>
+                                <rect key="frame" x="115" y="245" width="250" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -87,7 +87,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="gNr-9V-Q2M">
-                                <rect key="frame" x="115" y="245" width="250" height="37"/>
+                                <rect key="frame" x="342" y="245" width="138" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -100,6 +100,22 @@
                                 </state>
                                 <connections>
                                     <segue destination="y0g-EZ-aL0" kind="custom" identifier="aboutSegue" customClass="JBSegue" id="V7f-ck-oQC"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="fov-UJ-7uf">
+                                <rect key="frame" x="115" y="155" width="250" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="MapCreator">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="k5z-aM-nDL" kind="custom" identifier="mapCreatorSegue" customClass="JBSegue" id="s3i-V0-1f6"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -284,6 +300,93 @@
             </objects>
             <point key="canvasLocation" x="39" y="1178"/>
         </scene>
+        <scene sceneID="7BP-bk-ZL7">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="X9l-3e-Khn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="k5z-aM-nDL" customClass="JBMapCreatorViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ED2-1z-hNk" customClass="JBTouchForwardView">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="320"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleToFill" id="ljm-Gt-293" customClass="JBTouchForwardView">
+                                <rect key="frame" x="300" y="0.0" width="180" height="320"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <view autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleToFill" id="lVc-8w-jvw">
+                                        <rect key="frame" x="33" y="-1" width="149" height="321"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES"/>
+                                        <subviews>
+                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" id="rVW-uh-efI">
+                                                <rect key="frame" x="16" y="294" width="116" height="23"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                            </slider>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="Syn-8D-1FU">
+                                                <rect key="frame" x="1" y="6" width="146" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                <segments>
+                                                    <segment title=""/>
+                                                    <segment title=""/>
+                                                    <segment title=""/>
+                                                </segments>
+                                                <connections>
+                                                    <action selector="switchKind:" destination="k5z-aM-nDL" eventType="valueChanged" id="ntI-rx-RKK"/>
+                                                </connections>
+                                            </segmentedControl>
+                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Kle-NW-oVw">
+                                                <rect key="frame" x="1" y="44" width="150" height="244"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </tableView>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.59916355300000002" green="0.56608280150000001" blue="0.58072933250000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="jz4-gv-HtR">
+                                        <rect key="frame" x="0.0" y="0.0" width="33" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title=">">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.42415427729999999" blue="0.23337408909999999" alpha="0.0" colorSpace="calibratedRGB"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="nUf-MO-0tj">
+                                <rect key="frame" x="0.0" y="0.0" width="61" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="&lt;-">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="zaW-i8-IAz" kind="custom" identifier="mapCreatorBackSegue" customClass="JBSegue" id="fiP-z1-Ton"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <connections>
+                        <outlet property="contentsTable" destination="Kle-NW-oVw" id="KOk-tB-N0t"/>
+                        <outlet property="forwarder" destination="ED2-1z-hNk" id="PoU-8f-hOp"/>
+                        <outlet property="kindChooser" destination="Syn-8D-1FU" id="Aja-sn-0h6"/>
+                        <outlet property="magnifier" destination="rVW-uh-efI" id="esk-l9-0cI"/>
+                        <outlet property="menuContainer" destination="lVc-8w-jvw" id="n5i-R3-YvK"/>
+                        <outlet property="openButton" destination="jz4-gv-HtR" id="d99-BV-XYZ"/>
+                        <outlet property="sideView" destination="ljm-Gt-293" id="JWQ-Go-Yt3"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="-446" y="270"/>
+        </scene>
         <scene sceneID="k3G-gK-W6J">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZMB-Hg-wCL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -353,6 +456,21 @@
         <class className="JBAboutViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/JBAboutViewController.h"/>
         </class>
+        <class className="JBMapCreatorViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/JBMapCreatorViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="backButtonPressed:"/>
+                <relationship kind="action" name="closeSidebar:"/>
+                <relationship kind="action" name="switchKind:"/>
+                <relationship kind="outlet" name="contentsTable" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="forwarder" candidateClass="JBTouchForwardView"/>
+                <relationship kind="outlet" name="kindChooser" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="magnifier" candidateClass="UISlider"/>
+                <relationship kind="outlet" name="menuContainer" candidateClass="UIView"/>
+                <relationship kind="outlet" name="openButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="sideView" candidateClass="JBTouchForwardView"/>
+            </relationships>
+        </class>
         <class className="JBMenuViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/JBMenuViewController.h"/>
         </class>
@@ -379,6 +497,9 @@
         <class className="JBStoreViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/JBStoreViewController.h"/>
         </class>
+        <class className="JBTouchForwardView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/JBTouchForwardView.h"/>
+        </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <nil key="statusBar"/>
@@ -386,6 +507,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Tji-Tu-vv2"/>
+        <segue reference="fiP-z1-Ton"/>
     </inferredMetricsTieBreakers>
 </document>
