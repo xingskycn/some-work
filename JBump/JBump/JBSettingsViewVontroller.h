@@ -18,7 +18,7 @@
 @property (retain, nonatomic) IBOutlet UISlider *playerNameSlider;
 @property (retain, nonatomic) IBOutlet UITextField *playerNameText;
 
-@property (nonatomic, retain) NSArray *allSkins;
+@property (nonatomic, retain) NSMutableArray *allSkins;
 @property (nonatomic, retain) NSIndexPath *selectedCell;
 
 - (IBAction)playerNameTextChanged:(id)sender;

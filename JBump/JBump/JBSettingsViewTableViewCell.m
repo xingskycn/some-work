@@ -16,13 +16,15 @@
     
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        self.container = [[UIView alloc] initWithFrame:CGRectMake(4, 2, self.frame.size.width-8, self.frame.size.height-4)];
-		[self addSubview:self.container];
-		[self.container release];
+        UIView *cView = [[UIView alloc] initWithFrame:CGRectMake(4, 2, self.frame.size.width-8, self.frame.size.height-4)];
+		[self addSubview:cView];
+		self.container = cView;
+        [cView release];
 		
-		self.mainView = [[UIImageView alloc] initWithFrame:CGRectMake(8, 6, self.frame.size.width-16, self.frame.size.height-12)];
-		[self addSubview:self.mainView];
-		[self.mainView release];
+		UIImageView *mView = [[UIImageView alloc] initWithFrame:CGRectMake(8, 6, self.frame.size.width-16, self.frame.size.height-12)];
+		[self addSubview:mView];
+        self.mainView=mView;
+		[mView release];
     }
     return self;
 }

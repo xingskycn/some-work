@@ -9,6 +9,7 @@
 #import "JBSettingsViewVontroller.h"
 #import "JBSkinManager.h"
 #import "JBSettingsViewTableViewCell.h"
+#import "JBSkin.h"
 
 @implementation JBSettingsViewVontroller
 @synthesize skinTableView;
@@ -24,7 +25,6 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.allSkins = [JBSkinManager getAllSkins];
     }
     return self;
 }
@@ -52,6 +52,7 @@
 {
     [super viewDidLoad];
     self.allSkins = [JBSkinManager getAllSkins];
+    NSLog(@"allSkins RetainCount: %i", self.allSkins.retainCount);
     self.playerNameText.delegate = self;
     
     if ([[NSUserDefaults standardUserDefaults] valueForKey:@"jdPlayerName"]!=nil) {
@@ -68,21 +69,28 @@
     }
     self.skinTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     int i = 0;
-    for (NSDictionary *dict in self.allSkins) {
-        if ([[NSUserDefaults standardUserDefaults] valueForKey:@"skinID"]!=nil&&[[[NSUserDefaults standardUserDefaults] valueForKey:@"skinID"] isEqualToString:[dict objectForKey:@"skinID"]]) {
+    for (JBSkin *aSkin in self.allSkins) {
+        if ([[NSUserDefaults standardUserDefaults] valueForKey:@"skinID"]!=nil&&[[[NSUserDefaults standardUserDefaults] valueForKey:@"skinID"] isEqualToString:aSkin.skinID]) {
             self.selectedCell = [NSIndexPath indexPathForRow:i inSection:0];
         }
         i++;
     }
+    
+
 }
 
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self.skinTableView selectRowAtIndexPath:self.selectedCell animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+    [self performSelectorOnMainThread:@selector(setScrollPosition) withObject:nil waitUntilDone:YES];
+}
+
+- (void)setScrollPosition {
+    [self.skinTableView selectRowAtIndexPath:self.selectedCell animated:YES scrollPosition:UITableViewScrollPositionBottom];
 }
 
 - (void)viewDidUnload
 {
+    [self.allSkins removeAllObjects];
     [self setSkinTableView:nil];
     [self setCSkinDownloadSwitch:nil];
     [self setScoreBoardSwitch:nil];
@@ -157,14 +165,13 @@
         cell = [[[JBSettingsViewTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier] autorelease];
     }
     
-    cell.mainView.image = [[self.allSkins objectAtIndex:indexPath.row] objectForKey:@"thumbnail"];
-    
+    cell.mainView.image = ((JBSkin*)[self.allSkins objectAtIndex:indexPath.row]).thumbnail;
         
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [[NSUserDefaults standardUserDefaults] setValue:[[self.allSkins objectAtIndex:indexPath.row] objectForKey:@"skinID"] forKey:@"skinID"];
+    [[NSUserDefaults standardUserDefaults] setValue:[[self.allSkins objectAtIndex:indexPath.row] skinID] forKey:@"skinID"];
 }
 
 @end

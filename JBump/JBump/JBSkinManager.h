@@ -10,7 +10,7 @@
 
 @interface JBSkinManager : NSObject
 
-+ (NSArray*)getAllSkins;
++ (NSMutableArray*)getAllSkins;
 + (bool)saveNewSkin:(NSMutableDictionary*)skinDict withThumbnail:(UIImage*)thumbnail andSkin:(UIImage*)skin;
 
 @end

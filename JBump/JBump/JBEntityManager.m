@@ -1,38 +1,33 @@
 //
-//  JBSkinManager.m
+//  JBEntityManager.m
 //  JBump
 //
-//  Created by Sebastian Pretscher on 08.10.11.
+//  Created by Sebastian Pretscher on 09.10.11.
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "JBSkinManager.h"
-#import "JBSkin.h"
+#import "JBEntityManager.h"
 
-@implementation JBSkinManager
+static NSString *filePath = @"entities";
 
-static NSString *filePath = @"skins";
+@implementation JBEntityManager
 
-+ (NSMutableArray*)getAllSkins {
++ (NSMutableArray*)getAllEnteties {
     NSString *path;
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     path = [[paths objectAtIndex:0] stringByAppendingPathComponent:filePath];
-	NSArray* skinIDs = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:path error:NULL];
+	NSArray* entityIDs = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:path error:NULL];
 	
-    NSMutableArray* skins = [NSMutableArray array];
-	for (NSString* skinID in skinIDs) {
+    NSMutableArray* entities = [NSMutableArray array];
+	for (NSString* entityID in entityIDs) {
 		NSMutableDictionary* dict = 
-        [NSMutableDictionary dictionaryWithContentsOfFile:[[path stringByAppendingPathComponent:skinID] stringByAppendingPathComponent:@"info"]];
+        [NSMutableDictionary dictionaryWithContentsOfFile:[[path stringByAppendingPathComponent:entityID] stringByAppendingPathComponent:@"entityInfo"]];
 		
-		NSString *imagePath = [path stringByAppendingPathComponent:skinID];
-		UIImage* skinImage = [UIImage imageWithContentsOfFile:[imagePath stringByAppendingPathComponent:@"image"]];
-		
-        NSString *thumbPath = [path stringByAppendingPathComponent:skinID];
-        UIImage* thumbImage = [UIImage imageWithContentsOfFile:[thumbPath stringByAppendingPathComponent:@"thumb"]];
+		NSString *imagePath = [path stringByAppendingPathComponent:entityID];
+		UIImage* entityImage = [UIImage imageWithContentsOfFile:[imagePath stringByAppendingPathComponent:@"entityImage"]];
         
-		if (dict && skinImage && thumbImage) {
+		if (dict && entityImage) {
 			[dict setObject:skinImage forKey:@"image"];
-			[dict setObject:thumbImage forKey:@"thumbnail"];
             [skins addObject:dict];
 		}
 		
@@ -47,13 +42,13 @@ static NSString *filePath = @"skins";
     return allSkins;
 }
 
-+ (bool)saveNewSkin:(NSMutableDictionary*)skinDict withThumbnail:(UIImage*)thumbnail andSkin:(UIImage*)skin {
-    NSString *folderName = [skinDict valueForKey:@"skinID"];
++ (bool)saveNewEntity:(NSMutableDictionary *)entityDict entityImage:(UIImage *)image {
+    NSString *folderName = [entityDict valueForKey:@"entityID"];
     NSString *path;
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     path = [[paths objectAtIndex:0] stringByAppendingPathComponent:filePath];
-   
+    
     NSError* error;
     if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {
         if (![[NSFileManager defaultManager] createDirectoryAtPath:path
@@ -63,7 +58,7 @@ static NSString *filePath = @"skins";
         {
             NSLog(@"Create directory error: %@", error);
         }
- 
+        
     }
     
     path = [path stringByAppendingPathComponent:folderName];
@@ -80,18 +75,13 @@ static NSString *filePath = @"skins";
         }
     }
     
-    if (thumbnail){
-        [UIImagePNGRepresentation(thumbnail) writeToFile:[path stringByAppendingPathComponent:@"thumb"] atomically:YES];
-        [skinDict setValue:[path stringByAppendingPathComponent:@"thumb"] forKey:@"thumbnailLocation"];
-        [skinDict removeObjectForKey:@"thumbnail"];
-    }
-    if (skin){
-        [UIImagePNGRepresentation(skin) writeToFile:[path stringByAppendingPathComponent:@"image"] atomically:YES];
-        [skinDict setValue:[path stringByAppendingPathComponent:@"image"] forKey:@"imageLocation"];
-        [skinDict removeObjectForKey:@"image"];
+    if (image){
+        [UIImagePNGRepresentation(image) writeToFile:[path stringByAppendingPathComponent:@"entityImage"] atomically:YES];
+        [entityDict setValue:[path stringByAppendingPathComponent:@"entityImage"] forKey:@"imageLocation"];
+        [entityDict removeObjectForKey:@"entityImage"];
     }
     
-    [skinDict writeToFile:[path stringByAppendingPathComponent:@"info"] atomically:YES];
+    [entityDict writeToFile:[path stringByAppendingPathComponent:@"entityInfo"] atomically:YES];
     
     if (error!=nil)
         return NO;

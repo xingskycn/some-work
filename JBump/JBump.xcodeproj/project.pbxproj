@@ -181,6 +181,8 @@
 		9E8819D91440F71900A4E421 /* scel_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E8819D31440F71900A4E421 /* scel_1.png */; };
 		9E8819DA1440F71900A4E421 /* scel_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E8819D41440F71900A4E421 /* scel_2.png */; };
 		9E8819DD144109FE00A4E421 /* JBSettingsViewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E8819DC144109FE00A4E421 /* JBSettingsViewTableViewCell.m */; };
+		9EE890C41441D0C6002099FA /* JBEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EE890C31441D0C6002099FA /* JBEntity.m */; };
+		9EE890C71441D0D3002099FA /* JBEntityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EE890C61441D0D3002099FA /* JBEntityManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -531,6 +533,10 @@
 		9E8819D41440F71900A4E421 /* scel_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scel_2.png; sourceTree = "<group>"; };
 		9E8819DB144109FE00A4E421 /* JBSettingsViewTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBSettingsViewTableViewCell.h; sourceTree = "<group>"; };
 		9E8819DC144109FE00A4E421 /* JBSettingsViewTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBSettingsViewTableViewCell.m; sourceTree = "<group>"; };
+		9EE890C21441D0C6002099FA /* JBEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBEntity.h; sourceTree = "<group>"; };
+		9EE890C31441D0C6002099FA /* JBEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBEntity.m; sourceTree = "<group>"; };
+		9EE890C51441D0D3002099FA /* JBEntityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBEntityManager.h; sourceTree = "<group>"; };
+		9EE890C61441D0D3002099FA /* JBEntityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBEntityManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -587,6 +593,7 @@
 		9E67F6761440723D000ED8F0 /* JBump */ = {
 			isa = PBXGroup;
 			children = (
+				9EE890BA1441C3BB002099FA /* Entities */,
 				9E8819C61440E7EE00A4E421 /* Skins */,
 				9E67F8AF1440D3B8000ED8F0 /* Network */,
 				9E67F85D14407B8A000ED8F0 /* Menu */,
@@ -1137,6 +1144,17 @@
 			name = chars;
 			sourceTree = "<group>";
 		};
+		9EE890BA1441C3BB002099FA /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				9EE890C21441D0C6002099FA /* JBEntity.h */,
+				9EE890C31441D0C6002099FA /* JBEntity.m */,
+				9EE890C51441D0D3002099FA /* JBEntityManager.h */,
+				9EE890C61441D0D3002099FA /* JBEntityManager.m */,
+			);
+			name = Entities;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1363,6 +1381,8 @@
 				9E8819CA1440E82600A4E421 /* JBSkin.m in Sources */,
 				9E8819CD1440EA9D00A4E421 /* JBSkinManager.m in Sources */,
 				9E8819DD144109FE00A4E421 /* JBSettingsViewTableViewCell.m in Sources */,
+				9EE890C41441D0C6002099FA /* JBEntity.m in Sources */,
+				9EE890C71441D0D3002099FA /* JBEntityManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

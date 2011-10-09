@@ -131,6 +131,8 @@
     
     [viewController.view addSubview:animationsView];
     
+    [animationsView release];
+    
     [self saveRessourceImages];
 }
 
