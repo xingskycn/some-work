@@ -12,7 +12,9 @@
 @class TouchForwardView;
 
 @interface MapViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
-
+{
+    int oldEditStyle;
+}
 @property BOOL sidebarClosed;
 @property (retain, nonatomic) NSMutableArray* brushArray;
 @property (retain, nonatomic) NSMutableArray* entityArray;
