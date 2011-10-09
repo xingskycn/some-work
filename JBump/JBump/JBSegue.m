@@ -9,12 +9,17 @@
 #import "JBSegue.h"
 #import "JBAppDelegate.h"
 #import "JBMapCreatorViewController.h"
+#import "JBGameViewController.h"
 
 @implementation JBSegue
 
 - (void)perform {
     
     if ([self.sourceViewController isKindOfClass:[JBMapCreatorViewController class]]) {
+        [[CCDirector sharedDirector] replaceScene:((JBAppDelegate*)[UIApplication sharedApplication].delegate).menuScene];
+    }
+    
+    if ([self.sourceViewController isKindOfClass:[JBGameViewController class]]) {
         [[CCDirector sharedDirector] replaceScene:((JBAppDelegate*)[UIApplication sharedApplication].delegate).menuScene];
     }
     

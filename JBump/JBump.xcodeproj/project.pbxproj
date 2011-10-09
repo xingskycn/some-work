@@ -195,6 +195,8 @@
 		9EE890CA1441D85B002099FA /* entity_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EE890C91441D85B002099FA /* entity_1.png */; };
 		9EE890CE1441DEB7002099FA /* JBMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EE890CD1441DEB7002099FA /* JBMap.m */; };
 		9EE890D11441DEC3002099FA /* JBMapManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EE890D01441DEC3002099FA /* JBMapManager.m */; };
+		9EE8910614424D1A002099FA /* JBGameViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9EE8910514424D1A002099FA /* JBGameViewController.mm */; };
+		9EE8910914424D7F002099FA /* JBGameLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9EE8910814424D7E002099FA /* JBGameLayer.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -570,6 +572,10 @@
 		9EE890CD1441DEB7002099FA /* JBMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBMap.m; sourceTree = "<group>"; };
 		9EE890CF1441DEC3002099FA /* JBMapManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBMapManager.h; sourceTree = "<group>"; };
 		9EE890D01441DEC3002099FA /* JBMapManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBMapManager.m; sourceTree = "<group>"; };
+		9EE8910414424D1A002099FA /* JBGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBGameViewController.h; sourceTree = "<group>"; };
+		9EE8910514424D1A002099FA /* JBGameViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = JBGameViewController.mm; sourceTree = "<group>"; };
+		9EE8910714424D7E002099FA /* JBGameLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBGameLayer.h; sourceTree = "<group>"; };
+		9EE8910814424D7E002099FA /* JBGameLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = JBGameLayer.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -649,6 +655,7 @@
 		9E67F6761440723D000ED8F0 /* JBump */ = {
 			isa = PBXGroup;
 			children = (
+				9EE8910214424CFA002099FA /* Game */,
 				9EE890CB1441DE4B002099FA /* Map */,
 				9EE890BA1441C3BB002099FA /* Entities/Brushes */,
 				9E8819C61440E7EE00A4E421 /* Skins */,
@@ -1241,6 +1248,17 @@
 			name = Map;
 			sourceTree = "<group>";
 		};
+		9EE8910214424CFA002099FA /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				9EE8910414424D1A002099FA /* JBGameViewController.h */,
+				9EE8910514424D1A002099FA /* JBGameViewController.mm */,
+				9EE8910714424D7E002099FA /* JBGameLayer.h */,
+				9EE8910814424D7E002099FA /* JBGameLayer.mm */,
+			);
+			name = Game;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1481,6 +1499,8 @@
 				66E141DB14421CA300F47D83 /* JBBrush.m in Sources */,
 				66E141DE14421CC500F47D83 /* JBBrushManager.m in Sources */,
 				66E141E11442344800F47D83 /* JBMapItem.m in Sources */,
+				9EE8910614424D1A002099FA /* JBGameViewController.mm in Sources */,
+				9EE8910914424D7F002099FA /* JBGameLayer.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
