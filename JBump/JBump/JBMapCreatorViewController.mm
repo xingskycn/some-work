@@ -31,7 +31,6 @@ CGFloat DistanceBetweenTwoPoints(CGPoint point1,CGPoint point2)
 - (void)viewDidLoad
 {
     self.availableEntitiesArray = [JBEntityManager getAllEnteties];
-    self.availableBrushesArray = [JB
     
 }
 
