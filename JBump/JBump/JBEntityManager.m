@@ -7,6 +7,7 @@
 //
 
 #import "JBEntityManager.h"
+#import "JBEntity.h"
 
 static NSString *filePath = @"entities";
 
@@ -27,19 +28,19 @@ static NSString *filePath = @"entities";
 		UIImage* entityImage = [UIImage imageWithContentsOfFile:[imagePath stringByAppendingPathComponent:@"entityImage"]];
         
 		if (dict && entityImage) {
-			[dict setObject:skinImage forKey:@"image"];
-            [skins addObject:dict];
+			[dict setObject:entityImage forKey:@"entityImage"];
+            [entities addObject:dict];
 		}
 		
 	}
-    NSMutableArray *allSkins = [NSMutableArray array];
-    for (NSMutableDictionary *skinDict in skins) {
-        JBSkin *aSkin = [[JBSkin alloc] initWithDictionary:skinDict];
-        [allSkins addObject:aSkin];
-        [aSkin release];
+    NSMutableArray *allEnteties = [NSMutableArray array];
+    for (NSMutableDictionary *entityDict in entities) {
+        JBEntity *aEntity = [[JBEntity alloc] initWithEntityDictionary:entityDict];
+        [allEnteties addObject:aEntity];
+        [aEntity release];
     }
     
-    return allSkins;
+    return allEnteties;
 }
 
 + (bool)saveNewEntity:(NSMutableDictionary *)entityDict entityImage:(UIImage *)image {

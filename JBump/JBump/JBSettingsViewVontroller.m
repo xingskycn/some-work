@@ -75,8 +75,6 @@
         }
         i++;
     }
-    
-
 }
 
 -(void)viewDidAppear:(BOOL)animated {

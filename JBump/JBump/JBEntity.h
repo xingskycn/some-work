@@ -21,4 +21,6 @@
 @property (assign)CGPoint position;
 @property (assign)CGSize size;
 
+- (id)initWithEntityDictionary:(NSDictionary*)entityDict;
+
 @end

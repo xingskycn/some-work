@@ -183,6 +183,7 @@
 		9E8819DD144109FE00A4E421 /* JBSettingsViewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E8819DC144109FE00A4E421 /* JBSettingsViewTableViewCell.m */; };
 		9EE890C41441D0C6002099FA /* JBEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EE890C31441D0C6002099FA /* JBEntity.m */; };
 		9EE890C71441D0D3002099FA /* JBEntityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EE890C61441D0D3002099FA /* JBEntityManager.m */; };
+		9EE890CA1441D85B002099FA /* entity_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EE890C91441D85B002099FA /* entity_1.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -537,6 +538,7 @@
 		9EE890C31441D0C6002099FA /* JBEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBEntity.m; sourceTree = "<group>"; };
 		9EE890C51441D0D3002099FA /* JBEntityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBEntityManager.h; sourceTree = "<group>"; };
 		9EE890C61441D0D3002099FA /* JBEntityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBEntityManager.m; sourceTree = "<group>"; };
+		9EE890C91441D85B002099FA /* entity_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = entity_1.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -593,6 +595,7 @@
 		9E67F6761440723D000ED8F0 /* JBump */ = {
 			isa = PBXGroup;
 			children = (
+				9EE890CB1441DE4B002099FA /* Map */,
 				9EE890BA1441C3BB002099FA /* Entities */,
 				9E8819C61440E7EE00A4E421 /* Skins */,
 				9E67F8AF1440D3B8000ED8F0 /* Network */,
@@ -617,6 +620,7 @@
 		9E67F6771440723D000ED8F0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9EE890C81441D827002099FA /* enteties */,
 				9E8819CE1440F6DE00A4E421 /* chars */,
 				9E67F89E1440BE74000ED8F0 /* World1.png */,
 				9E67F8661440A7E8000ED8F0 /* ClearButtonBackground.png */,
@@ -1155,6 +1159,21 @@
 			name = Entities;
 			sourceTree = "<group>";
 		};
+		9EE890C81441D827002099FA /* enteties */ = {
+			isa = PBXGroup;
+			children = (
+				9EE890C91441D85B002099FA /* entity_1.png */,
+			);
+			name = enteties;
+			sourceTree = "<group>";
+		};
+		9EE890CB1441DE4B002099FA /* Map */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Map;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1224,6 +1243,7 @@
 				9E8819D81440F71900A4E421 /* bunny_2.png in Resources */,
 				9E8819D91440F71900A4E421 /* scel_1.png in Resources */,
 				9E8819DA1440F71900A4E421 /* scel_2.png in Resources */,
+				9EE890CA1441D85B002099FA /* entity_1.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -20,5 +20,6 @@
 @property (nonatomic, retain) JBRootViewController *viewController;
 
 - (void)saveRessourceImages;
+- (void)saveRessourceEntities;
 
 @end

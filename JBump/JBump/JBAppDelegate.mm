@@ -14,6 +14,7 @@
 #import "JBRootViewController.h"
 #import "JBMenuViewController.h"
 #import "JBSkinManager.h"
+#import "JBEntityManager.h"
 
 @implementation JBAppDelegate
 
@@ -134,6 +135,7 @@
     [animationsView release];
     
     [self saveRessourceImages];
+    [self saveRessourceEntities];
 }
 
 
@@ -229,6 +231,21 @@
     [skin1 setValue:@"LocalImage_scel2" forKey:@"further"];
     
     [JBSkinManager saveNewSkin:skin1 withThumbnail:thumb andSkin:skin];
+}
+
+- (void)saveRessourceEntities {
+    NSMutableDictionary *entity = [NSMutableDictionary dictionary];
+    UIImage *entityImage = [UIImage imageNamed:@"entity_1.png"];
+    
+    [entity setValue:@"entity_1" forKey:@"entityID"];
+    [entity setValue:entityImage forKey:@"entityImage"];
+    [entity setValue:@"entity_1" forKey:@"name"];
+    [entity setValue:@"first Entity" forKey:@"further"];
+    [entity setValue:[NSNumber numberWithFloat:0.8f] forKey:@"friction"];
+    [entity setValue:[NSNumber numberWithFloat:0.7f] forKey:@"restitution"];
+    [entity setValue:NSStringFromCGSize(CGSizeMake(40.0f, 40.0f)) forKey:@"size"];
+    
+    [JBEntityManager saveNewEntity:entity entityImage:entityImage];
 }
 
 - (void)dealloc {
