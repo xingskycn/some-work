@@ -21,6 +21,7 @@
 @synthesize window = _window;
 @synthesize menuStoryboard;
 @synthesize viewController;
+@synthesize menuScene;
 
 - (void) removeStartupFlicker
 {
@@ -116,7 +117,8 @@
 	[self removeStartupFlicker];
 	
 	// Run the intro Scene
-	[[CCDirector sharedDirector] runWithScene: [JBMenuLayer scene]];
+    self.menuScene = [JBMenuLayer scene];
+	[[CCDirector sharedDirector] runWithScene: self.menuScene];
     
     self.menuStoryboard = [UIStoryboard storyboardWithName:@"JBMenuStoryboard" bundle:nil];
     
