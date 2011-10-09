@@ -15,6 +15,9 @@
 
 @property(nonatomic,retain) CCSprite *sprite;
 
+@property(assign)float friction;
+@property(assign)float restitution;
+
 - (id)initWithSprite:(CCNode*)parent;
 
 @end
