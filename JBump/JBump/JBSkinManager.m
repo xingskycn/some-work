@@ -47,6 +47,33 @@ static NSString *filePath = @"skins";
     return allSkins;
 }
 
++ (JBSkin*)getSkinWithID:(NSString*)skinID {
+    NSString *path;
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    path = [[paths objectAtIndex:0] stringByAppendingPathComponent:filePath];
+    
+    path = [path stringByAppendingPathComponent:skinID];
+    
+    NSMutableDictionary* dict = 
+    [NSMutableDictionary dictionaryWithContentsOfFile:[path stringByAppendingPathComponent:@"info"]];
+    UIImage* skinImage = [UIImage imageWithContentsOfFile:[path stringByAppendingPathComponent:@"image"]];
+    UIImage* thumbImage = [UIImage imageWithContentsOfFile:[path stringByAppendingPathComponent:@"thumb"]];
+    
+    if (dict && skinImage) {
+        [dict setObject:skinImage forKey:@"image"];
+    }
+    
+    if (dict && thumbImage) {
+        [dict setObject:thumbImage forKey:@"thumbnail"];
+    }
+    
+    JBSkin *skin = [[JBSkin alloc] initWithDictionary:dict];
+    
+    return skin;
+}
+
+
 + (bool)saveNewSkin:(NSMutableDictionary*)skinDict withThumbnail:(UIImage*)thumbnail andSkin:(UIImage*)skin {
     NSString *folderName = [skinDict valueForKey:@"skinID"];
     NSString *path;
