@@ -9,23 +9,48 @@
 #import "JBLineSprite.h"
 
 @implementation JBLineSprite
+@synthesize pointArray;
+@synthesize visible,red,green,blue,alpha,historyObj,highLighted;
 
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
+- (id)init{
+    self = [super init];
     if (self) {
-        // Initialization code
+        self.pointArray = [NSMutableArray array];
     }
     return self;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
+-(void)draw
 {
-    // Drawing code
+    glEnable(GL_LINE_SMOOTH);
+    
+    if (visible) {
+        if (pointArray.count) {
+            if (highLighted) {
+                glColor4f(1.f, 1.f, 1.f , 1.f);
+                glLineWidth(5.5f);
+            }else{
+                glColor4f(red, green, blue , alpha);
+                glLineWidth(4.0f);
+            }
+            
+            
+            CGPoint start = CGPointFromString([pointArray objectAtIndex:0]);
+            for(int i = 1; i < [pointArray count]; i+=2)
+            {
+                CGPoint end = CGPointFromString([pointArray objectAtIndex:i]);
+                ccDrawLine(start, end);
+                start = end;
+            }
+        }
+    }
 }
-*/
+
+- (void)dealloc
+{
+    self.pointArray = nil;
+    self.historyObj = nil;
+    [super dealloc];
+}
 
 @end
