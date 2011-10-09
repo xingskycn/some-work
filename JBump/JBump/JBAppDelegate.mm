@@ -13,6 +13,7 @@
 #import "JBMenuLayer.h"
 #import "JBRootViewController.h"
 #import "JBMenuViewController.h"
+#import "JBSkinManager.h"
 
 @implementation JBAppDelegate
 
@@ -120,13 +121,17 @@
     
     JBMenuViewController *menuController = [self.menuStoryboard instantiateInitialViewController];
     
+    self.window.frame = CGRectMake(0, 0, 480, 320);
+    //self.viewController.view.frame = CGRectMake(0, 0, 480, 320);
     [viewController addChildViewController:menuController];
+    UIView *animationsView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 480, 320)];
     
-    UIView *animationsView = [[UIView alloc] initWithFrame:viewController.view.frame];
-    
+    menuController.view.frame = CGRectMake(0, 0, 480, 320);
     [animationsView addSubview:menuController.view];
     
     [viewController.view addSubview:animationsView];
+    
+    [self saveRessourceImages];
 }
 
 
@@ -164,6 +169,64 @@
 
 - (void)applicationSignificantTimeChange:(UIApplication *)application {
 	[[CCDirector sharedDirector] setNextDeltaTimeZero:YES];
+}
+
+- (void)saveRessourceImages {
+    NSMutableDictionary *skin1 = [NSMutableDictionary dictionary];
+    UIImage *skin = [UIImage imageNamed:@"bird_1.png"];
+    UIImage *thumb = [UIImage imageNamed:@"bird_1.png"];
+    
+    [skin1 setValue:@"bird1" forKey:@"skinID"];
+    [skin1 setValue:@"bird1" forKey:@"name"];
+    [skin1 setValue:thumb forKey:@"thumbnail"];
+    [skin1 setValue:skin forKey:@"image"];
+    [skin1 setValue:@"LocalImage_Bird1" forKey:@"further"];
+    
+    [JBSkinManager saveNewSkin:skin1 withThumbnail:thumb andSkin:skin];
+    
+    skin = [UIImage imageNamed:@"bull_1.png"];
+    thumb = [UIImage imageNamed:@"bull_1.png"];
+    
+    [skin1 setValue:@"bull1" forKey:@"skinID"];
+    [skin1 setValue:@"bull1" forKey:@"name"];
+    [skin1 setValue:thumb forKey:@"thumbnail"];
+    [skin1 setValue:skin forKey:@"image"];
+    [skin1 setValue:@"LocalImage_Bull1" forKey:@"further"];
+    
+    [JBSkinManager saveNewSkin:skin1 withThumbnail:thumb andSkin:skin];
+
+    skin = [UIImage imageNamed:@"bunny_1.png"];
+    thumb = [UIImage imageNamed:@"bunny_1.png"];
+    
+    [skin1 setValue:@"bunny1" forKey:@"skinID"];
+    [skin1 setValue:@"bunny1" forKey:@"name"];
+    [skin1 setValue:thumb forKey:@"thumbnail"];
+    [skin1 setValue:skin forKey:@"image"];
+    [skin1 setValue:@"LocalImage:bunny1" forKey:@"further"];
+    
+    [JBSkinManager saveNewSkin:skin1 withThumbnail:thumb andSkin:skin];
+    
+    skin = [UIImage imageNamed:@"bunny_2.png"];
+    thumb = [UIImage imageNamed:@"bunny_2.png"];
+    
+    [skin1 setValue:@"bunny2" forKey:@"skinID"];
+    [skin1 setValue:@"bunny2" forKey:@"name"];
+    [skin1 setValue:thumb forKey:@"thumbnail"];
+    [skin1 setValue:skin forKey:@"image"];
+    [skin1 setValue:@"LocalImage_bunny2" forKey:@"further"];
+    
+    [JBSkinManager saveNewSkin:skin1 withThumbnail:thumb andSkin:skin];
+    
+    skin = [UIImage imageNamed:@"scel_2.png"];
+    thumb = [UIImage imageNamed:@"scel_2.png"];
+    
+    [skin1 setValue:@"scel2" forKey:@"skinID"];
+    [skin1 setValue:@"scel2" forKey:@"name"];
+    [skin1 setValue:thumb forKey:@"thumbnail"];
+    [skin1 setValue:skin forKey:@"image"];
+    [skin1 setValue:@"LocalImage_scel2" forKey:@"further"];
+    
+    [JBSkinManager saveNewSkin:skin1 withThumbnail:thumb andSkin:skin];
 }
 
 - (void)dealloc {

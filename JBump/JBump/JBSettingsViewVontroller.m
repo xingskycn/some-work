@@ -7,14 +7,23 @@
 //
 
 #import "JBSettingsViewVontroller.h"
+#import "JBSkinManager.h"
+#import "JBSettingsViewTableViewCell.h"
 
 @implementation JBSettingsViewVontroller
+@synthesize skinTableView;
+@synthesize cSkinDownloadSwitch;
+@synthesize scoreBoardSwitch;
+@synthesize playerNameSlider;
+@synthesize playerNameText;
+
+@synthesize allSkins;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        self.allSkins = [JBSkinManager getAllSkins];
     }
     return self;
 }
@@ -36,16 +45,38 @@
 }
 */
 
-/*
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.playerNameText.delegate = self;
+    
+    if ([[NSUserDefaults standardUserDefaults] valueForKey:@"jdPlayerName"]!=nil) {
+        self.playerNameText.text=[[NSUserDefaults standardUserDefaults] valueForKey:@"jdPlayerName"];
+    }
+    if ([[NSUserDefaults standardUserDefaults] valueForKey:@"jdPlayerNameSizeValue"]!=nil) {
+        self.playerNameSlider.value=[[[NSUserDefaults standardUserDefaults] valueForKey:@"jdPlayerNameSizeValue"] floatValue];
+    }
+    if ([[NSUserDefaults standardUserDefaults] valueForKey:@"jdCustomSkinDownload"]!=nil) {
+        [self.cSkinDownloadSwitch setOn:[[[NSUserDefaults standardUserDefaults] valueForKey:@"jdCustomSkinDownload"] boolValue] animated:NO]; ;
+    }
+    if ([[NSUserDefaults standardUserDefaults] valueForKey:@"jdShowScoreBoard"]!=nil) {
+        [self.scoreBoardSwitch setOn:[[[NSUserDefaults standardUserDefaults] valueForKey:@"jdShowScoreBoard"] boolValue] animated:NO];
+    }
+    self.skinTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.allSkins = [JBSkinManager getAllSkins];
 }
-*/
+
 
 - (void)viewDidUnload
 {
+    [self setSkinTableView:nil];
+    [self setCSkinDownloadSwitch:nil];
+    [self setScoreBoardSwitch:nil];
+    [self setPlayerNameSlider:nil];
+    [self setPlayerNameText:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -55,6 +86,64 @@
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (void)dealloc {
+    [skinTableView release];
+    [cSkinDownloadSwitch release];
+    [scoreBoardSwitch release];
+    [playerNameSlider release];
+    [playerNameText release];
+    [super dealloc];
+}
+- (IBAction)playerNameTextChanged:(id)sender {
+    [[NSUserDefaults standardUserDefaults] setValue:self.playerNameText.text forKey:@"jdPlayerName"];
+}
+
+- (IBAction)playerNameSizeValueChanged:(id)sender {
+    [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithFloat:self.playerNameSlider.value] forKey:@"jdPlayerNameSizeValue"];
+}
+
+- (IBAction)customSkinDownloadValueChanged:(id)sender {
+    [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithBool:self.cSkinDownloadSwitch.isOn] forKey:@"jdCustomSkinDownload"];
+}
+
+- (IBAction)showScoreBoardValueChanged:(id)sender {
+    [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithBool:self.scoreBoardSwitch.isOn] forKey:@"jdShowScoreBoard"];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [self.playerNameText resignFirstResponder];
+    return YES;
+}
+
+#pragma mark TableView Stuff
+
+- (int)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (int)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [self.allSkins count];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	return 160;
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *cellIdentifier = @"JBSettingsViewTableViewCell";
+
+    JBSettingsViewTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (cell == nil) {
+        cell = [[[JBSettingsViewTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier] autorelease];
+    }
+
+    cell.mainView.image = [[self.allSkins objectAtIndex:indexPath.row] objectForKey:@"thumbnail"];
+
+    return cell;
 }
 
 @end
