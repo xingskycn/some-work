@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "cocos2d.h"
 
-@interface JBMapCreatorLayer : UIView
+@interface JBMapCreatorLayer : CCLayer
+
+@property (nonatomic, assign) UISlider* magnifier;
+@property (nonatomic, retain) NSMutableDictionary* userSelection;
+@property (nonatomic, retain) NSMutableArray* history;
+
++ (CCScene *)scene;
 
 @end

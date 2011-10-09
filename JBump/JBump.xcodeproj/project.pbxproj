@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		66E141CF1442173600F47D83 /* JBMapCreatorViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 66E141CE1442173600F47D83 /* JBMapCreatorViewController.mm */; };
 		66E141D21442175700F47D83 /* JBLineSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E141D11442175700F47D83 /* JBLineSprite.m */; };
-		66E141D51442177400F47D83 /* JBMapCreatorLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E141D41442177400F47D83 /* JBMapCreatorLayer.m */; };
+		66E141D51442177400F47D83 /* JBMapCreatorLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 66E141D41442177400F47D83 /* JBMapCreatorLayer.mm */; };
 		66E141D8144217A800F47D83 /* JBTouchForwardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E141D7144217A800F47D83 /* JBTouchForwardView.m */; };
 		66E141DB14421CA300F47D83 /* JBBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E141DA14421CA300F47D83 /* JBBrush.m */; };
 		66E141DE14421CC500F47D83 /* JBBrushManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E141DD14421CC400F47D83 /* JBBrushManager.m */; };
@@ -200,7 +200,7 @@
 		66E141D01442175700F47D83 /* JBLineSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBLineSprite.h; sourceTree = "<group>"; };
 		66E141D11442175700F47D83 /* JBLineSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBLineSprite.m; sourceTree = "<group>"; };
 		66E141D31442177400F47D83 /* JBMapCreatorLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBMapCreatorLayer.h; sourceTree = "<group>"; };
-		66E141D41442177400F47D83 /* JBMapCreatorLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBMapCreatorLayer.m; sourceTree = "<group>"; };
+		66E141D41442177400F47D83 /* JBMapCreatorLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = JBMapCreatorLayer.mm; sourceTree = "<group>"; };
 		66E141D6144217A800F47D83 /* JBTouchForwardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBTouchForwardView.h; sourceTree = "<group>"; };
 		66E141D7144217A800F47D83 /* JBTouchForwardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBTouchForwardView.m; sourceTree = "<group>"; };
 		66E141D914421CA300F47D83 /* JBBrush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBBrush.h; sourceTree = "<group>"; };
@@ -592,7 +592,7 @@
 				66E141D01442175700F47D83 /* JBLineSprite.h */,
 				66E141D11442175700F47D83 /* JBLineSprite.m */,
 				66E141D31442177400F47D83 /* JBMapCreatorLayer.h */,
-				66E141D41442177400F47D83 /* JBMapCreatorLayer.m */,
+				66E141D41442177400F47D83 /* JBMapCreatorLayer.mm */,
 				66E141D6144217A800F47D83 /* JBTouchForwardView.h */,
 				66E141D7144217A800F47D83 /* JBTouchForwardView.m */,
 			);
@@ -1455,7 +1455,7 @@
 				9EE890D11441DEC3002099FA /* JBMapManager.m in Sources */,
 				66E141CF1442173600F47D83 /* JBMapCreatorViewController.mm in Sources */,
 				66E141D21442175700F47D83 /* JBLineSprite.m in Sources */,
-				66E141D51442177400F47D83 /* JBMapCreatorLayer.m in Sources */,
+				66E141D51442177400F47D83 /* JBMapCreatorLayer.mm in Sources */,
 				66E141D8144217A800F47D83 /* JBTouchForwardView.m in Sources */,
 				66E141DB14421CA300F47D83 /* JBBrush.m in Sources */,
 				66E141DE14421CC500F47D83 /* JBBrushManager.m in Sources */,
