@@ -165,6 +165,8 @@
 		660D20441440BC8700295AAA /* redbrush.png in Resources */ = {isa = PBXBuildFile; fileRef = 660D20431440BC8700295AAA /* redbrush.png */; };
 		660D20471440D41A00295AAA /* LineSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 660D20461440D41700295AAA /* LineSprite.m */; };
 		660D204E1440E42A00295AAA /* TouchForwardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 660D204D1440E42700295AAA /* TouchForwardView.m */; };
+		66E141C31441E15700F47D83 /* selectionCross.png in Resources */ = {isa = PBXBuildFile; fileRef = 66E141C21441E15700F47D83 /* selectionCross.png */; };
+		66E141C61441E39000F47D83 /* cross.png in Resources */ = {isa = PBXBuildFile; fileRef = 66E141C51441E39000F47D83 /* cross.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -489,6 +491,8 @@
 		660D20461440D41700295AAA /* LineSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineSprite.m; sourceTree = "<group>"; };
 		660D204C1440E42500295AAA /* TouchForwardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchForwardView.h; sourceTree = "<group>"; };
 		660D204D1440E42700295AAA /* TouchForwardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchForwardView.m; sourceTree = "<group>"; };
+		66E141C21441E15700F47D83 /* selectionCross.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = selectionCross.png; sourceTree = "<group>"; };
+		66E141C51441E39000F47D83 /* cross.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cross.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -573,6 +577,8 @@
 		660D1E531440789600295AAA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				66E141C51441E39000F47D83 /* cross.png */,
+				66E141C21441E15700F47D83 /* selectionCross.png */,
 				660D20431440BC8700295AAA /* redbrush.png */,
 				660D1E541440789600295AAA /* Default.png */,
 				660D1E561440789600295AAA /* fps_images.png */,
@@ -1092,6 +1098,8 @@
 				660D20251440789900295AAA /* blocks.png in Resources */,
 				660D203E144081A900295AAA /* MapViewController.xib in Resources */,
 				660D20441440BC8700295AAA /* redbrush.png in Resources */,
+				66E141C31441E15700F47D83 /* selectionCross.png in Resources */,
+				66E141C61441E39000F47D83 /* cross.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1261,7 +1269,7 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1276,7 +1284,7 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 			};
@@ -1335,6 +1343,7 @@
 				660D202A1440789A00295AAA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

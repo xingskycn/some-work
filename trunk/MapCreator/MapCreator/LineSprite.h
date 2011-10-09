@@ -13,5 +13,11 @@
 
 @property (nonatomic,retain) NSMutableArray* pointArray;
 @property BOOL visible;
+@property float red;
+@property float green;
+@property float blue;
+@property float alpha;
+@property BOOL highLighted;
+@property (nonatomic, assign) NSMutableDictionary* historyObj;
 
 @end

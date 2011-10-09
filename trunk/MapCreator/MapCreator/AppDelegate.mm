@@ -56,7 +56,6 @@
 	
 	// Init the View Controller
 	viewController = [[RootViewController alloc] initWithNibName:nil bundle:nil];
-	viewController.wantsFullScreenLayout = YES;
 	
 	//
 	// Create the EAGLView manually
@@ -64,10 +63,11 @@
 	//	2. depth format of 0 bit. Use 16 or 24 bit for 3d effects, like CCPageTurnTransition
 	//
 	//
-	EAGLView *glView = [EAGLView viewWithFrame:[window bounds]
+	EAGLView *glView = [EAGLView viewWithFrame:CGRectMake(0, 0, 480, 320)
 								   pixelFormat:kEAGLColorFormatRGB565	// kEAGLColorFormatRGBA8
 								   depthFormat:0						// GL_DEPTH_COMPONENT16_OES
 						];
+    glView.multipleTouchEnabled =YES;
 	
 	// attach the openglView to the director
 	[director setOpenGLView:glView];
@@ -97,12 +97,6 @@
 	
 	// make the OpenGLView a child of the view controller
 	[viewController setView:glView];
-    /*viewController.view.autoresizingMask = 0;
-    viewController.view.autoresizesSubviews = NO;
-    
-    viewController.view.frame = CGRectMake(0, 0, 480, 320);
-    glView.frame = CGRectMake(0, 0, 480, 320);*/
-    
     
     MapViewController* mapViewController = [[MapViewController alloc] initWithNibName:@"MapViewController" bundle:NULL];
     CCScene* scene = [MapLayer scene];
@@ -127,7 +121,8 @@
 	
 	// Run the intro Scene
 	[[CCDirector sharedDirector] runWithScene: scene];
-
+    
+    viewController.view.frame = CGRectMake(0, 0, 480, 320);
 }
 
 
