@@ -8,10 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+@class JBEntity;
+
 @interface JBEntityManager : NSObject
 
 + (NSMutableArray*)getAllEnteties;
 + (bool)saveNewEntity:(NSMutableDictionary*)entityDict entityImage:(UIImage*)image;
-
++ (JBEntity*)getEntityWithID:(NSString*)entityID;
 
 @end

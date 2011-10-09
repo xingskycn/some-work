@@ -184,6 +184,8 @@
 		9EE890C41441D0C6002099FA /* JBEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EE890C31441D0C6002099FA /* JBEntity.m */; };
 		9EE890C71441D0D3002099FA /* JBEntityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EE890C61441D0D3002099FA /* JBEntityManager.m */; };
 		9EE890CA1441D85B002099FA /* entity_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EE890C91441D85B002099FA /* entity_1.png */; };
+		9EE890CE1441DEB7002099FA /* JBMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EE890CD1441DEB7002099FA /* JBMap.m */; };
+		9EE890D11441DEC3002099FA /* JBMapManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EE890D01441DEC3002099FA /* JBMapManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -539,6 +541,10 @@
 		9EE890C51441D0D3002099FA /* JBEntityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBEntityManager.h; sourceTree = "<group>"; };
 		9EE890C61441D0D3002099FA /* JBEntityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBEntityManager.m; sourceTree = "<group>"; };
 		9EE890C91441D85B002099FA /* entity_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = entity_1.png; sourceTree = "<group>"; };
+		9EE890CC1441DEB7002099FA /* JBMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBMap.h; sourceTree = "<group>"; };
+		9EE890CD1441DEB7002099FA /* JBMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBMap.m; sourceTree = "<group>"; };
+		9EE890CF1441DEC3002099FA /* JBMapManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBMapManager.h; sourceTree = "<group>"; };
+		9EE890D01441DEC3002099FA /* JBMapManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBMapManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1170,6 +1176,10 @@
 		9EE890CB1441DE4B002099FA /* Map */ = {
 			isa = PBXGroup;
 			children = (
+				9EE890CC1441DEB7002099FA /* JBMap.h */,
+				9EE890CD1441DEB7002099FA /* JBMap.m */,
+				9EE890CF1441DEC3002099FA /* JBMapManager.h */,
+				9EE890D01441DEC3002099FA /* JBMapManager.m */,
 			);
 			name = Map;
 			sourceTree = "<group>";
@@ -1403,6 +1413,8 @@
 				9E8819DD144109FE00A4E421 /* JBSettingsViewTableViewCell.m in Sources */,
 				9EE890C41441D0C6002099FA /* JBEntity.m in Sources */,
 				9EE890C71441D0D3002099FA /* JBEntityManager.m in Sources */,
+				9EE890CE1441DEB7002099FA /* JBMap.m in Sources */,
+				9EE890D11441DEC3002099FA /* JBMapManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

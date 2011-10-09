@@ -43,6 +43,27 @@ static NSString *filePath = @"entities";
     return allEnteties;
 }
 
++ (JBEntity *)getEntityWithID:(NSString *)entityID {
+    NSString *path;
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    path = [[paths objectAtIndex:0] stringByAppendingPathComponent:filePath];
+    
+    path = [path stringByAppendingPathComponent:entityID];
+    
+    NSMutableDictionary* dict = 
+    [NSMutableDictionary dictionaryWithContentsOfFile:[path stringByAppendingPathComponent:@"entityInfo"]];
+    UIImage* entityImage = [UIImage imageWithContentsOfFile:[path stringByAppendingPathComponent:@"entityImage"]];
+    
+    if (dict && entityImage) {
+        [dict setObject:entityImage forKey:@"entityImage"];
+    }
+
+    JBEntity *entity = [[JBEntity alloc] initWithEntityDictionary:dict];
+    
+    return entity;
+}
+
 + (bool)saveNewEntity:(NSMutableDictionary *)entityDict entityImage:(UIImage *)image {
     NSString *folderName = [entityDict valueForKey:@"entityID"];
     NSString *path;
