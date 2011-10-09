@@ -258,7 +258,7 @@
     
     [brush setValue:@"solid" forKey:@"brushID"];
     [brush setValue:brushImage forKey:@"thumbnail"];
-    [brush setValue:@"concrete" forKey:@"name"];
+    [brush setValue:@"concrete" forKey:@"brushName"];
     [brush setValue:@"stops move" forKey:@"further"];
     [brush setValue:[NSNumber numberWithFloat:0.8f] forKey:@"friction"];
     [brush setValue:[NSNumber numberWithFloat:0.7f] forKey:@"restitution"];
