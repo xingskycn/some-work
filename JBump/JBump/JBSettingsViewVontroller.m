@@ -17,6 +17,7 @@
 @synthesize playerNameSlider;
 @synthesize playerNameText;
 
+@synthesize selectedCell;
 @synthesize allSkins;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -50,7 +51,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    self.allSkins = [JBSkinManager getAllSkins];
     self.playerNameText.delegate = self;
     
     if ([[NSUserDefaults standardUserDefaults] valueForKey:@"jdPlayerName"]!=nil) {
@@ -66,9 +67,19 @@
         [self.scoreBoardSwitch setOn:[[[NSUserDefaults standardUserDefaults] valueForKey:@"jdShowScoreBoard"] boolValue] animated:NO];
     }
     self.skinTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.allSkins = [JBSkinManager getAllSkins];
+    int i = 0;
+    for (NSDictionary *dict in self.allSkins) {
+        if ([[NSUserDefaults standardUserDefaults] valueForKey:@"skinID"]!=nil&&[[[NSUserDefaults standardUserDefaults] valueForKey:@"skinID"] isEqualToString:[dict objectForKey:@"skinID"]]) {
+            self.selectedCell = [NSIndexPath indexPathForRow:i inSection:0];
+        }
+        i++;
+    }
 }
 
+-(void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self.skinTableView selectRowAtIndexPath:self.selectedCell animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+}
 
 - (void)viewDidUnload
 {
@@ -77,6 +88,8 @@
     [self setScoreBoardSwitch:nil];
     [self setPlayerNameSlider:nil];
     [self setPlayerNameText:nil];
+    [self setAllSkins:nil];
+    [self setSelectedCell:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -94,6 +107,9 @@
     [scoreBoardSwitch release];
     [playerNameSlider release];
     [playerNameText release];
+    [allSkins release];
+    [selectedCell release];
+    
     [super dealloc];
 }
 - (IBAction)playerNameTextChanged:(id)sender {
@@ -140,10 +156,15 @@
     if (cell == nil) {
         cell = [[[JBSettingsViewTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier] autorelease];
     }
-
+    
     cell.mainView.image = [[self.allSkins objectAtIndex:indexPath.row] objectForKey:@"thumbnail"];
-
+    
+        
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [[NSUserDefaults standardUserDefaults] setValue:[[self.allSkins objectAtIndex:indexPath.row] objectForKey:@"skinID"] forKey:@"skinID"];
 }
 
 @end
