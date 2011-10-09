@@ -8,11 +8,16 @@
 
 #import "JBSegue.h"
 #import "JBAppDelegate.h"
+#import "JBMapCreatorViewController.h"
 
 @implementation JBSegue
 
 - (void)perform {
-
+    
+    if ([self.sourceViewController isKindOfClass:[JBMapCreatorViewController class]]) {
+        [[CCDirector sharedDirector] replaceScene:((JBAppDelegate*)[UIApplication sharedApplication].delegate).menuScene];
+    }
+    
     [self.destinationViewController view].frame = CGRectMake(0, 0, 480, 320);
     [self.sourceViewController view].frame = CGRectMake(0, 0, 480, 320);
     [UIView beginAnimations:nil context:NULL];

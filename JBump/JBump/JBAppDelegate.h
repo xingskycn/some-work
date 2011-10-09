@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+
+@class CCScene;
+
 @class JBRootViewController;
 
 @interface JBAppDelegate : NSObject <UIApplicationDelegate> {
@@ -18,6 +21,7 @@
 @property (nonatomic, retain) UIWindow *window;
 @property (nonatomic, retain) UIStoryboard *menuStoryboard;
 @property (nonatomic, retain) JBRootViewController *viewController;
+@property (nonatomic, retain) CCScene *menuScene;
 
 - (void)saveRessourceImages;
 - (void)saveRessourceEntities;

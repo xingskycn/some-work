@@ -22,6 +22,7 @@
 @synthesize window = _window;
 @synthesize menuStoryboard;
 @synthesize viewController;
+@synthesize menuScene;
 
 - (void) removeStartupFlicker
 {
@@ -119,7 +120,8 @@
 	[self removeStartupFlicker];
 	
 	// Run the intro Scene
-	[[CCDirector sharedDirector] runWithScene: [JBMenuLayer scene]];
+    self.menuScene = [JBMenuLayer scene];
+	[[CCDirector sharedDirector] runWithScene: self.menuScene];
     
     self.menuStoryboard = [UIStoryboard storyboardWithName:@"JBMenuStoryboard" bundle:nil];
     
@@ -258,7 +260,7 @@
     
     [brush setValue:@"solid" forKey:@"brushID"];
     [brush setValue:brushImage forKey:@"thumbnail"];
-    [brush setValue:@"concrete" forKey:@"name"];
+    [brush setValue:@"concrete" forKey:@"brushName"];
     [brush setValue:@"stops move" forKey:@"further"];
     [brush setValue:[NSNumber numberWithFloat:0.8f] forKey:@"friction"];
     [brush setValue:[NSNumber numberWithFloat:0.7f] forKey:@"restitution"];
