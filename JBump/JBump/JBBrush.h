@@ -14,5 +14,16 @@
 @property (nonatomic, retain) NSString* brushID;
 @property (nonatomic, retain) NSString* brushName;
 @property (nonatomic, retain) NSString* further;
+@property (nonatomic, retain) UIImage* thumbnail;
+
+@property (assign) float friction;
+@property (assign) float restitution;
+
+@property (assign) float red;
+@property (assign) float green;
+@property (assign) float blue;
+@property (assign) float alpha;
+
+- (id)initWithBrushDict:(NSDictionary*)brushDict;
 
 @end

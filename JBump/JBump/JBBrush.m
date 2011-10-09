@@ -13,6 +13,21 @@
 @synthesize brushID;
 @synthesize brushName;
 @synthesize further;
+@synthesize thumbnail;
 
+@synthesize friction;
+@synthesize restitution;
+
+@synthesize red, green, blue, alpha;
+
+- (id)initWithBrushDict:(NSDictionary *)brushDict {
+    self = [super init];
+    
+    if (self) {
+        
+    }
+    
+    return self;
+}
 
 @end
