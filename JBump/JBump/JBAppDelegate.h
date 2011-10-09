@@ -25,5 +25,6 @@
 
 - (void)saveRessourceImages;
 - (void)saveRessourceEntities;
+- (void)saveRessourceBrushes;
 
 @end

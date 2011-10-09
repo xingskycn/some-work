@@ -82,7 +82,7 @@ static NSString *filePath = @"brushes";
         [brushDict removeObjectForKey:@"thumbnail"];
     }
     
-    [brushDict writeToFile:[path stringByAppendingPathComponent:@"entityInfo"] atomically:YES];
+    [brushDict writeToFile:[path stringByAppendingPathComponent:@"brushInfo"] atomically:YES];
     
     if (error!=nil)
         return NO;
