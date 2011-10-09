@@ -43,5 +43,51 @@ static NSString *filePath = @"brushes";
     return allBrushes;
 }
 
++ (bool)saveNewBrush:(NSMutableDictionary *)brushDict thumbnail:(UIImage *)thumbnail {
+    NSString *folderName = [brushDict valueForKey:@"brushID"];
+    NSString *path;
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    path = [[paths objectAtIndex:0] stringByAppendingPathComponent:filePath];
+    
+    NSError* error;
+    if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {
+        if (![[NSFileManager defaultManager] createDirectoryAtPath:path
+                                       withIntermediateDirectories:NO
+                                                        attributes:nil
+                                                             error:&error])
+        {
+            NSLog(@"Create directory error: %@", error);
+        }
+        
+    }
+    
+    path = [path stringByAppendingPathComponent:folderName];
+    
+    
+    if (![[NSFileManager defaultManager] fileExistsAtPath:path])
+    {
+        if (![[NSFileManager defaultManager] createDirectoryAtPath:path
+                                       withIntermediateDirectories:NO
+                                                        attributes:nil
+                                                             error:&error])
+        {
+            NSLog(@"Create directory error: %@", error);
+        }
+    }
+    
+    if (thumbnail){
+        [UIImagePNGRepresentation(thumbnail) writeToFile:[path stringByAppendingPathComponent:@"thumbnail"] atomically:YES];
+        [brushDict setValue:[path stringByAppendingPathComponent:@"thumbnail"] forKey:@"thumbnailLocation"];
+        [brushDict removeObjectForKey:@"thumbnail"];
+    }
+    
+    [brushDict writeToFile:[path stringByAppendingPathComponent:@"entityInfo"] atomically:YES];
+    
+    if (error!=nil)
+        return NO;
+    return YES;
+
+}
 
 @end

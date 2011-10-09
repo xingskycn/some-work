@@ -11,5 +11,6 @@
 @interface JBBrushManager : NSObject
 
 + (NSMutableArray*)getAllBrushes;
++ (bool)saveNewBrush:(NSDictionary*)brushDict thumbnail:(UIImage*)thumbnail;
 
 @end

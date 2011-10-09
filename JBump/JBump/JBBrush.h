@@ -14,7 +14,10 @@
 @property (nonatomic, retain) NSString* brushID;
 @property (nonatomic, retain) NSString* brushName;
 @property (nonatomic, retain) NSString* further;
+
 @property (nonatomic, retain) UIImage* thumbnail;
+@property (nonatomic, retain) NSString* thumbnailLocation;
+@property (nonatomic, retain) NSString* thumbnailURL;
 
 @property (assign) float friction;
 @property (assign) float restitution;
