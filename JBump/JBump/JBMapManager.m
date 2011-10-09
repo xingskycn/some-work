@@ -18,7 +18,9 @@ static NSString *filePath = @"maps";
        arenaImageLocation:(NSString *)arenaImageLocation 
   backgroundImageLocation:(NSString *)backgroundImageLocation 
      overlayImageLocation:(NSString *)overlayImageLocation
-          creationHistory:(NSMutableArray *)creationHistory {
+          brushHistory:(NSMutableArray *)brushes
+            entityHistory:(NSMutableArray*)enteties
+{
     
     NSMutableDictionary *mapDict = [NSMutableDictionary dictionary];
     
@@ -60,33 +62,32 @@ static NSString *filePath = @"maps";
     }
 
     
-    [mapDict setValue:mapID forKey:@"mapID"];
-    [mapDict setValue:mapName forKey:@"mapName"];
-    [mapDict setValue:mapFurther forKey:@"mapFurther"];
+    [mapDict setObject:mapID forKey:@"mapID"];
+    [mapDict setObject:mapName forKey:@"mapName"];
+    [mapDict setObject:mapFurther forKey:@"mapFurther"];
     
     if (arenaImageLocation!=nil) {
         [UIImagePNGRepresentation([UIImage imageWithContentsOfFile:arenaImageLocation]) writeToFile:[path stringByAppendingPathComponent:@"arenaImage"] atomically:YES];
-        [mapDict setValue:[path stringByAppendingPathComponent:@"arenaImage"] forKey:@"arenaImageLocal"];
+        [mapDict setObject:[path stringByAppendingPathComponent:@"arenaImage"] forKey:@"arenaImageLocal"];
     } else {
         NSLog(@"Received no ArenaImageLocation");
     }
     
     if (backgroundImageLocation!=nil) {
         [UIImagePNGRepresentation([UIImage imageWithContentsOfFile:backgroundImageLocation]) writeToFile:[path stringByAppendingPathComponent:@"backgroundImage"] atomically:YES];
-        [mapDict setValue:[path stringByAppendingPathComponent:@"backgroundImage"] forKey:@"backgroundImageLocal"];
+        [mapDict setObject:[path stringByAppendingPathComponent:@"backgroundImage"] forKey:@"backgroundImageLocal"];
     }else {
         NSLog(@"Received no BackgroundImageLocation");
     }
     
     if (overlayImageLocation!=nil) {
         [UIImagePNGRepresentation([UIImage imageWithContentsOfFile:overlayImageLocation]) writeToFile:[path stringByAppendingPathComponent:@"overlayImage"] atomically:YES];
-        [mapDict setValue:[path stringByAppendingPathComponent:@"overlayImage"] forKey:@"overlayImageLocal"];
+        [mapDict setObject:[path stringByAppendingPathComponent:@"overlayImage"] forKey:@"overlayImageLocal"];
     }else {
         NSLog(@"Received no OverlayImageLocation");
     }
-
-    
-
+    [mapDict setObject:brushes forKey:@"curves"];
+    [mapDict setObject:enteties forKey:@"mapEnteties"];
 }
 
 @end
