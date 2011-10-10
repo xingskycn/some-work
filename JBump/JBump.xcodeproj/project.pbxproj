@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		669D047014427B0000ED3B40 /* island.png in Resources */ = {isa = PBXBuildFile; fileRef = 669D046F14427B0000ED3B40 /* island.png */; };
 		66E141CF1442173600F47D83 /* JBMapCreatorViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 66E141CE1442173600F47D83 /* JBMapCreatorViewController.mm */; };
 		66E141D21442175700F47D83 /* JBLineSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E141D11442175700F47D83 /* JBLineSprite.m */; };
 		66E141D51442177400F47D83 /* JBMapCreatorLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 66E141D41442177400F47D83 /* JBMapCreatorLayer.mm */; };
@@ -201,6 +202,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		669D046F14427B0000ED3B40 /* island.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = island.png; sourceTree = "<group>"; };
 		66E141CD1442173600F47D83 /* JBMapCreatorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBMapCreatorViewController.h; sourceTree = "<group>"; };
 		66E141CE1442173600F47D83 /* JBMapCreatorViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = JBMapCreatorViewController.mm; sourceTree = "<group>"; };
 		66E141D01442175700F47D83 /* JBLineSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBLineSprite.h; sourceTree = "<group>"; };
@@ -688,6 +690,7 @@
 				9EE890C81441D827002099FA /* enteties */,
 				9E8819CE1440F6DE00A4E421 /* chars */,
 				9E67F89E1440BE74000ED8F0 /* World1.png */,
+				669D046F14427B0000ED3B40 /* island.png */,
 				9E67F8661440A7E8000ED8F0 /* ClearButtonBackground.png */,
 				9E67F6781440723D000ED8F0 /* Default.png */,
 				9E67F67A1440723D000ED8F0 /* fps_images.png */,
@@ -1336,6 +1339,7 @@
 				9EE890CA1441D85B002099FA /* entity_1.png in Resources */,
 				66E141E31442414C00F47D83 /* cross.png in Resources */,
 				66E141E6144243CB00F47D83 /* redbrush.png in Resources */,
+				669D047014427B0000ED3B40 /* island.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

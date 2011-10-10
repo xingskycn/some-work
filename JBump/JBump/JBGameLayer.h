@@ -22,6 +22,6 @@
 
 +(CCScene *) scene;
 
-- (void)insertObjects:(NSArray *)objects;
+- (void)insertCurves:(NSArray *)objects;
 - (void)insertHero;
 @end

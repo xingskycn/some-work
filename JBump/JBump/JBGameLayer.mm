@@ -9,9 +9,16 @@
 #import "JBGameLayer.h"
 
 #import "JBEntity.h"
+#import "JBEntityManager.h"
 #import "JBBrush.h"
 #import "JBBrushManager.h"
 #import "JBHero.h"
+
+#import "JBMap.h"
+
+#import "JBMapManager.h"
+
+#import "JBLineSprite.h"
 
 #define PTM_RATIO 32
 
@@ -37,7 +44,8 @@
 #ifdef __jbDEBUG_GAMEVIEW
 	glDisable(GL_TEXTURE_2D);
 	glDisableClientState(GL_COLOR_ARRAY);
-	glDisableClientState(GL_TEXTURE_COORD_ARRAY);	
+	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+	glLineWidth(1.0f);
 	world->DrawDebugData();
 	glEnable(GL_TEXTURE_2D);
 	glEnableClientState(GL_COLOR_ARRAY);
@@ -74,19 +82,16 @@
         [self schedule:@selector(tick:)];
         
         
-        NSMutableDictionary* dict = [NSMutableDictionary dictionary];
-        [dict setObject:[[JBBrushManager getAllBrushes] lastObject] forKey:@"mapItem"];
+        JBMap* map = [JBMapManager getMapWithID:@"custom map"];
         
-        NSString* point1 = NSStringFromCGPoint(CGPointMake(30,30));
-        NSString* point2 = NSStringFromCGPoint(CGPointMake(60,30));
-        NSString* point3 = NSStringFromCGPoint(CGPointMake(60,60));
-        NSString* point4 = NSStringFromCGPoint(CGPointMake(90,90));
-        NSString* point5 = NSStringFromCGPoint(CGPointMake(200,70));
-        NSArray* points = [NSArray arrayWithObjects:point1,point2,point3,point4,point5,nil];
-        [dict setObject:points forKey:@"points"];
-        NSArray* objects = [NSArray arrayWithObject:dict];
-        [self insertObjects:objects];
+        CCSprite* image = [CCSprite spriteWithFile:@"island.png"];
+        
+        [self addChild:image z:0];
+        
+        [self insertCurves:map.curves];
         [self insertHero];
+        
+        
     }
     
     return self;
@@ -110,34 +115,45 @@
 	}   
 }
 
-- (void)insertObjects:(NSArray *)objects
+- (void)insertCurves:(NSArray *)objects
 {
     for (NSDictionary* dict in objects) {
-        JBMapItem* mapItem = [dict objectForKey:@"mapItem"];
-        if ([mapItem isKindOfClass:[JBBrush class]]) {
-            JBBrush* brush = (JBBrush *)mapItem;
-            
-            NSArray* points = [dict objectForKey:@"points"];
-            
-            if (points.count>1) {
-                CGPoint start = CGPointFromString([points objectAtIndex:0]);
-                CGPoint end;
-                b2BodyDef curveDef;
-                curveDef.position.Set(start.x/PTM_RATIO , start.y/PTM_RATIO);
-                b2Body* curveBody = world->CreateBody(&curveDef);
-                b2FixtureDef curveFix;
-                b2PolygonShape curve;
-                for (int i=1; i<points.count; i++) {
-                    end = CGPointFromString([points objectAtIndex:i]);
-                    curve.SetAsEdge(b2Vec2(start.x/PTM_RATIO,start.y/PTM_RATIO), b2Vec2(end.x/PTM_RATIO,end.y/PTM_RATIO));
-                    curveFix.shape = &curve;
-                    curveFix.friction = 0.4f;
-                    curveFix.restitution = 0.5f;
-                    curveBody->CreateFixture(&curveFix);
-                    start = end;
-                }
+        //JBBrush* brush = [[JBBrushManager getAllBrushes] lastObject];
+        JBLineSprite* line = [JBLineSprite node];
+        line.alpha = 1.f;
+        line.red = 1.f;
+        NSArray* points = [dict objectForKey:@"points"];
+        line.pointArray = [points mutableCopy];
+        line.visible = TRUE;
+        [self addChild:line];
+        if (points.count>1) {
+            CGPoint start = CGPointFromString([points objectAtIndex:0]);
+            CGPoint end;
+            b2BodyDef curveDef;
+            curveDef.position.Set(0 , 0);
+            b2Body* curveBody = world->CreateBody(&curveDef);
+            b2FixtureDef curveFix;
+            b2PolygonShape curve;
+            for (int i=1; i<points.count; i++) {
+                end = CGPointFromString([points objectAtIndex:i]);
+                curve.SetAsEdge(b2Vec2(start.x/PTM_RATIO,start.y/PTM_RATIO), b2Vec2(end.x/PTM_RATIO,end.y/PTM_RATIO));
+                curveFix.shape = &curve;
+                curveFix.friction = 0.4f;
+                curveFix.restitution = 0.5f;
+                curveBody->CreateFixture(&curveFix);
+                start = end;
             }
         }
+    }
+}
+
+- (void)insertEntities:(NSArray *)objects
+{
+    for (NSDictionary* dict in objects) {
+        //JBEntity* entity = [JBEntityManager getEntityWithID:[dict objectForKey:@"ID"]];
+        //entity.sprite = [CCSprite node];
+        //entity.sprite.position = CGPointFromString([dict objectForKey:@"position"]);
+        
     }
 }
 

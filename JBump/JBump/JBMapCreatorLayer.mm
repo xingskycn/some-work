@@ -59,6 +59,11 @@ CGFloat DistanceBetweenPoints(CGPoint point1,CGPoint point2)
     if (self) {
 		self.isTouchEnabled = YES;
         self.history = [NSMutableArray array];
+        
+        CCSprite* image = [CCSprite spriteWithFile:@"island.png"];
+        [self addChild:image];
+        
+        
         [self schedule: @selector(tick:)];
     }
     return self;
