@@ -44,10 +44,10 @@
     if(onGround) {
         jumpForce=1.0f;
         NSLog(@"TimeDelta: %f",(time*60));
-        body->ApplyForce(b2Vec2(0, (55*time*60*jumpForce)), body->GetLocalCenter());
+        body->ApplyForce(b2Vec2(0, (50*time*60*jumpForce)), body->GetLocalCenter());
     }else {
         jumpForce=jumpForce*exp(log(0.993)*time*1000);
-        body->ApplyForce(b2Vec2(0, (55*time*60*jumpForce)), body->GetLocalCenter());
+        body->ApplyForce(b2Vec2(0, (50*time*60*jumpForce)), body->GetLocalCenter());
     }
     
 }

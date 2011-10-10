@@ -299,7 +299,9 @@ static NSString *filePath = @"entities";
     [entity setValue:@"BIG FUN!" forKey:@"further"];
     [entity setValue:[NSNumber numberWithFloat:0.3f] forKey:@"friction"];
     [entity setValue:[NSNumber numberWithFloat:0.4f] forKey:@"restitution"];
-    [entity setValue:NSStringFromCGSize(CGSizeMake(60.0f, 59.f)) forKey:@"size"];
+    [entity setValue:NSStringFromCGSize(CGSizeMake(60.0f, 59.f
+                                                   
+                                                   )) forKey:@"size"];
     [entity setValue:@"circle" forKey:@"shape"];
     [entity setValue:[NSNumber numberWithFloat:.3f] forKey:@"density"];
     [JBEntityManager saveNewEntity:entity entityImage:entityImage];
