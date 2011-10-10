@@ -70,7 +70,8 @@ CGFloat DistanceBetweenPoints(CGPoint point1,CGPoint point2)
 }
 
 -(void) tick: (ccTime) dt
-{    
+{
+    
     float sliderPos =0;
     if (magnifier) {
         sliderPos = magnifier.value;

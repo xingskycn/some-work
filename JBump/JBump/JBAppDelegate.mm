@@ -82,7 +82,7 @@
 //	// Enables High Res mode (Retina Display) on iPhone 4 and maintains low res on all other devices
 	
     
-    self.retina = [director enableRetinaDisplay:YES];
+    //self.retina = [director enableRetinaDisplay:YES];
 	
 	//
 	// VERY IMPORTANT:
