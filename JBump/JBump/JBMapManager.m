@@ -117,7 +117,7 @@ static NSString *filePath = @"maps";
         [dict setObject:arenaImage forKey:@"overlayImage"];
     }
     
-    JBMap *map = [[JBMap alloc] initWithDictionary:dict];
+    JBMap *map = [[[JBMap alloc] initWithDictionary:dict] autorelease];
     
     return map;
 

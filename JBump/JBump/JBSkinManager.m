@@ -68,7 +68,7 @@ static NSString *filePath = @"skins";
         [dict setObject:thumbImage forKey:@"thumbnail"];
     }
     
-    JBSkin *skin = [[JBSkin alloc] initWithDictionary:dict];
+    JBSkin *skin = [[[JBSkin alloc] initWithDictionary:dict] autorelease];
     
     return skin;
 }

@@ -106,7 +106,7 @@ static NSString *filePath = @"brushes";
         [dict setObject:thumbnail forKey:@"thumbnail"];
     }
     
-    JBBrush *entity = [[JBBrush alloc] initWithBrushDict:dict];
+    JBBrush *entity = [[[JBBrush alloc] initWithBrushDict:dict] autorelease];
     
     return entity;
 }

@@ -59,7 +59,7 @@ static NSString *filePath = @"entities";
         [dict setObject:entityImage forKey:@"entityImage"];
     }
 
-    JBEntity *entity = [[JBEntity alloc] initWithEntityDictionary:dict];
+    JBEntity *entity = [[[JBEntity alloc] initWithEntityDictionary:dict] autorelease];
     
     return entity;
 }
