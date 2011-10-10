@@ -140,9 +140,9 @@
     
     [animationsView release];
     
-    [self saveRessourceImages];
-    [self saveRessourceEntities];
-    [self saveRessourceBrushes];
+    [JBSkinManager saveRessourceSkins];
+    [JBEntityManager saveRessourceEntities];
+    [JBBrushManager saveRessourceBrushes];
 }
 
 
@@ -180,97 +180,6 @@
 
 - (void)applicationSignificantTimeChange:(UIApplication *)application {
 	[[CCDirector sharedDirector] setNextDeltaTimeZero:YES];
-}
-
-- (void)saveRessourceImages {
-    NSMutableDictionary *skin = [NSMutableDictionary dictionary];
-    UIImage *skinImage = [UIImage imageNamed:@"bird_1.png"];
-    UIImage *thumb = [UIImage imageNamed:@"bird_1.png"];
-    
-    [skin setValue:@"bird1" forKey:@"skinID"];
-    [skin setValue:@"bird1" forKey:@"name"];
-    [skin setValue:thumb forKey:@"thumbnail"];
-    [skin setValue:skinImage forKey:@"image"];
-    [skin setValue:@"LocalImage_Bird1" forKey:@"further"];
-    
-    [JBSkinManager saveNewSkin:skin withThumbnail:thumb andSkin:skinImage];
-    
-    skinImage = [UIImage imageNamed:@"bull_1.png"];
-    thumb = [UIImage imageNamed:@"bull_1.png"];
-    
-    [skin setValue:@"bull1" forKey:@"skinID"];
-    [skin setValue:@"bull1" forKey:@"name"];
-    [skin setValue:thumb forKey:@"thumbnail"];
-    [skin setValue:skinImage forKey:@"image"];
-    [skin setValue:@"LocalImage_Bull1" forKey:@"further"];
-    
-    [JBSkinManager saveNewSkin:skin withThumbnail:thumb andSkin:skinImage];
-
-    skinImage = [UIImage imageNamed:@"bunny_1.png"];
-    thumb = [UIImage imageNamed:@"bunny_1.png"];
-    
-    [skin setValue:@"bunny1" forKey:@"skinID"];
-    [skin setValue:@"bunny1" forKey:@"name"];
-    [skin setValue:thumb forKey:@"thumbnail"];
-    [skin setValue:skinImage forKey:@"image"];
-    [skin setValue:@"LocalImage:bunny1" forKey:@"further"];
-    
-    [JBSkinManager saveNewSkin:skin withThumbnail:thumb andSkin:skinImage];
-    
-    skinImage = [UIImage imageNamed:@"bunny_2.png"];
-    thumb = [UIImage imageNamed:@"bunny_2.png"];
-    
-    [skin setValue:@"bunny2" forKey:@"skinID"];
-    [skin setValue:@"bunny2" forKey:@"name"];
-    [skin setValue:thumb forKey:@"thumbnail"];
-    [skin setValue:skin forKey:@"image"];
-    [skin setValue:@"LocalImage_bunny2" forKey:@"further"];
-    
-    [JBSkinManager saveNewSkin:skin withThumbnail:thumb andSkin:skinImage];
-    
-    skinImage = [UIImage imageNamed:@"scel_2.png"];
-    thumb = [UIImage imageNamed:@"scel_2.png"];
-    
-    [skin setValue:@"scel2" forKey:@"skinID"];
-    [skin setValue:@"scel2" forKey:@"name"];
-    [skin setValue:thumb forKey:@"thumbnail"];
-    [skin setValue:skinImage forKey:@"image"];
-    [skin setValue:@"LocalImage_scel2" forKey:@"further"];
-    
-    [JBSkinManager saveNewSkin:skin withThumbnail:thumb andSkin:skinImage];
-}
-
-- (void)saveRessourceEntities {
-    NSMutableDictionary *entity = [NSMutableDictionary dictionary];
-    UIImage *entityImage = [UIImage imageNamed:@"entity_1.png"];
-    
-    [entity setValue:@"entity_1" forKey:@"entityID"];
-    [entity setValue:entityImage forKey:@"entityImage"];
-    [entity setValue:@"entity_1" forKey:@"name"];
-    [entity setValue:@"first Entity" forKey:@"further"];
-    [entity setValue:[NSNumber numberWithFloat:0.8f] forKey:@"friction"];
-    [entity setValue:[NSNumber numberWithFloat:0.7f] forKey:@"restitution"];
-    [entity setValue:NSStringFromCGSize(CGSizeMake(40.0f, 40.0f)) forKey:@"size"];
-    
-    [JBEntityManager saveNewEntity:entity entityImage:entityImage];
-}
-
-- (void)saveRessourceBrushes {
-    NSMutableDictionary *brush = [NSMutableDictionary dictionary];
-    UIImage *brushImage = [UIImage imageNamed:@"redbrush.png"];
-    
-    [brush setValue:@"solid" forKey:@"brushID"];
-    [brush setValue:brushImage forKey:@"thumbnail"];
-    [brush setValue:@"concrete" forKey:@"brushName"];
-    [brush setValue:@"stops move" forKey:@"further"];
-    [brush setValue:[NSNumber numberWithFloat:0.8f] forKey:@"friction"];
-    [brush setValue:[NSNumber numberWithFloat:0.7f] forKey:@"restitution"];
-    [brush setValue:[NSNumber numberWithFloat:1.f] forKey:@"red"];
-    [brush setValue:[NSNumber numberWithFloat:0.f] forKey:@"green"];
-    [brush setValue:[NSNumber numberWithFloat:0.f] forKey:@"blue"];
-    [brush setValue:[NSNumber numberWithFloat:1.f] forKey:@"alpha"];
-    
-    [JBBrushManager saveNewBrush:brush thumbnail:brushImage];
 }
 
 - (void)dealloc {

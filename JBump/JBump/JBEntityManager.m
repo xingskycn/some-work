@@ -119,4 +119,162 @@ static NSString *filePath = @"entities";
     return entityIDs;
 }
 
++ (void)saveRessourceEntities {
+    NSMutableDictionary *entity = [NSMutableDictionary dictionary];
+    UIImage *entityImage = [UIImage imageNamed:@"entity_1.png"];
+    
+    [entity setValue:@"entity_1" forKey:@"entityID"];
+    [entity setValue:entityImage forKey:@"entityImage"];
+    [entity setValue:@"entity_1" forKey:@"name"];
+    [entity setValue:@"first Entity" forKey:@"further"];
+    [entity setValue:[NSNumber numberWithFloat:0.8f] forKey:@"friction"];
+    [entity setValue:[NSNumber numberWithFloat:0.7f] forKey:@"restitution"];
+    [entity setValue:NSStringFromCGSize(CGSizeMake(40.0f, 40.0f)) forKey:@"size"];
+    [JBEntityManager saveNewEntity:entity entityImage:entityImage];
+    
+    entity = [NSMutableDictionary dictionary];
+    entityImage = [UIImage imageNamed:@"bottle_1.png"];
+    [entity setValue:@"bottle_1" forKey:@"entityID"];
+    [entity setValue:entityImage forKey:@"entityImage"];
+    [entity setValue:@"Beer Bottle" forKey:@"name"];
+    [entity setValue:@"Cheers!" forKey:@"further"];
+    [entity setValue:[NSNumber numberWithFloat:0.3f] forKey:@"friction"];
+    [entity setValue:[NSNumber numberWithFloat:0.0f] forKey:@"restitution"];
+    [entity setValue:NSStringFromCGSize(CGSizeMake(15.0f, 60.0f)) forKey:@"size"];
+    [JBEntityManager saveNewEntity:entity entityImage:entityImage];
+    
+    entity = [NSMutableDictionary dictionary];
+    entityImage = [UIImage imageNamed:@"bottle_2.png"];
+    [entity setValue:@"bottle_2" forKey:@"entityID"];
+    [entity setValue:entityImage forKey:@"entityImage"];
+    [entity setValue:@"Water Bottle" forKey:@"name"];
+    [entity setValue:@"Take a sip!" forKey:@"further"];
+    [entity setValue:[NSNumber numberWithFloat:0.3f] forKey:@"friction"];
+    [entity setValue:[NSNumber numberWithFloat:0.0f] forKey:@"restitution"];
+    [entity setValue:NSStringFromCGSize(CGSizeMake(16.0f, 60.0f)) forKey:@"size"];
+    [JBEntityManager saveNewEntity:entity entityImage:entityImage];
+    
+    entity = [NSMutableDictionary dictionary];
+    entityImage = [UIImage imageNamed:@"box_01.png"];
+    [entity setValue:@"box_01" forKey:@"entityID"];
+    [entity setValue:entityImage forKey:@"entityImage"];
+    [entity setValue:@"Mini Box" forKey:@"name"];
+    [entity setValue:@"Diagonal" forKey:@"further"];
+    [entity setValue:[NSNumber numberWithFloat:0.3f] forKey:@"friction"];
+    [entity setValue:[NSNumber numberWithFloat:0.0f] forKey:@"restitution"];
+    [entity setValue:NSStringFromCGSize(CGSizeMake(40.f, 40.0f)) forKey:@"size"];
+    [JBEntityManager saveNewEntity:entity entityImage:entityImage];
+    
+    entity = [NSMutableDictionary dictionary];
+    entityImage = [UIImage imageNamed:@"box_02.png"];
+    [entity setValue:@"box_02" forKey:@"entityID"];
+    [entity setValue:entityImage forKey:@"entityImage"];
+    [entity setValue:@"Big Box!" forKey:@"name"];
+    [entity setValue:@"Diagonal" forKey:@"further"];
+    [entity setValue:[NSNumber numberWithFloat:0.3f] forKey:@"friction"];
+    [entity setValue:[NSNumber numberWithFloat:0.0f] forKey:@"restitution"];
+    [entity setValue:NSStringFromCGSize(CGSizeMake(16.0f, 60.0f)) forKey:@"size"];
+    [JBEntityManager saveNewEntity:entity entityImage:entityImage];
+    
+    entity = [NSMutableDictionary dictionary];
+    entityImage = [UIImage imageNamed:@"box_03.png"];
+    [entity setValue:@"box_03" forKey:@"entityID"];
+    [entity setValue:entityImage forKey:@"entityImage"];
+    [entity setValue:@"Medium Box" forKey:@"name"];
+    [entity setValue:@"Diagonal" forKey:@"further"];
+    [entity setValue:[NSNumber numberWithFloat:0.3f] forKey:@"friction"];
+    [entity setValue:[NSNumber numberWithFloat:0.0f] forKey:@"restitution"];
+    [entity setValue:NSStringFromCGSize(CGSizeMake(16.0f, 60.0f)) forKey:@"size"];
+    [JBEntityManager saveNewEntity:entity entityImage:entityImage];
+    
+    entity = [NSMutableDictionary dictionary];
+    entityImage = [UIImage imageNamed:@"box_04.png"];
+    [entity setValue:@"box_04" forKey:@"entityID"];
+    [entity setValue:entityImage forKey:@"entityImage"];
+    [entity setValue:@"Big Box!" forKey:@"name"];
+    [entity setValue:@"Parallel" forKey:@"further"];
+    [entity setValue:[NSNumber numberWithFloat:0.3f] forKey:@"friction"];
+    [entity setValue:[NSNumber numberWithFloat:0.0f] forKey:@"restitution"];
+    [entity setValue:NSStringFromCGSize(CGSizeMake(16.0f, 60.0f)) forKey:@"size"];
+    [JBEntityManager saveNewEntity:entity entityImage:entityImage];
+    
+    entity = [NSMutableDictionary dictionary];
+    entityImage = [UIImage imageNamed:@"box_05.png"];
+    [entity setValue:@"box_05" forKey:@"entityID"];
+    [entity setValue:entityImage forKey:@"entityImage"];
+    [entity setValue:@"Medium Box" forKey:@"name"];
+    [entity setValue:@"Parallel" forKey:@"further"];
+    [entity setValue:[NSNumber numberWithFloat:0.3f] forKey:@"friction"];
+    [entity setValue:[NSNumber numberWithFloat:0.0f] forKey:@"restitution"];
+    [entity setValue:NSStringFromCGSize(CGSizeMake(16.0f, 60.0f)) forKey:@"size"];
+    [JBEntityManager saveNewEntity:entity entityImage:entityImage];
+    
+    
+    entity = [NSMutableDictionary dictionary];
+    entityImage = [UIImage imageNamed:@"ball_01.png"];
+    [entity setValue:@"ball_01" forKey:@"entityID"];
+    [entity setValue:entityImage forKey:@"entityImage"];
+    [entity setValue:@"Golf" forKey:@"name"];
+    [entity setValue:@"EAGLE" forKey:@"further"];
+    [entity setValue:[NSNumber numberWithFloat:0.3f] forKey:@"friction"];
+    [entity setValue:[NSNumber numberWithFloat:0.0f] forKey:@"restitution"];
+    [entity setValue:NSStringFromCGSize(CGSizeMake(20.0f, 20.0f)) forKey:@"size"];
+    [JBEntityManager saveNewEntity:entity entityImage:entityImage];
+    
+    entity = [NSMutableDictionary dictionary];
+    entityImage = [UIImage imageNamed:@"ball_02.png"];
+    [entity setValue:@"ball_02" forKey:@"entityID"];
+    [entity setValue:entityImage forKey:@"entityImage"];
+    [entity setValue:@"Golf" forKey:@"name"];
+    [entity setValue:@"birdie" forKey:@"further"];
+    [entity setValue:[NSNumber numberWithFloat:0.3f] forKey:@"friction"];
+    [entity setValue:[NSNumber numberWithFloat:0.0f] forKey:@"restitution"];
+    [entity setValue:NSStringFromCGSize(CGSizeMake(40.0f, 40.0f)) forKey:@"size"];
+    [JBEntityManager saveNewEntity:entity entityImage:entityImage];
+    
+    entity = [NSMutableDictionary dictionary];
+    entityImage = [UIImage imageNamed:@"ball_03.png"];
+    [entity setValue:@"ball_03" forKey:@"entityID"];
+    [entity setValue:entityImage forKey:@"entityImage"];
+    [entity setValue:@"Soccer" forKey:@"name"];
+    [entity setValue:@"Size 1" forKey:@"further"];
+    [entity setValue:[NSNumber numberWithFloat:0.3f] forKey:@"friction"];
+    [entity setValue:[NSNumber numberWithFloat:0.3f] forKey:@"restitution"];
+    [entity setValue:NSStringFromCGSize(CGSizeMake(40, 40.0f)) forKey:@"size"];
+    [JBEntityManager saveNewEntity:entity entityImage:entityImage];
+    
+    entity = [NSMutableDictionary dictionary];
+    entityImage = [UIImage imageNamed:@"ball_04.png"];
+    [entity setValue:@"ball_04" forKey:@"entityID"];
+    [entity setValue:entityImage forKey:@"entityImage"];
+    [entity setValue:@"Soccer" forKey:@"name"];
+    [entity setValue:@"Size 4" forKey:@"further"];
+    [entity setValue:[NSNumber numberWithFloat:0.3f] forKey:@"friction"];
+    [entity setValue:[NSNumber numberWithFloat:0.3f] forKey:@"restitution"];
+    [entity setValue:NSStringFromCGSize(CGSizeMake(60.0f, 60.0f)) forKey:@"size"];
+    [JBEntityManager saveNewEntity:entity entityImage:entityImage];
+    
+    entity = [NSMutableDictionary dictionary];
+    entityImage = [UIImage imageNamed:@"ball_05.png"];
+    [entity setValue:@"ball_05" forKey:@"entityID"];
+    [entity setValue:entityImage forKey:@"entityImage"];
+    [entity setValue:@"Ball" forKey:@"name"];
+    [entity setValue:@"small fun" forKey:@"further"];
+    [entity setValue:[NSNumber numberWithFloat:0.3f] forKey:@"friction"];
+    [entity setValue:[NSNumber numberWithFloat:0.4f] forKey:@"restitution"];
+    [entity setValue:NSStringFromCGSize(CGSizeMake(40.0f, 40.0f)) forKey:@"size"];
+    [JBEntityManager saveNewEntity:entity entityImage:entityImage];
+    
+    entity = [NSMutableDictionary dictionary];
+    entityImage = [UIImage imageNamed:@"ball_06.png"];
+    [entity setValue:@"ball_06" forKey:@"entityID"];
+    [entity setValue:entityImage forKey:@"entityImage"];
+    [entity setValue:@"Ball" forKey:@"name"];
+    [entity setValue:@"BIG FUN!" forKey:@"further"];
+    [entity setValue:[NSNumber numberWithFloat:0.3f] forKey:@"friction"];
+    [entity setValue:[NSNumber numberWithFloat:0.4f] forKey:@"restitution"];
+    [entity setValue:NSStringFromCGSize(CGSizeMake(60.0f, 60.0f)) forKey:@"size"];
+    [JBEntityManager saveNewEntity:entity entityImage:entityImage];
+}
+
 @end

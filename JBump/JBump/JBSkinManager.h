@@ -16,5 +16,5 @@
 + (bool)saveNewSkin:(NSMutableDictionary*)skinDict withThumbnail:(UIImage*)thumbnail andSkin:(UIImage*)skin;
 + (JBSkin*)getSkinWithID:(NSString*)skinID;
 + (NSArray*)getAllSkinIDs;
-
++ (void)saveRessourceSkins;
 @end

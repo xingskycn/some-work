@@ -24,8 +24,5 @@
 @property (nonatomic, retain) CCScene *menuScene;
 @property BOOL retina;
 
-- (void)saveRessourceImages;
-- (void)saveRessourceEntities;
-- (void)saveRessourceBrushes;
 
 @end

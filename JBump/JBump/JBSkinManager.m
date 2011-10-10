@@ -134,4 +134,63 @@ static NSString *filePath = @"skins";
     return skinIDs;
 }
 
++ (void)saveRessourceSkins {
+    NSMutableDictionary *skin = [NSMutableDictionary dictionary];
+    UIImage *skinImage = [UIImage imageNamed:@"bird_1.png"];
+    UIImage *thumb = [UIImage imageNamed:@"bird_1.png"];
+    
+    [skin setValue:@"bird1" forKey:@"skinID"];
+    [skin setValue:@"bird1" forKey:@"name"];
+    [skin setValue:thumb forKey:@"thumbnail"];
+    [skin setValue:skinImage forKey:@"image"];
+    [skin setValue:@"LocalImage_Bird1" forKey:@"further"];
+    
+    [JBSkinManager saveNewSkin:skin withThumbnail:thumb andSkin:skinImage];
+    
+    skinImage = [UIImage imageNamed:@"bull_1.png"];
+    thumb = [UIImage imageNamed:@"bull_1.png"];
+    
+    [skin setValue:@"bull1" forKey:@"skinID"];
+    [skin setValue:@"bull1" forKey:@"name"];
+    [skin setValue:thumb forKey:@"thumbnail"];
+    [skin setValue:skinImage forKey:@"image"];
+    [skin setValue:@"LocalImage_Bull1" forKey:@"further"];
+    
+    [JBSkinManager saveNewSkin:skin withThumbnail:thumb andSkin:skinImage];
+    
+    skinImage = [UIImage imageNamed:@"bunny_1.png"];
+    thumb = [UIImage imageNamed:@"bunny_1.png"];
+    
+    [skin setValue:@"bunny1" forKey:@"skinID"];
+    [skin setValue:@"bunny1" forKey:@"name"];
+    [skin setValue:thumb forKey:@"thumbnail"];
+    [skin setValue:skinImage forKey:@"image"];
+    [skin setValue:@"LocalImage:bunny1" forKey:@"further"];
+    
+    [JBSkinManager saveNewSkin:skin withThumbnail:thumb andSkin:skinImage];
+    
+    skinImage = [UIImage imageNamed:@"bunny_2.png"];
+    thumb = [UIImage imageNamed:@"bunny_2.png"];
+    
+    [skin setValue:@"bunny2" forKey:@"skinID"];
+    [skin setValue:@"bunny2" forKey:@"name"];
+    [skin setValue:thumb forKey:@"thumbnail"];
+    [skin setValue:skin forKey:@"image"];
+    [skin setValue:@"LocalImage_bunny2" forKey:@"further"];
+    
+    [JBSkinManager saveNewSkin:skin withThumbnail:thumb andSkin:skinImage];
+    
+    skinImage = [UIImage imageNamed:@"scel_2.png"];
+    thumb = [UIImage imageNamed:@"scel_2.png"];
+    
+    [skin setValue:@"scel2" forKey:@"skinID"];
+    [skin setValue:@"scel2" forKey:@"name"];
+    [skin setValue:thumb forKey:@"thumbnail"];
+    [skin setValue:skinImage forKey:@"image"];
+    [skin setValue:@"LocalImage_scel2" forKey:@"further"];
+    
+    [JBSkinManager saveNewSkin:skin withThumbnail:thumb andSkin:skinImage];
+}
+
+
 @end
