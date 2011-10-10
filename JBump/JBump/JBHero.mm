@@ -43,11 +43,10 @@
 - (void)jump:(float)time timeOnGround:(float)playerTimeOnGround {
     if(onGround && playerTimeOnGround>0.1f) {
         jumpForce=1.0f;
-        NSLog(@"TimeDelta: %f",(time*60));
-        body->ApplyForce(b2Vec2(0, (50*time*60*jumpForce)), body->GetLocalCenter());
+        body->ApplyForce(b2Vec2(0, (70*time*60*jumpForce)), body->GetLocalCenter());
     }else {
-        jumpForce=jumpForce*exp(log(0.993)*time*1000);
-        body->ApplyForce(b2Vec2(0, (50*time*60*jumpForce)), body->GetLocalCenter());
+        jumpForce=jumpForce*exp(log(0.988)*time*1000);
+        body->ApplyForce(b2Vec2(0, (70*time*60*jumpForce)), body->GetLocalCenter());
     }
     
 }

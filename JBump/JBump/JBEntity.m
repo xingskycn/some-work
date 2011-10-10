@@ -14,6 +14,7 @@
 @synthesize size;
 @synthesize shape;
 @synthesize density;
+@synthesize bodyType;
 
 - (id)initWithEntityDictionary:(NSDictionary*)entityDict {
     self = [super init];
@@ -31,6 +32,7 @@
         self.position =  CGPointFromString([entityDict objectForKey:@"position"]);
         self.size = CGSizeFromString([entityDict objectForKey:@"size"]);
         self.shape = [entityDict objectForKey:@"shape"];
+        self.bodyType = [entityDict objectForKey:@"bodyType"];
     }
     return self;
 }

@@ -63,7 +63,7 @@ public:
 
 @implementation JBGameLayer
 
-@synthesize gameViewController;
+@synthesize gameViewController,spawnPoints;
 
 +(CCScene *) scene
 {
@@ -119,6 +119,8 @@ public:
         //		flags += b2DebugDraw::e_centerOfMassBit;
 		m_debugDraw->SetFlags(flags);
 #endif
+        
+        self.spawnPoints = [NSMutableDictionary dictionary];
         
         [self schedule:@selector(tick:)];
         
@@ -192,10 +194,12 @@ public:
 - (void)insertCurves:(NSArray *)objects
 {
     for (NSDictionary* dict in objects) {
-        //JBBrush* brush = [[JBBrushManager getAllBrushes] lastObject];
+        JBBrush* brush = [JBBrushManager getBrushForID:[dict objectForKey:@"ID"]];
         JBLineSprite* line = [JBLineSprite node];
-        line.alpha = 1.f;
-        line.red = 1.f;
+        line.alpha = brush.alpha;
+        line.red = brush.red;
+        line.blue = brush.blue;
+        line.green = brush.green;
         NSArray* points = [dict objectForKey:@"points"];
         line.pointArray = [points mutableCopy];
         line.visible = TRUE;
@@ -227,36 +231,45 @@ public:
         entity.sprite = [CCSprite spriteWithFile:entity.imageLocal];
         entity.sprite.position = entity.position;
         [self addChild:entity.sprite];
-        b2BodyDef bodyDef;
-        bodyDef.type = b2_dynamicBody;
         
-        bodyDef.position.Set(entity.position.x/PTM_RATIO, entity.position.y/PTM_RATIO);
-        bodyDef.userData = entity.sprite;
-        b2Body *body = world->CreateBody(&bodyDef);
+        if ([entity.bodyType isEqualToString:@"dense"]) {
+            b2BodyDef bodyDef;
+            bodyDef.type = b2_dynamicBody;
+            
+            bodyDef.position.Set(entity.position.x/PTM_RATIO, entity.position.y/PTM_RATIO);
+            bodyDef.userData = entity.sprite;
+            b2Body *body = world->CreateBody(&bodyDef);
+            
+            if ([entity.shape isEqualToString:@"circle"]) {
+                b2FixtureDef fixtureDef;
+                b2CircleShape shape;
+                shape.m_radius = entity.size.width/2/PTM_RATIO;
+                fixtureDef.shape = &shape;
+                fixtureDef.friction = entity.friction;
+                fixtureDef.restitution = entity.restitution;
+                fixtureDef.density = entity.density;
+                body->CreateFixture(&fixtureDef);
+            }
+            if ([entity.shape isEqualToString:@"box"]) {
+                b2FixtureDef fixtureDef;
+                b2PolygonShape shape;
+                shape.SetAsBox(entity.size.width/PTM_RATIO/2,entity.size.height/PTM_RATIO/2);
+                fixtureDef.shape = &shape;
+                fixtureDef.friction = entity.friction;
+                fixtureDef.restitution = entity.restitution;
+                fixtureDef.density = entity.density;
+                body->CreateFixture(&fixtureDef);
+            }
+        }
         
-        NSLog(@"entity shape %@",entity.shape);
-        if ([entity.shape isEqualToString:@"circle"]) {
-            b2FixtureDef fixtureDef;
-            b2CircleShape shape;
-            shape.m_radius = entity.size.width/2/PTM_RATIO;
-            fixtureDef.shape = &shape;
-            fixtureDef.friction = entity.friction;
-            fixtureDef.restitution = entity.restitution;
-            fixtureDef.density = entity.density;
-            body->CreateFixture(&fixtureDef);
+        if ([entity.ID hasPrefix:@"spawnpoint"]) {
+            if (![self.spawnPoints objectForKey:entity.ID]) {
+                [self.spawnPoints setObject:[NSMutableArray array] forKey:entity.ID];
+            }
+            [[self.spawnPoints objectForKey:entity.ID] addObject:entity];
         }
-        if ([entity.shape isEqualToString:@"box"]) {
-            b2FixtureDef fixtureDef;
-            b2PolygonShape shape;
-            shape.SetAsBox(entity.size.width/PTM_RATIO/2,entity.size.height/PTM_RATIO/2);
-            fixtureDef.shape = &shape;
-            fixtureDef.friction = entity.friction;
-            fixtureDef.restitution = entity.restitution;
-            fixtureDef.density = entity.density;
-            body->CreateFixture(&fixtureDef);
-        }
-
     }
+    NSLog(@"spawns: %@",self.spawnPoints);
 }
 
 - (void)resetJumpForce{
@@ -265,7 +278,6 @@ public:
 
 - (void)insertHero
 {
-    
     player = [[JBHero alloc] initWithNode:self];
     
     b2BodyDef bodyDef;
@@ -280,7 +292,7 @@ public:
 	b2FixtureDef fixtureDef;
     fixtureDef.shape = &shape;	
 	fixtureDef.friction = 0.1f;
-    fixtureDef.restitution = 0.05f;
+    fixtureDef.restitution = 0.050f;
 	body->CreateFixture(&fixtureDef);
     
     player.body=body;

@@ -26,6 +26,7 @@
 }
 
 @property(nonatomic, assign)JBGameViewController *gameViewController;
+@property(nonatomic, retain)NSMutableDictionary* spawnPoints;
 
 +(CCScene *) scene;
 

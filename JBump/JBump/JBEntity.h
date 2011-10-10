@@ -16,6 +16,7 @@
 @property (assign)CGSize size;
 @property (assign)float density;
 @property (nonatomic, retain) NSString* shape;
+@property (nonatomic, retain) NSString* bodyType;
 
 - (id)initWithEntityDictionary:(NSDictionary*)entityDict;
 
