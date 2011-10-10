@@ -22,6 +22,24 @@
 
 #define PTM_RATIO 32
 
+class MyContactListener : public b2ContactListener {
+public:
+    void BeginContact(b2Contact* contact)
+    { /* handle begin event */ 
+        
+    }
+    void EndContact(b2Contact* contact) { /* handle end event */ 
+        
+    }
+    void PreSolve(b2Contact* contact, const b2Manifold* oldManifold) { /* handle pre-solve event */ 
+        
+    }
+    void PostSolve(b2Contact* contact, const b2ContactImpulse* impulse)
+    { /* handle post-solve event */ 
+    
+    } 
+};
+
 @implementation JBGameLayer
 
 +(CCScene *) scene

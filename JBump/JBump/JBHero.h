@@ -18,7 +18,8 @@
 
 @property(assign)float friction;
 @property(assign)float restitution;
-
+@property(assign)bool onGround;
+@property(assign)float jumpForce;
 @property(assign)b2Body *body;
 
 - (id)initWithNode:(CCNode*)parent;
