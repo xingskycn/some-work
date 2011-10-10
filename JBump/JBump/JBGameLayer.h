@@ -29,6 +29,7 @@
 +(CCScene *) scene;
 
 - (void)insertCurves:(NSArray *)objects;
+- (void)insertEntities:(NSArray *)objects;
 - (void)insertHero;
 
 - (void)resetJumpForce;

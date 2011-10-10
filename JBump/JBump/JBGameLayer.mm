@@ -130,9 +130,8 @@ public:
         [self addChild:image z:0];
         
         [self insertCurves:map.curves];
+        [self insertEntities:map.mapEntities];
         [self insertHero];
-        
-        
     }
     
     return self;
@@ -213,9 +212,35 @@ public:
 - (void)insertEntities:(NSArray *)objects
 {
     for (NSDictionary* dict in objects) {
-        //JBEntity* entity = [JBEntityManager getEntityWithID:[dict objectForKey:@"ID"]];
-        //entity.sprite = [CCSprite node];
-        //entity.sprite.position = CGPointFromString([dict objectForKey:@"position"]);
+        JBEntity* entity = [JBEntityManager getEntityWithID:[dict objectForKey:@"ID"]];
+        entity.sprite = [CCSprite node];
+        entity.sprite.position = CGPointFromString([dict objectForKey:@"position"]);
+        [self addChild:entity.sprite];
+        b2BodyDef bodyDef;
+        bodyDef.type = b2_dynamicBody;
+        
+        bodyDef.position.Set(70./PTM_RATIO, 1000./PTM_RATIO);
+        bodyDef.userData = player.sprite;
+        b2Body *body = world->CreateBody(&bodyDef);
+        
+        b2FixtureDef fixtureDef;
+        if ([entity.shape isEqualToString:@"circle"]) {
+            b2CircleShape shape;
+            shape.m_radius = 0.45f;
+            fixtureDef.shape = &shape;
+        }
+        if ([entity.shape isEqualToString:@"box"]) {
+            b2PolygonShape shape;
+            shape.SetAsBox(.5f,.5f);
+            fixtureDef.shape = &shape;
+        }
+        fixtureDef.friction = entity.friction;
+        fixtureDef.restitution = entity.restitution;
+        fixtureDef.density = entity.density;
+        body->CreateFixture(&fixtureDef);
+        
+        
+        
         
     }
 }

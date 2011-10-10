@@ -28,14 +28,14 @@
 @synthesize overlayImageLocal;
 @synthesize overlayImageURL;
 
-@synthesize mapEnteties;
+@synthesize mapEntities;
 @synthesize curves;
 
 -(id)initWithDictionary:(NSDictionary *)mapDict {
     self = [super init];
     
     if (self) {
-        self.mapEnteties = [NSMutableArray array];
+        self.mapEntities = [NSMutableArray array];
         self.curves = [NSMutableArray array];
         
         self.mapName = [mapDict objectForKey:@"mapName"];
@@ -57,7 +57,7 @@
         for (NSDictionary *dict in [mapDict objectForKey:@"mapEntities"]) {
             JBEntity *aEntity = [JBEntityManager getEntityWithID:[dict objectForKey:@"entityID"]];
             aEntity.position = CGPointFromString([dict objectForKey:@"position"]);
-            [self.mapEnteties addObject:aEntity];
+            [self.mapEntities addObject:aEntity];
         }
         
         self.curves = [mapDict objectForKey:@"curves"]; 

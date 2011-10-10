@@ -38,7 +38,7 @@ CGFloat DistanceBetweenTwoPoints(CGPoint point1,CGPoint point2)
 
 - (void)viewDidLoad
 {
-    self.availableEntitiesArray = [JBEntityManager getAllEnteties];
+    self.availableEntitiesArray = [JBEntityManager getAllEntities];
     self.availableBrushesArray = [JBBrushManager getAllBrushes];
     
     self.sideView.receiver = [[CCDirector sharedDirector] openGLView];

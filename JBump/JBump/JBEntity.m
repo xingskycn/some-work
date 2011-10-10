@@ -12,6 +12,8 @@
 
 @synthesize position;
 @synthesize size;
+@synthesize shape;
+@synthesize density;
 
 - (id)initWithEntityDictionary:(NSDictionary*)entityDict {
     self = [super init];
@@ -25,8 +27,10 @@
         self.further = [entityDict objectForKey:@"further"];
         self.friction = [[entityDict objectForKey:@"friction"] floatValue];
         self.restitution = [[entityDict objectForKey:@"restitution"] floatValue];
+        self.density = [[entityDict objectForKey:@"density"] floatValue];
         self.position =  CGPointFromString([entityDict objectForKey:@"position"]);
         self.size = CGSizeFromString([entityDict objectForKey:@"size"]);
+        self.shape = [entityDict objectForKey:@"shape"];
     }
     return self;
 }
