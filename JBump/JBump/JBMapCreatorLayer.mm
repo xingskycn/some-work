@@ -13,7 +13,7 @@
 #import "JBMapItem.h"
 #import "JBBrush.h"
 #import "JBEntity.h"
-
+#import "JBAppDelegate.h"
 #define jbSCROLLSPEED 1.5f
 
 @interface JBMapCreatorLayer()
@@ -94,8 +94,18 @@ CGFloat DistanceBetweenPoints(CGPoint point1,CGPoint point2)
                 sliderPos = magnifier.value;
             }
             current = [[CCDirector sharedDirector] convertToGL:current];
-            current = CGPointMake(x+(current.x)/(1-sliderPos*0.75)-180/(1-sliderPos*0.75)*sliderPos,
-                                  y+(current.y)/(1-sliderPos*0.75)-120/(1-sliderPos*0.75)*sliderPos);
+            
+            float fx,fy;
+            if (((JBAppDelegate *)[UIApplication sharedApplication].delegate).retina) {
+                fx = 360;
+                fy = 240;
+            }else{
+                fx = 180;
+                fy = 120;
+            }
+            
+            current = CGPointMake(x+(current.x)/(1-sliderPos*0.75)-fx/(1-sliderPos*0.75)*sliderPos,
+                                  y+(current.y)/(1-sliderPos*0.75)-fy/(1-sliderPos*0.75)*sliderPos);
             
             if ([userSelection isKindOfClass:[JBBrush class]]) {
                 if (!self.activeLine) {
@@ -154,10 +164,19 @@ CGFloat DistanceBetweenPoints(CGPoint point1,CGPoint point2)
                 sliderPos = magnifier.value;
             }
             
-            current = CGPointMake(x+(current.x)/(1-sliderPos*0.75)-180/(1-sliderPos*0.75)*sliderPos,
-                                  y+(current.y)/(1-sliderPos*0.75)-120/(1-sliderPos*0.75)*sliderPos);
-            last = CGPointMake(x+(last.x)/(1-sliderPos*0.75)-180/(1-sliderPos*0.75)*sliderPos,
-                               y+(last.y)/(1-sliderPos*0.75)-120/(1-sliderPos*0.75)*sliderPos);
+            float fx,fy;
+            if (((JBAppDelegate *)[UIApplication sharedApplication].delegate).retina) {
+                fx = 360;
+                fy = 240;
+            }else{
+                fx = 180;
+                fy = 120;
+            }
+            
+            current = CGPointMake(x+(current.x)/(1-sliderPos*0.75)-fx/(1-sliderPos*0.75)*sliderPos,
+                                  y+(current.y)/(1-sliderPos*0.75)-fy/(1-sliderPos*0.75)*sliderPos);
+            last = CGPointMake(x+(last.x)/(1-sliderPos*0.75)-fx/(1-sliderPos*0.75)*sliderPos,
+                               y+(last.y)/(1-sliderPos*0.75)-fy/(1-sliderPos*0.75)*sliderPos);
             
             if (activeLine) {
                 [activeLine.pointArray addObject:NSStringFromCGPoint(current)];
@@ -218,8 +237,17 @@ CGFloat DistanceBetweenPoints(CGPoint point1,CGPoint point2)
             }
             current = [[CCDirector sharedDirector] convertToGL:current];
             
-            current = CGPointMake(x+(current.x)/(1-sliderPos*0.75)-180/(1-sliderPos*0.75)*sliderPos,
-                                  y+(current.y)/(1-sliderPos*0.75)-120/(1-sliderPos*0.75)*sliderPos);
+            float fx,fy;
+            if (((JBAppDelegate *)[UIApplication sharedApplication].delegate).retina) {
+                fx = 360;
+                fy = 240;
+            }else{
+                fx = 180;
+                fy = 120;
+            }
+            
+            current = CGPointMake(x+(current.x)/(1-sliderPos*0.75)-fx/(1-sliderPos*0.75)*sliderPos,
+                                  y+(current.y)/(1-sliderPos*0.75)-fy/(1-sliderPos*0.75)*sliderPos);
             
             if (activeLine) {
                 [activeLine.pointArray addObject:NSStringFromCGPoint(current)];

@@ -22,7 +22,7 @@
 @synthesize window = _window;
 @synthesize menuStoryboard;
 @synthesize viewController;
-@synthesize menuScene;
+@synthesize menuScene,retina;
 
 - (void) removeStartupFlicker
 {
@@ -80,8 +80,9 @@
 	[director setOpenGLView:glView];
 	
 //	// Enables High Res mode (Retina Display) on iPhone 4 and maintains low res on all other devices
-//	if( ! [director enableRetinaDisplay:YES] )
-//		CCLOG(@"Retina Display Not supported");
+	
+    
+    self.retina = [director enableRetinaDisplay:YES];
 	
 	//
 	// VERY IMPORTANT:
