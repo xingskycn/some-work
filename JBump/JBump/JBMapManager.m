@@ -7,6 +7,7 @@
 //
 
 #import "JBMapManager.h"
+#import "JBMap.h"
 
 static NSString *filePath = @"maps";
 
@@ -90,6 +91,36 @@ static NSString *filePath = @"maps";
     [mapDict setObject:enteties forKey:@"mapEnteties"];
     
     [mapDict writeToFile:[path stringByAppendingPathComponent:@"mapInfo"] atomically:YES];
+}
+
++ (JBMap*)getMapWithID:(NSString*)aMapID {
+    NSString *path;
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    path = [[paths objectAtIndex:0] stringByAppendingPathComponent:filePath];
+    
+    path = [path stringByAppendingPathComponent:aMapID];
+    
+    NSMutableDictionary* dict = 
+    [NSMutableDictionary dictionaryWithContentsOfFile:[path stringByAppendingPathComponent:@"mapInfo"]];
+    UIImage* arenaImage = [UIImage imageWithContentsOfFile:[path stringByAppendingPathComponent:@"arenaImage"]];
+    UIImage* backgroundImage = [UIImage imageWithContentsOfFile:[path stringByAppendingPathComponent:@"arenaImage"]];
+    UIImage* overlayImage = [UIImage imageWithContentsOfFile:[path stringByAppendingPathComponent:@"overlayImage"]];
+    
+    if (dict && arenaImage) {
+        [dict setObject:arenaImage forKey:@"arenaImage"];
+    }
+    if (dict && backgroundImage) {
+        [dict setObject:backgroundImage forKey:@"backgroundImage"];
+    }
+    if (dict && overlayImage) {
+        [dict setObject:arenaImage forKey:@"overlayImage"];
+    }
+    
+    JBMap *map = [[JBMap alloc] initWithDictionary:dict];
+    
+    return map;
+
 }
 
 @end

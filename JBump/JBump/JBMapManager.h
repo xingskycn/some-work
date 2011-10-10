@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class JBMap;
+
 @interface JBMapManager : NSObject
 
 + (void)storeNewMapWithID:(NSString*)mapID
@@ -18,5 +20,5 @@
      overlayImageLocation:(NSString *)overlayImageLocation
              curveHistory:(NSMutableArray *)curves
             entityHistory:(NSMutableArray*)enteties;
-
++ (JBMap*)getMapWithID:(NSString*)aMapID;
 @end
