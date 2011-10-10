@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Box2D.h"
 
 @class CCSprite;
 @class CCNode;
@@ -17,6 +18,8 @@
 
 @property(assign)float friction;
 @property(assign)float restitution;
+
+@property(assign)b2Body *body;
 
 - (id)initWithNode:(CCNode*)parent;
 

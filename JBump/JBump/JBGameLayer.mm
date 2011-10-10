@@ -166,6 +166,18 @@
     }
 }
 
+- (void)applyForcefromLeft{
+    player.body->ApplyForce(b2Vec2(100.0f, 0), player.body->GetLocalCenter());
+}
+
+- (void)applyForcefromRight{
+     player.body->ApplyForce(b2Vec2(-100.0f, 0), player.body->GetLocalCenter());
+}
+
+- (void)applyForcefromBottom{
+    player.body->ApplyForce(b2Vec2(0, 200.0f), player.body->GetLocalCenter());
+}
+
 - (void)insertHero
 {
     
@@ -185,10 +197,12 @@
 	// Define the dynamic body fixture.
 	b2FixtureDef fixtureDef;
 	fixtureDef.shape = &dynamicBox;	
-	fixtureDef.density = 1.0f;
-	fixtureDef.friction = 0.3f;
+	//fixtureDef.density = 1.0f;
+	fixtureDef.friction = 0.1f;
     fixtureDef.restitution = 0.0f;
 	body->CreateFixture(&fixtureDef);
+    
+    player.body=body;
 }
 
 @end

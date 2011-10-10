@@ -27,4 +27,8 @@
 
 - (void)insertCurves:(NSArray *)objects;
 - (void)insertHero;
+
+- (void)applyForcefromLeft;
+- (void)applyForcefromRight;
+- (void)applyForcefromBottom;
 @end
