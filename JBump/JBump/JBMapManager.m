@@ -88,6 +88,8 @@ static NSString *filePath = @"maps";
     }
     [mapDict setObject:curves forKey:@"curves"];
     [mapDict setObject:enteties forKey:@"mapEnteties"];
+    
+    [mapDict writeToFile:[path stringByAppendingPathComponent:@"mapInfo"] atomically:YES];
 }
 
 @end

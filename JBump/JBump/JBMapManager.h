@@ -16,7 +16,7 @@
        arenaImageLocation:(NSString *)arenaImageLocation 
   backgroundImageLocation:(NSString *)backgroundImageLocation 
      overlayImageLocation:(NSString *)overlayImageLocation
-             brushHistory:(NSMutableArray *)brushes
+             curveHistory:(NSMutableArray *)curves
             entityHistory:(NSMutableArray*)enteties;
 
 @end
