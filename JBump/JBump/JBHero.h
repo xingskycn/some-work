@@ -12,7 +12,10 @@
 @class CCSprite;
 @class CCNode;
 
-@interface JBHero : NSObject
+@interface JBHero : NSObject {
+    @private
+    bool isLeft, isRight;
+}
 
 @property(nonatomic,retain) CCSprite *sprite;
 
