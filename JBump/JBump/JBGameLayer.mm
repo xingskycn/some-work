@@ -176,6 +176,11 @@ public:
     if (self.gameViewController.moveRightButton.isTouchInside) {
         [player moveRight:(float)deltaTime];
     }
+    if (!player.onGround) {
+        if (player.sprite.rotation<180) {
+            player.sprite.rotation=player.sprite.rotation/1.18;
+        }
+    }
 }
 
 - (void)insertCurves:(NSArray *)objects
