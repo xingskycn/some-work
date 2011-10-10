@@ -18,12 +18,18 @@
 
 @property(assign)float friction;
 @property(assign)float restitution;
+
+@property(assign)b2Body *body;
+
 @property(assign)bool onGround;
 @property(assign)float jumpForce;
-@property(assign)b2Body *body;
+@property(assign)float maxLeft;
+@property(assign)float maxRight;
 
 - (id)initWithNode:(CCNode*)parent;
 - (void)jump:(float)time;
-- (void)resetJump;
+- (void)moveLeft:(float)time;
+- (void)moveRight:(float)time;
+
 
 @end

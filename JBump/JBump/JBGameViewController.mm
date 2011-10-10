@@ -64,10 +64,9 @@
 }
 
 - (IBAction)jumpButtonPressed:(id)sender {
-    [self.gameLayer applyForcefromBottom];
+    [self.gameLayer resetJumpForce];
 }
 - (IBAction)rightButtonPressed:(id)sender {
-    [self.gameLayer applyForcefromLeft];
 }
 
 - (void)moveSideViewToState:(int)state
@@ -127,6 +126,5 @@
 }
 
 - (IBAction)leftButtonPressed:(id)sender {
-    [self.gameLayer applyForcefromRight];
 }
 @end

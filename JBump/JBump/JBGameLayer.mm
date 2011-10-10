@@ -37,11 +37,19 @@ public:
     void PreSolve(b2Contact* contact, const b2Manifold* oldManifold) { /* handle pre-solve event */ 
         if(contact->GetFixtureA()->GetBody()==player.body) {
             b2WorldManifold worldManifold; contact->GetWorldManifold(&worldManifold);
+            float product = -acosf(worldManifold.normal.x)*180/M_PI+90;
+            
+            [player.sprite setRotation:product];
+            
             if (worldManifold.normal.y > 0.5f) {
                 player.onGround=true; 
             }
         }else if (contact->GetFixtureB()->GetBody()==player.body) {
             b2WorldManifold worldManifold; contact->GetWorldManifold(&worldManifold);
+            float product = -acosf(worldManifold.normal.x)*180/M_PI+90;
+            
+            [player.sprite setRotation:product];
+            
             if (worldManifold.normal.y > 0.5f) {
                 player.onGround=true; 
             }
@@ -93,7 +101,7 @@ public:
         self.isTouchEnabled = YES;
         
         b2Vec2 gravity;
-        gravity.Set(.0f, -10.f);
+        gravity.Set(.0f, -10.0f);
         world = new b2World(gravity,false);
         
         world->SetContinuousPhysics(true);
@@ -132,7 +140,7 @@ public:
 
 
 - (void)tick:(ccTime)deltaTime{
-    
+    player.onGround=NO;
     int32 velocityIterations = 8;
 	int32 positionIterations = 1;
 	world->Step(deltaTime, velocityIterations, positionIterations);
@@ -143,7 +151,9 @@ public:
 			CCSprite *myActor = (CCSprite*)body->GetUserData();
 			myActor.position = CGPointMake( body->GetPosition().x * PTM_RATIO,
                                             body->GetPosition().y * PTM_RATIO);
-			myActor.rotation = -1 * CC_RADIANS_TO_DEGREES(body->GetAngle());
+            if(player.sprite!=myActor){
+                myActor.rotation = -1 * CC_RADIANS_TO_DEGREES(body->GetAngle());
+            }
 		}	
 	}
     
@@ -157,6 +167,14 @@ public:
     
     if (self.gameViewController.jumpButton.isTouchInside) {
         [player jump:(float)deltaTime];
+    }
+    
+    if (self.gameViewController.moveLeftButton.isTouchInside) {
+        [player moveLeft:(float)deltaTime];
+    }
+    
+    if (self.gameViewController.moveRightButton.isTouchInside) {
+        [player moveRight:(float)deltaTime];
     }
 }
 
@@ -184,7 +202,7 @@ public:
                 curve.SetAsEdge(b2Vec2(start.x/PTM_RATIO,start.y/PTM_RATIO), b2Vec2(end.x/PTM_RATIO,end.y/PTM_RATIO));
                 curveFix.shape = &curve;
                 curveFix.friction = 0.4f;
-                curveFix.restitution = 0.5f;
+                curveFix.restitution = 0.0f;
                 curveBody->CreateFixture(&curveFix);
                 start = end;
             }
@@ -202,15 +220,7 @@ public:
     }
 }
 
-- (void)applyForcefromLeft{
-    player.body->ApplyForce(b2Vec2(100.0f, 0), player.body->GetLocalCenter());
-}
-
-- (void)applyForcefromRight{
-     player.body->ApplyForce(b2Vec2(-100.0f, 0), player.body->GetLocalCenter());
-}
-
-- (void)applyForcefromBottom{
+- (void)resetJumpForce{
     player.jumpForce=0.0f;
 }
 
@@ -233,9 +243,9 @@ public:
 	// Define the dynamic body fixture.
 	b2FixtureDef fixtureDef;
 	fixtureDef.shape = &dynamicBox;	
-	//fixtureDef.density = 1.0f;
+	//fixtureDef.density = 0.1f;
 	fixtureDef.friction = 0.1f;
-    fixtureDef.restitution = 0.0f;
+    fixtureDef.restitution = 0.05f;
 	body->CreateFixture(&fixtureDef);
     
     player.body=body;
