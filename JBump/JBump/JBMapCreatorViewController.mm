@@ -135,19 +135,24 @@ CGFloat DistanceBetweenTwoPoints(CGPoint point1,CGPoint point2)
 }
 
 - (IBAction)backButtonPressed:(id)sender {
-    /*NSMutableArray* entityArray = [NSMutableArray new];
+    
+    NSMutableArray* entityArray = [NSMutableArray new];
     NSMutableArray* curvesArray = [NSMutableArray new];
     
     for(NSMutableDictionary* dict in mapCreatorLayer.history)
     {
-        if ([[dict objectForKey:@"kind"] isEqualToString:@"entity"]) {
+        JBMapItem* mapItem = [dict objectForKey:@"mapItem"];
+        if ([mapItem isKindOfClass:[JBEntity class]]) {
+            JBEntity* entity = (JBEntity *)mapItem;
             NSMutableDictionary* entityDict = [NSMutableDictionary new];
-            [entityDict setObject:[dict objectForKey:@"entityID"] forKey:@"entityID"];
+            [entityArray addObject:entityDict];
+            [entityDict setObject:entity.ID forKey:@"ID"];
             CCSprite* sprite = [dict objectForKey:@"sprite"];
             [entityDict setObject:NSStringFromCGPoint([sprite position]) forKey:@"position"];
             [mapCreatorLayer removeChild:sprite cleanup:YES];
             [entityDict release];
-        }else if([[dict objectForKey:@"kind"] isEqualToString:@"brush"]){
+        }else if([mapItem isKindOfClass:[JBBrush class]]){
+            JBBrush* brush = (JBBrush *)mapItem;
             NSMutableArray* pointsArray = ((JBLineSprite *)[dict objectForKey:@"sprite"]).pointArray;
             if (pointsArray.count>1) {
                 NSMutableArray* savePointsArray = [NSMutableArray new];
@@ -156,26 +161,28 @@ CGFloat DistanceBetweenTwoPoints(CGPoint point1,CGPoint point2)
                 {
                     CGPoint end = CGPointFromString([pointsArray objectAtIndex:i]);
                     if (DistanceBetweenTwoPoints(start, end)>15) {
-                        [pointsArray addObject:NSStringFromCGPoint(start)];
+                        [savePointsArray addObject:NSStringFromCGPoint(start)];
                         start = end;
                     }
                 }
                 [pointsArray addObject:NSStringFromCGPoint(start)];
+                
                 NSMutableDictionary* saveDict = [NSMutableDictionary new];
-                NSString* type = [dict objectForKey:@"type"];
-                if (type) {
-                    [saveDict setObject:type forKey:@"type"];
-                    [saveDict setObject:savePointsArray forKey:@"curce"];
-                    [curvesArray addObject:saveDict];
-                }
+                [saveDict setObject:brush.ID forKey:@"ID"];
+                [saveDict setObject:savePointsArray forKey:@"points"];
+                [curvesArray addObject:saveDict];
+                
                 [saveDict release];
                 [savePointsArray release];
             }
         }
     }
     
+    [JBMapManager storeNewMapWithID:@"custom map" mapName:@"new map!" mapFurther:@"this is some funny map" 
+                 arenaImageLocation:nil backgroundImageLocation:nil overlayImageLocation:nil curveHistory:curvesArray entityHistory:entityArray];
+    
     [entityArray release];
-    [curvesArray release];*/ 
+    [curvesArray release];
 }
 
 - (int)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
