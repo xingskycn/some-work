@@ -8,9 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+@class JBBrush;
+
 @interface JBBrushManager : NSObject
 
 + (NSMutableArray*)getAllBrushes;
 + (bool)saveNewBrush:(NSDictionary*)brushDict thumbnail:(UIImage*)thumbnail;
++ (JBBrush*)getBrushForID:(NSString*)brushID;
 
 @end
