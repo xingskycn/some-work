@@ -56,6 +56,7 @@
         
         for (NSDictionary *dict in [mapDict objectForKey:@"mapEntities"]) {
             JBEntity *aEntity = [JBEntityManager getEntityWithID:[dict objectForKey:@"entityID"]];
+            NSLog(@"image local?%@",aEntity.imageLocal );
             aEntity.position = CGPointFromString([dict objectForKey:@"position"]);
             [self.mapEntities addObject:aEntity];
         }

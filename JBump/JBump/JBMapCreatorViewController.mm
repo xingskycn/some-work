@@ -146,7 +146,7 @@ CGFloat DistanceBetweenTwoPoints(CGPoint point1,CGPoint point2)
             JBEntity* entity = (JBEntity *)mapItem;
             NSMutableDictionary* entityDict = [NSMutableDictionary new];
             [entityArray addObject:entityDict];
-            [entityDict setObject:entity.ID forKey:@"ID"];
+            [entityDict setObject:entity.ID forKey:@"entityID"];
             CCSprite* sprite = [dict objectForKey:@"sprite"];
             [entityDict setObject:NSStringFromCGPoint([sprite position]) forKey:@"position"];
             [mapCreatorLayer removeChild:sprite cleanup:YES];

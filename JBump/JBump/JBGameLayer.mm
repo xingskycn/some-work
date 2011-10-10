@@ -212,21 +212,21 @@ public:
 - (void)insertEntities:(NSArray *)objects
 {
     for (JBEntity* entity in objects) {
-        entity.sprite = [CCSprite node];
+        entity.sprite = [CCSprite spriteWithFile:entity.imageLocal];
         entity.sprite.position = entity.position;
         [self addChild:entity.sprite];
         b2BodyDef bodyDef;
         bodyDef.type = b2_dynamicBody;
         
-        bodyDef.position.Set(70./PTM_RATIO, 1000./PTM_RATIO);
-        bodyDef.userData = player.sprite;
+        bodyDef.position.Set(entity.position.x/PTM_RATIO, entity.position.y/PTM_RATIO);
+        bodyDef.userData = entity.sprite;
         b2Body *body = world->CreateBody(&bodyDef);
         
         NSLog(@"entity shape %@",entity.shape);
         if ([entity.shape isEqualToString:@"circle"]) {
             b2FixtureDef fixtureDef;
             b2CircleShape shape;
-            shape.m_radius = 0.45f;
+            shape.m_radius = entity.size.width/2/PTM_RATIO;
             fixtureDef.shape = &shape;
             fixtureDef.friction = entity.friction;
             fixtureDef.restitution = entity.restitution;
@@ -236,7 +236,7 @@ public:
         if ([entity.shape isEqualToString:@"box"]) {
             b2FixtureDef fixtureDef;
             b2PolygonShape shape;
-            shape.SetAsBox(.5f,.5f);
+            shape.SetAsBox(entity.size.width/PTM_RATIO/2,entity.size.height/PTM_RATIO/2);
             fixtureDef.shape = &shape;
             fixtureDef.friction = entity.friction;
             fixtureDef.restitution = entity.restitution;
