@@ -25,6 +25,7 @@
 @property(assign)b2Body *body;
 
 @property(assign)bool onGround;
+@property(assign)bool jumpTouched;
 @property(assign)float jumpForce;
 @property(assign)float maxLeft;
 @property(assign)float maxRight;

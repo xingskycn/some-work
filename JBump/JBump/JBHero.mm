@@ -18,6 +18,7 @@
 @synthesize body;
 
 @synthesize onGround;
+@synthesize jumpTouched;
 @synthesize jumpForce;
 
 @synthesize maxLeft, maxRight;
@@ -31,6 +32,7 @@
         maxRight=5.0f;
         isLeft=YES;
         isRight=NO;
+        jumpTouched=NO;
         self.sprite = [CCSprite spriteWithFile:heroSkin.imageLocation];
         self.sprite.scale=(30.0/self.sprite.textureRect.size.height);
         [parent addChild:sprite z:0 tag:[@"Player" hash]];
@@ -41,13 +43,12 @@
 }
 
 - (void)jump:(float)time timeOnGround:(float)playerTimeOnGround {
-    if(onGround && playerTimeOnGround>0.1f) {
+    if(onGround && !jumpTouched) {
         jumpForce=1.0f;
-        NSLog(@"TimeDelta: %f",(time*60));
-        body->ApplyForce(b2Vec2(0, (55*time*60*jumpForce)), body->GetLocalCenter());
+        body->ApplyForce(b2Vec2(0, (80*time*60*jumpForce)), body->GetLocalCenter());
     }else {
-        jumpForce=jumpForce*exp(log(0.993)*time*1000);
-        body->ApplyForce(b2Vec2(0, (55*time*60*jumpForce)), body->GetLocalCenter());
+        jumpForce=jumpForce*exp(log(0.985)*time*1000);
+        body->ApplyForce(b2Vec2(0, (80*time*60*jumpForce)), body->GetLocalCenter());
     }
     
 }

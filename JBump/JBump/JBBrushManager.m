@@ -128,10 +128,23 @@ static NSString *filePath = @"brushes";
     [brush setValue:brushImage forKey:@"thumbnail"];
     [brush setValue:@"concrete" forKey:@"brushName"];
     [brush setValue:@"stops move" forKey:@"further"];
-    [brush setValue:[NSNumber numberWithFloat:0.8f] forKey:@"friction"];
-    [brush setValue:[NSNumber numberWithFloat:0.7f] forKey:@"restitution"];
+    [brush setValue:[NSNumber numberWithFloat:0.4f] forKey:@"friction"];
+    [brush setValue:[NSNumber numberWithFloat:0.0f] forKey:@"restitution"];
     [brush setValue:[NSNumber numberWithFloat:1.f] forKey:@"red"];
     [brush setValue:[NSNumber numberWithFloat:0.f] forKey:@"green"];
+    [brush setValue:[NSNumber numberWithFloat:0.f] forKey:@"blue"];
+    [brush setValue:[NSNumber numberWithFloat:1.f] forKey:@"alpha"];
+    
+    [JBBrushManager saveNewBrush:brush thumbnail:brushImage];
+    
+    [brush setValue:@"platform" forKey:@"brushID"];
+    [brush setValue:brushImage forKey:@"thumbnail"];
+    [brush setValue:@"platform" forKey:@"brushName"];
+    [brush setValue:@"passable from bottom" forKey:@"further"];
+    [brush setValue:[NSNumber numberWithFloat:0.4f] forKey:@"friction"];
+    [brush setValue:[NSNumber numberWithFloat:0.0f] forKey:@"restitution"];
+    [brush setValue:[NSNumber numberWithFloat:0.f] forKey:@"red"];
+    [brush setValue:[NSNumber numberWithFloat:1.f] forKey:@"green"];
     [brush setValue:[NSNumber numberWithFloat:0.f] forKey:@"blue"];
     [brush setValue:[NSNumber numberWithFloat:1.f] forKey:@"alpha"];
     

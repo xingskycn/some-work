@@ -44,6 +44,17 @@ public:
             if (worldManifold.normal.y > 0.5f) {
                 player.onGround=true; 
             }
+            if ([(NSObject*)contact->GetFixtureB()->GetUserData() isKindOfClass:[JBBrush class]]) {
+                JBBrush *brush = (JBBrush*)contact->GetFixtureB()->GetUserData();
+                if ([brush.ID isEqualToString:@"platform"]) {
+                    //if (worldManifold.normal.y < 0.2f) {
+                    if (contact->GetFixtureA()->GetBody()->GetLinearVelocity().y>0.0f) {
+                        contact->SetEnabled(false);
+                    }
+                    [player.sprite setRotation:0];
+                }
+            }
+            
         }else if (contact->GetFixtureB()->GetBody()==player.body) {
             b2WorldManifold worldManifold; contact->GetWorldManifold(&worldManifold);
             float product = -acosf(worldManifold.normal.x)*180/M_PI+90;
@@ -52,6 +63,16 @@ public:
             
             if (worldManifold.normal.y > 0.5f) {
                 player.onGround=true; 
+            }
+            if ([(NSObject*)contact->GetFixtureA()->GetUserData() isKindOfClass:[JBBrush class]]) {
+                JBBrush *brush = (JBBrush*)contact->GetFixtureA()->GetUserData();
+                if ([brush.ID isEqualToString:@"platform"]) {
+                    //if (worldManifold.normal.y < -0.5f) {
+                    if (contact->GetFixtureB()->GetBody()->GetLinearVelocity().y>0.0f) {
+                        contact->SetEnabled(false);
+                    }
+                    [player.sprite setRotation:0];
+                }
             }
         }
     }
@@ -147,6 +168,9 @@ public:
 	for (b2Body* body = world->GetBodyList(); body; body = body->GetNext())
 	{
 		if (body->GetUserData() != NULL) {
+            if ([(NSObject*)body->GetUserData() isKindOfClass:[JBBrush class]]) {
+                continue;
+            }
 			CCSprite *myActor = (CCSprite*)body->GetUserData();
 			myActor.position = CGPointMake( body->GetPosition().x * PTM_RATIO,
                                             body->GetPosition().y * PTM_RATIO);
@@ -173,6 +197,7 @@ public:
     
     if (self.gameViewController.jumpButton.isTouchInside) {
         [player jump:(float)deltaTime timeOnGround:timePlayerOnGround];
+        player.jumpTouched = YES;
     }
     
     if (self.gameViewController.moveLeftButton.isTouchInside) {
@@ -184,7 +209,7 @@ public:
     }
     if (!player.onGround) {
         if (player.sprite.rotation<180) {
-            player.sprite.rotation=player.sprite.rotation/1.18;
+            player.sprite.rotation=player.sprite.rotation/1.14;
         }
     }
 }
@@ -214,6 +239,9 @@ public:
                 curveFix.shape = &curve;
                 curveFix.friction = 0.4f;
                 curveFix.restitution = 0.0f;
+                JBBrush *brush = [JBBrushManager getBrushForID:[dict objectForKey:@"ID"]];
+                [brush retain];
+                curveFix.userData=brush;
                 curveBody->CreateFixture(&curveFix);
                 start = end;
             }
@@ -260,6 +288,7 @@ public:
 }
 
 - (void)resetJumpForce{
+    player.jumpTouched=NO;
     player.jumpForce=0.0f;
 }
 
