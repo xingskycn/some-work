@@ -123,7 +123,7 @@ static NSString *filePath = @"entities";
     NSMutableDictionary *entity = [NSMutableDictionary dictionary];
     UIImage *entityImage = [UIImage imageNamed:@"entity_1.png"];
     
-    [entity setValue:@"entity_1" forKey:@"entityID"];
+    [entity setValue:@"spawnpoint" forKey:@"entityID"];
     [entity setValue:entityImage forKey:@"entityImage"];
     [entity setValue:@"hero spawn" forKey:@"name"];
     [entity setValue:@"hero spawn here" forKey:@"further"];
@@ -132,6 +132,7 @@ static NSString *filePath = @"entities";
     [entity setValue:NSStringFromCGSize(CGSizeMake(40.0f, 40.0f)) forKey:@"size"];
     [entity setValue:@"box" forKey:@"shape"];
     [entity setValue:[NSNumber numberWithFloat:.0f] forKey:@"density"];
+    [entity setValue:@"ghost" forKey:@"bodyType"];
     [JBEntityManager saveNewEntity:entity entityImage:entityImage];
     
     entity = [NSMutableDictionary dictionary];
@@ -145,6 +146,7 @@ static NSString *filePath = @"entities";
     [entity setValue:NSStringFromCGSize(CGSizeMake(15.0f, 60.0f)) forKey:@"size"];
     [entity setValue:@"box" forKey:@"shape"];
     [entity setValue:[NSNumber numberWithFloat:.3f] forKey:@"density"];
+    [entity setValue:@"dense" forKey:@"bodyType"];
     [JBEntityManager saveNewEntity:entity entityImage:entityImage];
     
     entity = [NSMutableDictionary dictionary];
@@ -158,6 +160,7 @@ static NSString *filePath = @"entities";
     [entity setValue:NSStringFromCGSize(CGSizeMake(16.0f, 60.0f)) forKey:@"size"];
     [entity setValue:@"box" forKey:@"shape"];
     [entity setValue:[NSNumber numberWithFloat:.3f] forKey:@"density"];
+    [entity setValue:@"dense" forKey:@"bodyType"];
     [JBEntityManager saveNewEntity:entity entityImage:entityImage];
     
     entity = [NSMutableDictionary dictionary];
@@ -171,6 +174,7 @@ static NSString *filePath = @"entities";
     [entity setValue:NSStringFromCGSize(CGSizeMake(40.f, 40.0f)) forKey:@"size"];
     [entity setValue:@"box" forKey:@"shape"];
     [entity setValue:[NSNumber numberWithFloat:.3f] forKey:@"density"];
+    [entity setValue:@"dense" forKey:@"bodyType"];
     [JBEntityManager saveNewEntity:entity entityImage:entityImage];
     
     entity = [NSMutableDictionary dictionary];
@@ -184,6 +188,7 @@ static NSString *filePath = @"entities";
     [entity setValue:NSStringFromCGSize(CGSizeMake(80.0f, 80.0f)) forKey:@"size"];
     [entity setValue:@"box" forKey:@"shape"];
     [entity setValue:[NSNumber numberWithFloat:.3f] forKey:@"density"];
+    [entity setValue:@"dense" forKey:@"bodyType"];
     [JBEntityManager saveNewEntity:entity entityImage:entityImage];
     
     entity = [NSMutableDictionary dictionary];
@@ -197,6 +202,7 @@ static NSString *filePath = @"entities";
     [entity setValue:NSStringFromCGSize(CGSizeMake(60.0f, 60.0f)) forKey:@"size"];
     [entity setValue:@"box" forKey:@"shape"];
     [entity setValue:[NSNumber numberWithFloat:.3f] forKey:@"density"];
+    [entity setValue:@"dense" forKey:@"bodyType"];
     [JBEntityManager saveNewEntity:entity entityImage:entityImage];
     
     entity = [NSMutableDictionary dictionary];
@@ -210,6 +216,7 @@ static NSString *filePath = @"entities";
     [entity setValue:NSStringFromCGSize(CGSizeMake(80.0f, 80.0f)) forKey:@"size"];
     [entity setValue:@"box" forKey:@"shape"];
     [entity setValue:[NSNumber numberWithFloat:.3f] forKey:@"density"];
+    [entity setValue:@"dense" forKey:@"bodyType"];
     [JBEntityManager saveNewEntity:entity entityImage:entityImage];
     
     entity = [NSMutableDictionary dictionary];
@@ -223,6 +230,7 @@ static NSString *filePath = @"entities";
     [entity setValue:NSStringFromCGSize(CGSizeMake(60.0f, 60.0f)) forKey:@"size"];
     [entity setValue:@"box" forKey:@"shape"];
     [entity setValue:[NSNumber numberWithFloat:.3f] forKey:@"density"];
+    [entity setValue:@"dense" forKey:@"bodyType"];
     [JBEntityManager saveNewEntity:entity entityImage:entityImage];
     
     
@@ -237,6 +245,7 @@ static NSString *filePath = @"entities";
     [entity setValue:NSStringFromCGSize(CGSizeMake(20.0f, 20.0f)) forKey:@"size"];
     [entity setValue:@"circle" forKey:@"shape"];
     [entity setValue:[NSNumber numberWithFloat:.3f] forKey:@"density"];
+    [entity setValue:@"dense" forKey:@"bodyType"];
     [JBEntityManager saveNewEntity:entity entityImage:entityImage];
     
     entity = [NSMutableDictionary dictionary];
@@ -250,6 +259,7 @@ static NSString *filePath = @"entities";
     [entity setValue:NSStringFromCGSize(CGSizeMake(40.0f, 40.0f)) forKey:@"size"];
     [entity setValue:@"circle" forKey:@"shape"];
     [entity setValue:[NSNumber numberWithFloat:.3f] forKey:@"density"];
+    [entity setValue:@"dense" forKey:@"bodyType"];
     [JBEntityManager saveNewEntity:entity entityImage:entityImage];
     
     entity = [NSMutableDictionary dictionary];
@@ -263,6 +273,7 @@ static NSString *filePath = @"entities";
     [entity setValue:NSStringFromCGSize(CGSizeMake(40, 40.0f)) forKey:@"size"];
     [entity setValue:@"circle" forKey:@"shape"];
     [entity setValue:[NSNumber numberWithFloat:.3f] forKey:@"density"];
+    [entity setValue:@"dense" forKey:@"bodyType"];
     [JBEntityManager saveNewEntity:entity entityImage:entityImage];
     
     entity = [NSMutableDictionary dictionary];
@@ -276,6 +287,7 @@ static NSString *filePath = @"entities";
     [entity setValue:NSStringFromCGSize(CGSizeMake(60.0f, 60.0f)) forKey:@"size"];
     [entity setValue:@"circle" forKey:@"shape"];
     [entity setValue:[NSNumber numberWithFloat:.3f] forKey:@"density"];
+    [entity setValue:@"dense" forKey:@"bodyType"];
     [JBEntityManager saveNewEntity:entity entityImage:entityImage];
     
     entity = [NSMutableDictionary dictionary];
@@ -289,6 +301,7 @@ static NSString *filePath = @"entities";
     [entity setValue:NSStringFromCGSize(CGSizeMake(40.0f, 39.0f)) forKey:@"size"];
     [entity setValue:@"circle" forKey:@"shape"];
     [entity setValue:[NSNumber numberWithFloat:.3f] forKey:@"density"];
+    [entity setValue:@"dense" forKey:@"bodyType"];
     [JBEntityManager saveNewEntity:entity entityImage:entityImage];
     
     entity = [NSMutableDictionary dictionary];
@@ -302,6 +315,7 @@ static NSString *filePath = @"entities";
     [entity setValue:NSStringFromCGSize(CGSizeMake(60.0f, 59.f)) forKey:@"size"];
     [entity setValue:@"circle" forKey:@"shape"];
     [entity setValue:[NSNumber numberWithFloat:.3f] forKey:@"density"];
+    [entity setValue:@"dense" forKey:@"bodyType"];
     [JBEntityManager saveNewEntity:entity entityImage:entityImage];
 }
 
