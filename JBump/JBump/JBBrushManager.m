@@ -90,4 +90,24 @@ static NSString *filePath = @"brushes";
 
 }
 
++ (JBBrush*)getBrushForID:(NSString*)brushID {
+    NSString *path;
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    path = [[paths objectAtIndex:0] stringByAppendingPathComponent:filePath];
+    
+    path = [path stringByAppendingPathComponent:brushID];
+    
+    NSMutableDictionary* dict = 
+    [NSMutableDictionary dictionaryWithContentsOfFile:[path stringByAppendingPathComponent:@"brushInfo"]];
+    UIImage* thumbnail = [UIImage imageWithContentsOfFile:[path stringByAppendingPathComponent:@"thumbnail"]];
+    
+    if (dict && thumbnail) {
+        [dict setObject:thumbnail forKey:@"thumbnail"];
+    }
+    
+    JBBrush *entity = [[[JBBrush alloc] initWithBrushDict:dict] autorelease];
+    
+    return entity;
+}
 @end
