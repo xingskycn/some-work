@@ -22,6 +22,7 @@
 #ifdef __jbDEBUG_GAMEVIEW
     GLESDebugDraw *m_debugDraw;
 #endif
+    float timePlayerOnGround;
 }
 
 @property(nonatomic, assign)JBGameViewController *gameViewController;

@@ -162,10 +162,17 @@ public:
         
         [self.camera setCenterX:newX centerY:newY centerZ:0];
         [self.camera setEyeX:newX eyeY:newY eyeZ:1];
+        
+        if(player.onGround)
+        {
+            timePlayerOnGround +=(float)deltaTime;
+        }else{
+            timePlayerOnGround =0;
+        }
     }
     
     if (self.gameViewController.jumpButton.isTouchInside) {
-        [player jump:(float)deltaTime];
+        [player jump:(float)deltaTime timeOnGround:timePlayerOnGround];
     }
     
     if (self.gameViewController.moveLeftButton.isTouchInside) {
@@ -174,6 +181,11 @@ public:
     
     if (self.gameViewController.moveRightButton.isTouchInside) {
         [player moveRight:(float)deltaTime];
+    }
+    if (!player.onGround) {
+        if (player.sprite.rotation<180) {
+            player.sprite.rotation=player.sprite.rotation/1.18;
+        }
     }
 }
 
