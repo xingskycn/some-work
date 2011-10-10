@@ -17,6 +17,9 @@
 @synthesize friction, restitution;
 @synthesize body;
 
+@synthesize onGround;
+@synthesize jumpForce;
+
 - (id)initWithNode:(CCNode*)parent {
     self = [super init];
     
