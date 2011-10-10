@@ -22,6 +22,7 @@
 @property (nonatomic, retain) UIStoryboard *menuStoryboard;
 @property (nonatomic, retain) JBRootViewController *viewController;
 @property (nonatomic, retain) CCScene *menuScene;
+@property BOOL retina;
 
 - (void)saveRessourceImages;
 - (void)saveRessourceEntities;
