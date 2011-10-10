@@ -12,7 +12,7 @@
 
 @interface JBEntityManager : NSObject
 
-+ (NSMutableArray*)getAllEnteties;
++ (NSMutableArray*)getAllEntities;
 + (bool)saveNewEntity:(NSMutableDictionary*)entityDict entityImage:(UIImage*)image;
 + (JBEntity*)getEntityWithID:(NSString*)entityID;
 + (NSArray*)getAllEntityIDs;

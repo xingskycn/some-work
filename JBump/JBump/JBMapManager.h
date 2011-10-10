@@ -19,7 +19,7 @@
   backgroundImageLocation:(NSString *)backgroundImageLocation 
      overlayImageLocation:(NSString *)overlayImageLocation
              curveHistory:(NSMutableArray *)curves
-            entityHistory:(NSMutableArray*)enteties;
+            entityHistory:(NSMutableArray*)entities;
 + (JBMap*)getMapWithID:(NSString*)aMapID;
 + (NSArray*)getAllMapIDs;
 @end

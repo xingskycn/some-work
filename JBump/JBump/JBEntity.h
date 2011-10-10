@@ -14,6 +14,8 @@
 
 @property (assign)CGPoint position;
 @property (assign)CGSize size;
+@property (assign)float density;
+@property (nonatomic, retain) NSString* shape;
 
 - (id)initWithEntityDictionary:(NSDictionary*)entityDict;
 

@@ -20,7 +20,7 @@ static NSString *filePath = @"maps";
   backgroundImageLocation:(NSString *)backgroundImageLocation 
      overlayImageLocation:(NSString *)overlayImageLocation
              curveHistory:(NSMutableArray *)curves
-            entityHistory:(NSMutableArray*)enteties
+            entityHistory:(NSMutableArray*)entities
 {
     
     NSMutableDictionary *mapDict = [NSMutableDictionary dictionary];
@@ -88,7 +88,7 @@ static NSString *filePath = @"maps";
         NSLog(@"Received no OverlayImageLocation");
     }
     [mapDict setObject:curves forKey:@"curves"];
-    [mapDict setObject:enteties forKey:@"mapEnteties"];
+    [mapDict setObject:entities forKey:@"mapEntities"];
     
     [mapDict writeToFile:[path stringByAppendingPathComponent:@"mapInfo"] atomically:YES];
 }
