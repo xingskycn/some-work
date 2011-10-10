@@ -19,6 +19,9 @@
 @property (retain, nonatomic) IBOutlet UIView *sideView;
 @property (retain, nonatomic) IBOutlet UIButton *popout;
 @property (retain, nonatomic) IBOutlet UIButton *popin;
+@property (retain, nonatomic) IBOutlet UIButton *jumpButton;
+@property (retain, nonatomic) IBOutlet UIButton *moveLeftButton;
+@property (retain, nonatomic) IBOutlet UIButton *moveRightButton;
 
 - (IBAction)jumpButtonPressed:(id)sender;
 - (IBAction)leftButtonPressed:(id)sender;

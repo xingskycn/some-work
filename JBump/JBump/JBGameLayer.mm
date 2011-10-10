@@ -19,8 +19,11 @@
 #import "JBMapManager.h"
 
 #import "JBLineSprite.h"
+#import "JBGameViewController.h"
 
 #define PTM_RATIO 32
+
+static JBHero* player;
 
 class MyContactListener : public b2ContactListener {
 public:
@@ -32,7 +35,17 @@ public:
         
     }
     void PreSolve(b2Contact* contact, const b2Manifold* oldManifold) { /* handle pre-solve event */ 
-        
+        if(contact->GetFixtureA()->GetBody()==player.body) {
+            b2WorldManifold worldManifold; contact->GetWorldManifold(&worldManifold);
+            if (worldManifold.normal.y > 0.5f) {
+                player.onGround=true; 
+            }
+        }else if (contact->GetFixtureB()->GetBody()==player.body) {
+            b2WorldManifold worldManifold; contact->GetWorldManifold(&worldManifold);
+            if (worldManifold.normal.y > 0.5f) {
+                player.onGround=true; 
+            }
+        }
     }
     void PostSolve(b2Contact* contact, const b2ContactImpulse* impulse)
     { /* handle post-solve event */ 
@@ -41,6 +54,8 @@ public:
 };
 
 @implementation JBGameLayer
+
+@synthesize gameViewController;
 
 +(CCScene *) scene
 {
@@ -82,7 +97,7 @@ public:
         world = new b2World(gravity,false);
         
         world->SetContinuousPhysics(true);
-		
+		world->SetContactListener(new MyContactListener);
 		// Debug Draw functions
 		m_debugDraw = new GLESDebugDraw( PTM_RATIO );
 #ifdef __jbDEBUG_GAMEVIEW
@@ -140,6 +155,9 @@ public:
         [self.camera setEyeX:newX eyeY:newY eyeZ:1];
     }
     
+    if (self.gameViewController.jumpButton.isTouchInside) {
+        [player jump:(float)deltaTime];
+    }
 }
 
 - (void)insertCurves:(NSArray *)objects
@@ -193,7 +211,7 @@ public:
 }
 
 - (void)applyForcefromBottom{
-    player.body->ApplyForce(b2Vec2(0, 200.0f), player.body->GetLocalCenter());
+    player.jumpForce=0.0f;
 }
 
 - (void)insertHero

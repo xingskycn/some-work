@@ -23,6 +23,9 @@
 @synthesize sideView;
 @synthesize popout;
 @synthesize popin;
+@synthesize jumpButton;
+@synthesize moveLeftButton;
+@synthesize moveRightButton;
 
 
 - (void)viewDidLoad
@@ -34,6 +37,8 @@
     [[CCDirector sharedDirector] replaceScene:scene];
     
     [self moveSideViewToState:sideViewState];
+    
+    self.gameLayer.gameViewController=self;
 }
 
 - (void)viewDidUnload
@@ -41,6 +46,9 @@
     [self setSideView:nil];
     [self setPopout:nil];
     [self setPopin:nil];
+    [self setJumpButton:nil];
+    [self setMoveLeftButton:nil];
+    [self setMoveRightButton:nil];
     [super viewDidUnload];
 }
 - (void)dealloc {
@@ -49,6 +57,9 @@
     [sideView release];
     [popout release];
     [popin release];
+    [jumpButton release];
+    [moveLeftButton release];
+    [moveRightButton release];
     [super dealloc];
 }
 

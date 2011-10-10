@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.0" toolsVersion="1934" systemVersion="11A2063" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="zaW-i8-IAz">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.0" toolsVersion="1938" systemVersion="11A511" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="zaW-i8-IAz">
     <dependencies>
         <development defaultVersion="4200" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="931"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="933"/>
     </dependencies>
     <scenes>
         <scene sceneID="4SL-33-aVj">
@@ -299,6 +299,9 @@
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <connections>
+                        <outlet property="jumpButton" destination="Xbp-Pp-5cI" id="1QE-Pe-OlQ"/>
+                        <outlet property="moveLeftButton" destination="3de-of-QV0" id="hqj-sH-VZx"/>
+                        <outlet property="moveRightButton" destination="BBG-Q0-dgG" id="Wed-XI-Rn6"/>
                         <outlet property="popin" destination="JSB-LN-DAS" id="vr8-BM-eaX"/>
                         <outlet property="popout" destination="Wrv-uE-Jsl" id="dYH-Dy-ggT"/>
                         <outlet property="sideView" destination="rws-S6-ImX" id="T4O-7d-Q7s"/>
@@ -617,6 +620,9 @@
                 <relationship kind="action" name="popinButtonPressed:"/>
                 <relationship kind="action" name="popoutButtonPressed:"/>
                 <relationship kind="action" name="rightButtonPressed:"/>
+                <relationship kind="outlet" name="jumpButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="moveLeftButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="moveRightButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="popin" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="popout" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="sideView" candidateClass="UIView"/>

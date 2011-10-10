@@ -23,5 +23,7 @@
 @property(assign)b2Body *body;
 
 - (id)initWithNode:(CCNode*)parent;
+- (void)jump:(float)time;
+- (void)resetJump;
 
 @end

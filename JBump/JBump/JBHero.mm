@@ -34,4 +34,15 @@
     
 }
 
+- (void)jump:(float)time {
+    if(onGround) {
+        jumpForce=1.0f;
+        
+        body->ApplyForce(b2Vec2(0, (10*jumpForce)), body->GetLocalCenter());
+    }else {
+        jumpForce=jumpForce*exp(log(0.9)*time*(1000*0.8));
+        body->ApplyForce(b2Vec2(0, (10*jumpForce)), body->GetLocalCenter());
+    }
+    
+}
 @end
