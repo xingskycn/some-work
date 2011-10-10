@@ -16,13 +16,14 @@
 @synthesize sprite;
 @synthesize friction, restitution;
 
-- (id)initWithSprite:(CCNode*)parent {
+- (id)initWithNode:(CCNode*)parent {
     self = [super init];
     
     if (self) {
         JBSkin *heroSkin = [JBSkinManager getSkinWithID:[[NSUserDefaults standardUserDefaults] objectForKey:@"skinID"]];
         self.sprite = [CCSprite spriteWithFile:heroSkin.imageLocation];
-        //[parent addChild:sprite z:0 tag:2];
+        self.sprite.scale=(30.0/self.sprite.textureRect.size.height);
+        [parent addChild:sprite z:0 tag:[@"Player" hash]];
     }
     
     return self;

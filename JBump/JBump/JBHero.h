@@ -18,6 +18,6 @@
 @property(assign)float friction;
 @property(assign)float restitution;
 
-- (id)initWithSprite:(CCNode*)parent;
+- (id)initWithNode:(CCNode*)parent;
 
 @end

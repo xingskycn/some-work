@@ -11,6 +11,7 @@
 #import "JBEntity.h"
 #import "JBBrush.h"
 #import "JBBrushManager.h"
+#import "JBHero.h"
 
 #define PTM_RATIO 32
 
@@ -143,13 +144,13 @@
 - (void)insertHero
 {
     
-    CCSprite* hero = [[CCSprite spriteWithFile:@"bull_1.png"] retain];
+    JBHero *hero = [[JBHero alloc] initWithNode:self];
     
     b2BodyDef bodyDef;
 	bodyDef.type = b2_dynamicBody;
     
-	bodyDef.position.Set(60./PTM_RATIO, 1000./PTM_RATIO);
-	bodyDef.userData = hero;
+	bodyDef.position.Set(70./PTM_RATIO, 1000./PTM_RATIO);
+	bodyDef.userData = hero.sprite;
 	b2Body *body = world->CreateBody(&bodyDef);
 	
 	// Define another box shape for our dynamic body.
