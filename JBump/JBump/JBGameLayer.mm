@@ -236,14 +236,10 @@ public:
 	bodyDef.userData = player.sprite;
 	b2Body *body = world->CreateBody(&bodyDef);
 	
-	// Define another box shape for our dynamic body.
-	b2PolygonShape dynamicBox;
-	dynamicBox.SetAsBox(.5f, .5f);//These are mid points for our 1m box
-	
-	// Define the dynamic body fixture.
+    b2CircleShape shape;
+    shape.m_radius = 0.45f;
 	b2FixtureDef fixtureDef;
-	fixtureDef.shape = &dynamicBox;	
-	//fixtureDef.density = 0.1f;
+    fixtureDef.shape = &shape;	
 	fixtureDef.friction = 0.1f;
     fixtureDef.restitution = 0.05f;
 	body->CreateFixture(&fixtureDef);
