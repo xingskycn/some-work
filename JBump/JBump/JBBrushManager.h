@@ -15,5 +15,6 @@
 + (NSMutableArray*)getAllBrushes;
 + (bool)saveNewBrush:(NSDictionary*)brushDict thumbnail:(UIImage*)thumbnail;
 + (JBBrush*)getBrushForID:(NSString*)brushID;
++ (NSArray*)getAllBrushIDs;
 
 @end

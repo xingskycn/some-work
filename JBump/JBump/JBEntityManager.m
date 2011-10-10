@@ -110,4 +110,13 @@ static NSString *filePath = @"entities";
     return YES;
 }
 
++ (NSArray*)getAllEntityIDs {
+    NSString *path;
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    path = [[paths objectAtIndex:0] stringByAppendingPathComponent:filePath];
+	NSArray* entityIDs = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:path error:NULL];
+    
+    return entityIDs;
+}
+
 @end
