@@ -120,7 +120,45 @@ static NSString *filePath = @"maps";
     JBMap *map = [[[JBMap alloc] initWithDictionary:dict] autorelease];
     
     return map;
-
 }
 
++ (NSMutableArray*)getAllMaps {
+    NSString *path;
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    path = [[paths objectAtIndex:0] stringByAppendingPathComponent:filePath];
+    
+    NSArray* mapIDs = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:path error:NULL];
+    NSMutableArray *allMaps = [NSArray array];
+    for (NSString *aMapId in mapIDs) {
+        NSMutableDictionary* dict = 
+        [NSMutableDictionary dictionaryWithContentsOfFile:[[path stringByAppendingPathComponent:aMapId]stringByAppendingPathComponent:@"mapInfo"]];
+        UIImage* arenaImage = [UIImage imageWithContentsOfFile:[[path stringByAppendingPathComponent:aMapId] stringByAppendingPathComponent:@"arenaImage"]];
+        UIImage* backgroundImage = [UIImage imageWithContentsOfFile:[[path stringByAppendingPathComponent:aMapId] stringByAppendingPathComponent:@"arenaImage"]];
+        UIImage* overlayImage = [UIImage imageWithContentsOfFile:[[path stringByAppendingPathComponent:aMapId] stringByAppendingPathComponent:@"overlayImage"]];
+        
+        if (dict && arenaImage) {
+            [dict setObject:arenaImage forKey:@"arenaImage"];
+        }
+        if (dict && backgroundImage) {
+            [dict setObject:backgroundImage forKey:@"backgroundImage"];
+        }
+        if (dict && overlayImage) {
+            [dict setObject:arenaImage forKey:@"overlayImage"];
+        }
+        JBMap *map = [[JBMap alloc] initWithDictionary:dict];
+        [allMaps addObject:map];
+        [map release];
+    }
+    return allMaps;
+}
+
++(NSArray *)getAllMapIDs {
+    NSString *path;
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    path = [[paths objectAtIndex:0] stringByAppendingPathComponent:filePath];
+	NSArray* mapIDs = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:path error:NULL];
+    
+    return mapIDs;
+}
 @end

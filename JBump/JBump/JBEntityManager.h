@@ -15,5 +15,6 @@
 + (NSMutableArray*)getAllEnteties;
 + (bool)saveNewEntity:(NSMutableDictionary*)entityDict entityImage:(UIImage*)image;
 + (JBEntity*)getEntityWithID:(NSString*)entityID;
++ (NSArray*)getAllEntityIDs;
 
 @end

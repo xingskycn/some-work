@@ -21,4 +21,5 @@
              curveHistory:(NSMutableArray *)curves
             entityHistory:(NSMutableArray*)enteties;
 + (JBMap*)getMapWithID:(NSString*)aMapID;
++ (NSArray*)getAllMapIDs;
 @end

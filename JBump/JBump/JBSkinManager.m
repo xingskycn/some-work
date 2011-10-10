@@ -125,4 +125,13 @@ static NSString *filePath = @"skins";
     return YES;
 }
 
++(NSArray *)getAllSkinIDs {
+    NSString *path;
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    path = [[paths objectAtIndex:0] stringByAppendingPathComponent:filePath];
+	NSArray* skinIDs = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:path error:NULL];
+    
+    return skinIDs;
+}
+
 @end

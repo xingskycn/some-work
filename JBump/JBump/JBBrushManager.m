@@ -110,4 +110,14 @@ static NSString *filePath = @"brushes";
     
     return entity;
 }
+
++(NSArray *)getAllBrushIDs {
+    NSString *path;
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    path = [[paths objectAtIndex:0] stringByAppendingPathComponent:filePath];
+	NSArray* brushIDs = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:path error:NULL];
+    
+    return brushIDs;
+}
+
 @end
