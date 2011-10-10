@@ -11,6 +11,7 @@
 #import "cocos2d.h"
 @class JBMapCreatorLayer;
 @class JBTouchForwardView;
+@class JBHero;
 
 @interface JBMapCreatorViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
 {

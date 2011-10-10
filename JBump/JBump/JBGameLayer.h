@@ -13,11 +13,14 @@
 
 #define __jbDEBUG_GAMEVIEW
 
+@class JBHero;
+
 @interface JBGameLayer : CCLayer {
     b2World* world;
 #ifdef __jbDEBUG_GAMEVIEW
     GLESDebugDraw *m_debugDraw;
 #endif
+    JBHero* player;
 }
 
 +(CCScene *) scene;

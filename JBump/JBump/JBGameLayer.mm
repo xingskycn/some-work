@@ -112,7 +112,16 @@
                                             body->GetPosition().y * PTM_RATIO);
 			myActor.rotation = -1 * CC_RADIANS_TO_DEGREES(body->GetAngle());
 		}	
-	}   
+	}
+    
+    if (player) {
+        float newX = player.sprite.position.x - [[CCDirector sharedDirector] winSize].width/2;
+        float newY = player.sprite.position.y - [[CCDirector sharedDirector] winSize].height/2;
+        
+        [self.camera setCenterX:newX centerY:newY centerZ:0];
+        [self.camera setEyeX:newX eyeY:newY eyeZ:1];
+    }
+    
 }
 
 - (void)insertCurves:(NSArray *)objects
@@ -160,13 +169,13 @@
 - (void)insertHero
 {
     
-    JBHero *hero = [[JBHero alloc] initWithNode:self];
+    player = [[JBHero alloc] initWithNode:self];
     
     b2BodyDef bodyDef;
 	bodyDef.type = b2_dynamicBody;
     
 	bodyDef.position.Set(70./PTM_RATIO, 1000./PTM_RATIO);
-	bodyDef.userData = hero.sprite;
+	bodyDef.userData = player.sprite;
 	b2Body *body = world->CreateBody(&bodyDef);
 	
 	// Define another box shape for our dynamic body.
