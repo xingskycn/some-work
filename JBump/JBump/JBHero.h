@@ -30,7 +30,7 @@
 @property(assign)float maxRight;
 
 - (id)initWithNode:(CCNode*)parent;
-- (void)jump:(float)time;
+- (void)jump:(float)time timeOnGround:(float)playerTimeOnGround;
 - (void)moveLeft:(float)time;
 - (void)moveRight:(float)time;
 
