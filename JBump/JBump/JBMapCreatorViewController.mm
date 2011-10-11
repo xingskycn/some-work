@@ -180,9 +180,6 @@ CGFloat DistanceBetweenTwoPoints(CGPoint point1,CGPoint point2)
         }
     }
     
-    //[JBMapManager storeNewMapWithID:@"custom map" mapName:@"new map!" mapFurther:@"this is some funny map" 
-    //             arenaImageLocation:nil backgroundImageLocation:nil overlayImageLocation:nil thumbnailLocation:nil curveHistory:curvesArray entityHistory:entityArray];
-    
     NSMutableDictionary* updateDict = [NSMutableDictionary dictionary];
     [updateDict setObject:curvesArray forKey:@"curves"];
     [updateDict setObject:entityArray forKey:@"mapEntities"];

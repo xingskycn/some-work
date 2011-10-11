@@ -22,5 +22,7 @@
 + (CCScene *)scene;
 
 - (void)start;
+- (void)insertCurves:(NSArray *)objects;
+- (void)insertEntities:(NSArray *)objects;
 
 @end
