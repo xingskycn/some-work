@@ -7,7 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "JBMultiplayerAdapter.h"
+#import <GameKit/GameKit.h>
 
-@interface JBBluetoothAdapter : NSObject
+@interface JBBluetoothAdapter : JBMultiplayerAdapter <GKPeerPickerControllerDelegate,GKSessionDelegate>
 
 @end
