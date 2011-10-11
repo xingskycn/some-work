@@ -9,6 +9,7 @@
 #import "JBMapCreatorSettingsViewController.h"
 
 #import "JBMapManager.h"
+#import "JBMapCreatorViewController.h"
 
 @implementation JBMapCreatorSettingsViewController
 @synthesize imageUrlField;
@@ -20,6 +21,7 @@
 @synthesize downloadImageButton;
 @synthesize createButton;
 @synthesize imageDownloadInProgress;
+@synthesize settingsNameLabel;
 @synthesize settingsName;
 
 - (id)init
@@ -34,9 +36,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    if (advancedSettings.count == 0) {
+    if (self.advancedSettings.count == 0) {
         self.advancedSettings = [[[JBMapManager getAllPredefinedSettings] objectAtIndex:0] objectForKey:@"settings"];
         [self.advancedSettingsTableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationTop];
+    }else{
+        self.settingsNameLabel.text = self.settingsName;
     }
 }
 
@@ -94,7 +98,7 @@
     [mapNameField release];
     [imageView release];
     [advancedSettingsTableView release];
-    [settingsName release];
+    [settingsNameLabel release];
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -102,7 +106,7 @@
     [self setMapNameField:nil];
     [self setImageView:nil];
     [self setAdvancedSettingsTableView:nil];
-    [self setSettingsName:nil];
+    [self setSettingsNameLabel:nil];
     [super viewDidUnload];
 }
 
@@ -112,8 +116,11 @@
         [JBMapManager storeNewMapWithID:[NSString stringWithFormat:@"C_%@",mapNameField.text]
                                 mapName:mapNameField.text
                              arenaImage:imageView.image
-                               settings:self.advancedSettings];
-        
+                               settings:self.advancedSettings
+                           curveHistory:nil 
+                          entityHistory:nil];
+        JBMapCreatorViewController* destination = (JBMapCreatorViewController *)segue.destinationViewController;
+        destination.mapID = [NSString stringWithFormat:@"C_%@",mapNameField.text];
     }
 }
 - (IBAction)downloadImageButtonPressed:(id)sender {

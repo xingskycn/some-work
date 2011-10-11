@@ -581,7 +581,7 @@
                                     <action selector="downloadImageButtonPressed:" destination="5W3-3z-qlS" eventType="touchUpInside" id="OBg-Gb-KZh"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="map name" minimumFontSize="17" id="0fT-9V-29F">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="map name" minimumFontSize="17" clearButtonMode="whileEditing" id="0fT-9V-29F">
                                 <rect key="frame" x="69" y="20" width="191" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -652,7 +652,7 @@
                         <outlet property="imageUrlField" destination="pBq-gc-Tx8" id="WQU-FI-XkL"/>
                         <outlet property="imageView" destination="J3W-6h-dLb" id="na3-mu-iRd"/>
                         <outlet property="mapNameField" destination="0fT-9V-29F" id="QIc-SB-yIf"/>
-                        <outlet property="settingsName" destination="kZc-Lo-4Bz" id="Wgu-u9-Y0i"/>
+                        <outlet property="settingsNameLabel" destination="kZc-Lo-4Bz" id="ORK-8U-aTH"/>
                     </connections>
                 </viewController>
             </objects>
@@ -678,7 +678,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="5W3-3z-qlS" kind="custom" identifier="toMapSettings" customClass="JBMapCreatorSegue" id="1RV-xt-lrX"/>
+                                    <segue destination="5W3-3z-qlS" kind="custom" identifier="toNewMapSettings" customClass="JBMapCreatorSegue" id="1RV-xt-lrX"/>
                                 </connections>
                             </button>
                             <button opaque="NO" alpha="0.40000000000000002" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="jwm-3B-5tj">
@@ -693,7 +693,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="editExistingMapButtonPressed:" destination="cwR-mR-uSC" eventType="touchUpInside" id="20d-ID-anM"/>
+                                    <segue destination="5W3-3z-qlS" kind="custom" identifier="toExistingMapSettings" customClass="JBMapCreatorSegue" id="VSY-UB-Wke"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="raa-ZG-csD">
@@ -822,6 +822,7 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="yWk-7X-N6K"/>
+        <segue reference="1RV-xt-lrX"/>
         <segue reference="xPC-7Q-vwn"/>
     </inferredMetricsTieBreakers>
 </document>

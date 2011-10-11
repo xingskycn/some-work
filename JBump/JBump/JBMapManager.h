@@ -15,7 +15,9 @@
 + (void)storeNewMapWithID:(NSString*)mapID
                   mapName:(NSString *)mapName
                arenaImage:(UIImage *)arenaImage
-                 settings:(NSMutableArray *)settings;
+                 settings:(NSMutableArray *)settings
+             curveHistory:(NSMutableArray *)curves
+            entityHistory:(NSMutableArray*)entities;
 
 + (void)storeNewMapWithID:(NSString*)mapID
                   mapName:(NSString *)mapName
@@ -30,5 +32,6 @@
 + (JBMap*)getMapWithID:(NSString*)aMapID;
 + (NSArray*)getAllMapIDs;
 + (NSMutableArray *)getAllPredefinedSettings;
-
++ (NSMutableArray *)getAllMapDescriptions;
++ (void)refreshDataForMapIDWithDict:(NSDictionary *)dict;
 @end

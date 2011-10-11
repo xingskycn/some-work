@@ -10,13 +10,17 @@
 #import "cocos2d.h"
 
 @class JBMapItem;
+@class JBMapCreatorViewController;
 
 @interface JBMapCreatorLayer : CCLayer
 
 @property (nonatomic, retain) UISlider* magnifier;
 @property (nonatomic, retain) JBMapItem* userSelection;
 @property (nonatomic, retain) NSMutableArray* history;
+@property (nonatomic, assign) JBMapCreatorViewController* viewController;
 
 + (CCScene *)scene;
+
+- (void)start;
 
 @end

@@ -23,11 +23,10 @@
 {
     [super viewDidLoad];
     self.settingsArray = [JBMapManager getAllPredefinedSettings];
+    self.existingMaps = [JBMapManager getAllMapDescriptions];
+    NSLog(@"existing maps %@",self.existingMaps);
 }
 
-- (IBAction)editExistingMapButtonPressed:(id)sender {
-    [self performSegueWithIdentifier:@"mapCreatorSettingsViewController" sender:self];
-}
 - (void)dealloc {
     [editExistingMapButton release];
     [settingsTableView release];
@@ -71,12 +70,36 @@
         if (!cell) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"mapCell"];
             cell.textLabel.backgroundColor = [UIColor clearColor];
+            cell.backgroundView = [[UIView alloc] initWithFrame:cell.frame];
+            cell.backgroundView.autoresizingMask  = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+            [cell.backgroundView release];
             [cell autorelease];
         }
-        JBMap* map = [self.existingMaps objectAtIndex:indexPath.row];
-        cell.imageView.image = map.thumbnail;
-        cell.textLabel.text = map.mapName;
+        NSMutableDictionary* mapDict = [self.existingMaps objectAtIndex:indexPath.row];
+        cell.imageView.image = [mapDict objectForKey:@"thumbnail"];
+        cell.textLabel.text = [mapDict objectForKey:@"mapName"];
+        if (![[mapDict objectForKey:@"mapID"] hasPrefix:@"C_"]) {
+            cell.selectionStyle=UITableViewCellSelectionStyleGray;
+            cell.backgroundView.backgroundColor = [UIColor colorWithRed:.8f green:.1f blue:.1f alpha:.4f];
+        }else{
+            cell.selectionStyle=UITableViewCellSelectionStyleBlue;
+            cell.backgroundView.backgroundColor = [UIColor colorWithRed:1.f green:1.f blue:1.f alpha:.0f];
+        }
         return cell;
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (tableView==existingMapsTableView) {
+        NSMutableDictionary* mapDict = [self.existingMaps objectAtIndex:indexPath.row];
+        if (![[mapDict objectForKey:@"mapID"] hasPrefix:@"C_"]) {
+            editExistingMapButton.alpha = .4f;
+            editExistingMapButton.enabled = FALSE;
+        }else{
+            editExistingMapButton.alpha = 1.f;
+            editExistingMapButton.enabled = TRUE;
+        }
     }
 }
 @end

@@ -48,7 +48,8 @@ CGFloat DistanceBetweenTwoPoints(CGPoint point1,CGPoint point2)
     CCScene* scene = [JBMapCreatorLayer scene];
     self.mapCreatorLayer = (JBMapCreatorLayer *)[scene getChildByTag:0];
     self.mapCreatorLayer.magnifier = self.magnifier;
-    
+    self.mapCreatorLayer.viewController = self;
+    [self.mapCreatorLayer start];
     [[CCDirector sharedDirector] replaceScene:scene];
     
     if (self.availableBrushesArray.count) {
@@ -179,8 +180,14 @@ CGFloat DistanceBetweenTwoPoints(CGPoint point1,CGPoint point2)
         }
     }
     
-    [JBMapManager storeNewMapWithID:@"custom map" mapName:@"new map!" mapFurther:@"this is some funny map" 
-                 arenaImageLocation:nil backgroundImageLocation:nil overlayImageLocation:nil thumbnailLocation:nil curveHistory:curvesArray entityHistory:entityArray];
+    //[JBMapManager storeNewMapWithID:@"custom map" mapName:@"new map!" mapFurther:@"this is some funny map" 
+    //             arenaImageLocation:nil backgroundImageLocation:nil overlayImageLocation:nil thumbnailLocation:nil curveHistory:curvesArray entityHistory:entityArray];
+    
+    NSMutableDictionary* updateDict = [NSMutableDictionary dictionary];
+    [updateDict setObject:curvesArray forKey:@"curves"];
+    [updateDict setObject:entityArray forKey:@"mapEntities"];
+    [updateDict setObject:self.mapID   forKey:@"mapID"];
+    [JBMapManager refreshDataForMapIDWithDict:updateDict];
     
     [entityArray release];
     [curvesArray release];

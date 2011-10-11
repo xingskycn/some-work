@@ -16,6 +16,4 @@
 @property (retain, nonatomic) NSMutableArray* settingsArray;
 @property (retain, nonatomic) NSMutableArray* existingMaps;
 
-- (IBAction)editExistingMapButtonPressed:(id)sender;
-
 @end

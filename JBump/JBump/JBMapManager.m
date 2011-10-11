@@ -17,6 +17,9 @@ static NSString *filePath = @"maps";
                   mapName:(NSString *)mapName
                arenaImage:(UIImage *)arenaImage
                  settings:(NSMutableArray *)settings
+             curveHistory:(NSMutableArray *)curves
+            entityHistory:(NSMutableArray*)entities
+
 {
     NSMutableDictionary *mapDict = [NSMutableDictionary dictionary];
     NSString *folderName = mapID;
@@ -54,6 +57,17 @@ static NSString *filePath = @"maps";
     [mapDict setObject:mapName forKey:@"mapName"];
     [UIImagePNGRepresentation(arenaImage) writeToFile:[path stringByAppendingPathComponent:@"arenaImage"] atomically:YES];
     [mapDict setObject:[path stringByAppendingPathComponent:@"arenaImage"] forKey:@"arenaImageLocal"];
+    if (curves) {
+        [mapDict setObject:curves forKey:@"curves"];
+    }
+    if (entities) {
+        [mapDict setObject:entities forKey:@"mapEntities"];
+    }
+    if (settings) {
+        [mapDict setObject:settings forKey:@"settings"];
+    }
+    
+    [mapDict writeToFile:[path stringByAppendingPathComponent:@"mapInfo"] atomically:YES];
 }
 
 
@@ -182,7 +196,7 @@ static NSString *filePath = @"maps";
     path = [[paths objectAtIndex:0] stringByAppendingPathComponent:filePath];
     
     NSArray* mapIDs = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:path error:NULL];
-    NSMutableArray *allMaps = [NSArray array];
+    NSMutableArray *allMaps = [NSMutableArray array];
     for (NSString *aMapId in mapIDs) {
         NSMutableDictionary* dict = 
         [NSMutableDictionary dictionaryWithContentsOfFile:[[path stringByAppendingPathComponent:aMapId]stringByAppendingPathComponent:@"mapInfo"]];
@@ -213,6 +227,44 @@ static NSString *filePath = @"maps";
 	NSArray* mapIDs = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:path error:NULL];
     
     return mapIDs;
+}
+
++ (NSMutableArray *)getAllMapDescriptions {
+    NSString *path;
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    path = [[paths objectAtIndex:0] stringByAppendingPathComponent:filePath];
+    
+    NSArray* mapIDs = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:path error:NULL];
+    NSMutableArray *allDescriptions = [NSMutableArray array];
+    for (NSString *aMapID in mapIDs) {
+        NSMutableDictionary* dict = 
+        [NSMutableDictionary dictionaryWithContentsOfFile:[[path stringByAppendingPathComponent:aMapID]stringByAppendingPathComponent:@"mapInfo"]];
+        UIImage* thumbnail = [UIImage imageWithContentsOfFile:[[path stringByAppendingPathComponent:aMapID] stringByAppendingPathComponent:@"thumbnail"]];
+        
+        if (dict && thumbnail) {
+            [dict setObject:thumbnail forKey:@"thumbnail"];
+        }
+        if (dict) {
+            [allDescriptions addObject:dict];
+        }
+        
+    }
+    return allDescriptions;
+}
+
++ (void)refreshDataForMapIDWithDict:(NSDictionary *)dict
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString* path = [[paths objectAtIndex:0] stringByAppendingPathComponent:filePath];
+    NSString* mapID = [dict objectForKey:@"mapID"];
+    NSMutableDictionary* mapDict =
+    [NSMutableDictionary dictionaryWithContentsOfFile:[[path stringByAppendingPathComponent:mapID]stringByAppendingPathComponent:@"mapInfo"]];
+    
+    for (NSString* key in [dict allKeys]) {
+        [mapDict setObject:[dict objectForKey:key] forKey:key];
+    }
+    [mapDict writeToFile:[path stringByAppendingPathComponent:@"mapInfo"] atomically:YES];
 }
 
 + (NSMutableArray *)getAllPredefinedSettings

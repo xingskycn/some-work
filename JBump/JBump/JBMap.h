@@ -34,6 +34,8 @@
 @property (nonatomic, retain)NSMutableArray *mapEntities;
 @property (nonatomic, retain)NSMutableArray *curves;
 
+@property (nonatomic, retain)NSMutableArray* settings;
+
 - (id)initWithDictionary:(NSDictionary*)mapDict;
 
 @end

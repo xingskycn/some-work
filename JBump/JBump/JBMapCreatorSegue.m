@@ -11,6 +11,8 @@
 #import "JBMapCreatorSelectionViewController.h"
 #import "JBMapCreatorSettingsViewController.h"
 #import "JBMapCreatorViewController.h"
+#import "JBMapManager.h"
+#import "JBMap.h"
 
 @implementation JBMapCreatorSegue
 
@@ -24,16 +26,35 @@
     [[self.sourceViewController view] removeFromSuperview];
     [UIView commitAnimations];
     
-    if ([self.identifier isEqualToString:@"toMapSettings"]) {
+    if ([self.identifier isEqualToString:@"toNewMapSettings"]) {
         JBMapCreatorSelectionViewController* source = (JBMapCreatorSelectionViewController*)self.sourceViewController;
         JBMapCreatorSettingsViewController* destination = (JBMapCreatorSettingsViewController*)self.destinationViewController;
         NSIndexPath* indexpath = [source.settingsTableView indexPathForSelectedRow];
         if (indexpath) {
             destination.advancedSettings = [[source.settingsArray objectAtIndex:indexpath.row] objectForKey:@"settings"];
-            destination.settingsName.text = [[source.settingsArray objectAtIndex:indexpath.row] objectForKey:@"name"];
+            destination.settingsNameLabel.text = [[source.settingsArray objectAtIndex:indexpath.row] objectForKey:@"name"];
         }
         
-    }else if([self.identifier isEqualToString:@"startMapCreatorWithSettings"] )
+    }else if ([self.identifier isEqualToString:@"toExistingMapSettings"]) {
+        JBMapCreatorSelectionViewController* source = (JBMapCreatorSelectionViewController*)self.sourceViewController;
+        JBMapCreatorSettingsViewController* destination = (JBMapCreatorSettingsViewController*)self.destinationViewController;
+        NSIndexPath* indexpath = [source.existingMapsTableView indexPathForSelectedRow];
+        if (indexpath) {
+            JBMap* map = [JBMapManager getMapWithID:[[source.existingMaps objectAtIndex:indexpath.row] objectForKey:@"mapID"]];
+            destination.advancedSettings = map.settings;
+            destination.settingsNameLabel.text = @"predefined";
+            [destination.advancedSettingsTableView reloadData];
+            destination.mapNameField.text = [[source.existingMaps objectAtIndex:indexpath.row] objectForKey:@"mapName"];
+            destination.imageView.image = map.arenaImage;
+            destination.mapNameField.alpha = 0.6;
+            destination.mapNameField.enabled = FALSE;
+
+            [destination updateCreateButton];
+            
+        }
+        
+        
+    }else if([self.identifier isEqualToString:@"startMapCreatorWithSettings"])
     {
         JBMapCreatorSettingsViewController* source = (JBMapCreatorSettingsViewController*)self.sourceViewController;
         JBMapCreatorViewController* destination = (JBMapCreatorViewController*)self.destinationViewController;
@@ -42,4 +63,5 @@
     [((JBAppDelegate*)[UIApplication sharedApplication].delegate).viewController addChildViewController:self.destinationViewController];
     [self.sourceViewController removeFromParentViewController];
 }
+
 @end

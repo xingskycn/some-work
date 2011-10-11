@@ -14,7 +14,6 @@
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event
 {
     UIView* result = [super hitTest:point withEvent:event];
-    NSLog(@"result: %@", result);
     if (![result isKindOfClass:[JBTouchForwardView class]]) {
         return result;
     }

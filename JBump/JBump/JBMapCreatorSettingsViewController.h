@@ -18,7 +18,9 @@
 @property (retain, nonatomic) IBOutlet UIButton* downloadImageButton;
 @property (retain, nonatomic) IBOutlet UIButton* createButton;
 @property (assign) BOOL imageDownloadInProgress;
-@property (retain, nonatomic) IBOutlet UILabel *settingsName;
+@property (retain, nonatomic) IBOutlet UILabel *settingsNameLabel;
+@property (retain, nonatomic) NSString* settingsName;
 - (IBAction)downloadImageButtonPressed:(id)sender;
+- (void)updateCreateButton;
 
 @end
