@@ -12,11 +12,13 @@
 @interface JBPreGameViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, JBMultiplayerAdapterPregameDelegate> {
     
     int playersWaitingForGame;
-    NSMutableDictionary *playersReady;
+    
     
 }
 
-@property (nonatomic, retain)JBMultiplayerAdapter *multiplayerAdapter;
+@property(retain, nonatomic) NSMutableDictionary *playersReady;
+
+@property (nonatomic, retain) JBMultiplayerAdapter *multiplayerAdapter;
 @property (retain, nonatomic) IBOutlet UIButton *gameTypeButton;
 @property (retain, nonatomic) IBOutlet UIButton *readyButton;
 @property (retain, nonatomic) IBOutlet UIButton *startButton;
