@@ -55,16 +55,16 @@
 #define jbSETTINGS @"settings"
 
 #pragma mark Predefined Settings
-#define jb_MAPSETTINGS_SETTINGS @"settings"
-#define jb_MAPSETTINGS_DATA @"data"
-#define jb_MAPSETTINGS_GRAVITATION @"gravitation"
-#define jb_MAPSETTINGS_SOLIDFRICTION @"solid_friction"
-#define jb_MAPSETTINGS_TEAMS @"teams"
-#define jb_MAPSETTINGS_HERO_RESTITUTION @"hero_restitution"
-#define jb_MAPSETTINGS_HERO_ACCELERATION @"hero_acceleration"
-#define jb_MAPSETTINGS_HERO_MAXIMUM_SPEED @"hero_maximum_speed"
-#define jb_MAPSETTINGS_CAPTURE_THE_FLAG @"capture_the_flag"
-#define jb_MAPSETTINGS__SOCCER @"soccer"
-#define jb_MAPSETTINGS_DATA @"data"
+#define jbMAPSETTINGS_SETTINGS @"settings"
+#define jbMAPSETTINGS_DATA @"data"
+#define jbMAPSETTINGS_GRAVITATION @"gravitation"
+#define jbMAPSETTINGS_SOLIDFRICTION @"solid_friction"
+#define jbMAPSETTINGS_TEAMS @"teams"
+#define jbMAPSETTINGS_HERO_RESTITUTION @"hero_restitution"
+#define jbMAPSETTINGS_HERO_ACCELERATION @"hero_acceleration"
+#define jbMAPSETTINGS_HERO_MAXIMUM_SPEED @"hero_maximum_speed"
+#define jbMAPSETTINGS_CAPTURE_THE_FLAG @"capture_the_flag"
+#define jbMAPSETTINGS_SOCCER @"soccer"
+#define jbMAPSETTINGS_DATA @"data"
 
 #endif

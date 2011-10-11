@@ -31,7 +31,8 @@
         JBMapCreatorSettingsViewController* destination = (JBMapCreatorSettingsViewController*)self.destinationViewController;
         NSIndexPath* indexpath = [source.settingsTableView indexPathForSelectedRow];
         if (indexpath) {
-            destination.advancedSettings = [[source.settingsArray objectAtIndex:indexpath.row] objectForKey:@"settings"];
+            destination.advancedSettings = [[source.settingsArray objectAtIndex:indexpath.row] objectForKey:jb];
+            
             destination.settingsNameLabel.text = [[source.settingsArray objectAtIndex:indexpath.row] objectForKey:@"name"];
         }
         

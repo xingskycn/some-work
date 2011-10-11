@@ -287,55 +287,55 @@ static NSString *filePath = @"maps";
     [define setValue:@"standard" forKey:jbID];
     [define setValue:@"standard" forKey:jbNAME];
     NSMutableArray* settings = [NSMutableArray array];
-    [define setValue:settings  forKey:jb_MAPSETTINGS_SETTINGS];
+    [define setValue:settings  forKey:jbMAPSETTINGS_SETTINGS];
     
     NSMutableDictionary* setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:jb_MAPSETTINGS_DATA forKey:jbID];
-    [setting setValue:jb_MAPSETTINGS_DATA forKey:jbNAME];
-    [setting setValue:NSStringFromCGPoint(CGPointMake(0, -10)) forKey:jb_MAPSETTINGS_DATA];
+    [setting setValue:jbMAPSETTINGS_DATA forKey:jbID];
+    [setting setValue:jbMAPSETTINGS_DATA forKey:jbNAME];
+    [setting setValue:NSStringFromCGPoint(CGPointMake(0, -10)) forKey:jbMAPSETTINGS_DATA];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:jb_MAPSETTINGS_SOLIDFRICTION forKey:jbID];
-    [setting setValue:jb_MAPSETTINGS_SOLIDFRICTION forKey:jbNAME];
-    [setting setValue:@"0.4" forKey:jb_MAPSETTINGS_DATA];
+    [setting setValue:jbMAPSETTINGS_SOLIDFRICTION forKey:jbID];
+    [setting setValue:jbMAPSETTINGS_SOLIDFRICTION forKey:jbNAME];
+    [setting setValue:@"0.4" forKey:jbMAPSETTINGS_DATA];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:jb_MAPSETTINGS_TEAMS forKey:jbID];
-    [setting setValue:jb_MAPSETTINGS_TEAMS forKey:jbNAME];
-    [setting setValue:@"1" forKey:jb_MAPSETTINGS_DATA];
+    [setting setValue:jbMAPSETTINGS_TEAMS forKey:jbID];
+    [setting setValue:jbMAPSETTINGS_TEAMS forKey:jbNAME];
+    [setting setValue:@"1" forKey:jbMAPSETTINGS_DATA];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:jb_MAPSETTINGS_HERO_RESTITUTION forKey:jbID];
-    [setting setValue:jb_MAPSETTINGS_HERO_RESTITUTION forKey:jbNAME];
-    [setting setValue:@"0.05" forKey:jb_MAPSETTINGS_DATA];
+    [setting setValue:jbMAPSETTINGS_HERO_RESTITUTION forKey:jbID];
+    [setting setValue:jbMAPSETTINGS_HERO_RESTITUTION forKey:jbNAME];
+    [setting setValue:@"0.05" forKey:jbMAPSETTINGS_DATA];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:jb_MAPSETTINGS_HERO_ACCELERATION forKey:jbID];
-    [setting setValue:jb_MAPSETTINGS_HERO_ACCELERATION forKey:jbNAME];
-    [setting setValue:@"10" forKey:jb_MAPSETTINGS_DATA];
+    [setting setValue:jbMAPSETTINGS_HERO_ACCELERATION forKey:jbID];
+    [setting setValue:jbMAPSETTINGS_HERO_ACCELERATION forKey:jbNAME];
+    [setting setValue:@"10" forKey:jbMAPSETTINGS_DATA];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:jb_MAPSETTINGS_HERO_MAXIMUM_SPEED forKey:jbID];
-    [setting setValue:jb_MAPSETTINGS_HERO_MAXIMUM_SPEED forKey:jbNAME];
-    [setting setValue:@"5" forKey:jb_MAPSETTINGS_DATA];
+    [setting setValue:jbMAPSETTINGS_HERO_MAXIMUM_SPEED forKey:jbID];
+    [setting setValue:jbMAPSETTINGS_HERO_MAXIMUM_SPEED forKey:jbNAME];
+    [setting setValue:@"5" forKey:jbMAPSETTINGS_DATA];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:jb_MAPSETTINGS_CAPTURE_THE_FLAG forKey:jbID];
-    [setting setValue:jb_MAPSETTINGS_CAPTURE_THE_FLAG forKey:jbNAME];
-    [setting setValue:@"NO" forKey:jb_MAPSETTINGS_DATA];
+    [setting setValue:jbMAPSETTINGS_CAPTURE_THE_FLAG forKey:jbID];
+    [setting setValue:jbMAPSETTINGS_CAPTURE_THE_FLAG forKey:jbNAME];
+    [setting setValue:@"NO" forKey:jbMAPSETTINGS_DATA];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:jb_MAPSETTINGS__SOCCER forKey:jbID];
-    [setting setValue:jb_MAPSETTINGS__SOCCER forKey:jbNAME];
-    [setting setValue:@"NO" forKey:jb_MAPSETTINGS_DATA];
+    [setting setValue:jbMAPSETTINGS_SOCCER forKey:jbID];
+    [setting setValue:jbMAPSETTINGS_SOCCER forKey:jbNAME];
+    [setting setValue:@"NO" forKey:jbMAPSETTINGS_DATA];
     
     // moon settings
     
@@ -344,55 +344,55 @@ static NSString *filePath = @"maps";
     [define setValue:@"moon" forKey:jbID];
     [define setValue:@"moon" forKey:jbNAME];
     settings = [NSMutableArray array];
-    [define setValue:settings  forKey:jb_MAPSETTINGS_SETTINGS];
+    [define setValue:settings  forKey:jbMAPSETTINGS_SETTINGS];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:jb_MAPSETTINGS_DATA forKey:jbID];
-    [setting setValue:jb_MAPSETTINGS_DATA forKey:jbNAME];
-    [setting setValue:NSStringFromCGPoint(CGPointMake(0, -5)) forKey:jb_MAPSETTINGS_DATA];
+    [setting setValue:jbMAPSETTINGS_DATA forKey:jbID];
+    [setting setValue:jbMAPSETTINGS_DATA forKey:jbNAME];
+    [setting setValue:NSStringFromCGPoint(CGPointMake(0, -5)) forKey:jbMAPSETTINGS_DATA];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:jb_MAPSETTINGS_SOLIDFRICTION forKey:jbID];
-    [setting setValue:jb_MAPSETTINGS_SOLIDFRICTION forKey:jbNAME];
-    [setting setValue:@"0.4" forKey:jb_MAPSETTINGS_DATA];
+    [setting setValue:jbMAPSETTINGS_SOLIDFRICTION forKey:jbID];
+    [setting setValue:jbMAPSETTINGS_SOLIDFRICTION forKey:jbNAME];
+    [setting setValue:@"0.4" forKey:jbMAPSETTINGS_DATA];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:jb_MAPSETTINGS_TEAMS forKey:jbID];
-    [setting setValue:jb_MAPSETTINGS_TEAMS forKey:jbNAME];
-    [setting setValue:@"1" forKey:jb_MAPSETTINGS_DATA];
+    [setting setValue:jbMAPSETTINGS_TEAMS forKey:jbID];
+    [setting setValue:jbMAPSETTINGS_TEAMS forKey:jbNAME];
+    [setting setValue:@"1" forKey:jbMAPSETTINGS_DATA];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:jb_MAPSETTINGS_HERO_RESTITUTION forKey:jbID];
-    [setting setValue:jb_MAPSETTINGS_HERO_RESTITUTION forKey:jbNAME];
-    [setting setValue:@"0.15" forKey:jb_MAPSETTINGS_DATA];
+    [setting setValue:jbMAPSETTINGS_HERO_RESTITUTION forKey:jbID];
+    [setting setValue:jbMAPSETTINGS_HERO_RESTITUTION forKey:jbNAME];
+    [setting setValue:@"0.15" forKey:jbMAPSETTINGS_DATA];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:jb_MAPSETTINGS_HERO_ACCELERATION forKey:jbID];
-    [setting setValue:jb_MAPSETTINGS_HERO_ACCELERATION forKey:jbNAME];
-    [setting setValue:@"10" forKey:jb_MAPSETTINGS_DATA];
+    [setting setValue:jbMAPSETTINGS_HERO_ACCELERATION forKey:jbID];
+    [setting setValue:jbMAPSETTINGS_HERO_ACCELERATION forKey:jbNAME];
+    [setting setValue:@"10" forKey:jbMAPSETTINGS_DATA];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:jb_MAPSETTINGS_HERO_MAXIMUM_SPEED forKey:jbID];
-    [setting setValue:jb_MAPSETTINGS_HERO_MAXIMUM_SPEED forKey:jbNAME];
-    [setting setValue:@"5" forKey:jb_MAPSETTINGS_DATA];
+    [setting setValue:jbMAPSETTINGS_HERO_MAXIMUM_SPEED forKey:jbID];
+    [setting setValue:jbMAPSETTINGS_HERO_MAXIMUM_SPEED forKey:jbNAME];
+    [setting setValue:@"5" forKey:jbMAPSETTINGS_DATA];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:jb_MAPSETTINGS_CAPTURE_THE_FLAG forKey:jbID];
-    [setting setValue:jb_MAPSETTINGS_CAPTURE_THE_FLAG forKey:jbNAME];
-    [setting setValue:@"NO" forKey:jb_MAPSETTINGS_DATA];
+    [setting setValue:jbMAPSETTINGS_CAPTURE_THE_FLAG forKey:jbID];
+    [setting setValue:jbMAPSETTINGS_CAPTURE_THE_FLAG forKey:jbNAME];
+    [setting setValue:@"NO" forKey:jbMAPSETTINGS_DATA];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:jb_MAPSETTINGS__SOCCER forKey:jbID];
-    [setting setValue:jb_MAPSETTINGS__SOCCER forKey:jbNAME];
-    [setting setValue:@"NO" forKey:jb_MAPSETTINGS_DATA];
+    [setting setValue:jbMAPSETTINGS_SOCCER forKey:jbID];
+    [setting setValue:jbMAPSETTINGS_SOCCER forKey:jbNAME];
+    [setting setValue:@"NO" forKey:jbMAPSETTINGS_DATA];
 
     
     // standard team deathmatch settings
@@ -402,55 +402,55 @@ static NSString *filePath = @"maps";
     [define setValue:@"team death match" forKey:jbID];
     [define setValue:@"team death match" forKey:jbNAME];
     settings = [NSMutableArray array];
-    [define setValue:settings  forKey:jb_MAPSETTINGS_SETTINGS];
+    [define setValue:settings  forKey:jbMAPSETTINGS_SETTINGS];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:jb_MAPSETTINGS_DATA forKey:jbID];
-    [setting setValue:jb_MAPSETTINGS_DATA forKey:jbNAME];
-    [setting setValue:NSStringFromCGPoint(CGPointMake(0, -10)) forKey:jb_MAPSETTINGS_DATA];
+    [setting setValue:jbMAPSETTINGS_DATA forKey:jbID];
+    [setting setValue:jbMAPSETTINGS_DATA forKey:jbNAME];
+    [setting setValue:NSStringFromCGPoint(CGPointMake(0, -10)) forKey:jbMAPSETTINGS_DATA];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:jb_MAPSETTINGS_SOLIDFRICTION forKey:jbID];
-    [setting setValue:jb_MAPSETTINGS_SOLIDFRICTION forKey:jbNAME];
-    [setting setValue:@"0.4" forKey:jb_MAPSETTINGS_DATA];
+    [setting setValue:jbMAPSETTINGS_SOLIDFRICTION forKey:jbID];
+    [setting setValue:jbMAPSETTINGS_SOLIDFRICTION forKey:jbNAME];
+    [setting setValue:@"0.4" forKey:jbMAPSETTINGS_DATA];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:jb_MAPSETTINGS_TEAMS forKey:jbID];
-    [setting setValue:jb_MAPSETTINGS_TEAMS forKey:jbNAME];
-    [setting setValue:@"2" forKey:jb_MAPSETTINGS_DATA];
+    [setting setValue:jbMAPSETTINGS_TEAMS forKey:jbID];
+    [setting setValue:jbMAPSETTINGS_TEAMS forKey:jbNAME];
+    [setting setValue:@"2" forKey:jbMAPSETTINGS_DATA];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:jb_MAPSETTINGS_HERO_RESTITUTION forKey:jbID];
-    [setting setValue:jb_MAPSETTINGS_HERO_RESTITUTION forKey:jbNAME];
-    [setting setValue:@"0.05" forKey:jb_MAPSETTINGS_DATA];
+    [setting setValue:jbMAPSETTINGS_HERO_RESTITUTION forKey:jbID];
+    [setting setValue:jbMAPSETTINGS_HERO_RESTITUTION forKey:jbNAME];
+    [setting setValue:@"0.05" forKey:jbMAPSETTINGS_DATA];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:jb_MAPSETTINGS_HERO_ACCELERATION forKey:jbID];
-    [setting setValue:jb_MAPSETTINGS_HERO_ACCELERATION forKey:jbNAME];
-    [setting setValue:@"10" forKey:jb_MAPSETTINGS_DATA];
+    [setting setValue:jbMAPSETTINGS_HERO_ACCELERATION forKey:jbID];
+    [setting setValue:jbMAPSETTINGS_HERO_ACCELERATION forKey:jbNAME];
+    [setting setValue:@"10" forKey:jbMAPSETTINGS_DATA];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:jb_MAPSETTINGS_HERO_MAXIMUM_SPEED forKey:jbID];
-    [setting setValue:jb_MAPSETTINGS_HERO_MAXIMUM_SPEED forKey:jbNAME];
-    [setting setValue:@"5" forKey:jb_MAPSETTINGS_DATA];
+    [setting setValue:jbMAPSETTINGS_HERO_MAXIMUM_SPEED forKey:jbID];
+    [setting setValue:jbMAPSETTINGS_HERO_MAXIMUM_SPEED forKey:jbNAME];
+    [setting setValue:@"5" forKey:jbMAPSETTINGS_DATA];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:jb_MAPSETTINGS_CAPTURE_THE_FLAG forKey:jbID];
-    [setting setValue:jb_MAPSETTINGS_CAPTURE_THE_FLAG forKey:jbNAME];
-    [setting setValue:@"NO" forKey:jb_MAPSETTINGS_DATA];
+    [setting setValue:jbMAPSETTINGS_CAPTURE_THE_FLAG forKey:jbID];
+    [setting setValue:jbMAPSETTINGS_CAPTURE_THE_FLAG forKey:jbNAME];
+    [setting setValue:@"NO" forKey:jbMAPSETTINGS_DATA];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:jb_MAPSETTINGS__SOCCER forKey:jbID];
-    [setting setValue:jb_MAPSETTINGS__SOCCER forKey:jbNAME];
-    [setting setValue:@"NO" forKey:jb_MAPSETTINGS_DATA];
+    [setting setValue:jbMAPSETTINGS_SOCCER forKey:jbID];
+    [setting setValue:jbMAPSETTINGS_SOCCER forKey:jbNAME];
+    [setting setValue:@"NO" forKey:jbMAPSETTINGS_DATA];
 
     
     // standard capture the flag
@@ -460,55 +460,55 @@ static NSString *filePath = @"maps";
     [define setValue:@"team capture the flag" forKey:jbID];
     [define setValue:@"team capture the flag" forKey:jbNAME];
     settings = [NSMutableArray array];
-    [define setValue:settings  forKey:jb_MAPSETTINGS_SETTINGS];
+    [define setValue:settings  forKey:jbMAPSETTINGS_SETTINGS];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:jb_MAPSETTINGS_DATA forKey:jbID];
-    [setting setValue:jb_MAPSETTINGS_DATA forKey:jbNAME];
-    [setting setValue:NSStringFromCGPoint(CGPointMake(0, -10)) forKey:jb_MAPSETTINGS_DATA];
+    [setting setValue:jbMAPSETTINGS_DATA forKey:jbID];
+    [setting setValue:jbMAPSETTINGS_DATA forKey:jbNAME];
+    [setting setValue:NSStringFromCGPoint(CGPointMake(0, -10)) forKey:jbMAPSETTINGS_DATA];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:jb_MAPSETTINGS_SOLIDFRICTION forKey:jbID];
-    [setting setValue:jb_MAPSETTINGS_SOLIDFRICTION forKey:jbNAME];
-    [setting setValue:@"0.4" forKey:jb_MAPSETTINGS_DATA];
+    [setting setValue:jbMAPSETTINGS_SOLIDFRICTION forKey:jbID];
+    [setting setValue:jbMAPSETTINGS_SOLIDFRICTION forKey:jbNAME];
+    [setting setValue:@"0.4" forKey:jbMAPSETTINGS_DATA];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:jb_MAPSETTINGS_TEAMS forKey:jbID];
-    [setting setValue:jb_MAPSETTINGS_TEAMS forKey:jbNAME];
-    [setting setValue:@"2" forKey:jb_MAPSETTINGS_DATA];
+    [setting setValue:jbMAPSETTINGS_TEAMS forKey:jbID];
+    [setting setValue:jbMAPSETTINGS_TEAMS forKey:jbNAME];
+    [setting setValue:@"2" forKey:jbMAPSETTINGS_DATA];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:jb_MAPSETTINGS_HERO_RESTITUTION forKey:jbID];
-    [setting setValue:jb_MAPSETTINGS_HERO_RESTITUTION forKey:jbNAME];
-    [setting setValue:@"0.05" forKey:jb_MAPSETTINGS_DATA];
+    [setting setValue:jbMAPSETTINGS_HERO_RESTITUTION forKey:jbID];
+    [setting setValue:jbMAPSETTINGS_HERO_RESTITUTION forKey:jbNAME];
+    [setting setValue:@"0.05" forKey:jbMAPSETTINGS_DATA];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:jb_MAPSETTINGS_HERO_ACCELERATION forKey:jbID];
-    [setting setValue:jb_MAPSETTINGS_HERO_ACCELERATION forKey:jbNAME];
-    [setting setValue:@"10" forKey:jb_MAPSETTINGS_DATA];
+    [setting setValue:jbMAPSETTINGS_HERO_ACCELERATION forKey:jbID];
+    [setting setValue:jbMAPSETTINGS_HERO_ACCELERATION forKey:jbNAME];
+    [setting setValue:@"10" forKey:jbMAPSETTINGS_DATA];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:jb_MAPSETTINGS_HERO_MAXIMUM_SPEED forKey:jbID];
-    [setting setValue:jb_MAPSETTINGS_HERO_MAXIMUM_SPEED forKey:jbNAME];
-    [setting setValue:@"5" forKey:jb_MAPSETTINGS_DATA];
+    [setting setValue:jbMAPSETTINGS_HERO_MAXIMUM_SPEED forKey:jbID];
+    [setting setValue:jbMAPSETTINGS_HERO_MAXIMUM_SPEED forKey:jbNAME];
+    [setting setValue:@"5" forKey:jbMAPSETTINGS_DATA];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:jb_MAPSETTINGS_CAPTURE_THE_FLAG forKey:jbID];
-    [setting setValue:jb_MAPSETTINGS_CAPTURE_THE_FLAG forKey:jbNAME];
-    [setting setValue:@"YES" forKey:jb_MAPSETTINGS_DATA];
+    [setting setValue:jbMAPSETTINGS_CAPTURE_THE_FLAG forKey:jbID];
+    [setting setValue:jbMAPSETTINGS_CAPTURE_THE_FLAG forKey:jbNAME];
+    [setting setValue:@"YES" forKey:jbMAPSETTINGS_DATA];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:jb_MAPSETTINGS__SOCCER forKey:jbID];
-    [setting setValue:jb_MAPSETTINGS__SOCCER forKey:jbNAME];
-    [setting setValue:@"NO" forKey:jb_MAPSETTINGS_DATA];
+    [setting setValue:jbMAPSETTINGS_SOCCER forKey:jbID];
+    [setting setValue:jbMAPSETTINGS_SOCCER forKey:jbNAME];
+    [setting setValue:@"NO" forKey:jbMAPSETTINGS_DATA];
     
     // standard soccer
     
@@ -517,55 +517,55 @@ static NSString *filePath = @"maps";
     [define setValue:@"soccer" forKey:jbID];
     [define setValue:@"soccer" forKey:jbNAME];
     settings = [NSMutableArray array];
-    [define setValue:settings  forKey:jb_MAPSETTINGS_SETTINGS];
+    [define setValue:settings  forKey:jbMAPSETTINGS_SETTINGS];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:jb_MAPSETTINGS_DATA forKey:jbID];
-    [setting setValue:jb_MAPSETTINGS_DATA forKey:jbNAME];
-    [setting setValue:NSStringFromCGPoint(CGPointMake(0, -10)) forKey:jb_MAPSETTINGS_DATA];
+    [setting setValue:jbMAPSETTINGS_DATA forKey:jbID];
+    [setting setValue:jbMAPSETTINGS_DATA forKey:jbNAME];
+    [setting setValue:NSStringFromCGPoint(CGPointMake(0, -10)) forKey:jbMAPSETTINGS_DATA];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:jb_MAPSETTINGS_SOLIDFRICTION forKey:jbID];
-    [setting setValue:jb_MAPSETTINGS_SOLIDFRICTION forKey:jbNAME];
-    [setting setValue:@"0.4" forKey:jb_MAPSETTINGS_DATA];
+    [setting setValue:jbMAPSETTINGS_SOLIDFRICTION forKey:jbID];
+    [setting setValue:jbMAPSETTINGS_SOLIDFRICTION forKey:jbNAME];
+    [setting setValue:@"0.4" forKey:jbMAPSETTINGS_DATA];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:jb_MAPSETTINGS_TEAMS forKey:jbID];
-    [setting setValue:jb_MAPSETTINGS_TEAMS forKey:jbNAME];
-    [setting setValue:@"2" forKey:jb_MAPSETTINGS_DATA];
+    [setting setValue:jbMAPSETTINGS_TEAMS forKey:jbID];
+    [setting setValue:jbMAPSETTINGS_TEAMS forKey:jbNAME];
+    [setting setValue:@"2" forKey:jbMAPSETTINGS_DATA];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:jb_MAPSETTINGS_HERO_RESTITUTION forKey:jbID];
-    [setting setValue:jb_MAPSETTINGS_HERO_RESTITUTION forKey:jbNAME];
-    [setting setValue:@"0.05" forKey:jb_MAPSETTINGS_DATA];
+    [setting setValue:jbMAPSETTINGS_HERO_RESTITUTION forKey:jbID];
+    [setting setValue:jbMAPSETTINGS_HERO_RESTITUTION forKey:jbNAME];
+    [setting setValue:@"0.05" forKey:jbMAPSETTINGS_DATA];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:jb_MAPSETTINGS_HERO_ACCELERATION forKey:jbID];
-    [setting setValue:jb_MAPSETTINGS_HERO_ACCELERATION forKey:jbNAME];
-    [setting setValue:@"10" forKey:jb_MAPSETTINGS_DATA];
+    [setting setValue:jbMAPSETTINGS_HERO_ACCELERATION forKey:jbID];
+    [setting setValue:jbMAPSETTINGS_HERO_ACCELERATION forKey:jbNAME];
+    [setting setValue:@"10" forKey:jbMAPSETTINGS_DATA];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:jb_MAPSETTINGS_HERO_MAXIMUM_SPEED forKey:jbID];
-    [setting setValue:jb_MAPSETTINGS_HERO_MAXIMUM_SPEED forKey:jbNAME];
-    [setting setValue:@"5" forKey:jb_MAPSETTINGS_DATA];
+    [setting setValue:jbMAPSETTINGS_HERO_MAXIMUM_SPEED forKey:jbID];
+    [setting setValue:jbMAPSETTINGS_HERO_MAXIMUM_SPEED forKey:jbNAME];
+    [setting setValue:@"5" forKey:jbMAPSETTINGS_DATA];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:jb_MAPSETTINGS_CAPTURE_THE_FLAG forKey:jbID];
-    [setting setValue:jb_MAPSETTINGS_CAPTURE_THE_FLAG forKey:jbNAME];
-    [setting setValue:@"NO" forKey:jb_MAPSETTINGS_DATA];
+    [setting setValue:jbMAPSETTINGS_CAPTURE_THE_FLAG forKey:jbID];
+    [setting setValue:jbMAPSETTINGS_CAPTURE_THE_FLAG forKey:jbNAME];
+    [setting setValue:@"NO" forKey:jbMAPSETTINGS_DATA];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:jb_MAPSETTINGS__SOCCER forKey:jbID];
-    [setting setValue:jb_MAPSETTINGS__SOCCER forKey:jbNAME];
-    [setting setValue:@"YES" forKey:jb_MAPSETTINGS_DATA];
+    [setting setValue:jbMAPSETTINGS_SOCCER forKey:jbID];
+    [setting setValue:jbMAPSETTINGS_SOCCER forKey:jbNAME];
+    [setting setValue:@"YES" forKey:jbMAPSETTINGS_DATA];
     
     return [defines autorelease];
 }

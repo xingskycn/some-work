@@ -625,7 +625,7 @@
 		9E67F8451440723F000ED8F0 /* GLES-Render.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = "GLES-Render.mm"; sourceTree = "<group>"; };
 		9E67F8471440723F000ED8F0 /* GameConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameConfig.h; sourceTree = "<group>"; };
 		9E67F8481440723F000ED8F0 /* blocks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blocks.png; path = Resources/blocks.png; sourceTree = "<group>"; };
-		9E67F8591440785A000ED8F0 /* JBFinals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBFinals.h; sourceTree = "<group>"; };
+		9E67F8591440785A000ED8F0 /* JBFinals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = JBFinals.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		9E67F85E14407BB8000ED8F0 /* JBMenuLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBMenuLayer.h; sourceTree = "<group>"; };
 		9E67F85F14407BB8000ED8F0 /* JBMenuLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBMenuLayer.m; sourceTree = "<group>"; };
 		9E67F861144080A4000ED8F0 /* JBMenuStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = JBMenuStoryboard.storyboard; sourceTree = "<group>"; };
@@ -667,7 +667,7 @@
 		9EE890CC1441DEB7002099FA /* JBMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBMap.h; sourceTree = "<group>"; };
 		9EE890CD1441DEB7002099FA /* JBMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBMap.m; sourceTree = "<group>"; };
 		9EE890CF1441DEC3002099FA /* JBMapManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBMapManager.h; sourceTree = "<group>"; };
-		9EE890D01441DEC3002099FA /* JBMapManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBMapManager.m; sourceTree = "<group>"; };
+		9EE890D01441DEC3002099FA /* JBMapManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = JBMapManager.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		9EE8910414424D1A002099FA /* JBGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBGameViewController.h; sourceTree = "<group>"; };
 		9EE8910514424D1A002099FA /* JBGameViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = JBGameViewController.mm; sourceTree = "<group>"; };
 		9EE8910714424D7E002099FA /* JBGameLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBGameLayer.h; sourceTree = "<group>"; };
