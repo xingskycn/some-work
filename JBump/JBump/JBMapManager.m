@@ -30,7 +30,7 @@ static NSString *filePath = @"maps";
     path = [[paths objectAtIndex:0] stringByAppendingPathComponent:filePath];
     
     NSMutableDictionary* mapDict =
-    [NSMutableDictionary dictionaryWithContentsOfFile:[[path stringByAppendingPathComponent:mapID]stringByAppendingPathComponent:@"mapInfo"]];
+    [NSMutableDictionary dictionaryWithContentsOfFile:[[path stringByAppendingPathComponent:mapID]stringByAppendingPathComponent:jbINFO]];
     
     if (!mapDict) {
         mapDict = [NSMutableDictionary dictionary];

@@ -112,9 +112,7 @@ CGFloat DistanceBetweenPoints(CGPoint point1,CGPoint point2)
         NSMutableDictionary* historyDict = [NSMutableDictionary dictionary];
         [self.history addObject:historyDict];
         [historyDict setObject:entity.sprite forKey:jbSPRITE];
-        [historyDict setObject:userSelection forKey:jbMAPITEM];
-        [self addChild:self.activeEntity];
-
+        [historyDict setObject:entity forKey:jbMAPITEM];
     }
 }
 
@@ -313,7 +311,12 @@ CGFloat DistanceBetweenPoints(CGPoint point1,CGPoint point2)
                 }
                 if (length<15) {
                     [self removeChild:activeLine cleanup:YES];
-                    [self.history removeObject:activeLine.historyObj];
+                    [self.history removeLastObject];
+                }else{
+                    JBBrush* brush = (JBBrush *)userSelection;
+                    if ([brush.ID isEqualToString:@"brush"]) {
+                        
+                    }
                 }
             }
             
