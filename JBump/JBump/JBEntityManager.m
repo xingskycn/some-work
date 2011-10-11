@@ -22,13 +22,13 @@ static NSString *filePath = @"entities";
     NSMutableArray* entities = [NSMutableArray array];
 	for (NSString* entityID in entityIDs) {
 		NSMutableDictionary* dict = 
-        [NSMutableDictionary dictionaryWithContentsOfFile:[[path stringByAppendingPathComponent:entityID] stringByAppendingPathComponent:@"entityInfo"]];
+        [NSMutableDictionary dictionaryWithContentsOfFile:[[path stringByAppendingPathComponent:entityID] stringByAppendingPathComponent:jbINFO]];
 		
 		NSString *imagePath = [path stringByAppendingPathComponent:entityID];
-		UIImage* entityImage = [UIImage imageWithContentsOfFile:[imagePath stringByAppendingPathComponent:@"entityImage"]];
+		UIImage* entityImage = [UIImage imageWithContentsOfFile:[imagePath stringByAppendingPathComponent:jbIMAGE]];
         
 		if (dict && entityImage) {
-			[dict setObject:entityImage forKey:@"entityImage"];
+			[dict setObject:entityImage forKey:jbIMAGE];
             [entities addObject:dict];
 		}
 		
@@ -52,20 +52,19 @@ static NSString *filePath = @"entities";
     path = [path stringByAppendingPathComponent:entityID];
     
     NSMutableDictionary* dict = 
-    [NSMutableDictionary dictionaryWithContentsOfFile:[path stringByAppendingPathComponent:@"entityInfo"]];
-    UIImage* entityImage = [UIImage imageWithContentsOfFile:[path stringByAppendingPathComponent:@"entityImage"]];
+    [NSMutableDictionary dictionaryWithContentsOfFile:[path stringByAppendingPathComponent:jbINFO]];
+    UIImage* entityImage = [UIImage imageWithContentsOfFile:[path stringByAppendingPathComponent:jbIMAGE]];
     
     if (dict && entityImage) {
-        [dict setObject:entityImage forKey:@"entityImage"];
+        [dict setObject:entityImage forKey:jbIMAGE];
     }
 
     JBEntity *entity = [[[JBEntity alloc] initWithEntityDictionary:dict] autorelease];
-    NSLog(@"entity shale?%@",entity.shape);
     return entity;
 }
 
 + (bool)saveNewEntity:(NSMutableDictionary *)entityDict entityImage:(UIImage *)image {
-    NSString *folderName = [entityDict valueForKey:@"entityID"];
+    NSString *folderName = [entityDict valueForKey:jbID];
     NSString *path;
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -98,12 +97,12 @@ static NSString *filePath = @"entities";
     }
     
     if (image){
-        [UIImagePNGRepresentation(image) writeToFile:[path stringByAppendingPathComponent:@"entityImage"] atomically:YES];
-        [entityDict setValue:[path stringByAppendingPathComponent:@"entityImage"] forKey:@"imageLocation"];
-        [entityDict removeObjectForKey:@"entityImage"];
+        [UIImagePNGRepresentation(image) writeToFile:[path stringByAppendingPathComponent:jbIMAGE] atomically:YES];
+        [entityDict setValue:[path stringByAppendingPathComponent:jbIMAGE] forKey:@"imageLocation"];
+        [entityDict removeObjectForKey:jbIMAGE];
     }
     
-    [entityDict writeToFile:[path stringByAppendingPathComponent:@"entityInfo"] atomically:YES];
+    [entityDict writeToFile:[path stringByAppendingPathComponent:jbINFO] atomically:YES];
     
     if (error!=nil)
         return NO;
@@ -123,8 +122,8 @@ static NSString *filePath = @"entities";
     NSMutableDictionary *entity = [NSMutableDictionary dictionary];
     UIImage *entityImage = [UIImage imageNamed:@"entity_1.png"];
     
-    [entity setValue:@"spawnpoint" forKey:@"entityID"];
-    [entity setValue:entityImage forKey:@"entityImage"];
+    [entity setValue:@"spawnpoint" forKey:jbID];
+    [entity setValue:entityImage forKey:jbIMAGE];
     [entity setValue:@"hero spawn" forKey:@"name"];
     [entity setValue:@"hero spawn here" forKey:@"further"];
     [entity setValue:[NSNumber numberWithFloat:0.8f] forKey:@"friction"];
@@ -137,8 +136,8 @@ static NSString *filePath = @"entities";
     
     entity = [NSMutableDictionary dictionary];
     entityImage = [UIImage imageNamed:@"bottle_1.png"];
-    [entity setValue:@"bottle_1" forKey:@"entityID"];
-    [entity setValue:entityImage forKey:@"entityImage"];
+    [entity setValue:@"bottle_1" forKey:jbID];
+    [entity setValue:entityImage forKey:jbIMAGE];
     [entity setValue:@"Beer Bottle" forKey:@"name"];
     [entity setValue:@"Cheers!" forKey:@"further"];
     [entity setValue:[NSNumber numberWithFloat:0.3f] forKey:@"friction"];
@@ -151,8 +150,8 @@ static NSString *filePath = @"entities";
     
     entity = [NSMutableDictionary dictionary];
     entityImage = [UIImage imageNamed:@"bottle_2.png"];
-    [entity setValue:@"bottle_2" forKey:@"entityID"];
-    [entity setValue:entityImage forKey:@"entityImage"];
+    [entity setValue:@"bottle_2" forKey:jbID];
+    [entity setValue:entityImage forKey:jbIMAGE];
     [entity setValue:@"Water Bottle" forKey:@"name"];
     [entity setValue:@"Take a sip!" forKey:@"further"];
     [entity setValue:[NSNumber numberWithFloat:0.3f] forKey:@"friction"];
@@ -165,8 +164,8 @@ static NSString *filePath = @"entities";
     
     entity = [NSMutableDictionary dictionary];
     entityImage = [UIImage imageNamed:@"box_01.png"];
-    [entity setValue:@"box_01" forKey:@"entityID"];
-    [entity setValue:entityImage forKey:@"entityImage"];
+    [entity setValue:@"box_01" forKey:jbID];
+    [entity setValue:entityImage forKey:jbIMAGE];
     [entity setValue:@"Mini Box" forKey:@"name"];
     [entity setValue:@"Diagonal" forKey:@"further"];
     [entity setValue:[NSNumber numberWithFloat:0.3f] forKey:@"friction"];
@@ -179,8 +178,8 @@ static NSString *filePath = @"entities";
     
     entity = [NSMutableDictionary dictionary];
     entityImage = [UIImage imageNamed:@"box_02.png"];
-    [entity setValue:@"box_02" forKey:@"entityID"];
-    [entity setValue:entityImage forKey:@"entityImage"];
+    [entity setValue:@"box_02" forKey:jbID];
+    [entity setValue:entityImage forKey:jbIMAGE];
     [entity setValue:@"Big Box!" forKey:@"name"];
     [entity setValue:@"Diagonal" forKey:@"further"];
     [entity setValue:[NSNumber numberWithFloat:0.3f] forKey:@"friction"];
@@ -193,8 +192,8 @@ static NSString *filePath = @"entities";
     
     entity = [NSMutableDictionary dictionary];
     entityImage = [UIImage imageNamed:@"box_03.png"];
-    [entity setValue:@"box_03" forKey:@"entityID"];
-    [entity setValue:entityImage forKey:@"entityImage"];
+    [entity setValue:@"box_03" forKey:jbID];
+    [entity setValue:entityImage forKey:jbIMAGE];
     [entity setValue:@"Medium Box" forKey:@"name"];
     [entity setValue:@"Diagonal" forKey:@"further"];
     [entity setValue:[NSNumber numberWithFloat:0.3f] forKey:@"friction"];
@@ -207,8 +206,8 @@ static NSString *filePath = @"entities";
     
     entity = [NSMutableDictionary dictionary];
     entityImage = [UIImage imageNamed:@"box_04.png"];
-    [entity setValue:@"box_04" forKey:@"entityID"];
-    [entity setValue:entityImage forKey:@"entityImage"];
+    [entity setValue:@"box_04" forKey:jbID];
+    [entity setValue:entityImage forKey:jbIMAGE];
     [entity setValue:@"Big Box!" forKey:@"name"];
     [entity setValue:@"Parallel" forKey:@"further"];
     [entity setValue:[NSNumber numberWithFloat:0.3f] forKey:@"friction"];
@@ -221,8 +220,8 @@ static NSString *filePath = @"entities";
     
     entity = [NSMutableDictionary dictionary];
     entityImage = [UIImage imageNamed:@"box_05.png"];
-    [entity setValue:@"box_05" forKey:@"entityID"];
-    [entity setValue:entityImage forKey:@"entityImage"];
+    [entity setValue:@"box_05" forKey:jbID];
+    [entity setValue:entityImage forKey:jbIMAGE];
     [entity setValue:@"Medium Box" forKey:@"name"];
     [entity setValue:@"Parallel" forKey:@"further"];
     [entity setValue:[NSNumber numberWithFloat:0.3f] forKey:@"friction"];
@@ -236,8 +235,8 @@ static NSString *filePath = @"entities";
     
     entity = [NSMutableDictionary dictionary];
     entityImage = [UIImage imageNamed:@"ball_01.png"];
-    [entity setValue:@"ball_01" forKey:@"entityID"];
-    [entity setValue:entityImage forKey:@"entityImage"];
+    [entity setValue:@"ball_01" forKey:jbID];
+    [entity setValue:entityImage forKey:jbIMAGE];
     [entity setValue:@"Golf" forKey:@"name"];
     [entity setValue:@"EAGLE" forKey:@"further"];
     [entity setValue:[NSNumber numberWithFloat:0.3f] forKey:@"friction"];
@@ -250,8 +249,8 @@ static NSString *filePath = @"entities";
     
     entity = [NSMutableDictionary dictionary];
     entityImage = [UIImage imageNamed:@"ball_02.png"];
-    [entity setValue:@"ball_02" forKey:@"entityID"];
-    [entity setValue:entityImage forKey:@"entityImage"];
+    [entity setValue:@"ball_02" forKey:jbID];
+    [entity setValue:entityImage forKey:jbIMAGE];
     [entity setValue:@"Golf" forKey:@"name"];
     [entity setValue:@"birdie" forKey:@"further"];
     [entity setValue:[NSNumber numberWithFloat:0.3f] forKey:@"friction"];
@@ -264,8 +263,8 @@ static NSString *filePath = @"entities";
     
     entity = [NSMutableDictionary dictionary];
     entityImage = [UIImage imageNamed:@"ball_03.png"];
-    [entity setValue:@"ball_03" forKey:@"entityID"];
-    [entity setValue:entityImage forKey:@"entityImage"];
+    [entity setValue:@"ball_03" forKey:jbID];
+    [entity setValue:entityImage forKey:jbIMAGE];
     [entity setValue:@"Soccer" forKey:@"name"];
     [entity setValue:@"Size 1" forKey:@"further"];
     [entity setValue:[NSNumber numberWithFloat:0.3f] forKey:@"friction"];
@@ -278,8 +277,8 @@ static NSString *filePath = @"entities";
     
     entity = [NSMutableDictionary dictionary];
     entityImage = [UIImage imageNamed:@"ball_04.png"];
-    [entity setValue:@"ball_04" forKey:@"entityID"];
-    [entity setValue:entityImage forKey:@"entityImage"];
+    [entity setValue:@"ball_04" forKey:jbID];
+    [entity setValue:entityImage forKey:jbIMAGE];
     [entity setValue:@"Soccer" forKey:@"name"];
     [entity setValue:@"Size 4" forKey:@"further"];
     [entity setValue:[NSNumber numberWithFloat:0.3f] forKey:@"friction"];
@@ -292,8 +291,8 @@ static NSString *filePath = @"entities";
     
     entity = [NSMutableDictionary dictionary];
     entityImage = [UIImage imageNamed:@"ball_05.png"];
-    [entity setValue:@"ball_05" forKey:@"entityID"];
-    [entity setValue:entityImage forKey:@"entityImage"];
+    [entity setValue:@"ball_05" forKey:jbID];
+    [entity setValue:entityImage forKey:jbIMAGE];
     [entity setValue:@"Ball" forKey:@"name"];
     [entity setValue:@"small fun" forKey:@"further"];
     [entity setValue:[NSNumber numberWithFloat:0.3f] forKey:@"friction"];
@@ -306,8 +305,8 @@ static NSString *filePath = @"entities";
     
     entity = [NSMutableDictionary dictionary];
     entityImage = [UIImage imageNamed:@"ball_06.png"];
-    [entity setValue:@"ball_06" forKey:@"entityID"];
-    [entity setValue:entityImage forKey:@"entityImage"];
+    [entity setValue:@"ball_06" forKey:jbID];
+    [entity setValue:entityImage forKey:jbIMAGE];
     [entity setValue:@"Ball" forKey:@"name"];
     [entity setValue:@"BIG FUN!" forKey:@"further"];
     [entity setValue:[NSNumber numberWithFloat:0.3f] forKey:@"friction"];

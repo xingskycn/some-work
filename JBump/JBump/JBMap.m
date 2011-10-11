@@ -44,31 +44,31 @@
         self.mapEntities = [NSMutableArray array];
         self.curves = [NSMutableArray array];
         
-        self.mapName = [mapDict objectForKey:@"mapName"];
-        self.mapID = [mapDict objectForKey:@"mapID"];
-        self.mapFurther = [mapDict objectForKey:@"mapFurther"];
+        self.mapName = [mapDict objectForKey:jbNAME];
+        self.mapID = [mapDict objectForKey:jbID];
+        self.mapFurther = [mapDict objectForKey:jbFURTHER];
         
-        self.backgroundImage = [mapDict objectForKey:@"backgroundImage"];
-        self.backgroundImageLocal = [mapDict objectForKey:@"backgroundImageLocal"];
-        self.backgroundImageURL = [mapDict objectForKey:@"backgroundImageURL"];
+        self.backgroundImage = [mapDict objectForKey:jbBACKGROUNDIMAGE];
+        self.backgroundImageLocal = [mapDict objectForKey:jbBACKGROUNDIMAGELOCATION];
+        self.backgroundImageURL = [mapDict objectForKey:jbBACKGROUNDIMAGEURL];
         
-        self.arenaImage = [mapDict objectForKey:@"arenaImage"];
-        self.arenaImageLocal = [mapDict objectForKey:@"arenaImageLocal"];
-        self.arenaImageURL = [mapDict objectForKey:@"arenaImageURL"];
+        self.arenaImage = [mapDict objectForKey:jbARENAIMAGE];
+        self.arenaImageLocal = [mapDict objectForKey:jbARENAIMAGELOCATION];
+        self.arenaImageURL = [mapDict objectForKey:jbARENAIMAGEURL];
         
-        self.overlayImage = [mapDict objectForKey:@"overlayImage"];
-        self.overlayImageLocal = [mapDict objectForKey:@"overlayImageLocal"];
-        self.overlayImageURL = [mapDict objectForKey:@"overlayImageURL"];
+        self.overlayImage = [mapDict objectForKey:jbOVERLAYIMAGE];
+        self.overlayImageLocal = [mapDict objectForKey:jbOVERLAYIMAGELOCATION];
+        self.overlayImageURL = [mapDict objectForKey:jbOVERLAYIMAGEURL];
         
-        for (NSDictionary *dict in [mapDict objectForKey:@"mapEntities"]) {
-            JBEntity *aEntity = [JBEntityManager getEntityWithID:[dict objectForKey:@"entityID"]];
-            aEntity.position = CGPointFromString([dict objectForKey:@"position"]);
+        for (NSDictionary *dict in [mapDict objectForKey:jbENTITIES]) {
+            JBEntity *aEntity = [JBEntityManager getEntityWithID:[dict objectForKey:jbID]];
+            aEntity.position = CGPointFromString([dict objectForKey:jbPOSITION]);
             [self.mapEntities addObject:aEntity];
         }
         
-        self.settings = [mapDict objectForKey:@"settings"];
+        self.settings = [mapDict objectForKey:jbSETTINGS];
         
-        self.curves = [mapDict objectForKey:@"curves"]; 
+        self.curves = [mapDict objectForKey:jbCURVES]; 
     }
     
     return self;

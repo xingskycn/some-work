@@ -208,7 +208,6 @@
 		9E67F8431440723F000ED8F0 /* JBHelloWorldLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9E67F8421440723F000ED8F0 /* JBHelloWorldLayer.mm */; };
 		9E67F8461440723F000ED8F0 /* GLES-Render.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9E67F8451440723F000ED8F0 /* GLES-Render.mm */; };
 		9E67F8491440723F000ED8F0 /* blocks.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E67F8481440723F000ED8F0 /* blocks.png */; };
-		9E67F85C1440785A000ED8F0 /* JBMapObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E67F85B1440785A000ED8F0 /* JBMapObject.m */; };
 		9E67F86014407BB8000ED8F0 /* JBMenuLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E67F85F14407BB8000ED8F0 /* JBMenuLayer.m */; };
 		9E67F862144080A4000ED8F0 /* JBMenuStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E67F861144080A4000ED8F0 /* JBMenuStoryboard.storyboard */; };
 		9E67F8651440810D000ED8F0 /* JBMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E67F8641440810D000ED8F0 /* JBMenuViewController.m */; };
@@ -626,9 +625,7 @@
 		9E67F8451440723F000ED8F0 /* GLES-Render.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = "GLES-Render.mm"; sourceTree = "<group>"; };
 		9E67F8471440723F000ED8F0 /* GameConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameConfig.h; sourceTree = "<group>"; };
 		9E67F8481440723F000ED8F0 /* blocks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blocks.png; path = Resources/blocks.png; sourceTree = "<group>"; };
-		9E67F8591440785A000ED8F0 /* JBMapEntities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBMapEntities.h; sourceTree = "<group>"; };
-		9E67F85A1440785A000ED8F0 /* JBMapObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBMapObject.h; sourceTree = "<group>"; };
-		9E67F85B1440785A000ED8F0 /* JBMapObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBMapObject.m; sourceTree = "<group>"; };
+		9E67F8591440785A000ED8F0 /* JBFinals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBFinals.h; sourceTree = "<group>"; };
 		9E67F85E14407BB8000ED8F0 /* JBMenuLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBMenuLayer.h; sourceTree = "<group>"; };
 		9E67F85F14407BB8000ED8F0 /* JBMenuLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBMenuLayer.m; sourceTree = "<group>"; };
 		9E67F861144080A4000ED8F0 /* JBMenuStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = JBMenuStoryboard.storyboard; sourceTree = "<group>"; };
@@ -819,7 +816,6 @@
 				9E8819C61440E7EE00A4E421 /* Skins */,
 				9E67F8AF1440D3B8000ED8F0 /* Network */,
 				9E67F85D14407B8A000ED8F0 /* Menu */,
-				9E67F8531440780E000ED8F0 /* Map */,
 				9E67F83B1440723F000ED8F0 /* JBAppDelegate.h */,
 				9E67F83C1440723F000ED8F0 /* JBAppDelegate.mm */,
 				9E67F83E1440723F000ED8F0 /* JBRootViewController.h */,
@@ -829,6 +825,7 @@
 				9E67F8441440723F000ED8F0 /* GLES-Render.h */,
 				9E67F8451440723F000ED8F0 /* GLES-Render.mm */,
 				9E67F8471440723F000ED8F0 /* GameConfig.h */,
+				9E67F8591440785A000ED8F0 /* JBFinals.h */,
 				9E67F6771440723D000ED8F0 /* Resources */,
 				9E67F68B1440723D000ED8F0 /* libs */,
 				9E67F8371440723F000ED8F0 /* Supporting Files */,
@@ -1300,16 +1297,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		9E67F8531440780E000ED8F0 /* Map */ = {
-			isa = PBXGroup;
-			children = (
-				9E67F8591440785A000ED8F0 /* JBMapEntities.h */,
-				9E67F85A1440785A000ED8F0 /* JBMapObject.h */,
-				9E67F85B1440785A000ED8F0 /* JBMapObject.m */,
-			);
-			name = Map;
-			sourceTree = "<group>";
-		};
 		9E67F85D14407B8A000ED8F0 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
@@ -1672,7 +1659,6 @@
 				9E67F8401440723F000ED8F0 /* JBRootViewController.m in Sources */,
 				9E67F8431440723F000ED8F0 /* JBHelloWorldLayer.mm in Sources */,
 				9E67F8461440723F000ED8F0 /* GLES-Render.mm in Sources */,
-				9E67F85C1440785A000ED8F0 /* JBMapObject.m in Sources */,
 				9E67F86014407BB8000ED8F0 /* JBMenuLayer.m in Sources */,
 				9E67F8651440810D000ED8F0 /* JBMenuViewController.m in Sources */,
 				9E67F89A1440B90D000ED8F0 /* JBSegue.m in Sources */,

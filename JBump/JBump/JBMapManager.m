@@ -61,23 +61,22 @@ static NSString *filePath = @"maps";
             NSLog(@"Create directory error: %@", error);
         }
     }
-    [mapDict setObject:mapID forKey:@"mapID"];
-    [mapDict setObject:mapName forKey:@"mapName"];
-    [UIImagePNGRepresentation(arenaImage) writeToFile:[path stringByAppendingPathComponent:@"arenaImage"] atomically:YES];
-    [mapDict setObject:[path stringByAppendingPathComponent:@"arenaImage"] forKey:@"arenaImageLocal"];
+    [mapDict setObject:mapID forKey:jbID];
+    [mapDict setObject:mapName forKey:jbNAME];
+    [UIImagePNGRepresentation(arenaImage) writeToFile:[path stringByAppendingPathComponent:jbARENAIMAGE] atomically:YES];
+    [mapDict setObject:[path stringByAppendingPathComponent:jbARENAIMAGE] forKey:jbARENAIMAGELOCATION];
     if (curves) {
-        [mapDict setObject:curves forKey:@"curves"];
-    }else{
-        
-    }
-    if (entities) {
-        [mapDict setObject:entities forKey:@"mapEntities"];
-    }
-    if (settings) {
-        [mapDict setObject:settings forKey:@"settings"];
+        [mapDict setObject:curves forKey:jbCURVES];
     }
     
-    [mapDict writeToFile:[path stringByAppendingPathComponent:@"mapInfo"] atomically:YES];
+    if (entities) {
+        [mapDict setObject:entities forKey:jbENTITIES];
+    }
+    if (settings) {
+        [mapDict setObject:settings forKey:jbSETTINGS];
+    }
+    
+    [mapDict writeToFile:[path stringByAppendingPathComponent:jbINFO] atomically:YES];
 }
 
 
@@ -132,42 +131,42 @@ static NSString *filePath = @"maps";
     }
 
     
-    [mapDict setObject:mapID forKey:@"mapID"];
-    [mapDict setObject:mapName forKey:@"mapName"];
-    [mapDict setObject:mapFurther forKey:@"mapFurther"];
+    [mapDict setObject:mapID forKey:jbID];
+    [mapDict setObject:mapName forKey:jbNAME];
+    [mapDict setObject:mapFurther forKey:jbFURTHER];
     
     if (arenaImageLocation!=nil) {
-        [UIImagePNGRepresentation([UIImage imageWithContentsOfFile:arenaImageLocation]) writeToFile:[path stringByAppendingPathComponent:@"arenaImage"] atomically:YES];
-        [mapDict setObject:[path stringByAppendingPathComponent:@"arenaImage"] forKey:@"arenaImageLocal"];
+        [UIImagePNGRepresentation([UIImage imageWithContentsOfFile:arenaImageLocation]) writeToFile:[path stringByAppendingPathComponent:jbARENAIMAGE] atomically:YES];
+        [mapDict setObject:[path stringByAppendingPathComponent:jbARENAIMAGE] forKey:jbARENAIMAGELOCATION];
     } else {
         NSLog(@"Received no ArenaImageLocation");
     }
     
     if (backgroundImageLocation!=nil) {
-        [UIImagePNGRepresentation([UIImage imageWithContentsOfFile:backgroundImageLocation]) writeToFile:[path stringByAppendingPathComponent:@"backgroundImage"] atomically:YES];
-        [mapDict setObject:[path stringByAppendingPathComponent:@"backgroundImage"] forKey:@"backgroundImageLocal"];
+        [UIImagePNGRepresentation([UIImage imageWithContentsOfFile:backgroundImageLocation]) writeToFile:[path stringByAppendingPathComponent:jbBACKGROUNDIMAGE] atomically:YES];
+        [mapDict setObject:[path stringByAppendingPathComponent:jbBACKGROUNDIMAGE] forKey:jbBACKGROUNDIMAGELOCATION];
     }else {
         NSLog(@"Received no BackgroundImageLocation");
     }
     
     if (overlayImageLocation!=nil) {
-        [UIImagePNGRepresentation([UIImage imageWithContentsOfFile:overlayImageLocation]) writeToFile:[path stringByAppendingPathComponent:@"overlayImage"] atomically:YES];
-        [mapDict setObject:[path stringByAppendingPathComponent:@"overlayImage"] forKey:@"overlayImageLocal"];
+        [UIImagePNGRepresentation([UIImage imageWithContentsOfFile:overlayImageLocation]) writeToFile:[path stringByAppendingPathComponent:jbOVERLAYIMAGE] atomically:YES];
+        [mapDict setObject:[path stringByAppendingPathComponent:jbOVERLAYIMAGE] forKey:jbOVERLAYIMAGELOCATION];
     }else {
         NSLog(@"Received no OverlayImageLocation");
     }
     
     if (thumbnailLocation !=nil) {
-        [UIImagePNGRepresentation([UIImage imageWithContentsOfFile:thumbnailLocation]) writeToFile:[path stringByAppendingPathComponent:@"thumbnail"] atomically:YES];
-        [mapDict setObject:[path stringByAppendingPathComponent:@"thumbnail"] forKey:@"thumbnailLocal"];
+        [UIImagePNGRepresentation([UIImage imageWithContentsOfFile:thumbnailLocation]) writeToFile:[path stringByAppendingPathComponent:jbTHUMBNAIL] atomically:YES];
+        [mapDict setObject:[path stringByAppendingPathComponent:jbTHUMBNAIL] forKey:jbTHUMBNAILLOCATION];
     }else {
         NSLog(@"Received no ThumbnailLocation");
     }
     
-    [mapDict setObject:curves forKey:@"curves"];
-    [mapDict setObject:entities forKey:@"mapEntities"];
+    [mapDict setObject:curves forKey:jbCURVES];
+    [mapDict setObject:entities forKey:jbENTITIES];
     
-    [mapDict writeToFile:[path stringByAppendingPathComponent:@"mapInfo"] atomically:YES];
+    [mapDict writeToFile:[path stringByAppendingPathComponent:jbINFO] atomically:YES];
 }
 
 + (JBMap*)getMapWithID:(NSString*)aMapID {
@@ -179,19 +178,19 @@ static NSString *filePath = @"maps";
     path = [path stringByAppendingPathComponent:aMapID];
     
     NSMutableDictionary* dict = 
-    [NSMutableDictionary dictionaryWithContentsOfFile:[path stringByAppendingPathComponent:@"mapInfo"]];
-    UIImage* arenaImage = [UIImage imageWithContentsOfFile:[path stringByAppendingPathComponent:@"arenaImage"]];
-    UIImage* backgroundImage = [UIImage imageWithContentsOfFile:[path stringByAppendingPathComponent:@"arenaImage"]];
-    UIImage* overlayImage = [UIImage imageWithContentsOfFile:[path stringByAppendingPathComponent:@"overlayImage"]];
+    [NSMutableDictionary dictionaryWithContentsOfFile:[path stringByAppendingPathComponent:jbINFO]];
+    UIImage* arenaImage = [UIImage imageWithContentsOfFile:[path stringByAppendingPathComponent:jbARENAIMAGE]];
+    UIImage* backgroundImage = [UIImage imageWithContentsOfFile:[path stringByAppendingPathComponent:jbBACKGROUNDIMAGE]];
+    UIImage* overlayImage = [UIImage imageWithContentsOfFile:[path stringByAppendingPathComponent:jbOVERLAYIMAGE]];
     
     if (dict && arenaImage) {
-        [dict setObject:arenaImage forKey:@"arenaImage"];
+        [dict setObject:arenaImage forKey:jbARENAIMAGE];
     }
     if (dict && backgroundImage) {
-        [dict setObject:backgroundImage forKey:@"backgroundImage"];
+        [dict setObject:backgroundImage forKey:jbBACKGROUNDIMAGE];
     }
     if (dict && overlayImage) {
-        [dict setObject:arenaImage forKey:@"overlayImage"];
+        [dict setObject:arenaImage forKey:jbOVERLAYIMAGE];
     }
     
     JBMap *map = [[[JBMap alloc] initWithDictionary:dict] autorelease];
@@ -209,19 +208,19 @@ static NSString *filePath = @"maps";
     NSMutableArray *allMaps = [NSMutableArray array];
     for (NSString *aMapId in mapIDs) {
         NSMutableDictionary* dict = 
-        [NSMutableDictionary dictionaryWithContentsOfFile:[[path stringByAppendingPathComponent:aMapId]stringByAppendingPathComponent:@"mapInfo"]];
-        UIImage* arenaImage = [UIImage imageWithContentsOfFile:[[path stringByAppendingPathComponent:aMapId] stringByAppendingPathComponent:@"arenaImage"]];
-        UIImage* backgroundImage = [UIImage imageWithContentsOfFile:[[path stringByAppendingPathComponent:aMapId] stringByAppendingPathComponent:@"arenaImage"]];
-        UIImage* overlayImage = [UIImage imageWithContentsOfFile:[[path stringByAppendingPathComponent:aMapId] stringByAppendingPathComponent:@"overlayImage"]];
+        [NSMutableDictionary dictionaryWithContentsOfFile:[[path stringByAppendingPathComponent:aMapId]stringByAppendingPathComponent:jbINFO]];
+        UIImage* arenaImage = [UIImage imageWithContentsOfFile:[[path stringByAppendingPathComponent:aMapId] stringByAppendingPathComponent:jbARENAIMAGE]];
+        UIImage* backgroundImage = [UIImage imageWithContentsOfFile:[[path stringByAppendingPathComponent:aMapId] stringByAppendingPathComponent:jbBACKGROUNDIMAGE]];
+        UIImage* overlayImage = [UIImage imageWithContentsOfFile:[[path stringByAppendingPathComponent:aMapId] stringByAppendingPathComponent:jbOVERLAYIMAGE]];
         
         if (dict && arenaImage) {
-            [dict setObject:arenaImage forKey:@"arenaImage"];
+            [dict setObject:arenaImage forKey:jbARENAIMAGE];
         }
         if (dict && backgroundImage) {
-            [dict setObject:backgroundImage forKey:@"backgroundImage"];
+            [dict setObject:backgroundImage forKey:jbBACKGROUNDIMAGE];
         }
         if (dict && overlayImage) {
-            [dict setObject:arenaImage forKey:@"overlayImage"];
+            [dict setObject:arenaImage forKey:jbOVERLAYIMAGE];
         }
         JBMap *map = [[JBMap alloc] initWithDictionary:dict];
         [allMaps addObject:map];
@@ -249,11 +248,11 @@ static NSString *filePath = @"maps";
     NSMutableArray *allDescriptions = [NSMutableArray array];
     for (NSString *aMapID in mapIDs) {
         NSMutableDictionary* dict = 
-        [NSMutableDictionary dictionaryWithContentsOfFile:[[path stringByAppendingPathComponent:aMapID]stringByAppendingPathComponent:@"mapInfo"]];
-        UIImage* thumbnail = [UIImage imageWithContentsOfFile:[[path stringByAppendingPathComponent:aMapID] stringByAppendingPathComponent:@"thumbnail"]];
+        [NSMutableDictionary dictionaryWithContentsOfFile:[[path stringByAppendingPathComponent:aMapID]stringByAppendingPathComponent:jbINFO]];
+        UIImage* thumbnail = [UIImage imageWithContentsOfFile:[[path stringByAppendingPathComponent:aMapID] stringByAppendingPathComponent:jbTHUMBNAIL]];
         
         if (dict && thumbnail) {
-            [dict setObject:thumbnail forKey:@"thumbnail"];
+            [dict setObject:thumbnail forKey:jbTHUMBNAIL];
         }
         if (dict) {
             [allDescriptions addObject:dict];
@@ -267,14 +266,15 @@ static NSString *filePath = @"maps";
 {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString* path = [[paths objectAtIndex:0] stringByAppendingPathComponent:filePath];
-    NSString* mapID = [dict objectForKey:@"mapID"];
+    NSString* mapID = [dict objectForKey:jbID];
     NSMutableDictionary* mapDict =
-    [NSMutableDictionary dictionaryWithContentsOfFile:[[path stringByAppendingPathComponent:mapID]stringByAppendingPathComponent:@"mapInfo"]];
+    [NSMutableDictionary dictionaryWithContentsOfFile:[[path stringByAppendingPathComponent:mapID]stringByAppendingPathComponent:jbINFO]];
     
     for (NSString* key in [dict allKeys]) {
         [mapDict setObject:[dict objectForKey:key] forKey:key];
     }
-    [mapDict writeToFile:[[path stringByAppendingPathComponent:mapID] stringByAppendingPathComponent:@"mapInfo"] atomically:YES];
+
+    [mapDict writeToFile:[[path stringByAppendingPathComponent:mapID] stringByAppendingPathComponent:jbINFO] atomically:YES];
 }
 
 + (NSMutableArray *)getAllPredefinedSettings
@@ -284,288 +284,288 @@ static NSString *filePath = @"maps";
     NSMutableArray* defines = [NSMutableArray new];
     NSMutableDictionary* define = [NSMutableDictionary dictionary];
     [defines addObject:define];
-    [define setValue:@"standard" forKey:@"ID"];
-    [define setValue:@"standard" forKey:@"name"];
+    [define setValue:@"standard" forKey:jbID];
+    [define setValue:@"standard" forKey:jbNAME];
     NSMutableArray* settings = [NSMutableArray array];
-    [define setValue:settings  forKey:@"settings"];
+    [define setValue:settings  forKey:jb_MAPSETTINGS_SETTINGS];
     
     NSMutableDictionary* setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:@"gravitation" forKey:@"ID"];
-    [setting setValue:@"gravitation" forKey:@"name"];
-    [setting setValue:NSStringFromCGPoint(CGPointMake(0, -10)) forKey:@"data"];
+    [setting setValue:jb_MAPSETTINGS_DATA forKey:jbID];
+    [setting setValue:jb_MAPSETTINGS_DATA forKey:jbNAME];
+    [setting setValue:NSStringFromCGPoint(CGPointMake(0, -10)) forKey:jb_MAPSETTINGS_DATA];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:@"solid friction" forKey:@"ID"];
-    [setting setValue:@"solid friction" forKey:@"name"];
-    [setting setValue:@"0.4" forKey:@"data"];
+    [setting setValue:jb_MAPSETTINGS_SOLIDFRICTION forKey:jbID];
+    [setting setValue:jb_MAPSETTINGS_SOLIDFRICTION forKey:jbNAME];
+    [setting setValue:@"0.4" forKey:jb_MAPSETTINGS_DATA];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:@"teams" forKey:@"ID"];
-    [setting setValue:@"teams" forKey:@"name"];
-    [setting setValue:@"1" forKey:@"data"];
+    [setting setValue:jb_MAPSETTINGS_TEAMS forKey:jbID];
+    [setting setValue:jb_MAPSETTINGS_TEAMS forKey:jbNAME];
+    [setting setValue:@"1" forKey:jb_MAPSETTINGS_DATA];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:@"hero restitution" forKey:@"ID"];
-    [setting setValue:@"hero restitution" forKey:@"name"];
-    [setting setValue:@"0.05" forKey:@"data"];
+    [setting setValue:jb_MAPSETTINGS_HERO_RESTITUTION forKey:jbID];
+    [setting setValue:jb_MAPSETTINGS_HERO_RESTITUTION forKey:jbNAME];
+    [setting setValue:@"0.05" forKey:jb_MAPSETTINGS_DATA];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:@"hero acceleration" forKey:@"ID"];
-    [setting setValue:@"hero acceleration" forKey:@"name"];
-    [setting setValue:@"10" forKey:@"data"];
+    [setting setValue:jb_MAPSETTINGS_HERO_ACCELERATION forKey:jbID];
+    [setting setValue:jb_MAPSETTINGS_HERO_ACCELERATION forKey:jbNAME];
+    [setting setValue:@"10" forKey:jb_MAPSETTINGS_DATA];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:@"hero maximum speed" forKey:@"ID"];
-    [setting setValue:@"hero maximum speed" forKey:@"name"];
-    [setting setValue:@"5" forKey:@"data"];
+    [setting setValue:jb_MAPSETTINGS_HERO_MAXIMUM_SPEED forKey:jbID];
+    [setting setValue:jb_MAPSETTINGS_HERO_MAXIMUM_SPEED forKey:jbNAME];
+    [setting setValue:@"5" forKey:jb_MAPSETTINGS_DATA];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:@"ctf" forKey:@"ID"];
-    [setting setValue:@"capture the flag" forKey:@"name"];
-    [setting setValue:@"NO" forKey:@"data"];
+    [setting setValue:jb_MAPSETTINGS_CAPTURE_THE_FLAG forKey:jbID];
+    [setting setValue:jb_MAPSETTINGS_CAPTURE_THE_FLAG forKey:jbNAME];
+    [setting setValue:@"NO" forKey:jb_MAPSETTINGS_DATA];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:@"soccer" forKey:@"ID"];
-    [setting setValue:@"soccer" forKey:@"name"];
-    [setting setValue:@"NO" forKey:@"data"];
+    [setting setValue:jb_MAPSETTINGS__SOCCER forKey:jbID];
+    [setting setValue:jb_MAPSETTINGS__SOCCER forKey:jbNAME];
+    [setting setValue:@"NO" forKey:jb_MAPSETTINGS_DATA];
     
     // moon settings
     
     define = [NSMutableDictionary dictionary];
     [defines addObject:define];
-    [define setValue:@"moon" forKey:@"ID"];
-    [define setValue:@"moon" forKey:@"name"];
+    [define setValue:@"moon" forKey:jbID];
+    [define setValue:@"moon" forKey:jbNAME];
     settings = [NSMutableArray array];
-    [define setValue:settings  forKey:@"settings"];
+    [define setValue:settings  forKey:jb_MAPSETTINGS_SETTINGS];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:@"gravitation" forKey:@"ID"];
-    [setting setValue:@"gravitation" forKey:@"name"];
-    [setting setValue:NSStringFromCGPoint(CGPointMake(0, -5)) forKey:@"data"];
+    [setting setValue:jb_MAPSETTINGS_DATA forKey:jbID];
+    [setting setValue:jb_MAPSETTINGS_DATA forKey:jbNAME];
+    [setting setValue:NSStringFromCGPoint(CGPointMake(0, -5)) forKey:jb_MAPSETTINGS_DATA];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:@"solid friction" forKey:@"ID"];
-    [setting setValue:@"solid friction" forKey:@"name"];
-    [setting setValue:@"0.4" forKey:@"data"];
+    [setting setValue:jb_MAPSETTINGS_SOLIDFRICTION forKey:jbID];
+    [setting setValue:jb_MAPSETTINGS_SOLIDFRICTION forKey:jbNAME];
+    [setting setValue:@"0.4" forKey:jb_MAPSETTINGS_DATA];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:@"teams" forKey:@"ID"];
-    [setting setValue:@"teams" forKey:@"name"];
-    [setting setValue:@"1" forKey:@"data"];
+    [setting setValue:jb_MAPSETTINGS_TEAMS forKey:jbID];
+    [setting setValue:jb_MAPSETTINGS_TEAMS forKey:jbNAME];
+    [setting setValue:@"1" forKey:jb_MAPSETTINGS_DATA];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:@"hero restitution" forKey:@"ID"];
-    [setting setValue:@"hero restitution" forKey:@"name"];
-    [setting setValue:@"0.15" forKey:@"data"];
+    [setting setValue:jb_MAPSETTINGS_HERO_RESTITUTION forKey:jbID];
+    [setting setValue:jb_MAPSETTINGS_HERO_RESTITUTION forKey:jbNAME];
+    [setting setValue:@"0.15" forKey:jb_MAPSETTINGS_DATA];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:@"hero acceleration" forKey:@"ID"];
-    [setting setValue:@"hero acceleration" forKey:@"name"];
-    [setting setValue:@"10" forKey:@"data"];
+    [setting setValue:jb_MAPSETTINGS_HERO_ACCELERATION forKey:jbID];
+    [setting setValue:jb_MAPSETTINGS_HERO_ACCELERATION forKey:jbNAME];
+    [setting setValue:@"10" forKey:jb_MAPSETTINGS_DATA];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:@"hero maximum speed" forKey:@"ID"];
-    [setting setValue:@"hero maximum speed" forKey:@"name"];
-    [setting setValue:@"5" forKey:@"data"];
+    [setting setValue:jb_MAPSETTINGS_HERO_MAXIMUM_SPEED forKey:jbID];
+    [setting setValue:jb_MAPSETTINGS_HERO_MAXIMUM_SPEED forKey:jbNAME];
+    [setting setValue:@"5" forKey:jb_MAPSETTINGS_DATA];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:@"ctf" forKey:@"ID"];
-    [setting setValue:@"capture the flag" forKey:@"name"];
-    [setting setValue:@"NO" forKey:@"data"];
+    [setting setValue:jb_MAPSETTINGS_CAPTURE_THE_FLAG forKey:jbID];
+    [setting setValue:jb_MAPSETTINGS_CAPTURE_THE_FLAG forKey:jbNAME];
+    [setting setValue:@"NO" forKey:jb_MAPSETTINGS_DATA];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:@"soccer" forKey:@"ID"];
-    [setting setValue:@"soccer" forKey:@"name"];
-    [setting setValue:@"NO" forKey:@"data"];
+    [setting setValue:jb_MAPSETTINGS__SOCCER forKey:jbID];
+    [setting setValue:jb_MAPSETTINGS__SOCCER forKey:jbNAME];
+    [setting setValue:@"NO" forKey:jb_MAPSETTINGS_DATA];
 
     
     // standard team deathmatch settings
     
     define = [NSMutableDictionary dictionary];
     [defines addObject:define];
-    [define setValue:@"team death match" forKey:@"ID"];
-    [define setValue:@"team death match" forKey:@"name"];
+    [define setValue:@"team death match" forKey:jbID];
+    [define setValue:@"team death match" forKey:jbNAME];
     settings = [NSMutableArray array];
-    [define setValue:settings  forKey:@"settings"];
+    [define setValue:settings  forKey:jb_MAPSETTINGS_SETTINGS];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:@"gravitation" forKey:@"ID"];
-    [setting setValue:@"gravitation" forKey:@"name"];
-    [setting setValue:NSStringFromCGPoint(CGPointMake(0, -10)) forKey:@"data"];
+    [setting setValue:jb_MAPSETTINGS_DATA forKey:jbID];
+    [setting setValue:jb_MAPSETTINGS_DATA forKey:jbNAME];
+    [setting setValue:NSStringFromCGPoint(CGPointMake(0, -10)) forKey:jb_MAPSETTINGS_DATA];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:@"solid friction" forKey:@"ID"];
-    [setting setValue:@"solid friction" forKey:@"name"];
-    [setting setValue:@"0.4" forKey:@"data"];
+    [setting setValue:jb_MAPSETTINGS_SOLIDFRICTION forKey:jbID];
+    [setting setValue:jb_MAPSETTINGS_SOLIDFRICTION forKey:jbNAME];
+    [setting setValue:@"0.4" forKey:jb_MAPSETTINGS_DATA];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:@"teams" forKey:@"ID"];
-    [setting setValue:@"teams" forKey:@"name"];
-    [setting setValue:@"2" forKey:@"data"];
+    [setting setValue:jb_MAPSETTINGS_TEAMS forKey:jbID];
+    [setting setValue:jb_MAPSETTINGS_TEAMS forKey:jbNAME];
+    [setting setValue:@"2" forKey:jb_MAPSETTINGS_DATA];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:@"hero restitution" forKey:@"ID"];
-    [setting setValue:@"hero restitution" forKey:@"name"];
-    [setting setValue:@"0.05" forKey:@"data"];
+    [setting setValue:jb_MAPSETTINGS_HERO_RESTITUTION forKey:jbID];
+    [setting setValue:jb_MAPSETTINGS_HERO_RESTITUTION forKey:jbNAME];
+    [setting setValue:@"0.05" forKey:jb_MAPSETTINGS_DATA];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:@"hero acceleration" forKey:@"ID"];
-    [setting setValue:@"hero acceleration" forKey:@"name"];
-    [setting setValue:@"10" forKey:@"data"];
+    [setting setValue:jb_MAPSETTINGS_HERO_ACCELERATION forKey:jbID];
+    [setting setValue:jb_MAPSETTINGS_HERO_ACCELERATION forKey:jbNAME];
+    [setting setValue:@"10" forKey:jb_MAPSETTINGS_DATA];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:@"hero maximum speed" forKey:@"ID"];
-    [setting setValue:@"hero maximum speed" forKey:@"name"];
-    [setting setValue:@"5" forKey:@"data"];
+    [setting setValue:jb_MAPSETTINGS_HERO_MAXIMUM_SPEED forKey:jbID];
+    [setting setValue:jb_MAPSETTINGS_HERO_MAXIMUM_SPEED forKey:jbNAME];
+    [setting setValue:@"5" forKey:jb_MAPSETTINGS_DATA];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:@"ctf" forKey:@"ID"];
-    [setting setValue:@"capture the flag" forKey:@"name"];
-    [setting setValue:@"NO" forKey:@"data"];
+    [setting setValue:jb_MAPSETTINGS_CAPTURE_THE_FLAG forKey:jbID];
+    [setting setValue:jb_MAPSETTINGS_CAPTURE_THE_FLAG forKey:jbNAME];
+    [setting setValue:@"NO" forKey:jb_MAPSETTINGS_DATA];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:@"soccer" forKey:@"ID"];
-    [setting setValue:@"soccer" forKey:@"name"];
-    [setting setValue:@"NO" forKey:@"data"];
+    [setting setValue:jb_MAPSETTINGS__SOCCER forKey:jbID];
+    [setting setValue:jb_MAPSETTINGS__SOCCER forKey:jbNAME];
+    [setting setValue:@"NO" forKey:jb_MAPSETTINGS_DATA];
 
     
     // standard capture the flag
     
     define = [NSMutableDictionary dictionary];
     [defines addObject:define];
-    [define setValue:@"team capture the flag" forKey:@"ID"];
-    [define setValue:@"team capture the flag" forKey:@"name"];
+    [define setValue:@"team capture the flag" forKey:jbID];
+    [define setValue:@"team capture the flag" forKey:jbNAME];
     settings = [NSMutableArray array];
-    [define setValue:settings  forKey:@"settings"];
+    [define setValue:settings  forKey:jb_MAPSETTINGS_SETTINGS];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:@"gravitation" forKey:@"ID"];
-    [setting setValue:@"gravitation" forKey:@"name"];
-    [setting setValue:NSStringFromCGPoint(CGPointMake(0, -10)) forKey:@"data"];
+    [setting setValue:jb_MAPSETTINGS_DATA forKey:jbID];
+    [setting setValue:jb_MAPSETTINGS_DATA forKey:jbNAME];
+    [setting setValue:NSStringFromCGPoint(CGPointMake(0, -10)) forKey:jb_MAPSETTINGS_DATA];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:@"solid friction" forKey:@"ID"];
-    [setting setValue:@"solid friction" forKey:@"name"];
-    [setting setValue:@"0.4" forKey:@"data"];
+    [setting setValue:jb_MAPSETTINGS_SOLIDFRICTION forKey:jbID];
+    [setting setValue:jb_MAPSETTINGS_SOLIDFRICTION forKey:jbNAME];
+    [setting setValue:@"0.4" forKey:jb_MAPSETTINGS_DATA];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:@"teams" forKey:@"ID"];
-    [setting setValue:@"teams" forKey:@"name"];
-    [setting setValue:@"2" forKey:@"data"];
+    [setting setValue:jb_MAPSETTINGS_TEAMS forKey:jbID];
+    [setting setValue:jb_MAPSETTINGS_TEAMS forKey:jbNAME];
+    [setting setValue:@"2" forKey:jb_MAPSETTINGS_DATA];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:@"hero restitution" forKey:@"ID"];
-    [setting setValue:@"hero restitution" forKey:@"name"];
-    [setting setValue:@"0.05" forKey:@"data"];
+    [setting setValue:jb_MAPSETTINGS_HERO_RESTITUTION forKey:jbID];
+    [setting setValue:jb_MAPSETTINGS_HERO_RESTITUTION forKey:jbNAME];
+    [setting setValue:@"0.05" forKey:jb_MAPSETTINGS_DATA];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:@"hero acceleration" forKey:@"ID"];
-    [setting setValue:@"hero acceleration" forKey:@"name"];
-    [setting setValue:@"10" forKey:@"data"];
+    [setting setValue:jb_MAPSETTINGS_HERO_ACCELERATION forKey:jbID];
+    [setting setValue:jb_MAPSETTINGS_HERO_ACCELERATION forKey:jbNAME];
+    [setting setValue:@"10" forKey:jb_MAPSETTINGS_DATA];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:@"hero maximum speed" forKey:@"ID"];
-    [setting setValue:@"hero maximum speed" forKey:@"name"];
-    [setting setValue:@"5" forKey:@"data"];
+    [setting setValue:jb_MAPSETTINGS_HERO_MAXIMUM_SPEED forKey:jbID];
+    [setting setValue:jb_MAPSETTINGS_HERO_MAXIMUM_SPEED forKey:jbNAME];
+    [setting setValue:@"5" forKey:jb_MAPSETTINGS_DATA];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:@"ctf" forKey:@"ID"];
-    [setting setValue:@"capture the flag" forKey:@"name"];
-    [setting setValue:@"YES" forKey:@"data"];
+    [setting setValue:jb_MAPSETTINGS_CAPTURE_THE_FLAG forKey:jbID];
+    [setting setValue:jb_MAPSETTINGS_CAPTURE_THE_FLAG forKey:jbNAME];
+    [setting setValue:@"YES" forKey:jb_MAPSETTINGS_DATA];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:@"soccer" forKey:@"ID"];
-    [setting setValue:@"soccer" forKey:@"name"];
-    [setting setValue:@"NO" forKey:@"data"];
+    [setting setValue:jb_MAPSETTINGS__SOCCER forKey:jbID];
+    [setting setValue:jb_MAPSETTINGS__SOCCER forKey:jbNAME];
+    [setting setValue:@"NO" forKey:jb_MAPSETTINGS_DATA];
     
     // standard soccer
     
     define = [NSMutableDictionary dictionary];
     [defines addObject:define];
-    [define setValue:@"soccer" forKey:@"ID"];
-    [define setValue:@"soccer" forKey:@"name"];
+    [define setValue:@"soccer" forKey:jbID];
+    [define setValue:@"soccer" forKey:jbNAME];
     settings = [NSMutableArray array];
-    [define setValue:settings  forKey:@"settings"];
+    [define setValue:settings  forKey:jb_MAPSETTINGS_SETTINGS];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:@"gravitation" forKey:@"ID"];
-    [setting setValue:@"gravitation" forKey:@"name"];
-    [setting setValue:NSStringFromCGPoint(CGPointMake(0, -10)) forKey:@"data"];
+    [setting setValue:jb_MAPSETTINGS_DATA forKey:jbID];
+    [setting setValue:jb_MAPSETTINGS_DATA forKey:jbNAME];
+    [setting setValue:NSStringFromCGPoint(CGPointMake(0, -10)) forKey:jb_MAPSETTINGS_DATA];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:@"solid friction" forKey:@"ID"];
-    [setting setValue:@"solid friction" forKey:@"name"];
-    [setting setValue:@"0.4" forKey:@"data"];
+    [setting setValue:jb_MAPSETTINGS_SOLIDFRICTION forKey:jbID];
+    [setting setValue:jb_MAPSETTINGS_SOLIDFRICTION forKey:jbNAME];
+    [setting setValue:@"0.4" forKey:jb_MAPSETTINGS_DATA];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:@"teams" forKey:@"ID"];
-    [setting setValue:@"teams" forKey:@"name"];
-    [setting setValue:@"2" forKey:@"data"];
+    [setting setValue:jb_MAPSETTINGS_TEAMS forKey:jbID];
+    [setting setValue:jb_MAPSETTINGS_TEAMS forKey:jbNAME];
+    [setting setValue:@"2" forKey:jb_MAPSETTINGS_DATA];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:@"hero restitution" forKey:@"ID"];
-    [setting setValue:@"hero restitution" forKey:@"name"];
-    [setting setValue:@"0.05" forKey:@"data"];
+    [setting setValue:jb_MAPSETTINGS_HERO_RESTITUTION forKey:jbID];
+    [setting setValue:jb_MAPSETTINGS_HERO_RESTITUTION forKey:jbNAME];
+    [setting setValue:@"0.05" forKey:jb_MAPSETTINGS_DATA];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:@"hero acceleration" forKey:@"ID"];
-    [setting setValue:@"hero acceleration" forKey:@"name"];
-    [setting setValue:@"10" forKey:@"data"];
+    [setting setValue:jb_MAPSETTINGS_HERO_ACCELERATION forKey:jbID];
+    [setting setValue:jb_MAPSETTINGS_HERO_ACCELERATION forKey:jbNAME];
+    [setting setValue:@"10" forKey:jb_MAPSETTINGS_DATA];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:@"hero maximum speed" forKey:@"ID"];
-    [setting setValue:@"hero maximum speed" forKey:@"name"];
-    [setting setValue:@"5" forKey:@"data"];
+    [setting setValue:jb_MAPSETTINGS_HERO_MAXIMUM_SPEED forKey:jbID];
+    [setting setValue:jb_MAPSETTINGS_HERO_MAXIMUM_SPEED forKey:jbNAME];
+    [setting setValue:@"5" forKey:jb_MAPSETTINGS_DATA];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:@"ctf" forKey:@"ID"];
-    [setting setValue:@"capture the flag" forKey:@"name"];
-    [setting setValue:@"NO" forKey:@"data"];
+    [setting setValue:jb_MAPSETTINGS_CAPTURE_THE_FLAG forKey:jbID];
+    [setting setValue:jb_MAPSETTINGS_CAPTURE_THE_FLAG forKey:jbNAME];
+    [setting setValue:@"NO" forKey:jb_MAPSETTINGS_DATA];
     
     setting = [NSMutableDictionary dictionary];
     [settings addObject:setting];
-    [setting setValue:@"soccer" forKey:@"ID"];
-    [setting setValue:@"soccer" forKey:@"name"];
-    [setting setValue:@"YES" forKey:@"data"];
+    [setting setValue:jb_MAPSETTINGS__SOCCER forKey:jbID];
+    [setting setValue:jb_MAPSETTINGS__SOCCER forKey:jbNAME];
+    [setting setValue:@"YES" forKey:jb_MAPSETTINGS_DATA];
     
     return [defines autorelease];
 }
