@@ -38,7 +38,7 @@
 
 - (JBHero*)getPlayerWithReference:(char)reference {
     for (JBHero *hero in [self.heroesInTavern allValues]) {
-        if (hero.reference == reference) {
+        if (hero.playerID == reference) {
             return hero;
         }
     }

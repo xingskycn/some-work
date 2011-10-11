@@ -18,11 +18,9 @@
 @protocol JBMultiplayerAdapterPregameDelegate <NSObject>
 
 - (void)newPlayerAnnounced:(JBHero *)hero;
-- (JBHero *)requestPlayerAnnouncement:(NSString *)playerID;
 - (void)playerDisconnected:(JBHero *)hero;
-- (void)player:(JBHero *)hero didReadyChange:(BOOL)ready;
+- (void)player:(NSString *)playerID didReadyChange:(BOOL)ready;
 - (void)playerDidStartGame:(JBHero *)hero;
-
 
 @end
 
@@ -68,5 +66,6 @@
 //		User started the game
 - (void)sendGameStartedByPlayer:(NSString *)playerID;
 
+- (void)sendPlayerReadyChange:(BOOL)ready;
 
 @end

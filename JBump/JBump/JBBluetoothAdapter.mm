@@ -123,12 +123,27 @@
 
 #pragma GAME SETUP --- INCOMMING
 
+- (void)sendPlayerReadyChange:(BOOL)ready
+{
+    NSString* sendString = 
+	[NSString stringWithFormat:	@"|PRC:%d|%d|%@",
+     super.tavern.localPlayer.playerID,ready]; 
+	
+	NSData* sendData = [sendString dataUsingEncoding:NSUTF8StringEncoding];
+	if (self.activePeer) {
+		[self.gameSession sendData:sendData
+						   toPeers:[NSArray arrayWithObject:self.activePeer] 
+					  withDataMode:GKSendDataUnreliable 
+							 error:nil];
+	}
+
+}
 
 - (void)announcePlayerWithNewID:(BOOL)newIDRequest
 {
 	if (newIDRequest) {
 		char randomID = rand()*0.999/RAND_MAX * (255);
-		super.tavern.localPlayer.reference = randomID;
+		super.tavern.localPlayer.playerID = randomID;
 	}
 	
 	// New Player Announcement
@@ -136,8 +151,8 @@
 	// 2nd Position to provide GameContext
 	// 3rd Position to send playername
 	NSString* sendString = 
-	[NSString stringWithFormat:	@"|NPA:%03d|%@|%@",
-     super.tavern.localPlayer.reference,
+	[NSString stringWithFormat:	@"|NPA:%d|%@|%@",
+     super.tavern.localPlayer.playerID,
      [jsonWriter stringWithObject:super.tavern.localPlayer.gameContext],
      super.tavern.localPlayer.name]; 
 	
@@ -154,8 +169,8 @@
 {
 	//Player DisCoNnected
 	NSString* sendString = 
-	[NSString stringWithFormat:	@"|DCN:%03d",
-        super.tavern.localPlayer.reference,
+	[NSString stringWithFormat:	@"|DCN:%d",
+        super.tavern.localPlayer.playerID,
         super.tavern.localPlayer.name]; 
 	
 	NSData* sendData = [sendString dataUsingEncoding:NSUTF8StringEncoding];
@@ -173,7 +188,7 @@
 {
 	//Player Announcement Request
 	NSString* sendString = 
-	[NSString stringWithFormat:	@"|PAR:%03d",[playerID intValue]];
+	[NSString stringWithFormat:	@"|PAR:%d",[playerID intValue]];
 	
 	NSData* sendData = [sendString dataUsingEncoding:NSUTF8StringEncoding];
 	if (self.activePeer) {
@@ -191,8 +206,8 @@
 	// 2nd new gamecontext
 	
 	NSString* sendString = 
-	[NSString stringWithFormat:	@"|PGC:%03d|%@",
-     super.tavern.localPlayer.reference,
+	[NSString stringWithFormat:	@"|PGC:%d|%@",
+     super.tavern.localPlayer.playerID,
      super.tavern.localPlayer.gameContext];
 	
 	NSData* sendData = [sendString dataUsingEncoding:NSUTF8StringEncoding];
@@ -212,9 +227,9 @@
 	// 2nd Killed
 	
 	NSString* sendString = 
-	[NSString stringWithFormat:	@"|PKC:%03d|%03d",
-     super.tavern.localPlayer.reference,
-     player.reference];
+	[NSString stringWithFormat:	@"|PKC:%d|%d",
+     super.tavern.localPlayer.playerID,
+     player.playerID];
 	
 	NSData* sendData = [sendString dataUsingEncoding:NSUTF8StringEncoding];
 	if (self.activePeer) {
@@ -231,9 +246,9 @@
     
 	void* sendField = malloc(sizeof(int)+sizeof(short)*2+sizeof(char)*2);
  	((int*)sendField)[0]=player.packageNr++<<8;
-	((char*)sendField)[0]=player.reference;
-	((short *)sendField)[2]=player.body->GetWorldCenter().x;
-	((short *)sendField)[3]=player.body->GetWorldCenter().y;
+	((char*)sendField)[0]=player.playerID;
+	((short *)sendField)[2]=player.body->GetWorldCenter().x*32;
+	((short *)sendField)[3]=player.body->GetWorldCenter().y*32;
 	((char *)sendField)[8]=player.body->GetLinearVelocity().x*255./20.;
 	((char *)sendField)[9]=player.body->GetLinearVelocity().y*255./20.;
     
@@ -254,11 +269,27 @@
 	if ([inputString hasPrefix:@"|NPA:"]) {
         NSString* announcement = [inputString substringWithRange:NSMakeRange(4,inputString.length-4)];
         NSArray* parts = [announcement componentsSeparatedByString:@"|"];
-        char playerID = [[parts objectAtIndex:0] charValue];
+        char playerID = [[parts objectAtIndex:0] intValue];
         NSString* playerName = [parts objectAtIndex:1];
         NSDictionary* gameContext = [jsonParser objectWithString:[parts objectAtIndex:2]];
         
 		[self.preGameDelegate newPlayerAnnounced:nil];
+        return TRUE;
+	}else {
+		return FALSE;
+	}
+}
+
+- (BOOL)handlePlayerReadyChange:(NSString *)inputString
+{
+	if ([inputString hasPrefix:@"|PRC:"]) {
+        NSString* announcement = [inputString substringWithRange:NSMakeRange(4,inputString.length-4)];
+        NSArray* parts = [announcement componentsSeparatedByString:@"|"];
+        //char playerID = [[parts objectAtIndex:0] intValue];
+        BOOL ready = [[parts objectAtIndex:1] intValue];
+        
+        [preGameDelegate player:[parts objectAtIndex:0] didReadyChange:ready];
+    
         return TRUE;
 	}else {
 		return FALSE;
@@ -294,12 +325,38 @@
 {
 	if ([inputString hasPrefix:@"|PGC:"]) {
 		NSString* announcement = [inputString substringWithRange:NSMakeRange(4,inputString.length-4)];
-        char playerID = [announcement intValue];
+        NSArray* parts = [announcement componentsSeparatedByString:@"|"];
+        char playerID = [[parts objectAtIndex:0] charValue];
+        NSDictionary* gameContext = [jsonParser objectWithString:[parts objectAtIndex:1]];
         
         return TRUE;
     }else{
         return FALSE;
     }
+}
+
+- (BOOL)handlePlayerKilledByPlayer:(NSString *)inputString
+{
+	if ([inputString hasPrefix:@"|PGC:"]) {
+		NSString* announcement = [inputString substringWithRange:NSMakeRange(4,inputString.length-4)];
+        NSArray* parts = [announcement componentsSeparatedByString:@"|"];
+        char killedPlayerID = [[parts objectAtIndex:0] charValue];
+        char killingPlayerID = [[parts objectAtIndex:1] charValue];
+        
+        
+        return TRUE;
+    }else{
+        return FALSE;
+    }
+}
+
+- (void)handlePlayerPositionUpdates:(NSData *)data
+{
+	unsigned char playerID = ((char *)[data bytes])[0];
+	int packageNr = ((char *)[data bytes])[0]>>8;
+	CGPoint position = CGPointMake(((short *)[data bytes])[2]/32.0f, ((short *)[data bytes])[3]/32.0f);
+    float velocityX = ((char *)[data bytes])[8]*20.f/255.f;
+    float velocityY = ((char *)[data bytes])[9]*20.f/255.f;
 }
 
 
