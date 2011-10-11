@@ -127,7 +127,7 @@
 {
     NSString* sendString = 
 	[NSString stringWithFormat:	@"|PRC:%d|%d|%@",
-     super.tavern.localPlayer.reference,ready]; 
+     super.tavern.localPlayer.playerID,ready]; 
 	
 	NSData* sendData = [sendString dataUsingEncoding:NSUTF8StringEncoding];
 	if (self.activePeer) {
@@ -143,7 +143,7 @@
 {
 	if (newIDRequest) {
 		char randomID = rand()*0.999/RAND_MAX * (255);
-		super.tavern.localPlayer.reference = randomID;
+		super.tavern.localPlayer.playerID = randomID;
 	}
 	
 	// New Player Announcement
@@ -152,7 +152,7 @@
 	// 3rd Position to send playername
 	NSString* sendString = 
 	[NSString stringWithFormat:	@"|NPA:%d|%@|%@",
-     super.tavern.localPlayer.reference,
+     super.tavern.localPlayer.playerID,
      [jsonWriter stringWithObject:super.tavern.localPlayer.gameContext],
      super.tavern.localPlayer.name]; 
 	
@@ -170,7 +170,7 @@
 	//Player DisCoNnected
 	NSString* sendString = 
 	[NSString stringWithFormat:	@"|DCN:%d",
-        super.tavern.localPlayer.reference,
+        super.tavern.localPlayer.playerID,
         super.tavern.localPlayer.name]; 
 	
 	NSData* sendData = [sendString dataUsingEncoding:NSUTF8StringEncoding];
@@ -207,7 +207,7 @@
 	
 	NSString* sendString = 
 	[NSString stringWithFormat:	@"|PGC:%d|%@",
-     super.tavern.localPlayer.reference,
+     super.tavern.localPlayer.playerID,
      super.tavern.localPlayer.gameContext];
 	
 	NSData* sendData = [sendString dataUsingEncoding:NSUTF8StringEncoding];
@@ -228,8 +228,8 @@
 	
 	NSString* sendString = 
 	[NSString stringWithFormat:	@"|PKC:%d|%d",
-     super.tavern.localPlayer.reference,
-     player.reference];
+     super.tavern.localPlayer.playerID,
+     player.playerID];
 	
 	NSData* sendData = [sendString dataUsingEncoding:NSUTF8StringEncoding];
 	if (self.activePeer) {
@@ -246,7 +246,7 @@
     
 	void* sendField = malloc(sizeof(int)+sizeof(short)*2+sizeof(char)*2);
  	((int*)sendField)[0]=player.packageNr++<<8;
-	((char*)sendField)[0]=player.reference;
+	((char*)sendField)[0]=player.playerID;
 	((short *)sendField)[2]=player.body->GetWorldCenter().x*32;
 	((short *)sendField)[3]=player.body->GetWorldCenter().y*32;
 	((char *)sendField)[8]=player.body->GetLinearVelocity().x*255./20.;

@@ -8,9 +8,20 @@
 
 #import "JBMultiplayerAdapter.h"
 #import "JBHero.h"
+#import "JBTavern.h"
 
 @implementation JBMultiplayerAdapter
 @synthesize tavern;
+
+- (id)init {
+    self = [super init];
+    
+    if (self) {
+        self.tavern = [[JBTavern alloc] init];
+    }
+    
+    return self;
+}
 
 - (void)sendPlayer:(JBHero *)player{
     NSLog(@"%@ Not Yet Implemented?",_cmd);
@@ -51,6 +62,11 @@
 - (void)sendPlayerReadyChange:(BOOL)ready
 {
     NSLog(@"%@ Not Yet Implemented?",_cmd);
+}
+
+- (void)dealloc {
+    self.tavern = nil;
+    [super dealloc];
 }
 
 @end

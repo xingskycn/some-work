@@ -13,7 +13,7 @@
 
 @synthesize name;
 @synthesize skinID;
-@synthesize reference;
+@synthesize playerID;
 @synthesize gameContext;
 @synthesize sprite;
 @synthesize friction, restitution;
@@ -37,6 +37,19 @@
         isLeft=YES;
         isRight=NO;
         jumpTouched=NO;
+    }
+    
+    return self;
+}
+
+- (id)initWithPlayerId:(char)aPlayerID playerName:(NSString *)playerName gameContext:(NSDictionary *)context {
+    self = [self init];
+    
+    if (self) {
+        self.playerID = aPlayerID;
+        self.name = playerName;
+        
+        self.gameContext = context;
     }
     
     return self;
