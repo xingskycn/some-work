@@ -21,7 +21,7 @@
 @property (nonatomic, retain) NSString* skinID;
 @property (nonatomic, retain) NSDictionary* gameContext;
 @property (assign) int packageNr;
-@property (assign) char reference;
+@property (assign) char playerID;
 
 
 @property(nonatomic,retain) CCSprite *sprite;
@@ -39,6 +39,7 @@
 
 @property(assign)float desiredRotation;
 
+- (id)initWithPlayerId:(char)aPlayerID playerName:(NSString*)name gameContext:(NSDictionary*)context;
 - (void)jump:(float)time timeOnGround:(float)playerTimeOnGround;
 - (void)moveLeft:(float)time;
 - (void)moveRight:(float)time;

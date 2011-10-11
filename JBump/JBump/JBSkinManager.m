@@ -59,7 +59,6 @@ static NSString *filePath = @"skins";
     [NSMutableDictionary dictionaryWithContentsOfFile:[path stringByAppendingPathComponent:jbINFO]];
     UIImage* skinImage = [UIImage imageWithContentsOfFile:[path stringByAppendingPathComponent:jbIMAGE]];
     UIImage* thumbImage = [UIImage imageWithContentsOfFile:[path stringByAppendingPathComponent:jbTHUMBNAIL]];
-    
     if (dict && skinImage) {
         [dict setObject:skinImage forKey:jbIMAGE];
     }

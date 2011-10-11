@@ -322,7 +322,8 @@ public:
 {
     player = [[JBHero alloc] init];
     player.name = [[NSUserDefaults standardUserDefaults] objectForKey:jbUSERDEFAULTS_PLAYER_NAME];
-    JBSkin *heroSkin = [JBSkinManager getSkinWithID:[[NSUserDefaults standardUserDefaults] objectForKey:jbUSERDEFAULTS_SKIN]];
+    player.skinID = [[NSUserDefaults standardUserDefaults] objectForKey:jbUSERDEFAULTS_SKIN];
+    JBSkin *heroSkin = [JBSkinManager getSkinWithID:player.skinID];
     player.sprite = [CCSprite spriteWithFile:heroSkin.imageLocation];
     player.sprite.scale=(30.0/player.sprite.textureRect.size.height);
     [self addChild:player.sprite z:0 tag:[player.name hash]];

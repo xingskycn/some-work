@@ -21,6 +21,7 @@
         self.heroesInTavern = [NSMutableDictionary dictionary];
         self.localPlayer = [[JBHero alloc] init];
         self.localPlayer.name = [[NSUserDefaults standardUserDefaults] objectForKey:jbUSERDEFAULTS_PLAYER_NAME];
+        self.localPlayer.skinID = [[NSUserDefaults standardUserDefaults] objectForKey:jbUSERDEFAULTS_SKIN];
         [self.heroesInTavern setObject:self.localPlayer forKey:self.localPlayer.name];
     }
     
