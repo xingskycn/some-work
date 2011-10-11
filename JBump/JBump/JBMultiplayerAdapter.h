@@ -8,6 +8,39 @@
 
 #import <Foundation/Foundation.h>
 
+#import "cocos2d.h"
+
+@class JBHero;
+
 @interface JBMultiplayerAdapter : NSObject
+
+//		Method to send the player position to others
+- (void)sendPlayer:(JBHero *)player;
+
+//		Tells the network about the new player
+//		If newIDRequest ist TRUE, a new chrID will be generated
+- (void)announcePlayerWithNewID:(BOOL)newIDRequest;
+
+//		Tells the network that the player will disconnect
+- (void)disconnectPlayer;
+
+//		Asks the network for player information
+- (void)requestForPlayerAnnouncement:(NSString *)playerID;
+
+//		Tells the network that the player died, killed by player
+- (void)playerKilledByChar:(JBHero *)player;
+
+//		Tells the network that the player context did change
+- (void)shoutPlayer:(JBHero*)player GameContextChange:(NSDictionary *)context;
+
+//		User selected a new map to play
+- (void)sendNewMapID:(NSString *)mapID;
+
+//		User changed his ready state in pregameview
+- (void)sendPlayer:(NSString *)playerName readyChange:(NSString *)ready;
+
+//		User started the game
+- (void)sendGameStartedByPlayer:(NSString *)playerName;
+
 
 @end
