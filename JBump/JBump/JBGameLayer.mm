@@ -51,7 +51,7 @@ public:
                     if (contact->GetFixtureA()->GetBody()->GetLinearVelocity().y>0.0f) {
                         contact->SetEnabled(false);
                     }
-                    [player.sprite setRotation:0];
+                    //[player.sprite setRotation:0];
                 }
             }
             
@@ -71,7 +71,7 @@ public:
                     if (contact->GetFixtureB()->GetBody()->GetLinearVelocity().y>0.0f) {
                         contact->SetEnabled(false);
                     }
-                    [player.sprite setRotation:0];
+                    //[player.sprite setRotation:0];
                 }
             }
         }
@@ -214,6 +214,10 @@ public:
             player.sprite.rotation=player.sprite.rotation/1.14;
         }
     }
+    if (player.body->GetLinearVelocity().y>6.5f) {
+        player.body->SetLinearVelocity(b2Vec2(player.body->GetLinearVelocity().x, 6.5f));
+    }
+
 }
 
 - (void)insertCurves:(NSArray *)objects

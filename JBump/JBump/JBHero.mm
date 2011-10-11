@@ -45,12 +45,16 @@
 - (void)jump:(float)time timeOnGround:(float)playerTimeOnGround {
     if(onGround && !jumpTouched) {
         jumpForce=1.0f;
-        body->ApplyForce(b2Vec2(0, (80*time*60*jumpForce)), body->GetLocalCenter());
-    }else {
-        jumpForce=jumpForce*exp(log(0.985)*time*1000);
-        body->ApplyForce(b2Vec2(0, (80*time*60*jumpForce)), body->GetLocalCenter());
+        if (body->GetLinearVelocity().y<6.5f) {
+            body->ApplyForce(b2Vec2(0, (42*time*60*jumpForce)), body->GetLocalCenter());
+        }
+           }else {
+        jumpForce=jumpForce*exp(log(0.990)*time*1000);
+        if (body->GetLinearVelocity().y<6.5f) {
+            body->ApplyForce(b2Vec2(0, (42*time*60*jumpForce)), body->GetLocalCenter());
+        }
     }
-    
+    NSLog(@"Actual jumpForce: %f and actual velocity: %f", jumpForce, body->GetLinearVelocity().y);
 }
 
 - (void)moveLeft:(float)time {
