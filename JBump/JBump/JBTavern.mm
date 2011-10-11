@@ -24,7 +24,7 @@
         self.localPlayer.skinID = [[NSUserDefaults standardUserDefaults] objectForKey:jbUSERDEFAULTS_SKIN];
         [self.localPlayer.gameContext setObject:self.localPlayer.skinID forKey:jbGAMECONTEXT_SKIN_ID];
         
-        [self.heroesInTavern setObject:self.localPlayer forKey:self.localPlayer.name];
+        //[self.heroesInTavern setObject:self.localPlayer forKey:self.localPlayer.name];
     }
     
     return self;
