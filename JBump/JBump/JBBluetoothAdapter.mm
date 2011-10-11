@@ -94,15 +94,15 @@
     return session;
 }
 
-- (void)peerPickerController:(GKPeerPickerController *)picker didConnectPeer:(NSString *)peerID toSession: (GKSession *) session {
+- (void)peerPickerController:(GKPeerPickerController *)picker didConnectPeer:(NSString *)peerID toSession:(GKSession *)session
+{
     self.gameSession = session;
     session.delegate = self;
-    [session setDataReceiveHandler: self withContext:nil];
+    [session setDataReceiveHandler:self withContext:nil];
     picker.delegate = nil;
     [picker dismiss];
     [picker autorelease];
-	
-	[creator performSelector:selector];
+
 	
 	
 }
@@ -150,8 +150,8 @@
 	NSString* sendString = 
 	[NSString stringWithFormat:	@"|NPA:%d|%@|%@",
      super.tavern.localPlayer.playerID,
-     [jsonWriter stringWithObject:super.tavern.localPlayer.gameContext],
-     super.tavern.localPlayer.name]; 
+     super.tavern.localPlayer.name,
+     [jsonWriter stringWithObject:super.tavern.localPlayer.gameContext]]; 
 	
 	NSData* sendData = [sendString dataUsingEncoding:NSUTF8StringEncoding];
 	if (self.activePeer) {
@@ -269,7 +269,8 @@
         char playerID = [[parts objectAtIndex:0] intValue];
         NSString* playerName = [parts objectAtIndex:1];
         NSDictionary* gameContext = [jsonParser objectWithString:[parts objectAtIndex:2]];
-        
+        JBHero* player = [[[JBHero alloc] initWithPlayerId:playerID playerName:playerName gameContext:gameContext] autorelease];
+        [super.tavern addNewPlayer:player];
 		[self.preGameDelegate newPlayerAnnounced:nil];
         return TRUE;
 	}else {
@@ -354,9 +355,10 @@
 	CGPoint position = CGPointMake(((short *)[data bytes])[2]/32.0f, ((short *)[data bytes])[3]/32.0f);
     float velocityX = ((char *)[data bytes])[8]*20.f/255.f;
     float velocityY = ((char *)[data bytes])[9]*20.f/255.f;
+    
 }
 
-- (void) receiveData:(NSData *)data fromPeer:(NSString *)peer inSession: (GKSession *)session context:(void *)context {
+- (void)receiveData:(NSData *)data fromPeer:(NSString *)peer inSession: (GKSession *)session context:(void *)context {
     NSString* inputString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     if (inputString) {
         if (![self handlePlayerReadyChange:inputString]) {
@@ -377,6 +379,7 @@
         [self handlePlayerPositionUpdates:data];
     }
 }
+
 
 
 @end

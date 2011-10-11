@@ -29,21 +29,20 @@
 }
 
 - (void)addNewPlayer:(JBHero *)aPlayer {
-    [self.heroesInTavern setObject:aPlayer forKey:aPlayer.name];
+    [self.heroesInTavern setObject:aPlayer forKey:[NSString stringWithFormat:@"%d",aPlayer.playerID]];
 }
 
 - (JBHero*)getPlayerWithName:(NSString *)aPlayerName {
-    return [self.heroesInTavern objectForKey:aPlayerName];
-}
-
-- (JBHero*)getPlayerWithReference:(char)reference {
     for (JBHero *hero in [self.heroesInTavern allValues]) {
-        if (hero.playerID == reference) {
+        if (hero.name == aPlayerName) {
             return hero;
         }
     }
     return nil;
+}
 
+- (JBHero*)getPlayerWithReference:(char)reference {
+    return [self.heroesInTavern objectForKey:[NSString stringWithFormat:@"%d",reference]];
 }
 
 - (NSArray *)getAllPlayers {

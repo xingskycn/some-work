@@ -16,7 +16,6 @@
 
 @interface JBBluetoothAdapter : JBMultiplayerAdapter <GKPeerPickerControllerDelegate,GKSessionDelegate> {
     int datacounter;
-	
 	id creator;
 	SEL selector;
 }
@@ -28,5 +27,5 @@
 @property (nonatomic, retain) SBJsonParser* jsonParser;
 
 - (void)setupConnectionForPreGameViewController:(JBPreGameViewController*)aPreGameDelegate;
-
+- (void)receiveData:(NSData *)data fromPeer:(NSString *)peer inSession: (GKSession *)session context:(void *)context;
 @end
