@@ -131,7 +131,7 @@
 - (void)sendPlayerReadyChange:(BOOL)ready
 {
     NSString* sendString = 
-	[NSString stringWithFormat:	@"|PRC:%d|%d|%@",
+	[NSString stringWithFormat:	@"|PRC:%d|%d",
      super.tavern.localPlayer.playerID,ready]; 
 	
 	NSData* sendData = [sendString dataUsingEncoding:NSUTF8StringEncoding];
@@ -147,8 +147,8 @@
 - (void)announcePlayerWithNewID:(BOOL)newIDRequest
 {
 	if (newIDRequest) {
-        char randomID;
-		while(char randomID = rand()*0.999/RAND_MAX * (255)=='|'){
+        char randomID = rand()*0.999/RAND_MAX * (255);
+		while(randomID == '|'){
             randomID = rand()*0.999/RAND_MAX * (255);
         }
 		super.tavern.localPlayer.playerID = randomID;
@@ -295,7 +295,7 @@
         NSString* announcement = [inputString substringWithRange:NSMakeRange(4,inputString.length-4)];
         NSArray* parts = [announcement componentsSeparatedByString:@"|"];
         //char playerID = [[parts objectAtIndex:0] intValue];
-        BOOL ready = [[parts objectAtIndex:1] intValue];
+        BOOL ready = [[parts objectAtIndex:1] boolValue];
         
         [preGameDelegate player:[parts objectAtIndex:0] didReadyChange:ready];
     
