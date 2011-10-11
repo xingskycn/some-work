@@ -37,6 +37,7 @@
         isLeft=YES;
         isRight=NO;
         jumpTouched=NO;
+        self.gameContext = [NSMutableDictionary dictionary];
     }
     
     return self;
@@ -48,8 +49,8 @@
     if (self) {
         self.playerID = aPlayerID;
         self.name = playerName;
-        
-        self.gameContext = context;
+        self.gameContext = [context mutableCopy];
+        self.skinID = [gameContext objectForKey:jbGAMECONTEXT_SKIN_ID];
     }
     
     return self;

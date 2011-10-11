@@ -106,4 +106,9 @@
 #define jbUSERDEFAULTS_PLAYER_NAME_SIZE @"jdPlayerNameSizeValue"
 #define jbUSERDEFAULTS_PLAYER_NAME @"jdPlayerName"
 
+#pragma mark GameContext Keys
+#define jbGAMECONTEXT_SKIN_ID @"skinID"
+#define jbGAMECONTEXT_KILL_COUNT @"killCount"
+#define jbGAMECONTEXT_DEATH_COUNT @"deathCount" 
+
 #endif
