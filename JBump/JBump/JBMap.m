@@ -12,9 +12,9 @@
 
 @implementation JBMap
 
-@synthesize mapName;
-@synthesize mapID;
-@synthesize mapFurther;
+@synthesize name;
+@synthesize ID;
+@synthesize further;
 
 @synthesize backgroundImage;
 @synthesize backgroundImageLocal;
@@ -44,9 +44,9 @@
         self.mapEntities = [NSMutableArray array];
         self.curves = [NSMutableArray array];
         
-        self.mapName = [mapDict objectForKey:jbNAME];
-        self.mapID = [mapDict objectForKey:jbID];
-        self.mapFurther = [mapDict objectForKey:jbFURTHER];
+        self.name = [mapDict objectForKey:jbNAME];
+        self.ID = [mapDict objectForKey:jbID];
+        self.further = [mapDict objectForKey:jbFURTHER];
         
         self.backgroundImage = [mapDict objectForKey:jbBACKGROUNDIMAGE];
         self.backgroundImageLocal = [mapDict objectForKey:jbBACKGROUNDIMAGELOCATION];

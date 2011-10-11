@@ -56,7 +56,7 @@
 		9E4334511442FC43004FA281 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E4334451442FC43004FA281 /* SBJsonWriter.m */; };
 		9E43345C1442FED8004FA281 /* JBWebStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E43345B1442FED7004FA281 /* JBWebStore.m */; };
 		9E613DA41442617E00F92B23 /* JBHero.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9E613DA31442617E00F92B23 /* JBHero.mm */; };
-		9E664FF0144482DF00F2485A /* JBMultiplayerAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E664FEF144482DF00F2485A /* JBMultiplayerAdapter.m */; };
+		9E664FF0144482DF00F2485A /* JBMultiplayerAdapter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9E664FEF144482DF00F2485A /* JBMultiplayerAdapter.mm */; };
 		9E664FF31444833600F2485A /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E664FF21444833600F2485A /* GameKit.framework */; };
 		9E664FF51444836700F2485A /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E664FF41444836700F2485A /* CFNetwork.framework */; };
 		9E664FF81444863300F2485A /* JBPreGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E664FF71444863300F2485A /* JBPreGameViewController.m */; };
@@ -223,7 +223,7 @@
 		9E67F8A51440C689000ED8F0 /* JBNewGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E67F8A41440C689000ED8F0 /* JBNewGameViewController.m */; };
 		9E67F8A81440C6A2000ED8F0 /* JBQuickGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E67F8A71440C6A2000ED8F0 /* JBQuickGameViewController.m */; };
 		9E67F8AE1440CB5B000ED8F0 /* JBAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E67F8AD1440CB5B000ED8F0 /* JBAboutViewController.m */; };
-		9E67F8B61440D4C8000ED8F0 /* JBBluetoothAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E67F8B51440D4C8000ED8F0 /* JBBluetoothAdapter.m */; };
+		9E67F8B61440D4C8000ED8F0 /* JBBluetoothAdapter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9E67F8B51440D4C8000ED8F0 /* JBBluetoothAdapter.mm */; };
 		9E8819CA1440E82600A4E421 /* JBSkin.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E8819C91440E82600A4E421 /* JBSkin.m */; };
 		9E8819CD1440EA9D00A4E421 /* JBSkinManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E8819CC1440EA9D00A4E421 /* JBSkinManager.m */; };
 		9E8819D51440F71900A4E421 /* bird_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E8819CF1440F71900A4E421 /* bird_1.png */; };
@@ -319,10 +319,10 @@
 		9E613DA21442617E00F92B23 /* JBHero.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBHero.h; sourceTree = "<group>"; };
 		9E613DA31442617E00F92B23 /* JBHero.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = JBHero.mm; sourceTree = "<group>"; };
 		9E664FEE144482DE00F2485A /* JBMultiplayerAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBMultiplayerAdapter.h; sourceTree = "<group>"; };
-		9E664FEF144482DF00F2485A /* JBMultiplayerAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBMultiplayerAdapter.m; sourceTree = "<group>"; };
+		9E664FEF144482DF00F2485A /* JBMultiplayerAdapter.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = JBMultiplayerAdapter.mm; sourceTree = "<group>"; };
 		9E664FF21444833600F2485A /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		9E664FF41444836700F2485A /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
-		9E664FF61444863300F2485A /* JBPreGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; path = JBPreGameViewController.h; sourceTree = "<group>"; };
+		9E664FF61444863300F2485A /* JBPreGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBPreGameViewController.h; sourceTree = "<group>"; };
 		9E664FF71444863300F2485A /* JBPreGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBPreGameViewController.m; sourceTree = "<group>"; };
 		9E67F6621440723D000ED8F0 /* JBump.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JBump.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E67F6661440723D000ED8F0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -656,7 +656,7 @@
 		9E67F8AC1440CB5B000ED8F0 /* JBAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBAboutViewController.h; sourceTree = "<group>"; };
 		9E67F8AD1440CB5B000ED8F0 /* JBAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBAboutViewController.m; sourceTree = "<group>"; };
 		9E67F8B41440D4C8000ED8F0 /* JBBluetoothAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBBluetoothAdapter.h; sourceTree = "<group>"; };
-		9E67F8B51440D4C8000ED8F0 /* JBBluetoothAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBBluetoothAdapter.m; sourceTree = "<group>"; };
+		9E67F8B51440D4C8000ED8F0 /* JBBluetoothAdapter.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = JBBluetoothAdapter.mm; sourceTree = "<group>"; };
 		9E8819C81440E82600A4E421 /* JBSkin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBSkin.h; sourceTree = "<group>"; };
 		9E8819C91440E82600A4E421 /* JBSkin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBSkin.m; sourceTree = "<group>"; };
 		9E8819CB1440EA9D00A4E421 /* JBSkinManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBSkinManager.h; sourceTree = "<group>"; };
@@ -1343,9 +1343,9 @@
 			isa = PBXGroup;
 			children = (
 				9E67F8B41440D4C8000ED8F0 /* JBBluetoothAdapter.h */,
-				9E67F8B51440D4C8000ED8F0 /* JBBluetoothAdapter.m */,
+				9E67F8B51440D4C8000ED8F0 /* JBBluetoothAdapter.mm */,
 				9E664FEE144482DE00F2485A /* JBMultiplayerAdapter.h */,
-				9E664FEF144482DF00F2485A /* JBMultiplayerAdapter.m */,
+				9E664FEF144482DF00F2485A /* JBMultiplayerAdapter.mm */,
 			);
 			name = Network;
 			sourceTree = "<group>";
@@ -1685,7 +1685,7 @@
 				9E67F8A51440C689000ED8F0 /* JBNewGameViewController.m in Sources */,
 				9E67F8A81440C6A2000ED8F0 /* JBQuickGameViewController.m in Sources */,
 				9E67F8AE1440CB5B000ED8F0 /* JBAboutViewController.m in Sources */,
-				9E67F8B61440D4C8000ED8F0 /* JBBluetoothAdapter.m in Sources */,
+				9E67F8B61440D4C8000ED8F0 /* JBBluetoothAdapter.mm in Sources */,
 				9E8819CA1440E82600A4E421 /* JBSkin.m in Sources */,
 				9E8819CD1440EA9D00A4E421 /* JBSkinManager.m in Sources */,
 				9E8819DD144109FE00A4E421 /* JBSettingsViewTableViewCell.m in Sources */,
@@ -1719,7 +1719,7 @@
 				6683AAA21443AA8B005D6A22 /* JBMapCreatorSelectionViewController.m in Sources */,
 				6683AAA51443AAA8005D6A22 /* JBMapCreatorSettingsViewController.m in Sources */,
 				6683AAAC1443DA94005D6A22 /* JBMapCreatorSegue.m in Sources */,
-				9E664FF0144482DF00F2485A /* JBMultiplayerAdapter.m in Sources */,
+				9E664FF0144482DF00F2485A /* JBMultiplayerAdapter.mm in Sources */,
 				9E664FF81444863300F2485A /* JBPreGameViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -13,6 +13,9 @@
 
 @implementation JBHero
 
+@synthesize playerName;
+@synthesize skinID;
+
 @synthesize sprite;
 @synthesize friction, restitution;
 @synthesize body;

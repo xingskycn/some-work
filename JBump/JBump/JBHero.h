@@ -17,6 +17,10 @@
     bool isLeft, isRight;
 }
 
+@property (nonatomic, retain) NSString* playerName;
+@property (nonatomic, retain) NSString* skinID;
+
+
 @property(nonatomic,retain) CCSprite *sprite;
 
 @property(assign)float friction;

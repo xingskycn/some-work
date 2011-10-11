@@ -10,9 +10,9 @@
 
 @interface JBMap : NSObject
 
-@property (nonatomic, retain)NSString *mapName;
-@property (nonatomic, retain)NSString *mapID;
-@property (nonatomic, retain)NSString *mapFurther;
+@property (nonatomic, retain)NSString *name;
+@property (nonatomic, retain)NSString *ID;
+@property (nonatomic, retain)NSString *further;
 
 @property (nonatomic, retain)UIImage *backgroundImage;
 @property (nonatomic, retain)NSString *backgroundImageLocal;
