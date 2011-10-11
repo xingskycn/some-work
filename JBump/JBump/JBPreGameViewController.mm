@@ -14,6 +14,7 @@
 #import "JBTavern.h"
 #import "JBMap.h"
 #import "JBPreGameMapsTableViewCell.h"
+#import "JBBluetoothAdapter.h"
 
 @implementation JBPreGameViewController
 
@@ -63,7 +64,7 @@
 {
     [super viewDidLoad];
     
-    self.multiplayerAdapter = [[JBMultiplayerAdapter alloc] init];
+    self.multiplayerAdapter = [[JBBluetoothAdapter alloc] init];
     //self.multiplayerAdapter.preGameDelegate = self;
     //[self.bluetoothAdapter setupConnectionForPreGameViewController:self];
     
@@ -118,8 +119,10 @@
     NSString *myPlayerID = [NSString stringWithFormat:@"%d",self.multiplayerAdapter.tavern.localPlayer.playerID];
     if ([playersReady objectForKey: myPlayerID]!=nil) {
         [self player:myPlayerID didReadyChange:NO];
+        [self.multiplayerAdapter sendPlayerReadyChange:NO];
     } else {
         [self player:myPlayerID didReadyChange:YES];
+        [self.multiplayerAdapter sendPlayerReadyChange:YES];
     }
 }
 
@@ -127,6 +130,7 @@
 }
 
 - (IBAction)newConnectionPressed:(id)sender {
+    [(JBBluetoothAdapter*)self.multiplayerAdapter setupConnectionForPreGameViewController:self];
 }
 
 #pragma mark tableViewStuff
