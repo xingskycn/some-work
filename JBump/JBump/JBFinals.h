@@ -99,7 +99,11 @@
 #define jbENTITY_SHAPE_CIRCLE @"circle"
 #define jbENTITY_SHAPE_BOX @"box"
 
-
-
+#pragma mark UserDefaults
+#define jbUSERDEFAULTS_SKIN @"skinID"
+#define jbUSERDEFAULTS_SHOW_SCOREBOARD @"jdShowScoreBoard"
+#define jbUSERDEFAULTS_CUSTOM_SKIN_DOWNLOAD @"jdCustomSkinDownload"
+#define jbUSERDEFAULTS_PLAYER_NAME_SIZE @"jdPlayerNameSizeValue"
+#define jbUSERDEFAULTS_PLAYER_NAME @"jdPlayerName"
 
 #endif

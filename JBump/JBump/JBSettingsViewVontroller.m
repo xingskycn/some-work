@@ -52,25 +52,24 @@
 {
     [super viewDidLoad];
     self.allSkins = [JBSkinManager getAllSkins];
-    NSLog(@"allSkins RetainCount: %i", self.allSkins.retainCount);
     self.playerNameText.delegate = self;
     
-    if ([[NSUserDefaults standardUserDefaults] valueForKey:@"jdPlayerName"]!=nil) {
-        self.playerNameText.text=[[NSUserDefaults standardUserDefaults] valueForKey:@"jdPlayerName"];
+    if ([[NSUserDefaults standardUserDefaults] valueForKey:jbUSERDEFAULTS_PLAYER_NAME]!=nil) {
+        self.playerNameText.text=[[NSUserDefaults standardUserDefaults] valueForKey:jbUSERDEFAULTS_PLAYER_NAME];
     }
-    if ([[NSUserDefaults standardUserDefaults] valueForKey:@"jdPlayerNameSizeValue"]!=nil) {
-        self.playerNameSlider.value=[[[NSUserDefaults standardUserDefaults] valueForKey:@"jdPlayerNameSizeValue"] floatValue];
+    if ([[NSUserDefaults standardUserDefaults] valueForKey:jbUSERDEFAULTS_PLAYER_NAME_SIZE]!=nil) {
+        self.playerNameSlider.value=[[[NSUserDefaults standardUserDefaults] valueForKey:jbUSERDEFAULTS_PLAYER_NAME_SIZE] floatValue];
     }
-    if ([[NSUserDefaults standardUserDefaults] valueForKey:@"jdCustomSkinDownload"]!=nil) {
-        [self.cSkinDownloadSwitch setOn:[[[NSUserDefaults standardUserDefaults] valueForKey:@"jdCustomSkinDownload"] boolValue] animated:NO]; ;
+    if ([[NSUserDefaults standardUserDefaults] valueForKey:jbUSERDEFAULTS_CUSTOM_SKIN_DOWNLOAD]!=nil) {
+        [self.cSkinDownloadSwitch setOn:[[[NSUserDefaults standardUserDefaults] valueForKey:jbUSERDEFAULTS_CUSTOM_SKIN_DOWNLOAD] boolValue] animated:NO]; ;
     }
-    if ([[NSUserDefaults standardUserDefaults] valueForKey:@"jdShowScoreBoard"]!=nil) {
-        [self.scoreBoardSwitch setOn:[[[NSUserDefaults standardUserDefaults] valueForKey:@"jdShowScoreBoard"] boolValue] animated:NO];
+    if ([[NSUserDefaults standardUserDefaults] valueForKey:jbUSERDEFAULTS_SHOW_SCOREBOARD]!=nil) {
+        [self.scoreBoardSwitch setOn:[[[NSUserDefaults standardUserDefaults] valueForKey:jbUSERDEFAULTS_SHOW_SCOREBOARD] boolValue] animated:NO];
     }
     self.skinTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     int i = 0;
     for (JBSkin *aSkin in self.allSkins) {
-        if ([[NSUserDefaults standardUserDefaults] valueForKey:@"skinID"]!=nil&&[[[NSUserDefaults standardUserDefaults] valueForKey:@"skinID"] isEqualToString:aSkin.skinID]) {
+        if ([[NSUserDefaults standardUserDefaults] valueForKey:jbUSERDEFAULTS_SKIN]!=nil&&[[[NSUserDefaults standardUserDefaults] valueForKey:jbUSERDEFAULTS_SKIN] isEqualToString:aSkin.skinID]) {
             self.selectedCell = [NSIndexPath indexPathForRow:i inSection:0];
         }
         i++;
@@ -119,19 +118,19 @@
     [super dealloc];
 }
 - (IBAction)playerNameTextChanged:(id)sender {
-    [[NSUserDefaults standardUserDefaults] setValue:self.playerNameText.text forKey:@"jdPlayerName"];
+    [[NSUserDefaults standardUserDefaults] setValue:self.playerNameText.text forKey:jbUSERDEFAULTS_PLAYER_NAME];
 }
 
 - (IBAction)playerNameSizeValueChanged:(id)sender {
-    [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithFloat:self.playerNameSlider.value] forKey:@"jdPlayerNameSizeValue"];
+    [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithFloat:self.playerNameSlider.value] forKey:jbUSERDEFAULTS_PLAYER_NAME_SIZE];
 }
 
 - (IBAction)customSkinDownloadValueChanged:(id)sender {
-    [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithBool:self.cSkinDownloadSwitch.isOn] forKey:@"jdCustomSkinDownload"];
+    [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithBool:self.cSkinDownloadSwitch.isOn] forKey:jbUSERDEFAULTS_CUSTOM_SKIN_DOWNLOAD];
 }
 
 - (IBAction)showScoreBoardValueChanged:(id)sender {
-    [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithBool:self.scoreBoardSwitch.isOn] forKey:@"jdShowScoreBoard"];
+    [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithBool:self.scoreBoardSwitch.isOn] forKey:jbUSERDEFAULTS_SHOW_SCOREBOARD];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -169,7 +168,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [[NSUserDefaults standardUserDefaults] setValue:[[self.allSkins objectAtIndex:indexPath.row] skinID] forKey:@"skinID"];
+    [[NSUserDefaults standardUserDefaults] setValue:[[self.allSkins objectAtIndex:indexPath.row] skinID] forKey:jbUSERDEFAULTS_SKIN];
 }
 
 @end

@@ -39,7 +39,6 @@
 
 @property(assign)float desiredRotation;
 
-- (id)initWithNode:(CCNode*)parent;
 - (void)jump:(float)time timeOnGround:(float)playerTimeOnGround;
 - (void)moveLeft:(float)time;
 - (void)moveRight:(float)time;

@@ -19,6 +19,9 @@
     
     if (self) {
         self.heroesInTavern = [NSMutableDictionary dictionary];
+        self.localPlayer = [[JBHero alloc] init];
+        self.localPlayer.name = [[NSUserDefaults standardUserDefaults] objectForKey:jbUSERDEFAULTS_PLAYER_NAME];
+        [self.heroesInTavern setObject:self.localPlayer forKey:self.localPlayer.name];
     }
     
     return self;
