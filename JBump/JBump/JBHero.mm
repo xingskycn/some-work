@@ -56,7 +56,6 @@
             body->ApplyForce(b2Vec2(0, (42*time*60*jumpForce)), body->GetWorldCenter());
         }
     }
-    NSLog(@"Actual jumpForce: %f and actual velocity: %f", jumpForce, body->GetLinearVelocity().y);
 }
 
 - (void)moveLeft:(float)time {

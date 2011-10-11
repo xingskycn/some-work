@@ -323,7 +323,7 @@ public:
     b2BodyDef bodyDef;
 	bodyDef.type = b2_dynamicBody;
     
-	bodyDef.position.Set(70./PTM_RATIO, 1000./PTM_RATIO);
+	bodyDef.position.Set(70./PTM_RATIO, 700./PTM_RATIO);
 	bodyDef.userData = player.sprite;
 	b2Body *body = world->CreateBody(&bodyDef);
 	
@@ -334,7 +334,7 @@ public:
     b2FixtureDef fixtureDef;
     fixtureDef.shape = &shape;	
 	fixtureDef.friction = 0.1f;
-    fixtureDef.density = 0.5f;
+    fixtureDef.density = 1.0f;
     fixtureDef.restitution = 0.050f;
 	body->CreateFixture(&fixtureDef);
     
