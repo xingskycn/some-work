@@ -29,7 +29,7 @@
     self = [super init];
     
     if (self) {
-        CCSprite *sprite = [CCSprite spriteWithFile:@"World1.png"];
+        CCSprite *sprite = [CCSprite spriteWithFile:@"island.png"];
         sprite.position = CGPointMake(0, 0);
         [self addChild:sprite];
     }

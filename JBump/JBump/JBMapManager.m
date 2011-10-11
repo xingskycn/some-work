@@ -3,7 +3,7 @@
 //  JBump
 //
 //  Created by Sebastian Pretscher on 09.10.11.
-//  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2011 ziehn.org. All rights reserved.
 //
 
 #import "JBMapManager.h"
@@ -15,10 +15,55 @@ static NSString *filePath = @"maps";
 
 + (void)storeNewMapWithID:(NSString*)mapID
                   mapName:(NSString *)mapName
+               arenaImage:(UIImage *)arenaImage
+                 settings:(NSMutableArray *)settings
+{
+    NSMutableDictionary *mapDict = [NSMutableDictionary dictionary];
+    NSString *folderName = mapID;
+    NSString *path;
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    path = [[paths objectAtIndex:0] stringByAppendingPathComponent:filePath];
+    
+    NSError* error;
+    if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {
+        if (![[NSFileManager defaultManager] createDirectoryAtPath:path
+                                       withIntermediateDirectories:NO
+                                                        attributes:nil
+                                                             error:&error])
+        {
+            NSLog(@"Create directory error: %@", error);
+        }
+        
+    }
+    
+    path = [path stringByAppendingPathComponent:folderName];
+    
+    
+    if (![[NSFileManager defaultManager] fileExistsAtPath:path])
+    {
+        if (![[NSFileManager defaultManager] createDirectoryAtPath:path
+                                       withIntermediateDirectories:NO
+                                                        attributes:nil
+                                                             error:&error])
+        {
+            NSLog(@"Create directory error: %@", error);
+        }
+    }
+    [mapDict setObject:mapID forKey:@"mapID"];
+    [mapDict setObject:mapName forKey:@"mapName"];
+    [UIImagePNGRepresentation(arenaImage) writeToFile:[path stringByAppendingPathComponent:@"arenaImage"] atomically:YES];
+    [mapDict setObject:[path stringByAppendingPathComponent:@"arenaImage"] forKey:@"arenaImageLocal"];
+}
+
+
++ (void)storeNewMapWithID:(NSString*)mapID
+                  mapName:(NSString *)mapName
                mapFurther:(NSString *)mapFurther 
        arenaImageLocation:(NSString *)arenaImageLocation 
   backgroundImageLocation:(NSString *)backgroundImageLocation 
      overlayImageLocation:(NSString *)overlayImageLocation
+        thumbnailLocation:(NSString *)thumbnailLocation
              curveHistory:(NSMutableArray *)curves
             entityHistory:(NSMutableArray*)entities
 {
@@ -87,6 +132,14 @@ static NSString *filePath = @"maps";
     }else {
         NSLog(@"Received no OverlayImageLocation");
     }
+    
+    if (thumbnailLocation !=nil) {
+        [UIImagePNGRepresentation([UIImage imageWithContentsOfFile:thumbnailLocation]) writeToFile:[path stringByAppendingPathComponent:@"thumbnail"] atomically:YES];
+        [mapDict setObject:[path stringByAppendingPathComponent:@"thumbnail"] forKey:@"thumbnailLocal"];
+    }else {
+        NSLog(@"Received no ThumbnailLocation");
+    }
+    
     [mapDict setObject:curves forKey:@"curves"];
     [mapDict setObject:entities forKey:@"mapEntities"];
     
@@ -160,5 +213,298 @@ static NSString *filePath = @"maps";
 	NSArray* mapIDs = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:path error:NULL];
     
     return mapIDs;
+}
+
++ (NSMutableArray *)getAllPredefinedSettings
+{
+    // standard settings
+    
+    NSMutableArray* defines = [NSMutableArray new];
+    NSMutableDictionary* define = [NSMutableDictionary dictionary];
+    [defines addObject:define];
+    [define setValue:@"standard" forKey:@"ID"];
+    [define setValue:@"standard" forKey:@"name"];
+    NSMutableArray* settings = [NSMutableArray array];
+    [define setValue:settings  forKey:@"settings"];
+    
+    NSMutableDictionary* setting = [NSMutableDictionary dictionary];
+    [settings addObject:setting];
+    [setting setValue:@"gravitation" forKey:@"ID"];
+    [setting setValue:@"gravitation" forKey:@"name"];
+    [setting setValue:NSStringFromCGPoint(CGPointMake(0, -10)) forKey:@"data"];
+    
+    setting = [NSMutableDictionary dictionary];
+    [settings addObject:setting];
+    [setting setValue:@"solid friction" forKey:@"ID"];
+    [setting setValue:@"solid friction" forKey:@"name"];
+    [setting setValue:@"0.4" forKey:@"data"];
+    
+    setting = [NSMutableDictionary dictionary];
+    [settings addObject:setting];
+    [setting setValue:@"teams" forKey:@"ID"];
+    [setting setValue:@"teams" forKey:@"name"];
+    [setting setValue:@"1" forKey:@"data"];
+    
+    setting = [NSMutableDictionary dictionary];
+    [settings addObject:setting];
+    [setting setValue:@"hero restitution" forKey:@"ID"];
+    [setting setValue:@"hero restitution" forKey:@"name"];
+    [setting setValue:@"0.05" forKey:@"data"];
+    
+    setting = [NSMutableDictionary dictionary];
+    [settings addObject:setting];
+    [setting setValue:@"hero acceleration" forKey:@"ID"];
+    [setting setValue:@"hero acceleration" forKey:@"name"];
+    [setting setValue:@"10" forKey:@"data"];
+    
+    setting = [NSMutableDictionary dictionary];
+    [settings addObject:setting];
+    [setting setValue:@"hero maximum speed" forKey:@"ID"];
+    [setting setValue:@"hero maximum speed" forKey:@"name"];
+    [setting setValue:@"5" forKey:@"data"];
+    
+    setting = [NSMutableDictionary dictionary];
+    [settings addObject:setting];
+    [setting setValue:@"ctf" forKey:@"ID"];
+    [setting setValue:@"capture the flag" forKey:@"name"];
+    [setting setValue:@"NO" forKey:@"data"];
+    
+    setting = [NSMutableDictionary dictionary];
+    [settings addObject:setting];
+    [setting setValue:@"soccer" forKey:@"ID"];
+    [setting setValue:@"soccer" forKey:@"name"];
+    [setting setValue:@"NO" forKey:@"data"];
+    
+    // moon settings
+    
+    define = [NSMutableDictionary dictionary];
+    [defines addObject:define];
+    [define setValue:@"moon" forKey:@"ID"];
+    [define setValue:@"moon" forKey:@"name"];
+    settings = [NSMutableArray array];
+    [define setValue:settings  forKey:@"settings"];
+    
+    setting = [NSMutableDictionary dictionary];
+    [settings addObject:setting];
+    [setting setValue:@"gravitation" forKey:@"ID"];
+    [setting setValue:@"gravitation" forKey:@"name"];
+    [setting setValue:NSStringFromCGPoint(CGPointMake(0, -5)) forKey:@"data"];
+    
+    setting = [NSMutableDictionary dictionary];
+    [settings addObject:setting];
+    [setting setValue:@"solid friction" forKey:@"ID"];
+    [setting setValue:@"solid friction" forKey:@"name"];
+    [setting setValue:@"0.4" forKey:@"data"];
+    
+    setting = [NSMutableDictionary dictionary];
+    [settings addObject:setting];
+    [setting setValue:@"teams" forKey:@"ID"];
+    [setting setValue:@"teams" forKey:@"name"];
+    [setting setValue:@"1" forKey:@"data"];
+    
+    setting = [NSMutableDictionary dictionary];
+    [settings addObject:setting];
+    [setting setValue:@"hero restitution" forKey:@"ID"];
+    [setting setValue:@"hero restitution" forKey:@"name"];
+    [setting setValue:@"0.15" forKey:@"data"];
+    
+    setting = [NSMutableDictionary dictionary];
+    [settings addObject:setting];
+    [setting setValue:@"hero acceleration" forKey:@"ID"];
+    [setting setValue:@"hero acceleration" forKey:@"name"];
+    [setting setValue:@"10" forKey:@"data"];
+    
+    setting = [NSMutableDictionary dictionary];
+    [settings addObject:setting];
+    [setting setValue:@"hero maximum speed" forKey:@"ID"];
+    [setting setValue:@"hero maximum speed" forKey:@"name"];
+    [setting setValue:@"5" forKey:@"data"];
+    
+    setting = [NSMutableDictionary dictionary];
+    [settings addObject:setting];
+    [setting setValue:@"ctf" forKey:@"ID"];
+    [setting setValue:@"capture the flag" forKey:@"name"];
+    [setting setValue:@"NO" forKey:@"data"];
+    
+    setting = [NSMutableDictionary dictionary];
+    [settings addObject:setting];
+    [setting setValue:@"soccer" forKey:@"ID"];
+    [setting setValue:@"soccer" forKey:@"name"];
+    [setting setValue:@"NO" forKey:@"data"];
+
+    
+    // standard team deathmatch settings
+    
+    define = [NSMutableDictionary dictionary];
+    [defines addObject:define];
+    [define setValue:@"team death match" forKey:@"ID"];
+    [define setValue:@"team death match" forKey:@"name"];
+    settings = [NSMutableArray array];
+    [define setValue:settings  forKey:@"settings"];
+    
+    setting = [NSMutableDictionary dictionary];
+    [settings addObject:setting];
+    [setting setValue:@"gravitation" forKey:@"ID"];
+    [setting setValue:@"gravitation" forKey:@"name"];
+    [setting setValue:NSStringFromCGPoint(CGPointMake(0, -10)) forKey:@"data"];
+    
+    setting = [NSMutableDictionary dictionary];
+    [settings addObject:setting];
+    [setting setValue:@"solid friction" forKey:@"ID"];
+    [setting setValue:@"solid friction" forKey:@"name"];
+    [setting setValue:@"0.4" forKey:@"data"];
+    
+    setting = [NSMutableDictionary dictionary];
+    [settings addObject:setting];
+    [setting setValue:@"teams" forKey:@"ID"];
+    [setting setValue:@"teams" forKey:@"name"];
+    [setting setValue:@"2" forKey:@"data"];
+    
+    setting = [NSMutableDictionary dictionary];
+    [settings addObject:setting];
+    [setting setValue:@"hero restitution" forKey:@"ID"];
+    [setting setValue:@"hero restitution" forKey:@"name"];
+    [setting setValue:@"0.05" forKey:@"data"];
+    
+    setting = [NSMutableDictionary dictionary];
+    [settings addObject:setting];
+    [setting setValue:@"hero acceleration" forKey:@"ID"];
+    [setting setValue:@"hero acceleration" forKey:@"name"];
+    [setting setValue:@"10" forKey:@"data"];
+    
+    setting = [NSMutableDictionary dictionary];
+    [settings addObject:setting];
+    [setting setValue:@"hero maximum speed" forKey:@"ID"];
+    [setting setValue:@"hero maximum speed" forKey:@"name"];
+    [setting setValue:@"5" forKey:@"data"];
+    
+    setting = [NSMutableDictionary dictionary];
+    [settings addObject:setting];
+    [setting setValue:@"ctf" forKey:@"ID"];
+    [setting setValue:@"capture the flag" forKey:@"name"];
+    [setting setValue:@"NO" forKey:@"data"];
+    
+    setting = [NSMutableDictionary dictionary];
+    [settings addObject:setting];
+    [setting setValue:@"soccer" forKey:@"ID"];
+    [setting setValue:@"soccer" forKey:@"name"];
+    [setting setValue:@"NO" forKey:@"data"];
+
+    
+    // standard capture the flag
+    
+    define = [NSMutableDictionary dictionary];
+    [defines addObject:define];
+    [define setValue:@"team capture the flag" forKey:@"ID"];
+    [define setValue:@"team capture the flag" forKey:@"name"];
+    settings = [NSMutableArray array];
+    [define setValue:settings  forKey:@"settings"];
+    
+    setting = [NSMutableDictionary dictionary];
+    [settings addObject:setting];
+    [setting setValue:@"gravitation" forKey:@"ID"];
+    [setting setValue:@"gravitation" forKey:@"name"];
+    [setting setValue:NSStringFromCGPoint(CGPointMake(0, -10)) forKey:@"data"];
+    
+    setting = [NSMutableDictionary dictionary];
+    [settings addObject:setting];
+    [setting setValue:@"solid friction" forKey:@"ID"];
+    [setting setValue:@"solid friction" forKey:@"name"];
+    [setting setValue:@"0.4" forKey:@"data"];
+    
+    setting = [NSMutableDictionary dictionary];
+    [settings addObject:setting];
+    [setting setValue:@"teams" forKey:@"ID"];
+    [setting setValue:@"teams" forKey:@"name"];
+    [setting setValue:@"2" forKey:@"data"];
+    
+    setting = [NSMutableDictionary dictionary];
+    [settings addObject:setting];
+    [setting setValue:@"hero restitution" forKey:@"ID"];
+    [setting setValue:@"hero restitution" forKey:@"name"];
+    [setting setValue:@"0.05" forKey:@"data"];
+    
+    setting = [NSMutableDictionary dictionary];
+    [settings addObject:setting];
+    [setting setValue:@"hero acceleration" forKey:@"ID"];
+    [setting setValue:@"hero acceleration" forKey:@"name"];
+    [setting setValue:@"10" forKey:@"data"];
+    
+    setting = [NSMutableDictionary dictionary];
+    [settings addObject:setting];
+    [setting setValue:@"hero maximum speed" forKey:@"ID"];
+    [setting setValue:@"hero maximum speed" forKey:@"name"];
+    [setting setValue:@"5" forKey:@"data"];
+    
+    setting = [NSMutableDictionary dictionary];
+    [settings addObject:setting];
+    [setting setValue:@"ctf" forKey:@"ID"];
+    [setting setValue:@"capture the flag" forKey:@"name"];
+    [setting setValue:@"YES" forKey:@"data"];
+    
+    setting = [NSMutableDictionary dictionary];
+    [settings addObject:setting];
+    [setting setValue:@"soccer" forKey:@"ID"];
+    [setting setValue:@"soccer" forKey:@"name"];
+    [setting setValue:@"NO" forKey:@"data"];
+    
+    // standard soccer
+    
+    define = [NSMutableDictionary dictionary];
+    [defines addObject:define];
+    [define setValue:@"soccer" forKey:@"ID"];
+    [define setValue:@"soccer" forKey:@"name"];
+    settings = [NSMutableArray array];
+    [define setValue:settings  forKey:@"settings"];
+    
+    setting = [NSMutableDictionary dictionary];
+    [settings addObject:setting];
+    [setting setValue:@"gravitation" forKey:@"ID"];
+    [setting setValue:@"gravitation" forKey:@"name"];
+    [setting setValue:NSStringFromCGPoint(CGPointMake(0, -10)) forKey:@"data"];
+    
+    setting = [NSMutableDictionary dictionary];
+    [settings addObject:setting];
+    [setting setValue:@"solid friction" forKey:@"ID"];
+    [setting setValue:@"solid friction" forKey:@"name"];
+    [setting setValue:@"0.4" forKey:@"data"];
+    
+    setting = [NSMutableDictionary dictionary];
+    [settings addObject:setting];
+    [setting setValue:@"teams" forKey:@"ID"];
+    [setting setValue:@"teams" forKey:@"name"];
+    [setting setValue:@"2" forKey:@"data"];
+    
+    setting = [NSMutableDictionary dictionary];
+    [settings addObject:setting];
+    [setting setValue:@"hero restitution" forKey:@"ID"];
+    [setting setValue:@"hero restitution" forKey:@"name"];
+    [setting setValue:@"0.05" forKey:@"data"];
+    
+    setting = [NSMutableDictionary dictionary];
+    [settings addObject:setting];
+    [setting setValue:@"hero acceleration" forKey:@"ID"];
+    [setting setValue:@"hero acceleration" forKey:@"name"];
+    [setting setValue:@"10" forKey:@"data"];
+    
+    setting = [NSMutableDictionary dictionary];
+    [settings addObject:setting];
+    [setting setValue:@"hero maximum speed" forKey:@"ID"];
+    [setting setValue:@"hero maximum speed" forKey:@"name"];
+    [setting setValue:@"5" forKey:@"data"];
+    
+    setting = [NSMutableDictionary dictionary];
+    [settings addObject:setting];
+    [setting setValue:@"ctf" forKey:@"ID"];
+    [setting setValue:@"capture the flag" forKey:@"name"];
+    [setting setValue:@"NO" forKey:@"data"];
+    
+    setting = [NSMutableDictionary dictionary];
+    [settings addObject:setting];
+    [setting setValue:@"soccer" forKey:@"ID"];
+    [setting setValue:@"soccer" forKey:@"name"];
+    [setting setValue:@"YES" forKey:@"data"];
+    
+    return [defines autorelease];
 }
 @end

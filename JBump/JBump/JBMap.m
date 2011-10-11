@@ -28,6 +28,10 @@
 @synthesize overlayImageLocal;
 @synthesize overlayImageURL;
 
+@synthesize thumbnail;
+@synthesize thumbnailLocal;
+@synthesize thumbnailURL;
+
 @synthesize mapEntities;
 @synthesize curves;
 
