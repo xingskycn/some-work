@@ -48,8 +48,11 @@
     if (self) {
         self.playerID = aPlayerID;
         self.name = playerName;
-        
-        self.gameContext = context;
+        if (context==nil) {
+            self.gameContext=[NSMutableDictionary dictionary];
+        }
+        self.gameContext = [context mutableCopy];
+        self.skinID = [gameContext objectForKey:jbGAMECONTEXT_SKIN_ID];
     }
     
     return self;
