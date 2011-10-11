@@ -20,19 +20,19 @@
     self = [super init];
     
     if (self) {
-        self.ID = [entityDict objectForKey:@"entityID"];
-        self.image = [entityDict objectForKey:@"entityImage"];
-        self.imageLocal = [entityDict objectForKey:@"imageLocation"];
-        self.imageURL = [entityDict objectForKey:@"imageURL"];
-        self.name = [entityDict objectForKey:@"name"];
-        self.further = [entityDict objectForKey:@"further"];
-        self.friction = [[entityDict objectForKey:@"friction"] floatValue];
-        self.restitution = [[entityDict objectForKey:@"restitution"] floatValue];
-        self.density = [[entityDict objectForKey:@"density"] floatValue];
-        self.position =  CGPointFromString([entityDict objectForKey:@"position"]);
-        self.size = CGSizeFromString([entityDict objectForKey:@"size"]);
-        self.shape = [entityDict objectForKey:@"shape"];
-        self.bodyType = [entityDict objectForKey:@"bodyType"];
+        self.ID = [entityDict objectForKey:jbID];
+        self.image = [entityDict objectForKey:jbIMAGE];
+        self.imageLocal = [entityDict objectForKey:jbIMAGELOCATION];
+        self.imageURL = [entityDict objectForKey:jbIMAGE];
+        self.name = [entityDict objectForKey:jbNAME];
+        self.further = [entityDict objectForKey:jbFURTHER];
+        self.friction = [[entityDict objectForKey:jbFURTHER] floatValue];
+        self.restitution = [[entityDict objectForKey:jbRESTITUTION] floatValue];
+        self.density = [[entityDict objectForKey:jbDENSITY] floatValue];
+        self.position =  CGPointFromString([entityDict objectForKey:jbPOSITION]);
+        self.size = CGSizeFromString([entityDict objectForKey:jbSIZE]);
+        self.shape = [entityDict objectForKey:jbSHAPE];
+        self.bodyType = [entityDict objectForKey:jbBODYTYPE];
     }
     return self;
 }
