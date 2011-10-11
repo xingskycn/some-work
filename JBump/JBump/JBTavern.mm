@@ -22,6 +22,8 @@
         self.localPlayer = [[JBHero alloc] init];
         self.localPlayer.name = [[NSUserDefaults standardUserDefaults] objectForKey:jbUSERDEFAULTS_PLAYER_NAME];
         self.localPlayer.skinID = [[NSUserDefaults standardUserDefaults] objectForKey:jbUSERDEFAULTS_SKIN];
+        [self.localPlayer.gameContext setObject:self.localPlayer.skinID forKey:jbGAMECONTEXT_SKIN_ID];
+        
         [self.heroesInTavern setObject:self.localPlayer forKey:self.localPlayer.name];
     }
     
@@ -34,7 +36,7 @@
 
 - (JBHero*)getPlayerWithName:(NSString *)aPlayerName {
     for (JBHero *hero in [self.heroesInTavern allValues]) {
-        if (hero.name == aPlayerName) {
+        if ([hero.name isEqualToString:aPlayerName]) {
             return hero;
         }
     }
