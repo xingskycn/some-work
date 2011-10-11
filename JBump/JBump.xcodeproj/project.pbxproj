@@ -61,6 +61,7 @@
 		9E664FF51444836700F2485A /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E664FF41444836700F2485A /* CFNetwork.framework */; };
 		9E664FF81444863300F2485A /* JBPreGameViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9E664FF71444863300F2485A /* JBPreGameViewController.mm */; };
 		9E6650071444A13F00F2485A /* JBTavern.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9E6650061444A13F00F2485A /* JBTavern.mm */; };
+		9E66500B1444A8DE00F2485A /* JBPreGameMapsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E66500A1444A8DE00F2485A /* JBPreGameMapsTableViewCell.m */; };
 		9E67F6671440723D000ED8F0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E67F6661440723D000ED8F0 /* QuartzCore.framework */; };
 		9E67F6691440723D000ED8F0 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E67F6681440723D000ED8F0 /* OpenGLES.framework */; };
 		9E67F66B1440723D000ED8F0 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E67F66A1440723D000ED8F0 /* OpenAL.framework */; };
@@ -327,6 +328,8 @@
 		9E664FF71444863300F2485A /* JBPreGameViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = JBPreGameViewController.mm; sourceTree = "<group>"; };
 		9E6650051444A13F00F2485A /* JBTavern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBTavern.h; sourceTree = "<group>"; };
 		9E6650061444A13F00F2485A /* JBTavern.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = JBTavern.mm; sourceTree = "<group>"; };
+		9E6650091444A8DE00F2485A /* JBPreGameMapsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBPreGameMapsTableViewCell.h; sourceTree = "<group>"; };
+		9E66500A1444A8DE00F2485A /* JBPreGameMapsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBPreGameMapsTableViewCell.m; sourceTree = "<group>"; };
 		9E67F6621440723D000ED8F0 /* JBump.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JBump.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E67F6661440723D000ED8F0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		9E67F6681440723D000ED8F0 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -1338,6 +1341,8 @@
 				9E8819DC144109FE00A4E421 /* JBSettingsViewTableViewCell.m */,
 				9E664FF61444863300F2485A /* JBPreGameViewController.h */,
 				9E664FF71444863300F2485A /* JBPreGameViewController.mm */,
+				9E6650091444A8DE00F2485A /* JBPreGameMapsTableViewCell.h */,
+				9E66500A1444A8DE00F2485A /* JBPreGameMapsTableViewCell.m */,
 			);
 			name = Menu;
 			sourceTree = "<group>";
@@ -1727,6 +1732,7 @@
 				9E664FF0144482DF00F2485A /* JBMultiplayerAdapter.mm in Sources */,
 				9E664FF81444863300F2485A /* JBPreGameViewController.mm in Sources */,
 				9E6650071444A13F00F2485A /* JBTavern.mm in Sources */,
+				9E66500B1444A8DE00F2485A /* JBPreGameMapsTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "JBBluetoothAdapter.h"
+#import "JBMultiplayerAdapter.h"
 
-@interface JBPreGameViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface JBPreGameViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, JBMultiplayerAdapterPregameDelegate>
 
-@property (nonatomic, retain)JBBluetoothAdapter *bluetoothAdapter;
+@property (nonatomic, retain)JBMultiplayerAdapter *multiplayerAdapter;
 @property (retain, nonatomic) IBOutlet UIButton *gameTypeButton;
 @property (retain, nonatomic) IBOutlet UIButton *readyButton;
 @property (retain, nonatomic) IBOutlet UIButton *startButton;

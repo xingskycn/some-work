@@ -15,6 +15,7 @@
 
 @synthesize playerName;
 @synthesize skinID;
+@synthesize reference;
 
 @synthesize sprite;
 @synthesize friction, restitution;

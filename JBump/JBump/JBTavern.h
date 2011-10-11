@@ -12,8 +12,12 @@
 
 @interface JBTavern : NSObject
 
-@property (retain, nonatomic)NSMutableArray *players;
+@property (retain, nonatomic)NSMutableDictionary *heroesInTavern;
+@property (retain, nonatomic)JBHero *localPlayer;
 
 - (void)addNewPlayer:(JBHero*)aPlayer;
+- (JBHero*)getPlayerWithName:(NSString*)aPlayerName;
+- (JBHero*)getPlayerWithReference:(char)reference;
+- (NSArray*)getAllPlayers;
 
 @end

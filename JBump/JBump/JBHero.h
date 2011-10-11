@@ -19,6 +19,7 @@
 
 @property (nonatomic, retain) NSString* playerName;
 @property (nonatomic, retain) NSString* skinID;
+@property (assign) char reference;
 
 
 @property(nonatomic,retain) CCSprite *sprite;

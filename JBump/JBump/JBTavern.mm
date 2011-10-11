@@ -7,23 +7,43 @@
 //
 
 #import "JBTavern.h"
+#import "JBHero.h"
 
 @implementation JBTavern
 
-@synthesize players;
+@synthesize heroesInTavern;
+@synthesize localPlayer;
 
 - (id)init {
     self = [super init];
     
     if (self) {
-        self.players = [NSMutableArray array];
+        self.heroesInTavern = [NSMutableDictionary dictionary];
     }
     
     return self;
 }
 
 - (void)addNewPlayer:(JBHero *)aPlayer {
-    [self.players addObject:aPlayer];
+    [self.heroesInTavern setObject:aPlayer forKey:aPlayer.playerName];
+}
+
+- (JBHero*)getPlayerWithName:(NSString *)aPlayerName {
+    return [self.heroesInTavern objectForKey:aPlayerName];
+}
+
+- (JBHero*)getPlayerWithReference:(char)reference {
+    for (JBHero *hero in [self.heroesInTavern allValues]) {
+        if (hero.reference == reference) {
+            return hero;
+        }
+    }
+    return nil;
+
+}
+
+- (NSArray *)getAllPlayers {
+    return [self.heroesInTavern allValues];
 }
 
 @end

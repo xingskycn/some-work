@@ -11,10 +11,13 @@
 #import "JBHero.h"
 #import "JBSkinManager.h"
 #import "JBSkin.h"
+#import "JBTavern.h"
+#import "JBMap.h"
+#import "JBPreGameMapsTableViewCell.h"
 
 @implementation JBPreGameViewController
 
-@synthesize bluetoothAdapter;
+@synthesize multiplayerAdapter;
 @synthesize gameTypeButton;
 @synthesize readyButton;
 @synthesize startButton;
@@ -57,8 +60,9 @@
 {
     [super viewDidLoad];
     
-    self.bluetoothAdapter = [[JBBluetoothAdapter alloc] init];
-    [self.bluetoothAdapter setupConnectionForPreGameViewController:self];
+    self.multiplayerAdapter = [[JBMultiplayerAdapter alloc] init];
+    //self.multiplayerAdapter.preGameDelegate = self;
+    //[self.bluetoothAdapter setupConnectionForPreGameViewController:self];
     
     self.maps = [JBMapManager getAllStandardMaps];
 }
@@ -113,7 +117,7 @@
 
 - (int)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (tableView==self.playersTableView) {
-        return self.players.count;
+        return [[self.multiplayerAdapter.tavern getAllPlayers] count];
     }
     if (tableView==self.mapsTablleView) {
         return self.maps.count;
@@ -130,9 +134,12 @@
         if (cell == nil) {
             cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier] autorelease];
         }
-        cell.textLabel.text = ((JBHero*)[players objectAtIndex:indexPath.row]).playerName;
         
-        JBSkin *playerSkin = [JBSkinManager getSkinWithID:((JBHero*)[players objectAtIndex:indexPath.row]).skinID];
+        JBHero *aHero = [[self.multiplayerAdapter.tavern getAllPlayers] objectAtIndex:indexPath.row];
+        
+        cell.textLabel.text = aHero.playerName;
+        
+        JBSkin *playerSkin = [JBSkinManager getSkinWithID:aHero.skinID];
         
         cell.imageView.image = playerSkin.image;
         
@@ -142,9 +149,9 @@
     if (tableView==self.mapsTablleView) {
         static NSString *cellIdentifier = @"mapsCell";
         
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        JBPreGameMapsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         if (cell == nil) {
-            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier] autorelease];
+            cell = [[[JBPreGameMapsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier] autorelease];
         }
         return cell;
     }
@@ -152,6 +159,34 @@
     return nil;
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (tableView==self.mapsTablleView) {
+        return 120.0f;
+    }
+    
+    return 80.0f;
+}
 
+#pragma mark JBGameAdapterPregameViewDelegate
+
+- (void)newPlayerAnnounced:(JBHero *)hero {
+    [self.playersTableView reloadData];
+}
+
+- (JBHero *)requestPlayerAnnouncement:(NSString *)playerI {
+    return nil;
+}
+
+- (void)playerDisconnected:(JBHero *)hero {
+    [self.playersTableView reloadData];
+}
+
+- (void)player:(JBHero *)hero didReadyChange:(BOOL)ready {
+    
+}
+
+- (void)playerDidStartGame:(JBHero *)hero {
+    
+}
 
 @end
