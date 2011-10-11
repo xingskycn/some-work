@@ -58,6 +58,7 @@
 #define jbSETTINGS @"settings"
 #define jbCUSTOMMAP_PREFIX @"C__"
 #define jbHIGHTLIGHT_CROSS @"cross"
+#define jBSTANDARMAP @"S__"
 
 #pragma mark Predefined Settings
 #define jbMAPSETTINGS_SETTINGS @"settings"
@@ -72,6 +73,33 @@
 #define jbMAPSETTINGS_SOCCER @"soccer"
 #define jbMAPSETTINGS_DATA @"data"
 
-#define jBSTANDARMAP @"S__"
+#pragma mark Web Connection
+#define jbWEB_CONNECTIONFAILED_TITLE @"connection failed"
+#define jbWEB_CONNECTIONFAILED_MESSAGE @"Sry, not able to download the content"
+#define jbWEB_CONNECTIONFAILED_OK @"OK"
+
+#pragma mark Map Creator
+#define jbMAPCREATOR_OFFX 180 
+#define jbMAPCREATOR_OFFY 120
+
+#pragma mark Map Creator Brushes
+#define jbBRUSH_SOLID @"solid"
+#define jbBRUSH_PLATFORM @"platform"
+#define jbBRUSH_ICE @"ice"
+#define jbBRUSH_DEATH @"death"
+#define jbBRUSH_DOORLEFT @"doorleft"
+#define jbBRUSH_DOORRIGHT @"doorright"
+#define jbBRUSH_ASSEMBLYLEFT @"assemblyleft"
+#define jbBRUSH_ASSEMBLYRIGHT @"assembleright"
+#define jbBRUSH_HORIZONTAL_PLATFORM @"horizontal platform"
+
+#pragma mark Map Creator Entities
+#define jbENTITY_BODYTYPE_GHOST @"ghost"
+#define jbENTITY_BODYTYPE_DENSE @"dense"
+#define jbENTITY_SHAPE_CIRCLE @"circle"
+#define jbENTITY_SHAPE_BOX @"box"
+
+
+
 
 #endif
