@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.0" toolsVersion="1938" systemVersion="11A511" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="zaW-i8-IAz">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.0" toolsVersion="1934" systemVersion="11A2063" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="zaW-i8-IAz">
     <dependencies>
         <development defaultVersion="4200" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="933"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="931"/>
     </dependencies>
     <scenes>
         <scene sceneID="4SL-33-aVj">
@@ -115,7 +115,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="k5z-aM-nDL" kind="custom" identifier="mapCreatorSegue" customClass="JBSegue" id="s3i-V0-1f6"/>
+                                    <segue destination="cwR-mR-uSC" kind="custom" customClass="JBSegue" id="fPO-ir-D82"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -543,6 +543,213 @@
             </objects>
             <point key="canvasLocation" x="-446" y="270"/>
         </scene>
+        <scene sceneID="N6X-ua-rPV">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ehb-Zp-hw7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="5W3-3z-qlS" customClass="JBMapCreatorSettingsViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="CdA-bQ-LQj">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="320"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" alpha="0.40000000000000002" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="rWl-yI-VG8">
+                                <rect key="frame" x="144" y="267" width="116" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="create">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="k5z-aM-nDL" kind="custom" identifier="startMapCreatorWithSettings" customClass="JBMapCreatorSegue" id="9rK-Dt-4tc"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="0oo-L6-qWq">
+                                <rect key="frame" x="20" y="268" width="116" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                <state key="normal" title="download image">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="downloadImageButtonPressed:" destination="5W3-3z-qlS" eventType="touchUpInside" id="OBg-Gb-KZh"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="map name" minimumFontSize="17" clearButtonMode="whileEditing" id="0fT-9V-29F">
+                                <rect key="frame" x="69" y="20" width="191" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="5W3-3z-qlS" id="lpz-cy-DLt"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="image url" minimumFontSize="17" id="pBq-gc-Tx8">
+                                <rect key="frame" x="20" y="229" width="240" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="5W3-3z-qlS" id="BNq-cK-cVI"/>
+                                </connections>
+                            </textField>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="J3W-6h-dLb">
+                                <rect key="frame" x="20" y="59" width="240" height="162"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.99683918556901796" green="0.94478844500000514" blue="1" alpha="0.31" colorSpace="calibratedRGB"/>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="standard" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="kZc-Lo-4Bz">
+                                <rect key="frame" x="268" y="20" width="192" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="TJO-ru-jvG">
+                                <rect key="frame" x="268" y="59" width="192" height="241"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="0.23000000000000001" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="5W3-3z-qlS" id="X2Q-TI-trH"/>
+                                    <outlet property="delegate" destination="5W3-3z-qlS" id="lfi-uy-8JJ"/>
+                                </connections>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="KK5-sc-MCc">
+                                <rect key="frame" x="0.0" y="0.0" width="61" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="&lt;-">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="backButtonPressed:" destination="k5z-aM-nDL" eventType="touchUpInside" id="j97-VY-h3s"/>
+                                    <segue destination="zaW-i8-IAz" kind="custom" customClass="JBSegue" id="xPC-7Q-vwn"/>
+                                </connections>
+                            </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" style="whiteLarge" id="HtL-QO-Tfd">
+                                <rect key="frame" x="122" y="121" width="37" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <connections>
+                        <outlet property="activityIndicator" destination="HtL-QO-Tfd" id="rDq-y0-3KV"/>
+                        <outlet property="advancedSettingsTableView" destination="TJO-ru-jvG" id="6aj-FR-vCK"/>
+                        <outlet property="createButton" destination="rWl-yI-VG8" id="KvV-Uj-aSr"/>
+                        <outlet property="downloadImageButton" destination="0oo-L6-qWq" id="w7S-kW-V9j"/>
+                        <outlet property="imageUrlField" destination="pBq-gc-Tx8" id="WQU-FI-XkL"/>
+                        <outlet property="imageView" destination="J3W-6h-dLb" id="na3-mu-iRd"/>
+                        <outlet property="mapNameField" destination="0fT-9V-29F" id="QIc-SB-yIf"/>
+                        <outlet property="settingsNameLabel" destination="kZc-Lo-4Bz" id="ORK-8U-aTH"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="-1072" y="262"/>
+        </scene>
+        <scene sceneID="RpI-lw-4FG">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oCb-es-re4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="cwR-mR-uSC" customClass="JBMapCreatorSelectionViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Mot-bn-nhr">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="320"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ZMC-Jf-fYI">
+                                <rect key="frame" x="20" y="42" width="216" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="create new map">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="5W3-3z-qlS" kind="custom" identifier="toNewMapSettings" customClass="JBMapCreatorSegue" id="1RV-xt-lrX"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" alpha="0.40000000000000002" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="jwm-3B-5tj">
+                                <rect key="frame" x="244" y="42" width="216" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="edit existing map">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="5W3-3z-qlS" kind="custom" identifier="toExistingMapSettings" customClass="JBMapCreatorSegue" id="VSY-UB-Wke"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="raa-ZG-csD">
+                                <rect key="frame" x="0.0" y="0.0" width="61" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="&lt;-">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="backButtonPressed:" destination="k5z-aM-nDL" eventType="touchUpInside" id="YKy-tF-I5K"/>
+                                    <segue destination="zaW-i8-IAz" kind="custom" customClass="JBSegue" id="Lcf-yq-bHb"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="JLp-GU-bio">
+                                <rect key="frame" x="20" y="102" width="216" height="198"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="0.20000000000000001" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="cwR-mR-uSC" id="zFI-nE-Iio"/>
+                                    <outlet property="delegate" destination="cwR-mR-uSC" id="sFe-iy-085"/>
+                                </connections>
+                            </tableView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="irt-LL-IWy">
+                                <rect key="frame" x="244" y="82" width="216" height="218"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="0.20000000000000001" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="cwR-mR-uSC" id="2pL-Un-57O"/>
+                                    <outlet property="delegate" destination="cwR-mR-uSC" id="s9z-Lq-9BG"/>
+                                </connections>
+                            </tableView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="predefined settings" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="lLE-in-lXD">
+                                <rect key="frame" x="55" y="82" width="147" height="12"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="0.16724694293478259" green="0.16724694293478259" blue="0.16724694293478259" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <connections>
+                        <outlet property="editExistingMapButton" destination="jwm-3B-5tj" id="wdW-9k-gOz"/>
+                        <outlet property="existingMapsTableView" destination="irt-LL-IWy" id="QKW-t9-lqF"/>
+                        <outlet property="settingsTableView" destination="JLp-GU-bio" id="l7i-0g-YOa"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="-775" y="790"/>
+        </scene>
         <scene sceneID="k3G-gK-W6J">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZMB-Hg-wCL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -608,77 +815,14 @@
             <point key="canvasLocation" x="708" y="1030"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="JBAboutViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/JBAboutViewController.h"/>
-        </class>
-        <class className="JBGameViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/JBGameViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="jumpButtonPressed:"/>
-                <relationship kind="action" name="leftButtonPressed:"/>
-                <relationship kind="action" name="popinButtonPressed:"/>
-                <relationship kind="action" name="popoutButtonPressed:"/>
-                <relationship kind="action" name="rightButtonPressed:"/>
-                <relationship kind="outlet" name="jumpButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="moveLeftButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="moveRightButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="popin" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="popout" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="sideView" candidateClass="UIView"/>
-            </relationships>
-        </class>
-        <class className="JBMapCreatorViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/JBMapCreatorViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="backButtonPressed:"/>
-                <relationship kind="action" name="closeSidebar:"/>
-                <relationship kind="action" name="switchKind:"/>
-                <relationship kind="outlet" name="contentsTable" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="forwarder" candidateClass="JBTouchForwardView"/>
-                <relationship kind="outlet" name="kindChooser" candidateClass="UISegmentedControl"/>
-                <relationship kind="outlet" name="magnifier" candidateClass="UISlider"/>
-                <relationship kind="outlet" name="menuContainer" candidateClass="UIView"/>
-                <relationship kind="outlet" name="openButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="sideView" candidateClass="JBTouchForwardView"/>
-            </relationships>
-        </class>
-        <class className="JBMenuViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/JBMenuViewController.h"/>
-        </class>
-        <class className="JBNewGameViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/JBNewGameViewController.h"/>
-        </class>
-        <class className="JBQuickGameViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/JBQuickGameViewController.h"/>
-        </class>
-        <class className="JBSettingsViewVontroller" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/JBSettingsViewVontroller.h"/>
-            <relationships>
-                <relationship kind="action" name="customSkinDownloadValueChanged:"/>
-                <relationship kind="action" name="playerNameSizeValueChanged:"/>
-                <relationship kind="action" name="playerNameTextChanged:"/>
-                <relationship kind="action" name="showScoreBoardValueChanged:"/>
-                <relationship kind="outlet" name="cSkinDownloadSwitch" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="playerNameSlider" candidateClass="UISlider"/>
-                <relationship kind="outlet" name="playerNameText" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="scoreBoardSwitch" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="skinTableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="JBStoreViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/JBStoreViewController.h"/>
-        </class>
-        <class className="JBTouchForwardView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/JBTouchForwardView.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <nil key="statusBar"/>
         <simulatedOrientationMetrics key="orientation" orientation="landscapeRight"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="cqk-6h-sdo"/>
+        <segue reference="yWk-7X-N6K"/>
+        <segue reference="1RV-xt-lrX"/>
+        <segue reference="xPC-7Q-vwn"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -16,6 +16,9 @@
 		6683AA9C14438E5E005D6A22 /* brush_7.png in Resources */ = {isa = PBXBuildFile; fileRef = 6683AA9314438E5E005D6A22 /* brush_7.png */; };
 		6683AA9D14438E5E005D6A22 /* brush_8.png in Resources */ = {isa = PBXBuildFile; fileRef = 6683AA9414438E5E005D6A22 /* brush_8.png */; };
 		6683AA9E14438E5E005D6A22 /* brush_9.png in Resources */ = {isa = PBXBuildFile; fileRef = 6683AA9514438E5E005D6A22 /* brush_9.png */; };
+		6683AAA21443AA8B005D6A22 /* JBMapCreatorSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6683AAA11443AA8B005D6A22 /* JBMapCreatorSelectionViewController.m */; };
+		6683AAA51443AAA8005D6A22 /* JBMapCreatorSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6683AAA41443AAA8005D6A22 /* JBMapCreatorSettingsViewController.m */; };
+		6683AAAC1443DA94005D6A22 /* JBMapCreatorSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 6683AAAB1443DA94005D6A22 /* JBMapCreatorSegue.m */; };
 		6685DCC614433CC7009C2024 /* bottle_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 6685DCBF14433CC7009C2024 /* bottle_1.png */; };
 		6685DCC714433CC7009C2024 /* bottle_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6685DCC014433CC7009C2024 /* bottle_2.png */; };
 		6685DCC814433CC7009C2024 /* box_01.png in Resources */ = {isa = PBXBuildFile; fileRef = 6685DCC114433CC7009C2024 /* box_01.png */; };
@@ -245,6 +248,12 @@
 		6683AA9314438E5E005D6A22 /* brush_7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brush_7.png; sourceTree = "<group>"; };
 		6683AA9414438E5E005D6A22 /* brush_8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brush_8.png; sourceTree = "<group>"; };
 		6683AA9514438E5E005D6A22 /* brush_9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brush_9.png; sourceTree = "<group>"; };
+		6683AAA01443AA8B005D6A22 /* JBMapCreatorSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBMapCreatorSelectionViewController.h; sourceTree = "<group>"; };
+		6683AAA11443AA8B005D6A22 /* JBMapCreatorSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBMapCreatorSelectionViewController.m; sourceTree = "<group>"; };
+		6683AAA31443AAA8005D6A22 /* JBMapCreatorSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBMapCreatorSettingsViewController.h; sourceTree = "<group>"; };
+		6683AAA41443AAA8005D6A22 /* JBMapCreatorSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBMapCreatorSettingsViewController.m; sourceTree = "<group>"; };
+		6683AAAA1443DA94005D6A22 /* JBMapCreatorSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBMapCreatorSegue.h; sourceTree = "<group>"; };
+		6683AAAB1443DA94005D6A22 /* JBMapCreatorSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBMapCreatorSegue.m; sourceTree = "<group>"; };
 		6685DCBF14433CC7009C2024 /* bottle_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bottle_1.png; sourceTree = "<group>"; };
 		6685DCC014433CC7009C2024 /* bottle_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bottle_2.png; sourceTree = "<group>"; };
 		6685DCC114433CC7009C2024 /* box_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = box_01.png; sourceTree = "<group>"; };
@@ -687,6 +696,12 @@
 		66E141CB144215E700F47D83 /* MapCreator */ = {
 			isa = PBXGroup;
 			children = (
+				6683AAAA1443DA94005D6A22 /* JBMapCreatorSegue.h */,
+				6683AAAB1443DA94005D6A22 /* JBMapCreatorSegue.m */,
+				6683AAA01443AA8B005D6A22 /* JBMapCreatorSelectionViewController.h */,
+				6683AAA11443AA8B005D6A22 /* JBMapCreatorSelectionViewController.m */,
+				6683AAA31443AAA8005D6A22 /* JBMapCreatorSettingsViewController.h */,
+				6683AAA41443AAA8005D6A22 /* JBMapCreatorSettingsViewController.m */,
 				66E141CD1442173600F47D83 /* JBMapCreatorViewController.h */,
 				66E141CE1442173600F47D83 /* JBMapCreatorViewController.mm */,
 				66E141D01442175700F47D83 /* JBLineSprite.h */,
@@ -1683,6 +1698,9 @@
 				9E4334501442FC43004FA281 /* SBJsonUTF8Stream.m in Sources */,
 				9E4334511442FC43004FA281 /* SBJsonWriter.m in Sources */,
 				9E43345C1442FED8004FA281 /* JBWebStore.m in Sources */,
+				6683AAA21443AA8B005D6A22 /* JBMapCreatorSelectionViewController.m in Sources */,
+				6683AAA51443AAA8005D6A22 /* JBMapCreatorSettingsViewController.m in Sources */,
+				6683AAAC1443DA94005D6A22 /* JBMapCreatorSegue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

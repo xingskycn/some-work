@@ -26,9 +26,15 @@
 @property (nonatomic, retain)NSString *overlayImageLocal;
 @property (nonatomic, retain)NSString *overlayImageURL;
 
+@property (nonatomic, retain)UIImage* thumbnail;
+@property (nonatomic, retain)NSString* thumbnailLocal;
+@property (nonatomic, retain)NSString* thumbnailURL;
+
 //only a Dictionary with position and entityID
 @property (nonatomic, retain)NSMutableArray *mapEntities;
 @property (nonatomic, retain)NSMutableArray *curves;
+
+@property (nonatomic, retain)NSMutableArray* settings;
 
 - (id)initWithDictionary:(NSDictionary*)mapDict;
 

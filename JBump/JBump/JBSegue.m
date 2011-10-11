@@ -10,6 +10,7 @@
 #import "JBAppDelegate.h"
 #import "JBMapCreatorViewController.h"
 #import "JBGameViewController.h"
+#import "JBMenuViewController.h"
 
 @implementation JBSegue
 
@@ -21,12 +22,16 @@
     [UIView setAnimationDuration:1.0];
     [[self.sourceViewController view].superview addSubview:[self.destinationViewController view]];
     [[self.sourceViewController view] removeFromSuperview];
-    
+    /*
     if ([self.sourceViewController isKindOfClass:[JBMapCreatorViewController class]]) {
         [[CCDirector sharedDirector] replaceScene:((JBAppDelegate*)[UIApplication sharedApplication].delegate).menuScene];
     }
     
     if ([self.sourceViewController isKindOfClass:[JBGameViewController class]]) {
+        [[CCDirector sharedDirector] replaceScene:((JBAppDelegate*)[UIApplication sharedApplication].delegate).menuScene];
+    }
+    */
+    if ([self.destinationViewController isKindOfClass:[JBMenuViewController class]]) {
         [[CCDirector sharedDirector] replaceScene:((JBAppDelegate*)[UIApplication sharedApplication].delegate).menuScene];
     }
     

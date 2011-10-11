@@ -9,11 +9,16 @@
 #import "JBMapCreatorLayer.h"
 
 #import "JBLineSprite.h"
+#import "JBBrushManager.h"
+#import "JBEntityManager.h"
 
+#import "JBMapManager.h"
+#import "JBMap.h"
 #import "JBMapItem.h"
 #import "JBBrush.h"
 #import "JBEntity.h"
 #import "JBAppDelegate.h"
+#import "JBMapCreatorViewController.h"
 #define jbSCROLLSPEED 1.5f
 
 @interface JBMapCreatorLayer()
@@ -25,7 +30,7 @@
 @end
 
 @implementation JBMapCreatorLayer
-@synthesize magnifier,userSelection,history;
+@synthesize magnifier,userSelection,history,viewController;
 //private
 @synthesize activeLine,activeEntity,creationTimeEntity;
 
@@ -60,13 +65,55 @@ CGFloat DistanceBetweenPoints(CGPoint point1,CGPoint point2)
 		self.isTouchEnabled = YES;
         self.history = [NSMutableArray array];
         
-        CCSprite* image = [CCSprite spriteWithFile:@"island.png"];
-        [self addChild:image];
         
-        
-        [self schedule: @selector(tick:)];
     }
     return self;
+}
+
+- (void)start
+{
+    JBMap* map = [JBMapManager getMapWithID:self.viewController.mapID];
+    
+    CCSprite* image = [CCSprite spriteWithFile:map.arenaImageLocal];
+    [self addChild:image];
+    
+    
+    [self schedule: @selector(tick:)];
+}
+
+- (void)insertCurves:(NSArray *)objects
+{
+    for (NSDictionary* dict in objects) {
+        JBBrush* brush = [JBBrushManager getBrushForID:[dict objectForKey:@"ID"]];
+        JBLineSprite* line = [JBLineSprite node];
+        line.alpha = brush.alpha;
+        line.red = brush.red;
+        line.blue = brush.blue;
+        line.green = brush.green;
+        NSArray* points = [dict objectForKey:@"points"];
+        line.pointArray = [points mutableCopy];
+        line.visible = TRUE;
+        [self addChild:line];
+        NSMutableDictionary* historyDict = [NSMutableDictionary dictionary];;
+        [self.history addObject:historyDict];
+        [historyDict setObject:self.activeLine forKey:@"sprite"];
+        [historyDict setObject:brush forKey:@"mapItem"];
+    }
+}
+
+- (void)insertEntities:(NSArray *)objects
+{
+    for (JBEntity* entity in objects) {
+        entity.sprite = [CCSprite spriteWithFile:entity.imageLocal];
+        entity.sprite.position = entity.position;
+        [self addChild:entity.sprite];
+        NSMutableDictionary* historyDict = [NSMutableDictionary dictionary];
+        [self.history addObject:historyDict];
+        [historyDict setObject:self.activeEntity forKey:@"sprite"];
+        [historyDict setObject:userSelection forKey:@"mapItem"];
+        [self addChild:self.activeEntity];
+
+    }
 }
 
 -(void) tick: (ccTime) dt

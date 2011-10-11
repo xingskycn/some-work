@@ -49,6 +49,12 @@
 //
 @property (retain, nonatomic) IBOutlet JBTouchForwardView *forwarder;
 
+//
+// the ID of the map to edit, this property is set when transitioned to this view
+//
+
+@property (retain, nonatomic) NSString* mapID;
+
 - (IBAction)switchKind:(id)sender;
 - (IBAction)closeSidebar:(id)sender;
 - (IBAction)backButtonPressed:(id)sender;
