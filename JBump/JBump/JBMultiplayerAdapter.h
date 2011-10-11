@@ -9,10 +9,33 @@
 #import <Foundation/Foundation.h>
 
 #import "cocos2d.h"
-
+@class JBTavern;
 @class JBHero;
 
+@protocol JBMultiplayerAdapterPregameDelegate <NSObject>
+
+- (void)newPlayerAnnounced:(JBHero *)hero;
+- (JBHero *)requestPlayerAnnouncement:(NSString *)playerID;
+- (void)playerDisconnected:(JBHero *)hero;
+- (void)player:(JBHero *)hero didReadyChange:(BOOL)ready;
+- (void)playerDidStartGame:(JBHero *)hero;
+
+
+@end
+
+@protocol JBMultiplayerAdapterGameDelegate <NSObject>
+
+- (void)newPlayerAnnounced:(JBHero *)hero;
+- (JBHero *)requestPlayerAnnouncement:(NSString *)playerID;
+- (void)receivedPlayerInfo:(JBHero *)hero;
+- (void)player:(JBHero *)hero didChangeContext:(NSDictionary *)context;
+
+@end
+
+
+
 @interface JBMultiplayerAdapter : NSObject
+@property (nonatomic, retain)JBTavern* tavern;
 
 //		Method to send the player position to others
 - (void)sendPlayer:(JBHero *)player;
