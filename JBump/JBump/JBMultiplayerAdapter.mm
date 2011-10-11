@@ -17,7 +17,7 @@
     self = [super init];
     
     if (self) {
-        self.tavern = [[JBTavern alloc] init];
+        self.tavern = [[[JBTavern alloc] init] autorelease];
     }
     
     return self;
