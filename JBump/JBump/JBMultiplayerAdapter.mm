@@ -48,4 +48,9 @@
     NSLog(@"%@ Not Yet Implemented?",_cmd);
 }
 
+- (void)sendPlayerReadyChange:(BOOL)ready
+{
+    NSLog(@"%@ Not Yet Implemented?",_cmd);
+}
+
 @end
