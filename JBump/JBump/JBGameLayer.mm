@@ -39,19 +39,21 @@ public:
             b2WorldManifold worldManifold; contact->GetWorldManifold(&worldManifold);
             float product = -acosf(worldManifold.normal.x)*180/M_PI+90;
             
-            [player.sprite setRotation:product];
+            player.desiredRotation = product;
             
             if (worldManifold.normal.y > 0.5f) {
                 player.onGround=true; 
             }
-            if ([(NSObject*)contact->GetFixtureB()->GetUserData() isKindOfClass:[JBBrush class]]) {
+            if ([(NSObject*)contact->GetFixtureB()->GetUserData() isKindOfClass:[JBBrush class]]
+                &&worldManifold.points[0].y>contact->GetFixtureA()->GetBody()->GetWorldCenter().y) {
                 JBBrush *brush = (JBBrush*)contact->GetFixtureB()->GetUserData();
                 if ([brush.ID isEqualToString:@"platform"]) {
                     //if (worldManifold.normal.y < 0.2f) {
                     if (contact->GetFixtureA()->GetBody()->GetLinearVelocity().y>0.0f) {
                         contact->SetEnabled(false);
+                        player.desiredRotation = 0;
                     }
-                    //[player.sprite setRotation:0];
+                    
                 }
             }
             
@@ -59,19 +61,20 @@ public:
             b2WorldManifold worldManifold; contact->GetWorldManifold(&worldManifold);
             float product = -acosf(worldManifold.normal.x)*180/M_PI+90;
             
-            [player.sprite setRotation:product];
+            player.desiredRotation = product;
             
             if (worldManifold.normal.y > 0.5f) {
                 player.onGround=true; 
             }
-            if ([(NSObject*)contact->GetFixtureA()->GetUserData() isKindOfClass:[JBBrush class]]) {
+            if ([(NSObject*)contact->GetFixtureA()->GetUserData() isKindOfClass:[JBBrush class]]
+                &&worldManifold.points[0].y>contact->GetFixtureB()->GetBody()->GetWorldCenter().y) {
                 JBBrush *brush = (JBBrush*)contact->GetFixtureA()->GetUserData();
                 if ([brush.ID isEqualToString:@"platform"]) {
                     //if (worldManifold.normal.y < -0.5f) {
                     if (contact->GetFixtureB()->GetBody()->GetLinearVelocity().y>0.0f) {
                         contact->SetEnabled(false);
+                        player.desiredRotation = 0;
                     }
-                    //[player.sprite setRotation:0];
                 }
             }
         }
@@ -211,9 +214,13 @@ public:
     }
     if (!player.onGround) {
         if (player.sprite.rotation<180) {
-            player.sprite.rotation=player.sprite.rotation/1.14;
+            //player.sprite.rotation=player.sprite.rotation/1.14;
+            player.desiredRotation=0;
         }
     }
+    
+    [player.sprite setRotation:player.desiredRotation+((player.sprite.rotation-player.desiredRotation)/1.14)];
+    
     if (player.body->GetLinearVelocity().y>6.5f) {
         player.body->SetLinearVelocity(b2Vec2(player.body->GetLinearVelocity().x, 6.5f));
     }
@@ -322,9 +329,12 @@ public:
 	
     b2CircleShape shape;
     shape.m_radius = 0.45f;
-	b2FixtureDef fixtureDef;
+    //b2PolygonShape shape;
+    //shape.SetAsBox(30.0f/2/PTM_RATIO, 30.0f/2/PTM_RATIO);
+    b2FixtureDef fixtureDef;
     fixtureDef.shape = &shape;	
 	fixtureDef.friction = 0.1f;
+    fixtureDef.density = 0.5f;
     fixtureDef.restitution = 0.050f;
 	body->CreateFixture(&fixtureDef);
     

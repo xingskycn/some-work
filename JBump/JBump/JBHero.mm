@@ -21,6 +21,8 @@
 @synthesize jumpTouched;
 @synthesize jumpForce;
 
+@synthesize desiredRotation;
+
 @synthesize maxLeft, maxRight;
 
 - (id)initWithNode:(CCNode*)parent {
@@ -46,12 +48,12 @@
     if(onGround && !jumpTouched) {
         jumpForce=1.0f;
         if (body->GetLinearVelocity().y<6.5f) {
-            body->ApplyForce(b2Vec2(0, (42*time*60*jumpForce)), body->GetLocalCenter());
+            body->ApplyForce(b2Vec2(0, (42*time*60*jumpForce)), body->GetWorldCenter());
         }
            }else {
         jumpForce=jumpForce*exp(log(0.990)*time*1000);
         if (body->GetLinearVelocity().y<6.5f) {
-            body->ApplyForce(b2Vec2(0, (42*time*60*jumpForce)), body->GetLocalCenter());
+            body->ApplyForce(b2Vec2(0, (42*time*60*jumpForce)), body->GetWorldCenter());
         }
     }
     NSLog(@"Actual jumpForce: %f and actual velocity: %f", jumpForce, body->GetLinearVelocity().y);
@@ -61,7 +63,7 @@
     b2Vec2 velocity = body->GetLinearVelocityFromLocalPoint(body->GetLocalCenter());
     
     if (velocity.x>maxLeft) {
-        body->ApplyForce(b2Vec2((-10.0f*time*60), 0), body->GetLocalCenter());
+        body->ApplyForce(b2Vec2((-10.0f*time*60), 0), body->GetWorldCenter());
     }
     if (isRight) {
         sprite.flipX=YES;
@@ -74,7 +76,7 @@
     b2Vec2 velocity = body->GetLinearVelocityFromLocalPoint(body->GetLocalCenter());
     
     if (velocity.x<maxRight) {
-        body->ApplyForce(b2Vec2((10.0f*time*60), 0), body->GetLocalCenter());
+        body->ApplyForce(b2Vec2((10.0f*time*60), 0), body->GetWorldCenter());
     }
     
     if (isLeft) {

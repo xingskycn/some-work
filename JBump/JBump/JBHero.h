@@ -30,6 +30,8 @@
 @property(assign)float maxLeft;
 @property(assign)float maxRight;
 
+@property(assign)float desiredRotation;
+
 - (id)initWithNode:(CCNode*)parent;
 - (void)jump:(float)time timeOnGround:(float)playerTimeOnGround;
 - (void)moveLeft:(float)time;
