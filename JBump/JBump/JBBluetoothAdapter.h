@@ -7,7 +7,22 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "JBMultiplayerAdapter.h"
+#import <GameKit/GameKit.h>
 
-@interface JBBluetoothAdapter : NSObject
+@class JBPreGameViewController;
+
+@interface JBBluetoothAdapter : JBMultiplayerAdapter <GKPeerPickerControllerDelegate,GKSessionDelegate> {
+    int datacounter;
+	
+	id creator;
+	SEL selector;
+}
+
+@property (nonatomic, retain) GKSession *gameSession;
+@property (nonatomic, retain) NSString* activePeer;
+@property (nonatomic, retain) JBPreGameViewController *preGameDelegate;
+
+- (void)setupConnectionForPreGameViewController:(JBPreGameViewController*)aPreGameDelegate;
 
 @end

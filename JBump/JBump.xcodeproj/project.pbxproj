@@ -56,6 +56,10 @@
 		9E4334511442FC43004FA281 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E4334451442FC43004FA281 /* SBJsonWriter.m */; };
 		9E43345C1442FED8004FA281 /* JBWebStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E43345B1442FED7004FA281 /* JBWebStore.m */; };
 		9E613DA41442617E00F92B23 /* JBHero.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9E613DA31442617E00F92B23 /* JBHero.mm */; };
+		9E664FF0144482DF00F2485A /* JBMultiplayerAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E664FEF144482DF00F2485A /* JBMultiplayerAdapter.m */; };
+		9E664FF31444833600F2485A /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E664FF21444833600F2485A /* GameKit.framework */; };
+		9E664FF51444836700F2485A /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E664FF41444836700F2485A /* CFNetwork.framework */; };
+		9E664FF81444863300F2485A /* JBPreGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E664FF71444863300F2485A /* JBPreGameViewController.m */; };
 		9E67F6671440723D000ED8F0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E67F6661440723D000ED8F0 /* QuartzCore.framework */; };
 		9E67F6691440723D000ED8F0 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E67F6681440723D000ED8F0 /* OpenGLES.framework */; };
 		9E67F66B1440723D000ED8F0 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E67F66A1440723D000ED8F0 /* OpenAL.framework */; };
@@ -314,6 +318,12 @@
 		9E43345B1442FED7004FA281 /* JBWebStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBWebStore.m; sourceTree = "<group>"; };
 		9E613DA21442617E00F92B23 /* JBHero.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBHero.h; sourceTree = "<group>"; };
 		9E613DA31442617E00F92B23 /* JBHero.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = JBHero.mm; sourceTree = "<group>"; };
+		9E664FEE144482DE00F2485A /* JBMultiplayerAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBMultiplayerAdapter.h; sourceTree = "<group>"; };
+		9E664FEF144482DF00F2485A /* JBMultiplayerAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBMultiplayerAdapter.m; sourceTree = "<group>"; };
+		9E664FF21444833600F2485A /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		9E664FF41444836700F2485A /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		9E664FF61444863300F2485A /* JBPreGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; path = JBPreGameViewController.h; sourceTree = "<group>"; };
+		9E664FF71444863300F2485A /* JBPreGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBPreGameViewController.m; sourceTree = "<group>"; };
 		9E67F6621440723D000ED8F0 /* JBump.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JBump.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E67F6661440723D000ED8F0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		9E67F6681440723D000ED8F0 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -679,6 +689,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E664FF51444836700F2485A /* CFNetwork.framework in Frameworks */,
+				9E664FF31444833600F2485A /* GameKit.framework in Frameworks */,
 				9E67F6671440723D000ED8F0 /* QuartzCore.framework in Frameworks */,
 				9E67F6691440723D000ED8F0 /* OpenGLES.framework in Frameworks */,
 				9E67F66B1440723D000ED8F0 /* OpenAL.framework in Frameworks */,
@@ -794,6 +806,8 @@
 		9E67F6651440723D000ED8F0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9E664FF41444836700F2485A /* CFNetwork.framework */,
+				9E664FF21444833600F2485A /* GameKit.framework */,
 				9E67F6661440723D000ED8F0 /* QuartzCore.framework */,
 				9E67F6681440723D000ED8F0 /* OpenGLES.framework */,
 				9E67F66A1440723D000ED8F0 /* OpenAL.framework */,
@@ -1319,6 +1333,8 @@
 				9E67F8AD1440CB5B000ED8F0 /* JBAboutViewController.m */,
 				9E8819DB144109FE00A4E421 /* JBSettingsViewTableViewCell.h */,
 				9E8819DC144109FE00A4E421 /* JBSettingsViewTableViewCell.m */,
+				9E664FF61444863300F2485A /* JBPreGameViewController.h */,
+				9E664FF71444863300F2485A /* JBPreGameViewController.m */,
 			);
 			name = Menu;
 			sourceTree = "<group>";
@@ -1328,6 +1344,8 @@
 			children = (
 				9E67F8B41440D4C8000ED8F0 /* JBBluetoothAdapter.h */,
 				9E67F8B51440D4C8000ED8F0 /* JBBluetoothAdapter.m */,
+				9E664FEE144482DE00F2485A /* JBMultiplayerAdapter.h */,
+				9E664FEF144482DF00F2485A /* JBMultiplayerAdapter.m */,
 			);
 			name = Network;
 			sourceTree = "<group>";
@@ -1701,6 +1719,8 @@
 				6683AAA21443AA8B005D6A22 /* JBMapCreatorSelectionViewController.m in Sources */,
 				6683AAA51443AAA8005D6A22 /* JBMapCreatorSettingsViewController.m in Sources */,
 				6683AAAC1443DA94005D6A22 /* JBMapCreatorSegue.m in Sources */,
+				9E664FF0144482DF00F2485A /* JBMultiplayerAdapter.m in Sources */,
+				9E664FF81444863300F2485A /* JBPreGameViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
