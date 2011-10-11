@@ -48,6 +48,7 @@
 
 - (void) applicationDidFinishLaunching:(UIApplication*)application
 {
+    
 	// Init the window
 	window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 	

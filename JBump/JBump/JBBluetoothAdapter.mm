@@ -9,6 +9,7 @@
 #import "JBBluetoothAdapter.h"
 #import "JBPreGameViewController.h"
 #import "JBHero.h"
+#import "SBJson.h"
 
 
 @implementation JBBluetoothAdapter
@@ -16,6 +17,8 @@
 @synthesize gameSession;
 @synthesize activePeer;
 @synthesize preGameDelegate;
+@synthesize jsonWriter;
+@synthesize jsonParser;
 
 
 - (void)setupConnectionForPreGameViewController:(JBPreGameViewController*)aPreGameDelegate
@@ -133,9 +136,9 @@
 	// 2nd Position to provide GameContext
 	// 3rd Position to send playername
 	NSString* sendString = 
-	[NSString stringWithFormat:	@"NPA:%03d%@NPA:%@",
+	[NSString stringWithFormat:	@"|NPA:%03d|%@|%@",
      super.tavern.localPlayer.reference,
-     super.tavern.localPlayer.gameContext,
+     [jsonWriter stringWithObject:super.tavern.localPlayer.gameContext],
      super.tavern.localPlayer.name]; 
 	
 	NSData* sendData = [sendString dataUsingEncoding:NSUTF8StringEncoding];
@@ -151,7 +154,7 @@
 {
 	//Player DisCoNnected
 	NSString* sendString = 
-	[NSString stringWithFormat:	@"DCN:%03dDCN:%@",
+	[NSString stringWithFormat:	@"|DCN:%03d",
         super.tavern.localPlayer.reference,
         super.tavern.localPlayer.name]; 
 	
@@ -170,7 +173,7 @@
 {
 	//Player Announcement Request
 	NSString* sendString = 
-	[NSString stringWithFormat:	@"PAR:%03d",[playerID intValue]];
+	[NSString stringWithFormat:	@"|PAR:%03d",[playerID intValue]];
 	
 	NSData* sendData = [sendString dataUsingEncoding:NSUTF8StringEncoding];
 	if (self.activePeer) {
@@ -188,7 +191,7 @@
 	// 2nd new gamecontext
 	
 	NSString* sendString = 
-	[NSString stringWithFormat:	@"PGC:%03dPGC:%@",
+	[NSString stringWithFormat:	@"|PGC:%03d|%@",
      super.tavern.localPlayer.reference,
      super.tavern.localPlayer.gameContext];
 	
@@ -209,7 +212,7 @@
 	// 2nd Killed
 	
 	NSString* sendString = 
-	[NSString stringWithFormat:	@"PKC:%03dPKC:%03d",
+	[NSString stringWithFormat:	@"|PKC:%03d|%03d",
      super.tavern.localPlayer.reference,
      player.reference];
 	
@@ -227,13 +230,13 @@
     JBHero* player = super.tavern.localPlayer;
     
 	void* sendField = malloc(sizeof(int)+sizeof(short)*2+sizeof(char)*2);
- 	((int*)sendField)[0]=player.packageNr++;
-	char chrIDNr = player.reference;
-	((char*)sendField)[3]=chrIDNr;
+ 	((int*)sendField)[0]=player.packageNr++<<8;
+	((char*)sendField)[0]=player.reference;
 	((short *)sendField)[2]=player.body->GetWorldCenter().x;
 	((short *)sendField)[3]=player.body->GetWorldCenter().y;
-	((char *)sendField)[8]=player.body->GetLinearVelocity().x;
-	((char *)sendField)[9]=player.body->GetLinearVelocity().y;
+	((char *)sendField)[8]=player.body->GetLinearVelocity().x*255./20.;
+	((char *)sendField)[9]=player.body->GetLinearVelocity().y*255./20.;
+    
 	NSData* sendData = [NSData dataWithBytesNoCopy:sendField length:5*sizeof(float) freeWhenDone:YES];
 	
 	if (self.activePeer) {
@@ -243,5 +246,63 @@
 							 error:nil];
 	}
 }
+
+#pragma mark --- INCOMMING MESSSAGES ---
+
+- (BOOL)handlePlayerAnnouncement:(NSString *)inputString
+{
+	if ([inputString hasPrefix:@"|NPA:"]) {
+        NSString* announcement = [inputString substringWithRange:NSMakeRange(4,inputString.length-4)];
+        NSArray* parts = [announcement componentsSeparatedByString:@"|"];
+        char playerID = [[parts objectAtIndex:0] charValue];
+        NSString* playerName = [parts objectAtIndex:1];
+        NSDictionary* gameContext = [jsonParser objectWithString:[parts objectAtIndex:2]];
+        
+		[self.preGameDelegate newPlayerAnnounced:nil];
+        return TRUE;
+	}else {
+		return FALSE;
+	}
+}
+
+- (BOOL)handleDisconnectedPlayer:(NSString *)inputString
+{
+	if ([inputString hasPrefix:@"|DCN:"]) {
+        NSString* announcement = [inputString substringWithRange:NSMakeRange(4,inputString.length-4)];
+        char playerID = [announcement intValue];
+        
+        return TRUE;
+    }else{
+        return FALSE;
+    }
+}
+
+- (BOOL)handleRequestForPlayerAnnouncement:(NSString *)inputString
+{
+	if ([inputString hasPrefix:@"|PAR:"]) {
+		NSString* announcement = [inputString substringWithRange:NSMakeRange(4,inputString.length-4)];
+        char playerID = [announcement intValue];
+        
+        return TRUE;
+    }else{
+        return FALSE;
+    }
+}
+
+
+- (BOOL)handlePlayerGameContextChange:(NSString *)inputString
+{
+	if ([inputString hasPrefix:@"|PGC:"]) {
+		NSString* announcement = [inputString substringWithRange:NSMakeRange(4,inputString.length-4)];
+        char playerID = [announcement intValue];
+        
+        return TRUE;
+    }else{
+        return FALSE;
+    }
+}
+
+
+
 
 @end

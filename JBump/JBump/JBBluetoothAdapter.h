@@ -10,6 +10,8 @@
 #import "JBMultiplayerAdapter.h"
 #import <GameKit/GameKit.h>
 
+@class SBJsonWriter;
+@class SBJsonParser;
 @class JBPreGameViewController;
 
 @interface JBBluetoothAdapter : JBMultiplayerAdapter <GKPeerPickerControllerDelegate,GKSessionDelegate> {
@@ -22,6 +24,8 @@
 @property (nonatomic, retain) GKSession *gameSession;
 @property (nonatomic, retain) NSString* activePeer;
 @property (nonatomic, retain) JBPreGameViewController *preGameDelegate;
+@property (nonatomic, retain) SBJsonWriter* jsonWriter;
+@property (nonatomic, retain) SBJsonParser* jsonParser;
 
 - (void)setupConnectionForPreGameViewController:(JBPreGameViewController*)aPreGameDelegate;
 
