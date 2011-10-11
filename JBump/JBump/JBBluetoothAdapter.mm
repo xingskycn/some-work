@@ -21,6 +21,17 @@
 @synthesize jsonParser;
 
 
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        self.jsonParser = [[SBJsonParser new] autorelease];
+        self.jsonWriter = [[SBJsonWriter new] autorelease];
+    }
+    return self;
+}
+
+
 - (void)setupConnectionForPreGameViewController:(JBPreGameViewController*)aPreGameDelegate
 {
 	self.preGameDelegate = aPreGameDelegate;
