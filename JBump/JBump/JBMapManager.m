@@ -282,7 +282,7 @@ static NSString *filePath = @"maps";
     NSMutableArray *standardMaps = [NSMutableArray array];
     
     for (JBMap *map in allMaps) {
-        if ([[map.mapID substringToIndex:2] isEqualToString:jBSTANDARMAP]) {
+        if ([[map.ID substringToIndex:2] isEqualToString:jBSTANDARMAP]) {
             [standardMaps addObject:map];
         }
     }
