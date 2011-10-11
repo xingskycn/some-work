@@ -49,7 +49,7 @@
         self.playerID = aPlayerID;
         self.name = playerName;
         
-        //self.skinID = [context objectForKey:];
+        self.gameContext = context;
     }
     
     return self;
