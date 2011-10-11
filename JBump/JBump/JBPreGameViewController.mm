@@ -33,6 +33,9 @@
     if (self) {
         // Custom initialization
         self.players = [NSMutableArray array];
+        
+        playersWaitingForGame = 0;
+        playersReady = [NSMutableDictionary dictionary];
     }
     return self;
 }
@@ -65,6 +68,8 @@
     //[self.bluetoothAdapter setupConnectionForPreGameViewController:self];
     
     self.maps = [JBMapManager getAllStandardMaps];
+    [self.startButton setEnabled:NO];
+    [self.gameTypeButton setEnabled:NO];
 }
 
 
@@ -109,6 +114,15 @@
     //TODO
 }
 
+- (IBAction)readyButtonPressed:(id)sender {
+}
+
+- (IBAction)startButtonPressed:(id)sender {
+}
+
+- (IBAction)newConnectionPressed:(id)sender {
+}
+
 #pragma mark tableViewStuff
 
 - (int)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -136,7 +150,7 @@
         }
         
         JBHero *aHero = [[self.multiplayerAdapter.tavern getAllPlayers] objectAtIndex:indexPath.row];
-        
+        playersWaitingForGame++;
         cell.textLabel.text = aHero.playerName;
         
         JBSkin *playerSkin = [JBSkinManager getSkinWithID:aHero.skinID];
@@ -170,6 +184,7 @@
 #pragma mark JBGameAdapterPregameViewDelegate
 
 - (void)newPlayerAnnounced:(JBHero *)hero {
+    playersWaitingForGame=0;
     [self.playersTableView reloadData];
 }
 
@@ -182,11 +197,22 @@
 }
 
 - (void)player:(JBHero *)hero didReadyChange:(BOOL)ready {
+    if (ready) {
+        [playersReady setObject:hero forKey:hero.playerName];
+        if ([playersReady count]>=playersWaitingForGame) {
+            [self.startButton setEnabled:YES];
+        }
+    } else {
+        [playersReady removeObjectForKey:hero.playerName];
+        if ([playersReady count]<playersWaitingForGame) {
+            [self.startButton setEnabled:NO];
+        }
+    }
     
 }
 
 - (void)playerDidStartGame:(JBHero *)hero {
-    
+    //TODO
 }
 
 @end

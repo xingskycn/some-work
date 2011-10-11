@@ -8,8 +8,6 @@
 
 #import "JBHero.h"
 #import "cocos2d.h"
-#import "JBSkinManager.h"
-#import "JBSkin.h"
 
 @implementation JBHero
 
@@ -29,23 +27,18 @@
 
 @synthesize maxLeft, maxRight;
 
-- (id)initWithNode:(CCNode*)parent {
+- (id)init {
     self = [super init];
     
     if (self) {
-        JBSkin *heroSkin = [JBSkinManager getSkinWithID:[[NSUserDefaults standardUserDefaults] objectForKey:@"skinID"]];
         maxLeft=-5.0f;
         maxRight=5.0f;
         isLeft=YES;
         isRight=NO;
         jumpTouched=NO;
-        self.sprite = [CCSprite spriteWithFile:heroSkin.imageLocation];
-        self.sprite.scale=(30.0/self.sprite.textureRect.size.height);
-        [parent addChild:sprite z:0 tag:[@"Player" hash]];
     }
     
     return self;
-    
 }
 
 - (void)jump:(float)time timeOnGround:(float)playerTimeOnGround {

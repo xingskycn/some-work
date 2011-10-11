@@ -359,6 +359,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="startButtonPressed:" destination="cPF-01-Aut" eventType="touchUpInside" id="Fe4-W0-4Pt"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="tR1-ri-fe3">
                                 <rect key="frame" x="188" y="283" width="119" height="37"/>
@@ -371,6 +374,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="newConnectionPressed:" destination="cPF-01-Aut" eventType="touchUpInside" id="c9H-Zf-4td"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="drq-aE-L1A">
                                 <rect key="frame" x="31" y="283" width="119" height="37"/>
@@ -387,18 +393,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="121" sectionHeaderHeight="22" sectionFooterHeight="22" id="eze-DP-gz1">
                                 <rect key="frame" x="0.0" y="20" width="180" height="255"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="125" id="Hdi-5s-SEY" customClass="JBPreGameMapsTableViewCell">
-                                        <rect key="frame" x="0.0" y="22" width="180" height="125"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="180" height="124"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
-                                    </tableViewCell>
-                                </prototypes>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="cPF-01-Aut" id="q6t-ai-5IE"/>
                                     <outlet property="delegate" destination="cPF-01-Aut" id="2gd-7p-3iH"/>
@@ -407,18 +402,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Nj1-Om-aHt">
                                 <rect key="frame" x="188" y="20" width="292" height="255"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="gVd-zJ-i9d">
-                                        <rect key="frame" x="0.0" y="22" width="292" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="292" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
-                                    </tableViewCell>
-                                </prototypes>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="cPF-01-Aut" id="INn-Fe-O8a"/>
                                     <outlet property="delegate" destination="cPF-01-Aut" id="3Md-rR-Ebw"/>
@@ -435,6 +419,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="readyButtonPressed:" destination="cPF-01-Aut" eventType="touchUpInside" id="WYa-KO-qhS"/>
+                                </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="players" lineBreakMode="tailTruncation" minimumFontSize="10" id="k3O-1B-g5F">
                                 <rect key="frame" x="188" y="-2" width="60" height="21"/>
@@ -451,7 +438,6 @@
                         <outlet property="aNewConnectionbutton" destination="tR1-ri-fe3" id="QXl-0x-SS0"/>
                         <outlet property="gameTypeButton" destination="drq-aE-L1A" id="Aak-0X-tG7"/>
                         <outlet property="mapsTablleView" destination="eze-DP-gz1" id="GMB-4u-WTn"/>
-                        <outlet property="newConnectionButton" destination="tR1-ri-fe3" id="kam-PL-Yll"/>
                         <outlet property="playersTableView" destination="Nj1-Om-aHt" id="TWW-KK-6ir"/>
                         <outlet property="readyButton" destination="zPd-I1-7C2" id="QM0-ws-Jia"/>
                         <outlet property="startButton" destination="5fB-Og-Acg" id="rxH-FQ-0dL"/>
@@ -1028,12 +1014,12 @@
         <class className="JBNewGameViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/JBNewGameViewController.h"/>
         </class>
-        <class className="JBPreGameMapsTableViewCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/JBPreGameMapsTableViewCell.h"/>
-        </class>
         <class className="JBPreGameViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/JBPreGameViewController.h"/>
             <relationships>
+                <relationship kind="action" name="newConnectionPressed:"/>
+                <relationship kind="action" name="readyButtonPressed:"/>
+                <relationship kind="action" name="startButtonPressed:"/>
                 <relationship kind="outlet" name="aNewConnectionbutton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="gameTypeButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="mapsTablleView" candidateClass="UITableView"/>
@@ -1072,7 +1058,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="cqk-6h-sdo"/>
+        <segue reference="Lcf-yq-bHb"/>
         <segue reference="1RV-xt-lrX"/>
     </inferredMetricsTieBreakers>
 </document>
