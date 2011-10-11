@@ -34,7 +34,7 @@
         // Custom initialization
         self.players = [NSMutableArray array];
         
-        playersWaitingForGame = 0;
+        playersWaitingForGame = 1;
         playersReady = [NSMutableDictionary dictionary];
     }
     return self;
@@ -115,6 +115,12 @@
 }
 
 - (IBAction)readyButtonPressed:(id)sender {
+    NSString *myPlayerID = [NSString stringWithFormat:@"%d",self.multiplayerAdapter.tavern.localPlayer.playerID];
+    if ([playersReady objectForKey: myPlayerID]!=nil) {
+        [self player:myPlayerID didReadyChange:NO];
+    } else {
+        [self player:myPlayerID didReadyChange:YES];
+    }
 }
 
 - (IBAction)startButtonPressed:(id)sender {
@@ -150,7 +156,6 @@
         }
         
         JBHero *aHero = [[self.multiplayerAdapter.tavern getAllPlayers] objectAtIndex:indexPath.row];
-        playersWaitingForGame++;
         cell.textLabel.text = aHero.name;
         
         JBSkin *playerSkin = [JBSkinManager getSkinWithID:aHero.skinID];
@@ -184,27 +189,24 @@
 #pragma mark JBGameAdapterPregameViewDelegate
 
 - (void)newPlayerAnnounced:(JBHero *)hero {
-    playersWaitingForGame=0;
+    playersWaitingForGame=[self.multiplayerAdapter.tavern getAllPlayers].count+1;
     [self.playersTableView reloadData];
-}
-
-- (JBHero *)requestPlayerAnnouncement:(NSString *)playerI {
-    return nil;
 }
 
 - (void)playerDisconnected:(JBHero *)hero {
+    playersWaitingForGame=[self.multiplayerAdapter.tavern getAllPlayers].count+1;
     [self.playersTableView reloadData];
 }
 
-- (void)player:(JBHero *)hero didReadyChange:(BOOL)ready {
+- (void)player:(NSString *)heroID didReadyChange:(BOOL)ready {
     if (ready) {
-        [playersReady setObject:hero forKey:hero.name];
-        if ([playersReady count]>=playersWaitingForGame) {
+        [playersReady setObject:heroID forKey:heroID];
+        if ([playersReady allValues].count>=playersWaitingForGame) {
             [self.startButton setEnabled:YES];
         }
     } else {
-        [playersReady removeObjectForKey:hero.name];
-        if ([playersReady count]<playersWaitingForGame) {
+        [playersReady removeObjectForKey:heroID];
+        if ([playersReady allValues].count<playersWaitingForGame) {
             [self.startButton setEnabled:NO];
         }
     }
