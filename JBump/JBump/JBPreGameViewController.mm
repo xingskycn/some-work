@@ -151,7 +151,7 @@
         
         JBHero *aHero = [[self.multiplayerAdapter.tavern getAllPlayers] objectAtIndex:indexPath.row];
         playersWaitingForGame++;
-        cell.textLabel.text = aHero.playerName;
+        cell.textLabel.text = aHero.name;
         
         JBSkin *playerSkin = [JBSkinManager getSkinWithID:aHero.skinID];
         
@@ -198,12 +198,12 @@
 
 - (void)player:(JBHero *)hero didReadyChange:(BOOL)ready {
     if (ready) {
-        [playersReady setObject:hero forKey:hero.playerName];
+        [playersReady setObject:hero forKey:hero.name];
         if ([playersReady count]>=playersWaitingForGame) {
             [self.startButton setEnabled:YES];
         }
     } else {
-        [playersReady removeObjectForKey:hero.playerName];
+        [playersReady removeObjectForKey:hero.name];
         if ([playersReady count]<playersWaitingForGame) {
             [self.startButton setEnabled:NO];
         }

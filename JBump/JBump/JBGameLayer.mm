@@ -321,10 +321,11 @@ public:
 - (void)insertHero
 {
     player = [[JBHero alloc] init];
+    player.name = [[NSUserDefaults standardUserDefaults] objectForKey:jbUSERDEFAULTS_PLAYER_NAME];
     JBSkin *heroSkin = [JBSkinManager getSkinWithID:[[NSUserDefaults standardUserDefaults] objectForKey:jbUSERDEFAULTS_SKIN]];
     player.sprite = [CCSprite spriteWithFile:heroSkin.imageLocation];
     player.sprite.scale=(30.0/player.sprite.textureRect.size.height);
-    [self addChild:player.sprite z:0 tag:[player.playerName hash]];
+    [self addChild:player.sprite z:0 tag:[player.name hash]];
     
     b2BodyDef bodyDef;
 	bodyDef.type = b2_dynamicBody;
