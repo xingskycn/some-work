@@ -25,6 +25,7 @@
 #define jbTHUMBNAILLOCATION @"thumbnailLocation"
 #define jbTHUMBNAILURL @"thumbnailURL"
 #define jbINFO @"info"
+#define jbDELETEBUTTON_TITLE @"Delete"
 
 #pragma mark Entities
 #define jbBODYTYPE @"bodyType"
@@ -37,6 +38,8 @@
 
 #pragma mark MapItem
 #define jbSPRITE @"sprite"
+#define jbMAPITEM @"mapItem"
+#define jBMAPITEM_POINTS @"mapItem_points"
 
 #pragma mark Skins
 
@@ -53,6 +56,8 @@
 #define jbENTITIES @"entities"
 #define jbCURVES @"curves"
 #define jbSETTINGS @"settings"
+#define jbCUSTOMMAP_PREFIX @"C__"
+#define jbHIGHTLIGHT_CROSS @"cross"
 
 #pragma mark Predefined Settings
 #define jbMAPSETTINGS_SETTINGS @"settings"

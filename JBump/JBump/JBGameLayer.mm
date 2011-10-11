@@ -47,7 +47,7 @@ public:
             if ([(NSObject*)contact->GetFixtureB()->GetUserData() isKindOfClass:[JBBrush class]]
                 &&worldManifold.points[0].y>contact->GetFixtureA()->GetBody()->GetWorldCenter().y) {
                 JBBrush *brush = (JBBrush*)contact->GetFixtureB()->GetUserData();
-                if ([brush.ID isEqualToString:@"platform"]) {
+                if ([brush.ID isEqualToString:jbBRUSH_PLATFORM]) {
                     //if (worldManifold.normal.y < 0.2f) {
                     if (contact->GetFixtureA()->GetBody()->GetLinearVelocity().y>0.0f) {
                         contact->SetEnabled(false);
@@ -69,7 +69,7 @@ public:
             if ([(NSObject*)contact->GetFixtureA()->GetUserData() isKindOfClass:[JBBrush class]]
                 &&worldManifold.points[0].y>contact->GetFixtureB()->GetBody()->GetWorldCenter().y) {
                 JBBrush *brush = (JBBrush*)contact->GetFixtureA()->GetUserData();
-                if ([brush.ID isEqualToString:@"platform"]) {
+                if ([brush.ID isEqualToString:jbBRUSH_PLATFORM]) {
                     //if (worldManifold.normal.y < -0.5f) {
                     if (contact->GetFixtureB()->GetBody()->GetLinearVelocity().y>0.0f) {
                         contact->SetEnabled(false);
@@ -149,7 +149,7 @@ public:
         [self schedule:@selector(tick:)];
         
         
-        JBMap* map = [JBMapManager getMapWithID:@"C_custom map"];
+        JBMap* map = [JBMapManager getMapWithID:@"C__custom map"];
         
         CCSprite* image = [CCSprite spriteWithFile:@"island.png"];
         
@@ -230,13 +230,13 @@ public:
 - (void)insertCurves:(NSArray *)objects
 {
     for (NSDictionary* dict in objects) {
-        JBBrush* brush = [JBBrushManager getBrushForID:[dict objectForKey:@"ID"]];
+        JBBrush* brush = [JBBrushManager getBrushForID:[dict objectForKey:jbID]];
         JBLineSprite* line = [JBLineSprite node];
         line.alpha = brush.alpha;
         line.red = brush.red;
         line.blue = brush.blue;
         line.green = brush.green;
-        NSArray* points = [dict objectForKey:@"points"];
+        NSArray* points = [dict objectForKey:jBMAPITEM_POINTS];
         line.pointArray = [points mutableCopy];
         line.visible = TRUE;
         [self addChild:line];
@@ -254,7 +254,7 @@ public:
                 curveFix.shape = &curve;
                 curveFix.friction = 0.4f;
                 curveFix.restitution = 0.0f;
-                JBBrush *brush = [JBBrushManager getBrushForID:[dict objectForKey:@"ID"]];
+                JBBrush *brush = [JBBrushManager getBrushForID:[dict objectForKey:jbID]];
                 [brush retain];
                 curveFix.userData=brush;
                 curveBody->CreateFixture(&curveFix);
@@ -271,7 +271,7 @@ public:
         entity.sprite.position = entity.position;
         [self addChild:entity.sprite];
         
-        if ([entity.bodyType isEqualToString:@"dense"]) {
+        if ([entity.bodyType isEqualToString:jbENTITY_BODYTYPE_DENSE]) {
             b2BodyDef bodyDef;
             bodyDef.type = b2_dynamicBody;
             
@@ -279,7 +279,7 @@ public:
             bodyDef.userData = entity.sprite;
             b2Body *body = world->CreateBody(&bodyDef);
             
-            if ([entity.shape isEqualToString:@"circle"]) {
+            if ([entity.shape isEqualToString:jbENTITY_SHAPE_CIRCLE]) {
                 b2FixtureDef fixtureDef;
                 b2CircleShape shape;
                 shape.m_radius = entity.size.width/2/PTM_RATIO;
@@ -289,7 +289,7 @@ public:
                 fixtureDef.density = entity.density;
                 body->CreateFixture(&fixtureDef);
             }
-            if ([entity.shape isEqualToString:@"box"]) {
+            if ([entity.shape isEqualToString:jbENTITY_SHAPE_BOX]) {
                 b2FixtureDef fixtureDef;
                 b2PolygonShape shape;
                 shape.SetAsBox(entity.size.width/PTM_RATIO/2,entity.size.height/PTM_RATIO/2);
@@ -308,7 +308,6 @@ public:
             [[self.spawnPoints objectForKey:entity.ID] addObject:entity];
         }
     }
-    NSLog(@"spawns: %@",self.spawnPoints);
 }
 
 - (void)resetJumpForce{

@@ -129,9 +129,9 @@ static NSString *filePath = @"entities";
     [entity setValue:[NSNumber numberWithFloat:0.8f] forKey:jbFRICTION];
     [entity setValue:[NSNumber numberWithFloat:0.7f] forKey:jbRESTITUTION];
     [entity setValue:NSStringFromCGSize(CGSizeMake(40.0f, 40.0f)) forKey:jbSIZE];
-    [entity setValue:@"box" forKey:jbSHAPE];
+    [entity setValue:jbENTITY_SHAPE_BOX forKey:jbSHAPE];
     [entity setValue:[NSNumber numberWithFloat:.0f] forKey:jbDENSITY];
-    [entity setValue:@"ghost" forKey:jbBODYTYPE];
+    [entity setValue:jbENTITY_BODYTYPE_GHOST forKey:jbBODYTYPE];
     [JBEntityManager saveNewEntity:entity entityImage:entityImage];
     
     entity = [NSMutableDictionary dictionary];
@@ -143,9 +143,9 @@ static NSString *filePath = @"entities";
     [entity setValue:[NSNumber numberWithFloat:0.3f] forKey:jbFRICTION];
     [entity setValue:[NSNumber numberWithFloat:0.0f] forKey:jbRESTITUTION];
     [entity setValue:NSStringFromCGSize(CGSizeMake(15.0f, 60.0f)) forKey:jbSIZE];
-    [entity setValue:@"box" forKey:jbSHAPE];
+    [entity setValue:jbENTITY_SHAPE_BOX forKey:jbSHAPE];
     [entity setValue:[NSNumber numberWithFloat:.3f] forKey:jbDENSITY];
-    [entity setValue:@"dense" forKey:jbBODYTYPE];
+    [entity setValue:jbENTITY_BODYTYPE_DENSE forKey:jbBODYTYPE];
     [JBEntityManager saveNewEntity:entity entityImage:entityImage];
     
     entity = [NSMutableDictionary dictionary];
@@ -157,9 +157,9 @@ static NSString *filePath = @"entities";
     [entity setValue:[NSNumber numberWithFloat:0.3f] forKey:jbFRICTION];
     [entity setValue:[NSNumber numberWithFloat:0.0f] forKey:jbRESTITUTION];
     [entity setValue:NSStringFromCGSize(CGSizeMake(16.0f, 60.0f)) forKey:jbSIZE];
-    [entity setValue:@"box" forKey:jbSHAPE];
+    [entity setValue:jbENTITY_SHAPE_BOX forKey:jbSHAPE];
     [entity setValue:[NSNumber numberWithFloat:.3f] forKey:jbDENSITY];
-    [entity setValue:@"dense" forKey:jbBODYTYPE];
+    [entity setValue:jbENTITY_BODYTYPE_DENSE forKey:jbBODYTYPE];
     [JBEntityManager saveNewEntity:entity entityImage:entityImage];
     
     entity = [NSMutableDictionary dictionary];
@@ -171,9 +171,9 @@ static NSString *filePath = @"entities";
     [entity setValue:[NSNumber numberWithFloat:0.3f] forKey:jbFRICTION];
     [entity setValue:[NSNumber numberWithFloat:0.0f] forKey:jbRESTITUTION];
     [entity setValue:NSStringFromCGSize(CGSizeMake(40.f, 40.0f)) forKey:jbSIZE];
-    [entity setValue:@"box" forKey:jbSHAPE];
+    [entity setValue:jbENTITY_SHAPE_BOX forKey:jbSHAPE];
     [entity setValue:[NSNumber numberWithFloat:.3f] forKey:jbDENSITY];
-    [entity setValue:@"dense" forKey:jbBODYTYPE];
+    [entity setValue:jbENTITY_BODYTYPE_DENSE forKey:jbBODYTYPE];
     [JBEntityManager saveNewEntity:entity entityImage:entityImage];
     
     entity = [NSMutableDictionary dictionary];
@@ -185,9 +185,9 @@ static NSString *filePath = @"entities";
     [entity setValue:[NSNumber numberWithFloat:0.3f] forKey:jbFRICTION];
     [entity setValue:[NSNumber numberWithFloat:0.0f] forKey:jbRESTITUTION];
     [entity setValue:NSStringFromCGSize(CGSizeMake(80.0f, 80.0f)) forKey:jbSIZE];
-    [entity setValue:@"box" forKey:jbSHAPE];
+    [entity setValue:jbENTITY_SHAPE_BOX forKey:jbSHAPE];
     [entity setValue:[NSNumber numberWithFloat:.3f] forKey:jbDENSITY];
-    [entity setValue:@"dense" forKey:jbBODYTYPE];
+    [entity setValue:jbENTITY_BODYTYPE_DENSE forKey:jbBODYTYPE];
     [JBEntityManager saveNewEntity:entity entityImage:entityImage];
     
     entity = [NSMutableDictionary dictionary];
@@ -199,9 +199,9 @@ static NSString *filePath = @"entities";
     [entity setValue:[NSNumber numberWithFloat:0.3f] forKey:jbFRICTION];
     [entity setValue:[NSNumber numberWithFloat:0.0f] forKey:jbRESTITUTION];
     [entity setValue:NSStringFromCGSize(CGSizeMake(60.0f, 60.0f)) forKey:jbSIZE];
-    [entity setValue:@"box" forKey:jbSHAPE];
+    [entity setValue:jbENTITY_SHAPE_BOX forKey:jbSHAPE];
     [entity setValue:[NSNumber numberWithFloat:.3f] forKey:jbDENSITY];
-    [entity setValue:@"dense" forKey:jbBODYTYPE];
+    [entity setValue:jbENTITY_BODYTYPE_DENSE forKey:jbBODYTYPE];
     [JBEntityManager saveNewEntity:entity entityImage:entityImage];
     
     entity = [NSMutableDictionary dictionary];
@@ -213,9 +213,9 @@ static NSString *filePath = @"entities";
     [entity setValue:[NSNumber numberWithFloat:0.3f] forKey:jbFRICTION];
     [entity setValue:[NSNumber numberWithFloat:0.0f] forKey:jbRESTITUTION];
     [entity setValue:NSStringFromCGSize(CGSizeMake(80.0f, 80.0f)) forKey:jbSIZE];
-    [entity setValue:@"box" forKey:jbSHAPE];
+    [entity setValue:jbENTITY_SHAPE_BOX forKey:jbSHAPE];
     [entity setValue:[NSNumber numberWithFloat:.3f] forKey:jbDENSITY];
-    [entity setValue:@"dense" forKey:jbBODYTYPE];
+    [entity setValue:jbENTITY_BODYTYPE_DENSE forKey:jbBODYTYPE];
     [JBEntityManager saveNewEntity:entity entityImage:entityImage];
     
     entity = [NSMutableDictionary dictionary];
@@ -227,9 +227,9 @@ static NSString *filePath = @"entities";
     [entity setValue:[NSNumber numberWithFloat:0.3f] forKey:jbFRICTION];
     [entity setValue:[NSNumber numberWithFloat:0.0f] forKey:jbRESTITUTION];
     [entity setValue:NSStringFromCGSize(CGSizeMake(60.0f, 60.0f)) forKey:jbSIZE];
-    [entity setValue:@"box" forKey:jbSHAPE];
+    [entity setValue:jbENTITY_SHAPE_BOX forKey:jbSHAPE];
     [entity setValue:[NSNumber numberWithFloat:.3f] forKey:jbDENSITY];
-    [entity setValue:@"dense" forKey:jbBODYTYPE];
+    [entity setValue:jbENTITY_BODYTYPE_DENSE forKey:jbBODYTYPE];
     [JBEntityManager saveNewEntity:entity entityImage:entityImage];
     
     
@@ -242,9 +242,9 @@ static NSString *filePath = @"entities";
     [entity setValue:[NSNumber numberWithFloat:0.3f] forKey:jbFRICTION];
     [entity setValue:[NSNumber numberWithFloat:0.0f] forKey:jbRESTITUTION];
     [entity setValue:NSStringFromCGSize(CGSizeMake(20.0f, 20.0f)) forKey:jbSIZE];
-    [entity setValue:@"circle" forKey:jbSHAPE];
+    [entity setValue:jbENTITY_SHAPE_CIRCLE forKey:jbSHAPE];
     [entity setValue:[NSNumber numberWithFloat:.3f] forKey:jbDENSITY];
-    [entity setValue:@"dense" forKey:jbBODYTYPE];
+    [entity setValue:jbENTITY_BODYTYPE_DENSE forKey:jbBODYTYPE];
     [JBEntityManager saveNewEntity:entity entityImage:entityImage];
     
     entity = [NSMutableDictionary dictionary];
@@ -256,9 +256,9 @@ static NSString *filePath = @"entities";
     [entity setValue:[NSNumber numberWithFloat:0.3f] forKey:jbFRICTION];
     [entity setValue:[NSNumber numberWithFloat:0.0f] forKey:jbRESTITUTION];
     [entity setValue:NSStringFromCGSize(CGSizeMake(40.0f, 40.0f)) forKey:jbSIZE];
-    [entity setValue:@"circle" forKey:jbSHAPE];
+    [entity setValue:jbENTITY_SHAPE_CIRCLE forKey:jbSHAPE];
     [entity setValue:[NSNumber numberWithFloat:.3f] forKey:jbDENSITY];
-    [entity setValue:@"dense" forKey:jbBODYTYPE];
+    [entity setValue:jbENTITY_BODYTYPE_DENSE forKey:jbBODYTYPE];
     [JBEntityManager saveNewEntity:entity entityImage:entityImage];
     
     entity = [NSMutableDictionary dictionary];
@@ -270,9 +270,9 @@ static NSString *filePath = @"entities";
     [entity setValue:[NSNumber numberWithFloat:0.3f] forKey:jbFRICTION];
     [entity setValue:[NSNumber numberWithFloat:0.3f] forKey:jbRESTITUTION];
     [entity setValue:NSStringFromCGSize(CGSizeMake(40, 40.0f)) forKey:jbSIZE];
-    [entity setValue:@"circle" forKey:jbSHAPE];
+    [entity setValue:jbENTITY_SHAPE_CIRCLE forKey:jbSHAPE];
     [entity setValue:[NSNumber numberWithFloat:.3f] forKey:jbDENSITY];
-    [entity setValue:@"dense" forKey:jbBODYTYPE];
+    [entity setValue:jbENTITY_BODYTYPE_DENSE forKey:jbBODYTYPE];
     [JBEntityManager saveNewEntity:entity entityImage:entityImage];
     
     entity = [NSMutableDictionary dictionary];
@@ -284,9 +284,9 @@ static NSString *filePath = @"entities";
     [entity setValue:[NSNumber numberWithFloat:0.3f] forKey:jbFRICTION];
     [entity setValue:[NSNumber numberWithFloat:0.3f] forKey:jbRESTITUTION];
     [entity setValue:NSStringFromCGSize(CGSizeMake(60.0f, 60.0f)) forKey:jbSIZE];
-    [entity setValue:@"circle" forKey:jbSHAPE];
+    [entity setValue:jbENTITY_SHAPE_CIRCLE forKey:jbSHAPE];
     [entity setValue:[NSNumber numberWithFloat:.3f] forKey:jbDENSITY];
-    [entity setValue:@"dense" forKey:jbBODYTYPE];
+    [entity setValue:jbENTITY_BODYTYPE_DENSE forKey:jbBODYTYPE];
     [JBEntityManager saveNewEntity:entity entityImage:entityImage];
     
     entity = [NSMutableDictionary dictionary];
@@ -298,9 +298,9 @@ static NSString *filePath = @"entities";
     [entity setValue:[NSNumber numberWithFloat:0.3f] forKey:jbFRICTION];
     [entity setValue:[NSNumber numberWithFloat:0.4f] forKey:jbRESTITUTION];
     [entity setValue:NSStringFromCGSize(CGSizeMake(40.0f, 39.0f)) forKey:jbSIZE];
-    [entity setValue:@"circle" forKey:jbSHAPE];
+    [entity setValue:jbENTITY_SHAPE_CIRCLE forKey:jbSHAPE];
     [entity setValue:[NSNumber numberWithFloat:.3f] forKey:jbDENSITY];
-    [entity setValue:@"dense" forKey:jbBODYTYPE];
+    [entity setValue:jbENTITY_BODYTYPE_DENSE forKey:jbBODYTYPE];
     [JBEntityManager saveNewEntity:entity entityImage:entityImage];
     
     entity = [NSMutableDictionary dictionary];
@@ -312,9 +312,9 @@ static NSString *filePath = @"entities";
     [entity setValue:[NSNumber numberWithFloat:0.3f] forKey:jbFRICTION];
     [entity setValue:[NSNumber numberWithFloat:0.4f] forKey:jbRESTITUTION];
     [entity setValue:NSStringFromCGSize(CGSizeMake(60.0f, 59.f)) forKey:jbSIZE];
-    [entity setValue:@"circle" forKey:jbSHAPE];
+    [entity setValue:jbENTITY_SHAPE_CIRCLE forKey:jbSHAPE];
     [entity setValue:[NSNumber numberWithFloat:.3f] forKey:jbDENSITY];
-    [entity setValue:@"dense" forKey:jbBODYTYPE];
+    [entity setValue:jbENTITY_BODYTYPE_DENSE forKey:jbBODYTYPE];
     [JBEntityManager saveNewEntity:entity entityImage:entityImage];
 }
 
