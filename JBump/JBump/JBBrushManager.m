@@ -124,7 +124,7 @@ static NSString *filePath = @"brushes";
     NSMutableDictionary *brush = [NSMutableDictionary dictionary];
     
     UIImage *brushImage = [UIImage imageNamed:@"brush_1.png"];
-    [brush setValue:@"solid" forKey:jbID];
+    [brush setValue:jbBRUSH_SOLID forKey:jbID];
     [brush setValue:brushImage forKey:jbTHUMBNAIL];
     [brush setValue:@"concrete" forKey:jbNAME];
     [brush setValue:@"stops move" forKey:jbFURTHER];
@@ -137,7 +137,7 @@ static NSString *filePath = @"brushes";
     [JBBrushManager saveNewBrush:brush thumbnail:brushImage];
     
     brushImage = [UIImage imageNamed:@"brush_2.png"];
-    [brush setValue:@"platform" forKey:jbID];
+    [brush setValue:jbBRUSH_PLATFORM forKey:jbID];
     [brush setValue:brushImage forKey:jbTHUMBNAIL];
     [brush setValue:@"platform" forKey:jbNAME];
     [brush setValue:@"passable from bottom" forKey:jbFURTHER];
@@ -150,7 +150,7 @@ static NSString *filePath = @"brushes";
     [JBBrushManager saveNewBrush:brush thumbnail:brushImage];
     
     brushImage = [UIImage imageNamed:@"brush_3.png"];
-    [brush setValue:@"ice" forKey:jbID];
+    [brush setValue:jbBRUSH_ICE forKey:jbID];
     [brush setValue:brushImage forKey:jbTHUMBNAIL];
     [brush setValue:@"ice" forKey:jbNAME];
     [brush setValue:@"dont slip!" forKey:jbFURTHER];
@@ -163,7 +163,7 @@ static NSString *filePath = @"brushes";
     [JBBrushManager saveNewBrush:brush thumbnail:brushImage];
     
     brushImage = [UIImage imageNamed:@"brush_4.png"];
-    [brush setValue:@"death" forKey:jbID];
+    [brush setValue:jbBRUSH_DEATH forKey:jbID];
     [brush setValue:brushImage forKey:jbTHUMBNAIL];
     [brush setValue:@"death" forKey:jbNAME];
     [brush setValue:@"DIE ON CONTACT!" forKey:jbFURTHER];
@@ -176,7 +176,7 @@ static NSString *filePath = @"brushes";
     [JBBrushManager saveNewBrush:brush thumbnail:brushImage];
     
     brushImage = [UIImage imageNamed:@"brush_5.png"];
-    [brush setValue:@"doorleft" forKey:jbID];
+    [brush setValue:jbBRUSH_DOORLEFT forKey:jbID];
     [brush setValue:brushImage forKey:jbTHUMBNAIL];
     [brush setValue:@"exit only" forKey:jbNAME];
     [brush setValue:@"heros can pass from left" forKey:jbFURTHER];
@@ -189,7 +189,7 @@ static NSString *filePath = @"brushes";
     [JBBrushManager saveNewBrush:brush thumbnail:brushImage];
     
     brushImage = [UIImage imageNamed:@"brush_6.png"];
-    [brush setValue:@"doorright" forKey:jbID];
+    [brush setValue:jbBRUSH_DOORRIGHT forKey:jbID];
     [brush setValue:brushImage forKey:jbTHUMBNAIL];
     [brush setValue:@"exit only" forKey:jbNAME];
     [brush setValue:@"heros can pass from right" forKey:jbFURTHER];
@@ -202,7 +202,7 @@ static NSString *filePath = @"brushes";
     [JBBrushManager saveNewBrush:brush thumbnail:brushImage];
     
     brushImage = [UIImage imageNamed:@"brush_7.png"];
-    [brush setValue:@"assemblyleft" forKey:jbID];
+    [brush setValue:jbBRUSH_ASSEMBLYLEFT forKey:jbID];
     [brush setValue:brushImage forKey:jbTHUMBNAIL];
     [brush setValue:@"assembly line" forKey:jbNAME];
     [brush setValue:@"rolling to left" forKey:jbFURTHER];
@@ -215,7 +215,7 @@ static NSString *filePath = @"brushes";
     [JBBrushManager saveNewBrush:brush thumbnail:brushImage];
     
     brushImage = [UIImage imageNamed:@"brush_8.png"];
-    [brush setValue:@"assemblyright" forKey:jbID];
+    [brush setValue:jbBRUSH_ASSEMBLYRIGHT forKey:jbID];
     [brush setValue:brushImage forKey:jbTHUMBNAIL];
     [brush setValue:@"assembly line" forKey:jbNAME];
     [brush setValue:@"rolling to right" forKey:jbFURTHER];
@@ -228,10 +228,10 @@ static NSString *filePath = @"brushes";
     [JBBrushManager saveNewBrush:brush thumbnail:brushImage];
     
     brushImage = [UIImage imageNamed:@"brush_9.png"];
-    [brush setValue:@"unset" forKey:jbID];
+    [brush setValue:jbBRUSH_HORIZONTAL_PLATFORM forKey:jbID];
     [brush setValue:brushImage forKey:jbTHUMBNAIL];
-    [brush setValue:@"free" forKey:jbNAME];
-    [brush setValue:@"not yet" forKey:jbFURTHER];
+    [brush setValue:@"horizontal platform" forKey:jbNAME];
+    [brush setValue:@"passable from bottom" forKey:jbFURTHER];
     [brush setValue:[NSNumber numberWithFloat:0.4f] forKey:jbFRICTION];
     [brush setValue:[NSNumber numberWithFloat:0.0f] forKey:jbRESTITUTION];
     [brush setValue:[NSNumber numberWithFloat:.8f] forKey:jbRED];

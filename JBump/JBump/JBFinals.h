@@ -81,4 +81,24 @@
 #define jbMAPCREATOR_OFFX 180 
 #define jbMAPCREATOR_OFFY 120
 
+#pragma mark Map Creator Brushes
+#define jbBRUSH_SOLID @"solid"
+#define jbBRUSH_PLATFORM @"platform"
+#define jbBRUSH_ICE @"ice"
+#define jbBRUSH_DEATH @"death"
+#define jbBRUSH_DOORLEFT @"doorleft"
+#define jbBRUSH_DOORRIGHT @"doorright"
+#define jbBRUSH_ASSEMBLYLEFT @"assemblyleft"
+#define jbBRUSH_ASSEMBLYRIGHT @"assembleright"
+#define jbBRUSH_HORIZONTAL_PLATFORM @"horizontal platform"
+
+#pragma mark Map Creator Entities
+#define jbENTITY_BODYTYPE_GHOST @"ghost"
+#define jbENTITY_BODYTYPE_DENSE @"dense"
+#define jbENTITY_SHAPE_CIRCLE @"circle"
+#define jbENTITY_SHAPE_BOX @"box"
+
+
+
+
 #endif
