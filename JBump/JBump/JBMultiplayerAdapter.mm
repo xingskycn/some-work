@@ -8,7 +8,6 @@
 
 #import "JBMultiplayerAdapter.h"
 #import "JBHero.h"
-#import "JBTavern.h"
 
 @implementation JBMultiplayerAdapter
 @synthesize tavern;

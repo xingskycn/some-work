@@ -25,7 +25,7 @@
 }
 
 - (void)addNewPlayer:(JBHero *)aPlayer {
-    [self.heroesInTavern setObject:aPlayer forKey:aPlayer.playerName];
+    [self.heroesInTavern setObject:aPlayer forKey:aPlayer.name];
 }
 
 - (JBHero*)getPlayerWithName:(NSString *)aPlayerName {

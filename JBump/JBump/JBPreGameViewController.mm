@@ -137,7 +137,7 @@
         
         JBHero *aHero = [[self.multiplayerAdapter.tavern getAllPlayers] objectAtIndex:indexPath.row];
         
-        cell.textLabel.text = aHero.playerName;
+        cell.textLabel.text = aHero.name;
         
         JBSkin *playerSkin = [JBSkinManager getSkinWithID:aHero.skinID];
         

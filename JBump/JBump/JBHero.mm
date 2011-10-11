@@ -13,10 +13,10 @@
 
 @implementation JBHero
 
-@synthesize playerName;
+@synthesize name;
 @synthesize skinID;
 @synthesize reference;
-
+@synthesize gameContext;
 @synthesize sprite;
 @synthesize friction, restitution;
 @synthesize body;
@@ -26,6 +26,7 @@
 @synthesize jumpForce;
 
 @synthesize desiredRotation;
+@synthesize packageNr;
 
 @synthesize maxLeft, maxRight;
 

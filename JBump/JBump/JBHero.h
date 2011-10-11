@@ -17,8 +17,10 @@
     bool isLeft, isRight;
 }
 
-@property (nonatomic, retain) NSString* playerName;
+@property (nonatomic, retain) NSString* name;
 @property (nonatomic, retain) NSString* skinID;
+@property (nonatomic, retain) NSDictionary* gameContext;
+@property (assign) int packageNr;
 @property (assign) char reference;
 
 

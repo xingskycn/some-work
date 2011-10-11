@@ -8,12 +8,15 @@
 
 #import "JBBluetoothAdapter.h"
 #import "JBPreGameViewController.h"
+#import "JBHero.h"
+
 
 @implementation JBBluetoothAdapter
 
 @synthesize gameSession;
 @synthesize activePeer;
 @synthesize preGameDelegate;
+
 
 - (void)setupConnectionForPreGameViewController:(JBPreGameViewController*)aPreGameDelegate
 {
@@ -88,12 +91,9 @@
 }
 
 - (void)peerPickerController:(GKPeerPickerController *)picker didConnectPeer:(NSString *)peerID toSession: (GKSession *) session {
-	// Use a retaining property to take ownership of the session.
     self.gameSession = session;
-	// Assumes our object will also become the session's delegate.
     session.delegate = self;
     [session setDataReceiveHandler: self withContext:nil];
-	// Remove the picker.
     picker.delegate = nil;
     [picker dismiss];
     [picker autorelease];
@@ -115,6 +115,133 @@
 
 - (void) receiveData:(NSData *)data fromPeer:(NSString *)peer inSession: (GKSession *)session context:(void *)context {
     NSLog(@"RECEIVED DATA...");
+}
+
+
+#pragma GAME SETUP --- INCOMMING
+
+
+- (void)announcePlayerWithNewID:(BOOL)newIDRequest
+{
+	if (newIDRequest) {
+		char randomID = rand()*0.999/RAND_MAX * (255);
+		super.tavern.localPlayer.reference = randomID;
+	}
+	
+	// New Player Announcement
+	// 1st Position for chrID
+	// 2nd Position to provide GameContext
+	// 3rd Position to send playername
+	NSString* sendString = 
+	[NSString stringWithFormat:	@"NPA:%03d%@NPA:%@",
+     super.tavern.localPlayer.reference,
+     super.tavern.localPlayer.gameContext,
+     super.tavern.localPlayer.name]; 
+	
+	NSData* sendData = [sendString dataUsingEncoding:NSUTF8StringEncoding];
+	if (self.activePeer) {
+		[self.gameSession sendData:sendData
+						   toPeers:[NSArray arrayWithObject:self.activePeer] 
+					  withDataMode:GKSendDataUnreliable 
+							 error:nil];
+	}
+}
+
+- (void)disconnectPlayer
+{
+	//Player DisCoNnected
+	NSString* sendString = 
+	[NSString stringWithFormat:	@"DCN:%03dDCN:%@",
+        super.tavern.localPlayer.reference,
+        super.tavern.localPlayer.name]; 
+	
+	NSData* sendData = [sendString dataUsingEncoding:NSUTF8StringEncoding];
+	if (self.activePeer) {
+		[self.gameSession sendData:sendData
+						   toPeers:[NSArray arrayWithObject:self.activePeer] 
+					  withDataMode:GKSendDataUnreliable 
+							 error:nil];
+	}
+	[self.gameSession disconnectFromAllPeers];
+	self.activePeer = nil;
+}
+
+- (void)requestForPlayerAnnouncement:(NSString *)playerID
+{
+	//Player Announcement Request
+	NSString* sendString = 
+	[NSString stringWithFormat:	@"PAR:%03d",[playerID intValue]];
+	
+	NSData* sendData = [sendString dataUsingEncoding:NSUTF8StringEncoding];
+	if (self.activePeer) {
+		[self.gameSession sendData:sendData
+						   toPeers:[NSArray arrayWithObject:self.activePeer] 
+					  withDataMode:GKSendDataUnreliable 
+							 error:nil];
+	}
+}
+
+- (void)shoutPlayerGameContextChange
+{
+	// Player Gamecontext Change
+	// 1st chrID
+	// 2nd new gamecontext
+	
+	NSString* sendString = 
+	[NSString stringWithFormat:	@"PGC:%03dPGC:%@",
+     super.tavern.localPlayer.reference,
+     super.tavern.localPlayer.gameContext];
+	
+	NSData* sendData = [sendString dataUsingEncoding:NSUTF8StringEncoding];
+	if (self.activePeer) {
+		[self.gameSession sendData:sendData
+						   toPeers:[NSArray arrayWithObject:self.activePeer] 
+					  withDataMode:GKSendDataUnreliable 
+							 error:nil];
+	}
+}
+
+
+- (void)playerKilledByChar:(JBHero *)player
+{
+	// Player Killed by Char
+	// 1st Killer
+	// 2nd Killed
+	
+	NSString* sendString = 
+	[NSString stringWithFormat:	@"PKC:%03dPKC:%03d",
+     super.tavern.localPlayer.reference,
+     player.reference];
+	
+	NSData* sendData = [sendString dataUsingEncoding:NSUTF8StringEncoding];
+	if (self.activePeer) {
+		[self.gameSession sendData:sendData
+						   toPeers:[NSArray arrayWithObject:self.activePeer] 
+					  withDataMode:GKSendDataUnreliable 
+							 error:nil];
+	}
+}
+
+- (void)sendPlayer
+{
+    JBHero* player = super.tavern.localPlayer;
+    
+	void* sendField = malloc(sizeof(int)+sizeof(short)*2+sizeof(char)*2);
+ 	((int*)sendField)[0]=player.packageNr++;
+	char chrIDNr = player.reference;
+	((char*)sendField)[3]=chrIDNr;
+	((short *)sendField)[2]=player.body->GetWorldCenter().x;
+	((short *)sendField)[3]=player.body->GetWorldCenter().y;
+	((char *)sendField)[8]=player.body->GetLinearVelocity().x;
+	((char *)sendField)[9]=player.body->GetLinearVelocity().y;
+	NSData* sendData = [NSData dataWithBytesNoCopy:sendField length:5*sizeof(float) freeWhenDone:YES];
+	
+	if (self.activePeer) {
+		[self.gameSession sendData:sendData
+						   toPeers:[NSArray arrayWithObject:self.activePeer] 
+					  withDataMode:GKSendDataUnreliable 
+							 error:nil];
+	}
 }
 
 @end
