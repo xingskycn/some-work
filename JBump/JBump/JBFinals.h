@@ -25,6 +25,7 @@
 #define jbTHUMBNAILLOCATION @"thumbnailLocation"
 #define jbTHUMBNAILURL @"thumbnailURL"
 #define jbINFO @"info"
+#define jbDELETEBUTTON_TITLE @"Delete"
 
 #pragma mark Entities
 #define jbBODYTYPE @"bodyType"
@@ -37,6 +38,8 @@
 
 #pragma mark MapItem
 #define jbSPRITE @"sprite"
+#define jbMAPITEM @"mapItem"
+#define jBMAPITEM_POINTS @"mapItem_points"
 
 #pragma mark Skins
 
@@ -53,6 +56,8 @@
 #define jbENTITIES @"entities"
 #define jbCURVES @"curves"
 #define jbSETTINGS @"settings"
+#define jbCUSTOMMAP_PREFIX @"C__"
+#define jbHIGHTLIGHT_CROSS @"cross"
 
 #pragma mark Predefined Settings
 #define jbMAPSETTINGS_SETTINGS @"settings"
@@ -66,5 +71,14 @@
 #define jbMAPSETTINGS_CAPTURE_THE_FLAG @"capture_the_flag"
 #define jbMAPSETTINGS_SOCCER @"soccer"
 #define jbMAPSETTINGS_DATA @"data"
+
+#pragma mark Web Connection
+#define jbWEB_CONNECTIONFAILED_TITLE @"connection failed"
+#define jbWEB_CONNECTIONFAILED_MESSAGE @"Sry, not able to download the content"
+#define jbWEB_CONNECTIONFAILED_OK @"OK"
+
+#pragma mark Map Creator
+#define jbMAPCREATOR_OFFX 180 
+#define jbMAPCREATOR_OFFY 120
 
 #endif

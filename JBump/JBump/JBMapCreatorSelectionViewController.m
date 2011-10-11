@@ -6,6 +6,11 @@
 //  Copyright (c) 2011 ziehn.org. All rights reserved.
 //
 
+#define jbMAPCREATORSELECTIONVIEWCONTROLLER_SETTINGSCELL @"settingsCell"
+#define jbMAPCREATORSELECTIONVIEWCONTROLLER_MAPCELL @"mapCell"
+
+
+
 #import "JBMapCreatorSelectionViewController.h"
 
 #import "JBMapManager.h"
@@ -54,20 +59,20 @@
 {
     UITableViewCell* cell;
     if (tableView==settingsTableView) {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"settingsCell"];
+        cell = [tableView dequeueReusableCellWithIdentifier:jbMAPCREATORSELECTIONVIEWCONTROLLER_SETTINGSCELL];
         if (!cell) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"settingsCell"];
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:jbMAPCREATORSELECTIONVIEWCONTROLLER_SETTINGSCELL];
             cell.textLabel.backgroundColor = [UIColor clearColor];
             [cell autorelease];
         }
         NSDictionary* setting = [self.settingsArray objectAtIndex:indexPath.row];
-        cell.textLabel.text = [setting objectForKey:@"name"];
+        cell.textLabel.text = [setting objectForKey:jbNAME];
         return cell;
     }else
     {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"mapCell"];
+        cell = [tableView dequeueReusableCellWithIdentifier:jbMAPCREATORSELECTIONVIEWCONTROLLER_MAPCELL];
         if (!cell) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"mapCell"];
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:jbMAPCREATORSELECTIONVIEWCONTROLLER_MAPCELL];
             cell.textLabel.backgroundColor = [UIColor clearColor];
             cell.backgroundView = [[UIView alloc] initWithFrame:cell.frame];
             cell.backgroundView.autoresizingMask  = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
@@ -75,9 +80,9 @@
             [cell autorelease];
         }
         NSMutableDictionary* mapDict = [self.existingMaps objectAtIndex:indexPath.row];
-        cell.imageView.image = [mapDict objectForKey:@"thumbnail"];
-        cell.textLabel.text = [mapDict objectForKey:@"mapName"];
-        if (![[mapDict objectForKey:@"mapID"] hasPrefix:@"C_"]) {
+        cell.imageView.image = [mapDict objectForKey:jbTHUMBNAIL];
+        cell.textLabel.text = [mapDict objectForKey:jbNAME];
+        if (![[mapDict objectForKey:jbID] hasPrefix:jbCUSTOMMAP_PREFIX]) {
             cell.selectionStyle=UITableViewCellSelectionStyleGray;
             cell.backgroundView.backgroundColor = [UIColor colorWithRed:.8f green:.1f blue:.1f alpha:.4f];
         }else{
@@ -92,7 +97,7 @@
 {
     if (tableView==existingMapsTableView) {
         NSMutableDictionary* mapDict = [self.existingMaps objectAtIndex:indexPath.row];
-        if (![[mapDict objectForKey:@"mapID"] hasPrefix:@"C_"]) {
+        if (![[mapDict objectForKey:jbID] hasPrefix:jbCUSTOMMAP_PREFIX]) {
             editExistingMapButton.alpha = .4f;
             editExistingMapButton.enabled = FALSE;
         }else{

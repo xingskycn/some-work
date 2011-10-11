@@ -86,20 +86,20 @@ CGFloat DistanceBetweenPoints(CGPoint point1,CGPoint point2)
 - (void)insertCurves:(NSArray *)objects
 {
     for (NSDictionary* dict in objects) {
-        JBBrush* brush = [JBBrushManager getBrushForID:[dict objectForKey:@"ID"]];
+        JBBrush* brush = [JBBrushManager getBrushForID:[dict objectForKey:jbID]];
         JBLineSprite* line = [JBLineSprite node];
         line.alpha = brush.alpha;
         line.red = brush.red;
         line.blue = brush.blue;
         line.green = brush.green;
-        NSArray* points = [dict objectForKey:@"points"];
+        NSArray* points = [dict objectForKey:jBMAPITEM_POINTS];
         line.pointArray = [points mutableCopy];
         line.visible = TRUE;
         [self addChild:line];
         NSMutableDictionary* historyDict = [NSMutableDictionary dictionary];;
         [self.history addObject:historyDict];
-        [historyDict setObject:line forKey:@"sprite"];
-        [historyDict setObject:brush forKey:@"mapItem"];
+        [historyDict setObject:line forKey:jbSPRITE];
+        [historyDict setObject:brush forKey:jbMAPITEM];
     }
 }
 
@@ -111,8 +111,8 @@ CGFloat DistanceBetweenPoints(CGPoint point1,CGPoint point2)
         [self addChild:entity.sprite];
         NSMutableDictionary* historyDict = [NSMutableDictionary dictionary];
         [self.history addObject:historyDict];
-        [historyDict setObject:entity.sprite forKey:@"sprite"];
-        [historyDict setObject:userSelection forKey:@"mapItem"];
+        [historyDict setObject:entity.sprite forKey:jbSPRITE];
+        [historyDict setObject:userSelection forKey:jbMAPITEM];
         [self addChild:self.activeEntity];
 
     }
@@ -147,11 +147,11 @@ CGFloat DistanceBetweenPoints(CGPoint point1,CGPoint point2)
             
             float fx,fy;
             if (((JBAppDelegate *)[UIApplication sharedApplication].delegate).retina) {
-                fx = 360;
-                fy = 240;
+                fx = jbMAPCREATOR_OFFX*2;
+                fy = jbMAPCREATOR_OFFY*2;
             }else{
-                fx = 180;
-                fy = 120;
+                fx = jbMAPCREATOR_OFFX;
+                fy = jbMAPCREATOR_OFFY;
             }
             
             current = CGPointMake(x+(current.x)/(1-sliderPos*0.75)-fx/(1-sliderPos*0.75)*sliderPos,
@@ -164,8 +164,8 @@ CGFloat DistanceBetweenPoints(CGPoint point1,CGPoint point2)
                     self.activeLine = [JBLineSprite node];
                     NSMutableDictionary* historyDict = [NSMutableDictionary dictionary];;
                     [self.history addObject:historyDict];
-                    [historyDict setObject:self.activeLine forKey:@"sprite"];
-                    [historyDict setObject:userSelection forKey:@"mapItem"];
+                    [historyDict setObject:self.activeLine forKey:jbSPRITE];
+                    [historyDict setObject:userSelection forKey:jbMAPITEM];
                     activeLine.red = us.red;
                     activeLine.green = us.green;
                     activeLine.blue = us.blue;
@@ -183,8 +183,8 @@ CGFloat DistanceBetweenPoints(CGPoint point1,CGPoint point2)
                     self.activeEntity.position = current;
                     NSMutableDictionary* historyDict = [NSMutableDictionary dictionary];
                     [self.history addObject:historyDict];
-                    [historyDict setObject:self.activeEntity forKey:@"sprite"];
-                    [historyDict setObject:userSelection forKey:@"mapItem"];
+                    [historyDict setObject:self.activeEntity forKey:jbSPRITE];
+                    [historyDict setObject:userSelection forKey:jbMAPITEM];
                     [self addChild:self.activeEntity];
                     self.creationTimeEntity = now;
                 }
@@ -216,11 +216,11 @@ CGFloat DistanceBetweenPoints(CGPoint point1,CGPoint point2)
             
             float fx,fy;
             if (((JBAppDelegate *)[UIApplication sharedApplication].delegate).retina) {
-                fx = 360;
-                fy = 240;
+                fx = jbMAPCREATOR_OFFX*2;
+                fy = jbMAPCREATOR_OFFY*2;
             }else{
-                fx = 180;
-                fy = 120;
+                fx = jbMAPCREATOR_OFFX;
+                fy = jbMAPCREATOR_OFFY;
             }
             
             current = CGPointMake(x+(current.x)/(1-sliderPos*0.75)-fx/(1-sliderPos*0.75)*sliderPos,
@@ -289,11 +289,11 @@ CGFloat DistanceBetweenPoints(CGPoint point1,CGPoint point2)
             
             float fx,fy;
             if (((JBAppDelegate *)[UIApplication sharedApplication].delegate).retina) {
-                fx = 360;
-                fy = 240;
+                fx = jbMAPCREATOR_OFFX*2;
+                fy = jbMAPCREATOR_OFFY*2;
             }else{
-                fx = 180;
-                fy = 120;
+                fx = jbMAPCREATOR_OFFX;
+                fy = jbMAPCREATOR_OFFY;
             }
             
             current = CGPointMake(x+(current.x)/(1-sliderPos*0.75)-fx/(1-sliderPos*0.75)*sliderPos,

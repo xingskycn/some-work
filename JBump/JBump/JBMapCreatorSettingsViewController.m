@@ -37,7 +37,7 @@
 {
     [super viewDidLoad];
     if (self.advancedSettings.count == 0) {
-        self.advancedSettings = [[[JBMapManager getAllPredefinedSettings] objectAtIndex:0] objectForKey:@"settings"];
+        self.advancedSettings = [[[JBMapManager getAllPredefinedSettings] objectAtIndex:0] objectForKey:jbMAPSETTINGS_SETTINGS];
         [self.advancedSettingsTableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationTop];
     }else{
         self.settingsNameLabel.text = self.settingsName;
@@ -113,14 +113,14 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"startMapCreatorWithSettings"]) {
-        [JBMapManager storeNewMapWithID:[NSString stringWithFormat:@"C_%@",mapNameField.text]
+        [JBMapManager storeNewMapWithID:[NSString stringWithFormat:@"%@%@",jbCUSTOMMAP_PREFIX,mapNameField.text]
                                 mapName:mapNameField.text
                              arenaImage:imageView.image
                                settings:self.advancedSettings
                            curveHistory:nil 
                           entityHistory:nil];
         JBMapCreatorViewController* destination = (JBMapCreatorViewController *)segue.destinationViewController;
-        destination.mapID = [NSString stringWithFormat:@"C_%@",mapNameField.text];
+        destination.mapID = [NSString stringWithFormat:@"%@%@",jbCUSTOMMAP_PREFIX,mapNameField.text];
     }
 }
 - (IBAction)downloadImageButtonPressed:(id)sender {
@@ -155,10 +155,10 @@
         self.imageView.image = image;
     }else
     {
-        UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"connection fail"
-                                                            message:@"sry we were not able to downlaod the image"
+        UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:jbWEB_CONNECTIONFAILED_TITLE
+                                                            message:jbWEB_CONNECTIONFAILED_MESSAGE
                                                            delegate:nil
-                                                  cancelButtonTitle:@"OK"
+                                                  cancelButtonTitle:jbWEB_CONNECTIONFAILED_OK
                                                   otherButtonTitles:nil];
         [alertView show];
         [alertView release];
@@ -188,8 +188,8 @@
         [cell autorelease];
     }
     NSDictionary* setting = [advancedSettings objectAtIndex:indexPath.row];
-    cell.textLabel.text = [setting objectForKey:@"name"];
-    cell.detailTextLabel.text = [setting objectForKey:@"data"];
+    cell.textLabel.text = [setting objectForKey:jbNAME];
+    cell.detailTextLabel.text = [setting objectForKey:jbMAPSETTINGS_DATA];
     return cell;
 }
 

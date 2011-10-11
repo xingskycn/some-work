@@ -90,11 +90,11 @@ CGFloat DistanceBetweenTwoPoints(CGPoint point1,CGPoint point2)
 {
     if (oldEditStyle==2) {
         if ([contentsTable numberOfRowsInSection:0]) {
-            CCSprite* sprite = [[self.mapCreatorLayer.history objectAtIndex:[contentsTable indexPathForSelectedRow].row] objectForKey:@"sprite"];
+            CCSprite* sprite = [[self.mapCreatorLayer.history objectAtIndex:[contentsTable indexPathForSelectedRow].row] objectForKey:jbSPRITE];
             if ([sprite isKindOfClass:[JBLineSprite class]]) {
                 ((JBLineSprite *)sprite).highLighted = FALSE;
             }else{
-                while (CCSprite* cross = (CCSprite *)[mapCreatorLayer getChildByTag:[@"cross" hash]]) {
+                while (CCSprite* cross = (CCSprite *)[mapCreatorLayer getChildByTag:[jbHIGHTLIGHT_CROSS hash]]) {
                     [mapCreatorLayer removeChild:cross cleanup:YES];
                 } 
             }
@@ -143,19 +143,19 @@ CGFloat DistanceBetweenTwoPoints(CGPoint point1,CGPoint point2)
     
     for(NSMutableDictionary* dict in mapCreatorLayer.history)
     {
-        JBMapItem* mapItem = [dict objectForKey:@"mapItem"];
+        JBMapItem* mapItem = [dict objectForKey:jbMAPITEM];
         if ([mapItem isKindOfClass:[JBEntity class]]) {
             JBEntity* entity = (JBEntity *)mapItem;
             NSMutableDictionary* entityDict = [NSMutableDictionary new];
             [entityArray addObject:entityDict];
-            [entityDict setObject:entity.ID forKey:@"entityID"];
-            CCSprite* sprite = [dict objectForKey:@"sprite"];
-            [entityDict setObject:NSStringFromCGPoint([sprite position]) forKey:@"position"];
+            [entityDict setObject:entity.ID forKey:jbID];
+            CCSprite* sprite = [dict objectForKey:jbSPRITE];
+            [entityDict setObject:NSStringFromCGPoint([sprite position]) forKey:jbPOSITION];
             [mapCreatorLayer removeChild:sprite cleanup:YES];
             [entityDict release];
         }else if([mapItem isKindOfClass:[JBBrush class]]){
             JBBrush* brush = (JBBrush *)mapItem;
-            NSMutableArray* pointsArray = ((JBLineSprite *)[dict objectForKey:@"sprite"]).pointArray;
+            NSMutableArray* pointsArray = ((JBLineSprite *)[dict objectForKey:jbSPRITE]).pointArray;
             if (pointsArray.count>1) {
                 NSMutableArray* savePointsArray = [NSMutableArray new];
                 CGPoint start = CGPointFromString([pointsArray objectAtIndex:0]);
@@ -170,8 +170,8 @@ CGFloat DistanceBetweenTwoPoints(CGPoint point1,CGPoint point2)
                 [pointsArray addObject:NSStringFromCGPoint(start)];
                 
                 NSMutableDictionary* saveDict = [NSMutableDictionary new];
-                [saveDict setObject:brush.ID forKey:@"ID"];
-                [saveDict setObject:savePointsArray forKey:@"points"];
+                [saveDict setObject:brush.ID forKey:jbID];
+                [saveDict setObject:savePointsArray forKey:jBMAPITEM_POINTS];
                 [curvesArray addObject:saveDict];
                 
                 [saveDict release];
@@ -181,9 +181,9 @@ CGFloat DistanceBetweenTwoPoints(CGPoint point1,CGPoint point2)
     }
     
     NSMutableDictionary* updateDict = [NSMutableDictionary dictionary];
-    [updateDict setObject:curvesArray forKey:@"curves"];
-    [updateDict setObject:entityArray forKey:@"mapEntities"];
-    [updateDict setObject:self.mapID   forKey:@"mapID"];
+    [updateDict setObject:curvesArray forKey:jbCURVES];
+    [updateDict setObject:entityArray forKey:jbENTITIES];
+    [updateDict setObject:self.mapID   forKey:jbID];
     [JBMapManager refreshDataForMapIDWithDict:updateDict];
     
     [entityArray release];
@@ -244,7 +244,7 @@ CGFloat DistanceBetweenTwoPoints(CGPoint point1,CGPoint point2)
             cell.detailTextLabel.lineBreakMode = UILineBreakModeWordWrap;
         }
         NSDictionary* historyDict = [mapCreatorLayer.history objectAtIndex:indexPath.row];
-        JBMapItem* historyItem = [historyDict objectForKey:@"mapItem"];
+        JBMapItem* historyItem = [historyDict objectForKey:jbMAPITEM];
         cell.imageView.image = historyItem.image;
         cell.textLabel.text = historyItem.name;
         cell.detailTextLabel.text = historyItem.further;
@@ -261,13 +261,13 @@ CGFloat DistanceBetweenTwoPoints(CGPoint point1,CGPoint point2)
     }else if (kindChooser.selectedSegmentIndex==1) {
         mapCreatorLayer.userSelection = [availableEntitiesArray objectAtIndex:indexPath.row];
     }else{
-        CCSprite* sprite = [[mapCreatorLayer.history objectAtIndex:indexPath.row] objectForKey:@"sprite"];
+        CCSprite* sprite = [[mapCreatorLayer.history objectAtIndex:indexPath.row] objectForKey:jbSPRITE];
         if ([sprite isKindOfClass:[JBLineSprite class]]) {
             ((JBLineSprite *)sprite).highLighted = TRUE;
         }else{
             CCSprite* cross = [CCSprite spriteWithFile:@"cross.png"];
             [cross setPosition:[sprite position]];
-            [mapCreatorLayer addChild:cross z:0 tag:[@"cross" hash]];
+            [mapCreatorLayer addChild:cross z:0 tag:[jbHIGHTLIGHT_CROSS hash]];
         }
     }
 }
@@ -275,11 +275,11 @@ CGFloat DistanceBetweenTwoPoints(CGPoint point1,CGPoint point2)
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (kindChooser.selectedSegmentIndex==2) {
-        CCSprite* sprite = [[mapCreatorLayer.history objectAtIndex:indexPath.row] objectForKey:@"sprite"];
+        CCSprite* sprite = [[mapCreatorLayer.history objectAtIndex:indexPath.row] objectForKey:jbSPRITE];
         if ([sprite isKindOfClass:[JBLineSprite class]]) {
             ((JBLineSprite *)sprite).highLighted = FALSE;
         }else{
-            while (CCSprite* cross = (CCSprite *)[mapCreatorLayer getChildByTag:[@"cross" hash]]) {
+            while (CCSprite* cross = (CCSprite *)[mapCreatorLayer getChildByTag:[jbHIGHTLIGHT_CROSS hash]]) {
                 [mapCreatorLayer removeChild:cross cleanup:YES];
             }
         }
@@ -296,19 +296,19 @@ CGFloat DistanceBetweenTwoPoints(CGPoint point1,CGPoint point2)
 
 - (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return @"Delete";
+    return jbDELETEBUTTON_TITLE;
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (kindChooser.selectedSegmentIndex==2) {
         NSMutableDictionary* dict = [mapCreatorLayer.history objectAtIndex:indexPath.row];
-        CCSprite* sprite = [dict objectForKey:@"sprite"];
+        CCSprite* sprite = [dict objectForKey:jbSPRITE];
         [mapCreatorLayer removeChild:sprite cleanup:YES];
         [mapCreatorLayer.history removeObject:dict];
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationRight];
         
-        CCSprite* cross = (CCSprite *)[mapCreatorLayer getChildByTag:[@"cross" hash]];
+        CCSprite* cross = (CCSprite *)[mapCreatorLayer getChildByTag:[jbHIGHTLIGHT_CROSS hash]];
         if (cross) {
             [mapCreatorLayer removeChild:cross cleanup:YES];
         }

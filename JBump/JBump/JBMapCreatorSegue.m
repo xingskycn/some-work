@@ -31,9 +31,9 @@
         JBMapCreatorSettingsViewController* destination = (JBMapCreatorSettingsViewController*)self.destinationViewController;
         NSIndexPath* indexpath = [source.settingsTableView indexPathForSelectedRow];
         if (indexpath) {
-            destination.advancedSettings = [[source.settingsArray objectAtIndex:indexpath.row] objectForKey:jb];
+            destination.advancedSettings = [[source.settingsArray objectAtIndex:indexpath.row] objectForKey:jbMAPSETTINGS_SETTINGS];
             
-            destination.settingsNameLabel.text = [[source.settingsArray objectAtIndex:indexpath.row] objectForKey:@"name"];
+            destination.settingsNameLabel.text = [[source.settingsArray objectAtIndex:indexpath.row] objectForKey:jbNAME];
         }
         
     }else if ([self.identifier isEqualToString:@"toExistingMapSettings"]) {
@@ -41,11 +41,11 @@
         JBMapCreatorSettingsViewController* destination = (JBMapCreatorSettingsViewController*)self.destinationViewController;
         NSIndexPath* indexpath = [source.existingMapsTableView indexPathForSelectedRow];
         if (indexpath) {
-            JBMap* map = [JBMapManager getMapWithID:[[source.existingMaps objectAtIndex:indexpath.row] objectForKey:@"mapID"]];
+            JBMap* map = [JBMapManager getMapWithID:[[source.existingMaps objectAtIndex:indexpath.row] objectForKey:jbID]];
             destination.advancedSettings = map.settings;
             destination.settingsNameLabel.text = @"predefined";
             [destination.advancedSettingsTableView reloadData];
-            destination.mapNameField.text = [[source.existingMaps objectAtIndex:indexpath.row] objectForKey:@"mapName"];
+            destination.mapNameField.text = [[source.existingMaps objectAtIndex:indexpath.row] objectForKey:jbNAME];
             destination.imageView.image = map.arenaImage;
             destination.mapNameField.alpha = 0.6;
             destination.mapNameField.enabled = FALSE;
