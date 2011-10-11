@@ -24,7 +24,6 @@
     [super viewDidLoad];
     self.settingsArray = [JBMapManager getAllPredefinedSettings];
     self.existingMaps = [JBMapManager getAllMapDescriptions];
-    NSLog(@"existing maps %@",self.existingMaps);
 }
 
 - (void)dealloc {

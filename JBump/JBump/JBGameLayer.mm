@@ -149,7 +149,7 @@ public:
         [self schedule:@selector(tick:)];
         
         
-        JBMap* map = [JBMapManager getMapWithID:@"custom map"];
+        JBMap* map = [JBMapManager getMapWithID:@"C_custom map"];
         
         CCSprite* image = [CCSprite spriteWithFile:@"island.png"];
         

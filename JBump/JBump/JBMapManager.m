@@ -21,12 +21,20 @@ static NSString *filePath = @"maps";
             entityHistory:(NSMutableArray*)entities
 
 {
-    NSMutableDictionary *mapDict = [NSMutableDictionary dictionary];
+    
+    
     NSString *folderName = mapID;
     NSString *path;
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     path = [[paths objectAtIndex:0] stringByAppendingPathComponent:filePath];
+    
+    NSMutableDictionary* mapDict =
+    [NSMutableDictionary dictionaryWithContentsOfFile:[[path stringByAppendingPathComponent:mapID]stringByAppendingPathComponent:@"mapInfo"]];
+    
+    if (!mapDict) {
+        mapDict = [NSMutableDictionary dictionary];
+    }
     
     NSError* error;
     if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {
@@ -60,6 +68,7 @@ static NSString *filePath = @"maps";
     if (curves) {
         [mapDict setObject:curves forKey:jbCURVES];
     }
+    
     if (entities) {
         [mapDict setObject:entities forKey:jbENTITIES];
     }
@@ -264,7 +273,8 @@ static NSString *filePath = @"maps";
     for (NSString* key in [dict allKeys]) {
         [mapDict setObject:[dict objectForKey:key] forKey:key];
     }
-    [mapDict writeToFile:[path stringByAppendingPathComponent:jbINFO] atomically:YES];
+
+    [mapDict writeToFile:[[path stringByAppendingPathComponent:mapID] stringByAppendingPathComponent:jbINFO] atomically:YES];
 }
 
 + (NSMutableArray *)getAllPredefinedSettings

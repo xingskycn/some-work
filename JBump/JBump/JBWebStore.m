@@ -10,4 +10,9 @@
 
 @implementation JBWebStore
 
+-(NSMutableDictionary*)getAllAvailableDownloads
+{
+    return nil;
+}
+
 @end

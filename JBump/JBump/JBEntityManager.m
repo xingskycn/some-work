@@ -60,7 +60,6 @@ static NSString *filePath = @"entities";
     }
 
     JBEntity *entity = [[[JBEntity alloc] initWithEntityDictionary:dict] autorelease];
-    NSLog(@"entity shale?%@",entity.shape);
     return entity;
 }
 

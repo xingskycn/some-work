@@ -48,18 +48,10 @@
             destination.imageView.image = map.arenaImage;
             destination.mapNameField.alpha = 0.6;
             destination.mapNameField.enabled = FALSE;
-
             [destination updateCreateButton];
-            
         }
-        
-        
-    }else if([self.identifier isEqualToString:@"startMapCreatorWithSettings"])
-    {
-        JBMapCreatorSettingsViewController* source = (JBMapCreatorSettingsViewController*)self.sourceViewController;
-        JBMapCreatorViewController* destination = (JBMapCreatorViewController*)self.destinationViewController;
-        
     }
+    
     [((JBAppDelegate*)[UIApplication sharedApplication].delegate).viewController addChildViewController:self.destinationViewController];
     [self.sourceViewController removeFromParentViewController];
 }

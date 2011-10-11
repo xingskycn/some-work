@@ -53,6 +53,7 @@
 }
 - (void)dealloc {
     
+    self.gameLayer.gameViewController = nil;
     self.gameLayer=nil;
     [sideView release];
     [popout release];

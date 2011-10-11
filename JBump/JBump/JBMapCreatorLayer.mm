@@ -76,6 +76,8 @@ CGFloat DistanceBetweenPoints(CGPoint point1,CGPoint point2)
     
     CCSprite* image = [CCSprite spriteWithFile:map.arenaImageLocal];
     [self addChild:image];
+    [self insertCurves:map.curves];
+    [self insertEntities:map.mapEntities];
     
     
     [self schedule: @selector(tick:)];
@@ -96,7 +98,7 @@ CGFloat DistanceBetweenPoints(CGPoint point1,CGPoint point2)
         [self addChild:line];
         NSMutableDictionary* historyDict = [NSMutableDictionary dictionary];;
         [self.history addObject:historyDict];
-        [historyDict setObject:self.activeLine forKey:@"sprite"];
+        [historyDict setObject:line forKey:@"sprite"];
         [historyDict setObject:brush forKey:@"mapItem"];
     }
 }
@@ -109,7 +111,7 @@ CGFloat DistanceBetweenPoints(CGPoint point1,CGPoint point2)
         [self addChild:entity.sprite];
         NSMutableDictionary* historyDict = [NSMutableDictionary dictionary];
         [self.history addObject:historyDict];
-        [historyDict setObject:self.activeEntity forKey:@"sprite"];
+        [historyDict setObject:entity.sprite forKey:@"sprite"];
         [historyDict setObject:userSelection forKey:@"mapItem"];
         [self addChild:self.activeEntity];
 
