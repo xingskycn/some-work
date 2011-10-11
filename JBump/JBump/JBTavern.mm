@@ -12,6 +12,18 @@
 
 @synthesize players;
 
+- (id)init {
+    self = [super init];
+    
+    if (self) {
+        self.players = [NSMutableArray array];
+    }
+    
+    return self;
+}
 
+- (void)addNewPlayer:(JBHero *)aPlayer {
+    [self.players addObject:aPlayer];
+}
 
 @end

@@ -8,8 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+@class JBHero;
+
 @interface JBTavern : NSObject
 
-@property (retain, nonatomic)NSArray *players;
+@property (retain, nonatomic)NSMutableArray *players;
+
+- (void)addNewPlayer:(JBHero*)aPlayer;
 
 @end
