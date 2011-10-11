@@ -22,17 +22,17 @@ static NSString *filePath = @"skins";
     NSMutableArray* skins = [NSMutableArray array];
 	for (NSString* skinID in skinIDs) {
 		NSMutableDictionary* dict = 
-        [NSMutableDictionary dictionaryWithContentsOfFile:[[path stringByAppendingPathComponent:skinID] stringByAppendingPathComponent:@"info"]];
+        [NSMutableDictionary dictionaryWithContentsOfFile:[[path stringByAppendingPathComponent:skinID] stringByAppendingPathComponent:jbINFO]];
 		
 		NSString *imagePath = [path stringByAppendingPathComponent:skinID];
-		UIImage* skinImage = [UIImage imageWithContentsOfFile:[imagePath stringByAppendingPathComponent:@"image"]];
+		UIImage* skinImage = [UIImage imageWithContentsOfFile:[imagePath stringByAppendingPathComponent:jbIMAGE]];
 		
         NSString *thumbPath = [path stringByAppendingPathComponent:skinID];
-        UIImage* thumbImage = [UIImage imageWithContentsOfFile:[thumbPath stringByAppendingPathComponent:@"thumb"]];
+        UIImage* thumbImage = [UIImage imageWithContentsOfFile:[thumbPath stringByAppendingPathComponent:jbTHUMBNAIL]];
         
 		if (dict && skinImage && thumbImage) {
-			[dict setObject:skinImage forKey:@"image"];
-			[dict setObject:thumbImage forKey:@"thumbnail"];
+			[dict setObject:skinImage forKey:jbIMAGE];
+			[dict setObject:thumbImage forKey:jbTHUMBNAIL];
             [skins addObject:dict];
 		}
 		
@@ -56,16 +56,16 @@ static NSString *filePath = @"skins";
     path = [path stringByAppendingPathComponent:skinID];
     
     NSMutableDictionary* dict = 
-    [NSMutableDictionary dictionaryWithContentsOfFile:[path stringByAppendingPathComponent:@"info"]];
-    UIImage* skinImage = [UIImage imageWithContentsOfFile:[path stringByAppendingPathComponent:@"image"]];
-    UIImage* thumbImage = [UIImage imageWithContentsOfFile:[path stringByAppendingPathComponent:@"thumb"]];
+    [NSMutableDictionary dictionaryWithContentsOfFile:[path stringByAppendingPathComponent:jbINFO]];
+    UIImage* skinImage = [UIImage imageWithContentsOfFile:[path stringByAppendingPathComponent:jbIMAGE]];
+    UIImage* thumbImage = [UIImage imageWithContentsOfFile:[path stringByAppendingPathComponent:jbTHUMBNAIL]];
     
     if (dict && skinImage) {
-        [dict setObject:skinImage forKey:@"image"];
+        [dict setObject:skinImage forKey:jbIMAGE];
     }
     
     if (dict && thumbImage) {
-        [dict setObject:thumbImage forKey:@"thumbnail"];
+        [dict setObject:thumbImage forKey:jbTHUMBNAIL];
     }
     
     JBSkin *skin = [[[JBSkin alloc] initWithDictionary:dict] autorelease];
@@ -75,7 +75,7 @@ static NSString *filePath = @"skins";
 
 
 + (bool)saveNewSkin:(NSMutableDictionary*)skinDict withThumbnail:(UIImage*)thumbnail andSkin:(UIImage*)skin {
-    NSString *folderName = [skinDict valueForKey:@"skinID"];
+    NSString *folderName = [skinDict valueForKey:jbID];
     NSString *path;
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -108,17 +108,17 @@ static NSString *filePath = @"skins";
     }
     
     if (thumbnail){
-        [UIImagePNGRepresentation(thumbnail) writeToFile:[path stringByAppendingPathComponent:@"thumb"] atomically:YES];
-        [skinDict setValue:[path stringByAppendingPathComponent:@"thumb"] forKey:@"thumbnailLocation"];
-        [skinDict removeObjectForKey:@"thumbnail"];
+        [UIImagePNGRepresentation(thumbnail) writeToFile:[path stringByAppendingPathComponent:jbTHUMBNAIL] atomically:YES];
+        [skinDict setValue:[path stringByAppendingPathComponent:jbTHUMBNAIL] forKey:jbTHUMBNAILLOCATION];
+        [skinDict removeObjectForKey:jbTHUMBNAIL];
     }
     if (skin){
-        [UIImagePNGRepresentation(skin) writeToFile:[path stringByAppendingPathComponent:@"image"] atomically:YES];
-        [skinDict setValue:[path stringByAppendingPathComponent:@"image"] forKey:@"imageLocation"];
-        [skinDict removeObjectForKey:@"image"];
+        [UIImagePNGRepresentation(skin) writeToFile:[path stringByAppendingPathComponent:jbIMAGE] atomically:YES];
+        [skinDict setValue:[path stringByAppendingPathComponent:jbIMAGE] forKey:jbIMAGELOCATION];
+        [skinDict removeObjectForKey:jbIMAGE];
     }
     
-    [skinDict writeToFile:[path stringByAppendingPathComponent:@"info"] atomically:YES];
+    [skinDict writeToFile:[path stringByAppendingPathComponent:jbINFO] atomically:YES];
     
     if (error!=nil)
         return NO;
@@ -139,55 +139,55 @@ static NSString *filePath = @"skins";
     UIImage *skinImage = [UIImage imageNamed:@"bird_1.png"];
     UIImage *thumb = [UIImage imageNamed:@"bird_1.png"];
     
-    [skin setValue:@"bird1" forKey:@"skinID"];
-    [skin setValue:@"bird1" forKey:@"name"];
-    [skin setValue:thumb forKey:@"thumbnail"];
-    [skin setValue:skinImage forKey:@"image"];
-    [skin setValue:@"LocalImage_Bird1" forKey:@"further"];
+    [skin setValue:@"bird1" forKey:jbID];
+    [skin setValue:@"bird1" forKey:jbNAME];
+    [skin setValue:thumb forKey:jbTHUMBNAIL];
+    [skin setValue:skinImage forKey:jbIMAGE];
+    [skin setValue:@"LocalImage_Bird1" forKey:jbFURTHER];
     
     [JBSkinManager saveNewSkin:skin withThumbnail:thumb andSkin:skinImage];
     
     skinImage = [UIImage imageNamed:@"bull_1.png"];
     thumb = [UIImage imageNamed:@"bull_1.png"];
     
-    [skin setValue:@"bull1" forKey:@"skinID"];
-    [skin setValue:@"bull1" forKey:@"name"];
-    [skin setValue:thumb forKey:@"thumbnail"];
-    [skin setValue:skinImage forKey:@"image"];
-    [skin setValue:@"LocalImage_Bull1" forKey:@"further"];
+    [skin setValue:@"bull1" forKey:jbID];
+    [skin setValue:@"bull1" forKey:jbNAME];
+    [skin setValue:thumb forKey:jbTHUMBNAIL];
+    [skin setValue:skinImage forKey:jbIMAGE];
+    [skin setValue:@"LocalImage_Bull1" forKey:jbFURTHER];
     
     [JBSkinManager saveNewSkin:skin withThumbnail:thumb andSkin:skinImage];
     
     skinImage = [UIImage imageNamed:@"bunny_1.png"];
     thumb = [UIImage imageNamed:@"bunny_1.png"];
     
-    [skin setValue:@"bunny1" forKey:@"skinID"];
-    [skin setValue:@"bunny1" forKey:@"name"];
-    [skin setValue:thumb forKey:@"thumbnail"];
-    [skin setValue:skinImage forKey:@"image"];
-    [skin setValue:@"LocalImage:bunny1" forKey:@"further"];
+    [skin setValue:@"bunny1" forKey:jbID];
+    [skin setValue:@"bunny1" forKey:jbNAME];
+    [skin setValue:thumb forKey:jbTHUMBNAIL];
+    [skin setValue:skinImage forKey:jbIMAGE];
+    [skin setValue:@"LocalImage:bunny1" forKey:jbFURTHER];
     
     [JBSkinManager saveNewSkin:skin withThumbnail:thumb andSkin:skinImage];
     
     skinImage = [UIImage imageNamed:@"bunny_2.png"];
     thumb = [UIImage imageNamed:@"bunny_2.png"];
     
-    [skin setValue:@"bunny2" forKey:@"skinID"];
-    [skin setValue:@"bunny2" forKey:@"name"];
-    [skin setValue:thumb forKey:@"thumbnail"];
-    [skin setValue:skin forKey:@"image"];
-    [skin setValue:@"LocalImage_bunny2" forKey:@"further"];
+    [skin setValue:@"bunny2" forKey:jbID];
+    [skin setValue:@"bunny2" forKey:jbNAME];
+    [skin setValue:thumb forKey:jbTHUMBNAIL];
+    [skin setValue:skin forKey:jbIMAGE];
+    [skin setValue:@"LocalImage_bunny2" forKey:jbFURTHER];
     
     [JBSkinManager saveNewSkin:skin withThumbnail:thumb andSkin:skinImage];
     
     skinImage = [UIImage imageNamed:@"scel_2.png"];
     thumb = [UIImage imageNamed:@"scel_2.png"];
     
-    [skin setValue:@"scel2" forKey:@"skinID"];
-    [skin setValue:@"scel2" forKey:@"name"];
-    [skin setValue:thumb forKey:@"thumbnail"];
-    [skin setValue:skinImage forKey:@"image"];
-    [skin setValue:@"LocalImage_scel2" forKey:@"further"];
+    [skin setValue:@"scel2" forKey:jbID];
+    [skin setValue:@"scel2" forKey:jbNAME];
+    [skin setValue:thumb forKey:jbTHUMBNAIL];
+    [skin setValue:skinImage forKey:jbIMAGE];
+    [skin setValue:@"LocalImage_scel2" forKey:jbFURTHER];
     
     [JBSkinManager saveNewSkin:skin withThumbnail:thumb andSkin:skinImage];
 }

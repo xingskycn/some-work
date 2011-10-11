@@ -23,15 +23,15 @@
     
     self = [super init];
     if (self) {
-        self.skinID = [dict objectForKey:@"skinID"];
-        self.name = [dict objectForKey:@"name"];
-        self.further = [dict objectForKey:@"further"];
-        self.image = [dict objectForKey:@"image"];
-        self.imageURL = [dict objectForKey:@"imageURL"];
-        self.imageLocation = [dict objectForKey:@"imageLocation"];
-        self.thumbnail = [dict objectForKey:@"thumbnail"];
-        self.thumbnailURL = [dict objectForKey:@"thumbnailURL"];
-        self.thumbnailLocation = [dict objectForKey:@"thumbnailLocation"];
+        self.skinID = [dict objectForKey:jbID];
+        self.name = [dict objectForKey:jbNAME];
+        self.further = [dict objectForKey:jbFURTHER];
+        self.image = [dict objectForKey:jbIMAGE];
+        self.imageURL = [dict objectForKey:jbIMAGEURL];
+        self.imageLocation = [dict objectForKey:jbIMAGELOCATION];
+        self.thumbnail = [dict objectForKey:jbTHUMBNAIL];
+        self.thumbnailURL = [dict objectForKey:jbTHUMBNAILURL];
+        self.thumbnailLocation = [dict objectForKey:jbTHUMBNAILLOCATION];
     }
     return self;
 }

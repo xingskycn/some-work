@@ -22,13 +22,13 @@ static NSString *filePath = @"brushes";
     NSMutableArray* brushes = [NSMutableArray array];
 	for (NSString* brushID in brushIDs) {
 		NSMutableDictionary* dict = 
-        [NSMutableDictionary dictionaryWithContentsOfFile:[[path stringByAppendingPathComponent:brushID] stringByAppendingPathComponent:@"brushInfo"]];
+        [NSMutableDictionary dictionaryWithContentsOfFile:[[path stringByAppendingPathComponent:brushID] stringByAppendingPathComponent:jbINFO]];
 		
 		NSString *thumbnailPath = [path stringByAppendingPathComponent:brushID];
-		UIImage* brushThumbnail = [UIImage imageWithContentsOfFile:[thumbnailPath stringByAppendingPathComponent:@"thumbnail"]];
+		UIImage* brushThumbnail = [UIImage imageWithContentsOfFile:[thumbnailPath stringByAppendingPathComponent:jbTHUMBNAIL]];
         
 		if (dict && brushThumbnail) {
-			[dict setObject:brushThumbnail forKey:@"thumbnail"];
+			[dict setObject:brushThumbnail forKey:jbTHUMBNAIL];
             [brushes addObject:dict];
 		}
 		
@@ -44,7 +44,7 @@ static NSString *filePath = @"brushes";
 }
 
 + (bool)saveNewBrush:(NSMutableDictionary *)brushDict thumbnail:(UIImage *)thumbnail {
-    NSString *folderName = [brushDict valueForKey:@"brushID"];
+    NSString *folderName = [brushDict valueForKey:jbID];
     NSString *path;
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -77,12 +77,12 @@ static NSString *filePath = @"brushes";
     }
     
     if (thumbnail){
-        [UIImagePNGRepresentation(thumbnail) writeToFile:[path stringByAppendingPathComponent:@"thumbnail"] atomically:YES];
-        [brushDict setValue:[path stringByAppendingPathComponent:@"thumbnail"] forKey:@"thumbnailLocation"];
-        [brushDict removeObjectForKey:@"thumbnail"];
+        [UIImagePNGRepresentation(thumbnail) writeToFile:[path stringByAppendingPathComponent:jbTHUMBNAIL] atomically:YES];
+        [brushDict setValue:[path stringByAppendingPathComponent:jbTHUMBNAIL] forKey:jbTHUMBNAILLOCATION];
+        [brushDict removeObjectForKey:jbTHUMBNAIL];
     }
     
-    [brushDict writeToFile:[path stringByAppendingPathComponent:@"brushInfo"] atomically:YES];
+    [brushDict writeToFile:[path stringByAppendingPathComponent:jbINFO] atomically:YES];
     
     if (error!=nil)
         return NO;
@@ -99,11 +99,11 @@ static NSString *filePath = @"brushes";
     path = [path stringByAppendingPathComponent:brushID];
     
     NSMutableDictionary* dict = 
-    [NSMutableDictionary dictionaryWithContentsOfFile:[path stringByAppendingPathComponent:@"brushInfo"]];
-    UIImage* thumbnail = [UIImage imageWithContentsOfFile:[path stringByAppendingPathComponent:@"thumbnail"]];
+    [NSMutableDictionary dictionaryWithContentsOfFile:[path stringByAppendingPathComponent:jbINFO]];
+    UIImage* thumbnail = [UIImage imageWithContentsOfFile:[path stringByAppendingPathComponent:jbTHUMBNAIL]];
     
     if (dict && thumbnail) {
-        [dict setObject:thumbnail forKey:@"thumbnail"];
+        [dict setObject:thumbnail forKey:jbTHUMBNAIL];
     }
     
     JBBrush *entity = [[[JBBrush alloc] initWithBrushDict:dict] autorelease];
@@ -124,120 +124,120 @@ static NSString *filePath = @"brushes";
     NSMutableDictionary *brush = [NSMutableDictionary dictionary];
     
     UIImage *brushImage = [UIImage imageNamed:@"brush_1.png"];
-    [brush setValue:@"solid" forKey:@"brushID"];
-    [brush setValue:brushImage forKey:@"thumbnail"];
-    [brush setValue:@"concrete" forKey:@"brushName"];
-    [brush setValue:@"stops move" forKey:@"further"];
-    [brush setValue:[NSNumber numberWithFloat:0.4f] forKey:@"friction"];
-    [brush setValue:[NSNumber numberWithFloat:0.0f] forKey:@"restitution"];
-    [brush setValue:[NSNumber numberWithFloat:1.f] forKey:@"red"];
-    [brush setValue:[NSNumber numberWithFloat:0.f] forKey:@"green"];
-    [brush setValue:[NSNumber numberWithFloat:0.f] forKey:@"blue"];
-    [brush setValue:[NSNumber numberWithFloat:1.f] forKey:@"alpha"];
+    [brush setValue:@"solid" forKey:jbID];
+    [brush setValue:brushImage forKey:jbTHUMBNAIL];
+    [brush setValue:@"concrete" forKey:jbNAME];
+    [brush setValue:@"stops move" forKey:jbFURTHER];
+    [brush setValue:[NSNumber numberWithFloat:0.4f] forKey:jbFRICTION];
+    [brush setValue:[NSNumber numberWithFloat:0.0f] forKey:jbRESTITUTION];
+    [brush setValue:[NSNumber numberWithFloat:1.f] forKey:jbRED];
+    [brush setValue:[NSNumber numberWithFloat:0.f] forKey:jbGREEN];
+    [brush setValue:[NSNumber numberWithFloat:0.f] forKey:jbBLUE];
+    [brush setValue:[NSNumber numberWithFloat:1.f] forKey:jbALPHA];
     [JBBrushManager saveNewBrush:brush thumbnail:brushImage];
     
     brushImage = [UIImage imageNamed:@"brush_2.png"];
-    [brush setValue:@"platform" forKey:@"brushID"];
-    [brush setValue:brushImage forKey:@"thumbnail"];
-    [brush setValue:@"platform" forKey:@"brushName"];
-    [brush setValue:@"passable from bottom" forKey:@"further"];
-    [brush setValue:[NSNumber numberWithFloat:0.4f] forKey:@"friction"];
-    [brush setValue:[NSNumber numberWithFloat:0.0f] forKey:@"restitution"];
-    [brush setValue:[NSNumber numberWithFloat:0.f] forKey:@"red"];
-    [brush setValue:[NSNumber numberWithFloat:1.f] forKey:@"green"];
-    [brush setValue:[NSNumber numberWithFloat:0.f] forKey:@"blue"];
-    [brush setValue:[NSNumber numberWithFloat:1.f] forKey:@"alpha"];
+    [brush setValue:@"platform" forKey:jbID];
+    [brush setValue:brushImage forKey:jbTHUMBNAIL];
+    [brush setValue:@"platform" forKey:jbNAME];
+    [brush setValue:@"passable from bottom" forKey:jbFURTHER];
+    [brush setValue:[NSNumber numberWithFloat:0.4f] forKey:jbFRICTION];
+    [brush setValue:[NSNumber numberWithFloat:0.0f] forKey:jbRESTITUTION];
+    [brush setValue:[NSNumber numberWithFloat:0.f] forKey:jbRED];
+    [brush setValue:[NSNumber numberWithFloat:1.f] forKey:jbGREEN];
+    [brush setValue:[NSNumber numberWithFloat:0.f] forKey:jbBLUE];
+    [brush setValue:[NSNumber numberWithFloat:1.f] forKey:jbALPHA];
     [JBBrushManager saveNewBrush:brush thumbnail:brushImage];
     
     brushImage = [UIImage imageNamed:@"brush_3.png"];
-    [brush setValue:@"ice" forKey:@"brushID"];
-    [brush setValue:brushImage forKey:@"thumbnail"];
-    [brush setValue:@"ice" forKey:@"brushName"];
-    [brush setValue:@"dont slip!" forKey:@"further"];
-    [brush setValue:[NSNumber numberWithFloat:0.4f] forKey:@"friction"];
-    [brush setValue:[NSNumber numberWithFloat:0.0f] forKey:@"restitution"];
-    [brush setValue:[NSNumber numberWithFloat:0.f] forKey:@"red"];
-    [brush setValue:[NSNumber numberWithFloat:0.f] forKey:@"green"];
-    [brush setValue:[NSNumber numberWithFloat:1.f] forKey:@"blue"];
-    [brush setValue:[NSNumber numberWithFloat:1.f] forKey:@"alpha"];
+    [brush setValue:@"ice" forKey:jbID];
+    [brush setValue:brushImage forKey:jbTHUMBNAIL];
+    [brush setValue:@"ice" forKey:jbNAME];
+    [brush setValue:@"dont slip!" forKey:jbFURTHER];
+    [brush setValue:[NSNumber numberWithFloat:0.4f] forKey:jbFRICTION];
+    [brush setValue:[NSNumber numberWithFloat:0.0f] forKey:jbRESTITUTION];
+    [brush setValue:[NSNumber numberWithFloat:0.f] forKey:jbRED];
+    [brush setValue:[NSNumber numberWithFloat:0.f] forKey:jbGREEN];
+    [brush setValue:[NSNumber numberWithFloat:1.f] forKey:jbBLUE];
+    [brush setValue:[NSNumber numberWithFloat:1.f] forKey:jbALPHA];
     [JBBrushManager saveNewBrush:brush thumbnail:brushImage];
     
     brushImage = [UIImage imageNamed:@"brush_4.png"];
-    [brush setValue:@"death" forKey:@"brushID"];
-    [brush setValue:brushImage forKey:@"thumbnail"];
-    [brush setValue:@"death" forKey:@"brushName"];
-    [brush setValue:@"DIE ON CONTACT!" forKey:@"further"];
-    [brush setValue:[NSNumber numberWithFloat:0.4f] forKey:@"friction"];
-    [brush setValue:[NSNumber numberWithFloat:0.0f] forKey:@"restitution"];
-    [brush setValue:[NSNumber numberWithFloat:1.f] forKey:@"red"];
-    [brush setValue:[NSNumber numberWithFloat:0.f] forKey:@"green"];
-    [brush setValue:[NSNumber numberWithFloat:.5f] forKey:@"blue"];
-    [brush setValue:[NSNumber numberWithFloat:1.f] forKey:@"alpha"];
+    [brush setValue:@"death" forKey:jbID];
+    [brush setValue:brushImage forKey:jbTHUMBNAIL];
+    [brush setValue:@"death" forKey:jbNAME];
+    [brush setValue:@"DIE ON CONTACT!" forKey:jbFURTHER];
+    [brush setValue:[NSNumber numberWithFloat:0.4f] forKey:jbFRICTION];
+    [brush setValue:[NSNumber numberWithFloat:0.0f] forKey:jbRESTITUTION];
+    [brush setValue:[NSNumber numberWithFloat:1.f] forKey:jbRED];
+    [brush setValue:[NSNumber numberWithFloat:0.f] forKey:jbGREEN];
+    [brush setValue:[NSNumber numberWithFloat:.5f] forKey:jbBLUE];
+    [brush setValue:[NSNumber numberWithFloat:1.f] forKey:jbALPHA];
     [JBBrushManager saveNewBrush:brush thumbnail:brushImage];
     
     brushImage = [UIImage imageNamed:@"brush_5.png"];
-    [brush setValue:@"doorleft" forKey:@"brushID"];
-    [brush setValue:brushImage forKey:@"thumbnail"];
-    [brush setValue:@"exit only" forKey:@"brushName"];
-    [brush setValue:@"heros can pass from left" forKey:@"further"];
-    [brush setValue:[NSNumber numberWithFloat:0.4f] forKey:@"friction"];
-    [brush setValue:[NSNumber numberWithFloat:0.0f] forKey:@"restitution"];
-    [brush setValue:[NSNumber numberWithFloat:0.f] forKey:@"red"];
-    [brush setValue:[NSNumber numberWithFloat:1.f] forKey:@"green"];
-    [brush setValue:[NSNumber numberWithFloat:1.f] forKey:@"blue"];
-    [brush setValue:[NSNumber numberWithFloat:1.f] forKey:@"alpha"];
+    [brush setValue:@"doorleft" forKey:jbID];
+    [brush setValue:brushImage forKey:jbTHUMBNAIL];
+    [brush setValue:@"exit only" forKey:jbNAME];
+    [brush setValue:@"heros can pass from left" forKey:jbFURTHER];
+    [brush setValue:[NSNumber numberWithFloat:0.4f] forKey:jbFRICTION];
+    [brush setValue:[NSNumber numberWithFloat:0.0f] forKey:jbRESTITUTION];
+    [brush setValue:[NSNumber numberWithFloat:0.f] forKey:jbRED];
+    [brush setValue:[NSNumber numberWithFloat:1.f] forKey:jbGREEN];
+    [brush setValue:[NSNumber numberWithFloat:1.f] forKey:jbBLUE];
+    [brush setValue:[NSNumber numberWithFloat:1.f] forKey:jbALPHA];
     [JBBrushManager saveNewBrush:brush thumbnail:brushImage];
     
     brushImage = [UIImage imageNamed:@"brush_6.png"];
-    [brush setValue:@"doorright" forKey:@"brushID"];
-    [brush setValue:brushImage forKey:@"thumbnail"];
-    [brush setValue:@"exit only" forKey:@"brushName"];
-    [brush setValue:@"heros can pass from right" forKey:@"further"];
-    [brush setValue:[NSNumber numberWithFloat:0.4f] forKey:@"friction"];
-    [brush setValue:[NSNumber numberWithFloat:0.0f] forKey:@"restitution"];
-    [brush setValue:[NSNumber numberWithFloat:0.f] forKey:@"red"];
-    [brush setValue:[NSNumber numberWithFloat:1.f] forKey:@"green"];
-    [brush setValue:[NSNumber numberWithFloat:0.5f] forKey:@"blue"];
-    [brush setValue:[NSNumber numberWithFloat:1.f] forKey:@"alpha"];
+    [brush setValue:@"doorright" forKey:jbID];
+    [brush setValue:brushImage forKey:jbTHUMBNAIL];
+    [brush setValue:@"exit only" forKey:jbNAME];
+    [brush setValue:@"heros can pass from right" forKey:jbFURTHER];
+    [brush setValue:[NSNumber numberWithFloat:0.4f] forKey:jbFRICTION];
+    [brush setValue:[NSNumber numberWithFloat:0.0f] forKey:jbRESTITUTION];
+    [brush setValue:[NSNumber numberWithFloat:0.f] forKey:jbRED];
+    [brush setValue:[NSNumber numberWithFloat:1.f] forKey:jbGREEN];
+    [brush setValue:[NSNumber numberWithFloat:0.5f] forKey:jbBLUE];
+    [brush setValue:[NSNumber numberWithFloat:1.f] forKey:jbALPHA];
     [JBBrushManager saveNewBrush:brush thumbnail:brushImage];
     
     brushImage = [UIImage imageNamed:@"brush_7.png"];
-    [brush setValue:@"assemblyleft" forKey:@"brushID"];
-    [brush setValue:brushImage forKey:@"thumbnail"];
-    [brush setValue:@"assembly line" forKey:@"brushName"];
-    [brush setValue:@"rolling to left" forKey:@"further"];
-    [brush setValue:[NSNumber numberWithFloat:0.4f] forKey:@"friction"];
-    [brush setValue:[NSNumber numberWithFloat:0.0f] forKey:@"restitution"];
-    [brush setValue:[NSNumber numberWithFloat:1.f] forKey:@"red"];
-    [brush setValue:[NSNumber numberWithFloat:1.f] forKey:@"green"];
-    [brush setValue:[NSNumber numberWithFloat:0.f] forKey:@"blue"];
-    [brush setValue:[NSNumber numberWithFloat:1.f] forKey:@"alpha"];
+    [brush setValue:@"assemblyleft" forKey:jbID];
+    [brush setValue:brushImage forKey:jbTHUMBNAIL];
+    [brush setValue:@"assembly line" forKey:jbNAME];
+    [brush setValue:@"rolling to left" forKey:jbFURTHER];
+    [brush setValue:[NSNumber numberWithFloat:0.4f] forKey:jbFRICTION];
+    [brush setValue:[NSNumber numberWithFloat:0.0f] forKey:jbRESTITUTION];
+    [brush setValue:[NSNumber numberWithFloat:1.f] forKey:jbRED];
+    [brush setValue:[NSNumber numberWithFloat:1.f] forKey:jbGREEN];
+    [brush setValue:[NSNumber numberWithFloat:0.f] forKey:jbBLUE];
+    [brush setValue:[NSNumber numberWithFloat:1.f] forKey:jbALPHA];
     [JBBrushManager saveNewBrush:brush thumbnail:brushImage];
     
     brushImage = [UIImage imageNamed:@"brush_8.png"];
-    [brush setValue:@"assemblyright" forKey:@"brushID"];
-    [brush setValue:brushImage forKey:@"thumbnail"];
-    [brush setValue:@"assembly line" forKey:@"brushName"];
-    [brush setValue:@"rolling to right" forKey:@"further"];
-    [brush setValue:[NSNumber numberWithFloat:0.4f] forKey:@"friction"];
-    [brush setValue:[NSNumber numberWithFloat:0.0f] forKey:@"restitution"];
-    [brush setValue:[NSNumber numberWithFloat:1.f] forKey:@"red"];
-    [brush setValue:[NSNumber numberWithFloat:.5f] forKey:@"green"];
-    [brush setValue:[NSNumber numberWithFloat:0.f] forKey:@"blue"];
-    [brush setValue:[NSNumber numberWithFloat:1.f] forKey:@"alpha"];
+    [brush setValue:@"assemblyright" forKey:jbID];
+    [brush setValue:brushImage forKey:jbTHUMBNAIL];
+    [brush setValue:@"assembly line" forKey:jbNAME];
+    [brush setValue:@"rolling to right" forKey:jbFURTHER];
+    [brush setValue:[NSNumber numberWithFloat:0.4f] forKey:jbFRICTION];
+    [brush setValue:[NSNumber numberWithFloat:0.0f] forKey:jbRESTITUTION];
+    [brush setValue:[NSNumber numberWithFloat:1.f] forKey:jbRED];
+    [brush setValue:[NSNumber numberWithFloat:.5f] forKey:jbGREEN];
+    [brush setValue:[NSNumber numberWithFloat:0.f] forKey:jbBLUE];
+    [brush setValue:[NSNumber numberWithFloat:1.f] forKey:jbALPHA];
     [JBBrushManager saveNewBrush:brush thumbnail:brushImage];
     
     brushImage = [UIImage imageNamed:@"brush_9.png"];
-    [brush setValue:@"unset" forKey:@"brushID"];
-    [brush setValue:brushImage forKey:@"thumbnail"];
-    [brush setValue:@"free" forKey:@"brushName"];
-    [brush setValue:@"not yet" forKey:@"further"];
-    [brush setValue:[NSNumber numberWithFloat:0.4f] forKey:@"friction"];
-    [brush setValue:[NSNumber numberWithFloat:0.0f] forKey:@"restitution"];
-    [brush setValue:[NSNumber numberWithFloat:.8f] forKey:@"red"];
-    [brush setValue:[NSNumber numberWithFloat:0.f] forKey:@"green"];
-    [brush setValue:[NSNumber numberWithFloat:.8f] forKey:@"blue"];
-    [brush setValue:[NSNumber numberWithFloat:1.f] forKey:@"alpha"];
+    [brush setValue:@"unset" forKey:jbID];
+    [brush setValue:brushImage forKey:jbTHUMBNAIL];
+    [brush setValue:@"free" forKey:jbNAME];
+    [brush setValue:@"not yet" forKey:jbFURTHER];
+    [brush setValue:[NSNumber numberWithFloat:0.4f] forKey:jbFRICTION];
+    [brush setValue:[NSNumber numberWithFloat:0.0f] forKey:jbRESTITUTION];
+    [brush setValue:[NSNumber numberWithFloat:.8f] forKey:jbRED];
+    [brush setValue:[NSNumber numberWithFloat:0.f] forKey:jbGREEN];
+    [brush setValue:[NSNumber numberWithFloat:.8f] forKey:jbBLUE];
+    [brush setValue:[NSNumber numberWithFloat:1.f] forKey:jbALPHA];
     [JBBrushManager saveNewBrush:brush thumbnail:brushImage];
 }
 

@@ -19,21 +19,21 @@
     self = [super init];
     
     if (self) {
-        self.ID = [brushDict objectForKey:@"brushID"];
-        self.name = [brushDict objectForKey:@"brushName"];
-        self.further = [brushDict objectForKey:@"further"];
+        self.ID = [brushDict objectForKey:jbID];
+        self.name = [brushDict objectForKey:jbNAME];
+        self.further = [brushDict objectForKey:jbFURTHER];
         
-        self.image = [brushDict objectForKey:@"thumbnail"];
-        self.imageLocal = [brushDict objectForKey:@"thumbnailLocation"];
-        self.imageURL = [brushDict objectForKey:@"thumbnailURL"];
+        self.image = [brushDict objectForKey:jbTHUMBNAIL];
+        self.imageLocal = [brushDict objectForKey:jbTHUMBNAILLOCATION];
+        self.imageURL = [brushDict objectForKey:jbTHUMBNAILURL];
         
-        self.friction = [[brushDict objectForKey:@"friction"] floatValue];
-        self.restitution = [[brushDict objectForKey:@"restitution"] floatValue];
+        self.friction = [[brushDict objectForKey:jbFRICTION] floatValue];
+        self.restitution = [[brushDict objectForKey:jbRESTITUTION] floatValue];
         
-        self.red = [[brushDict objectForKey:@"red"] floatValue];
-        self.green = [[brushDict objectForKey:@"green"] floatValue];
-        self.blue = [[brushDict objectForKey:@"blue"] floatValue];
-        self.alpha = [[brushDict objectForKey:@"alpha"] floatValue];
+        self.red = [[brushDict objectForKey:jbRED] floatValue];
+        self.green = [[brushDict objectForKey:jbGREEN] floatValue];
+        self.blue = [[brushDict objectForKey:jbBLUE] floatValue];
+        self.alpha = [[brushDict objectForKey:jbALPHA] floatValue];
     }
     
     return self;
