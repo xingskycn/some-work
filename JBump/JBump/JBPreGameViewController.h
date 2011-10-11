@@ -9,8 +9,20 @@
 #import <UIKit/UIKit.h>
 #import "JBBluetoothAdapter.h"
 
-@interface JBPreGameViewController : UIViewController
+@interface JBPreGameViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, retain)JBBluetoothAdapter *bluetoothAdapter;
+@property (retain, nonatomic) IBOutlet UIButton *gameTypeButton;
+@property (retain, nonatomic) IBOutlet UIButton *readyButton;
+@property (retain, nonatomic) IBOutlet UIButton *startButton;
+@property (retain, nonatomic) IBOutlet UITableView *playersTableView;
+@property (retain, nonatomic) IBOutlet UITableView *mapsTablleView;
+@property (retain, nonatomic) IBOutlet UIButton *aNewConnectionbutton;
+
+@property (retain, nonatomic) NSMutableArray *players;
+@property (retain, nonatomic) NSMutableArray *maps;
+
+- (void)addPlayerToGame:(NSDictionary*)player;
+- (void)changeMaps:(NSMutableArray*)maps;
 
 @end

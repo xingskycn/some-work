@@ -277,6 +277,19 @@ static NSString *filePath = @"maps";
     [mapDict writeToFile:[[path stringByAppendingPathComponent:mapID] stringByAppendingPathComponent:jbINFO] atomically:YES];
 }
 
++ (NSMutableArray*)getAllStandardMaps {
+    NSMutableArray *allMaps = [self getAllMaps];
+    NSMutableArray *standardMaps = [NSMutableArray array];
+    
+    for (JBMap *map in allMaps) {
+        if ([[map.mapID substringToIndex:2] isEqualToString:jBSTANDARMAP]) {
+            [standardMaps addObject:map];
+        }
+    }
+    
+    return standardMaps;
+}
+
 + (NSMutableArray *)getAllPredefinedSettings
 {
     // standard settings

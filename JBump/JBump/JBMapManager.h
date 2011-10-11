@@ -34,4 +34,6 @@
 + (NSMutableArray *)getAllPredefinedSettings;
 + (NSMutableArray *)getAllMapDescriptions;
 + (void)refreshDataForMapIDWithDict:(NSDictionary *)dict;
++ (NSMutableArray*)getAllStandardMaps;
+
 @end

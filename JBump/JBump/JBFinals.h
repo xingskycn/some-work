@@ -67,4 +67,6 @@
 #define jbMAPSETTINGS_SOCCER @"soccer"
 #define jbMAPSETTINGS_DATA @"data"
 
+#define jBSTANDARMAP @"S__"
+
 #endif

@@ -7,16 +7,27 @@
 //
 
 #import "JBPreGameViewController.h"
+#import "JBMapManager.h"
+#import "JBHero.h"
 
 @implementation JBPreGameViewController
 
 @synthesize bluetoothAdapter;
+@synthesize gameTypeButton;
+@synthesize readyButton;
+@synthesize startButton;
+@synthesize playersTableView;
+@synthesize mapsTablleView;
+@synthesize aNewConnectionbutton;
+
+@synthesize maps, players;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        self.players = [NSMutableArray array];
     }
     return self;
 }
@@ -46,11 +57,21 @@
     
     self.bluetoothAdapter = [[JBBluetoothAdapter alloc] init];
     [self.bluetoothAdapter setupConnectionForPreGameViewController:self];
+    
+    self.maps = [JBMapManager getAllStandardMaps];
 }
 
 
 - (void)viewDidUnload
 {
+    [self setGameTypeButton:nil];
+    [self setReadyButton:nil];
+    [self setStartButton:nil];
+    [self setPlayersTableView:nil];
+    [self setMapsTablleView:nil];
+    [self setANewConnectionbutton:nil];
+    [self setPlayers:nil];
+    [self setMaps:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -60,6 +81,68 @@
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (void)dealloc {
+    [gameTypeButton release];
+    [readyButton release];
+    [startButton release];
+    [playersTableView release];
+    [mapsTablleView release];
+    [aNewConnectionbutton release];
+    //[players release];
+    //[maps release];
+    [super dealloc];
+}
+
+- (void)addPlayerToGame:(NSDictionary *)player {
+    [self.players addObject:player];
+}
+
+- (void)changeMaps:(NSMutableArray *)maps {
+    //TODO
+}
+
+#pragma mark tableViewStuff
+
+- (int)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (int)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (tableView==self.playersTableView) {
+        return self.players.count;
+    }
+    if (tableView==self.mapsTablleView) {
+        return self.maps.count;
+    }
+    
+    return 0;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (tableView==self.playersTableView) {
+        static NSString *cellIdentifier = @"playersCell";
+        
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if (cell == nil) {
+            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier] autorelease];
+        }
+        cell.textLabel = [((JBHero*)[players objectAtIndex:indexPath.row]).sprite];
+        return cell;
+    }
+    
+    if (tableView==self.mapsTablleView) {
+        static NSString *cellIdentifier = @"mapsCell";
+        
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if (cell == nil) {
+            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier] autorelease];
+        }
+        return cell;
+    }
+    
+    return nil;
 }
 
 @end
