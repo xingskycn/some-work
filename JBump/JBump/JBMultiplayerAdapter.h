@@ -9,8 +9,11 @@
 #import <Foundation/Foundation.h>
 
 #import "cocos2d.h"
-@class JBTavern;
+#import "JBTavern.h"
+
 @class JBHero;
+
+
 
 @protocol JBMultiplayerAdapterPregameDelegate <NSObject>
 
@@ -60,10 +63,10 @@
 - (void)sendNewMapID:(NSString *)mapID;
 
 //		User changed his ready state in pregameview
-- (void)sendPlayer:(NSString *)playerName readyChange:(NSString *)ready;
+- (void)sendPlayer:(NSString *)playerID readyChange:(NSString *)ready;
 
 //		User started the game
-- (void)sendGameStartedByPlayer:(NSString *)playerName;
+- (void)sendGameStartedByPlayer:(NSString *)playerID;
 
 
 @end
