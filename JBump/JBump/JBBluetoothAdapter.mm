@@ -46,7 +46,7 @@
 			NSLog(@"session status: GKPeerStateConnected");
 			if (session == gameSession) {
 				self.activePeer = peerID;
-				//[self sendSkinInfo:nil];
+                [self announcePlayerWithNewID:YES];
 			}
 			
 			break;
@@ -114,13 +114,6 @@
     [picker autorelease];
 }
 
-#pragma mark ?
-
-- (void) receiveData:(NSData *)data fromPeer:(NSString *)peer inSession: (GKSession *)session context:(void *)context {
-    NSLog(@"RECEIVED DATA...");
-}
-
-
 #pragma GAME SETUP --- INCOMMING
 
 - (void)sendPlayerReadyChange:(BOOL)ready
@@ -142,7 +135,10 @@
 - (void)announcePlayerWithNewID:(BOOL)newIDRequest
 {
 	if (newIDRequest) {
-		char randomID = rand()*0.999/RAND_MAX * (255);
+        char randomID;
+		while(char randomID = rand()*0.999/RAND_MAX * (255)=='|'){
+            randomID = rand()*0.999/RAND_MAX * (255);
+        }
 		super.tavern.localPlayer.playerID = randomID;
 	}
 	
@@ -359,7 +355,27 @@
     float velocityY = ((char *)[data bytes])[9]*20.f/255.f;
 }
 
-
+- (void) receiveData:(NSData *)data fromPeer:(NSString *)peer inSession: (GKSession *)session context:(void *)context {
+    NSString* inputString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    if (inputString) {
+        if (![self handlePlayerReadyChange:inputString]) {
+            if (![self handlePlayerAnnouncement:inputString]) {
+                if (![self handleDisconnectedPlayer:inputString]) {
+                    if (![self handleRequestForPlayerAnnouncement:inputString]) {
+                        if (![self handlePlayerGameContextChange:inputString]) {
+                            if (![self handlePlayerKilledByPlayer:inputString]) {
+                                [self handlePlayerPositionUpdates:data];
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }else
+    {
+        [self handlePlayerPositionUpdates:data];
+    }
+}
 
 
 @end
