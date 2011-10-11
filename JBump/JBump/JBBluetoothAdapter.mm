@@ -47,6 +47,7 @@
 			if (session == gameSession) {
 				self.activePeer = peerID;
                 [self announcePlayerWithNewID:YES];
+                session.delegate = self;
 			}
 			
 			break;
