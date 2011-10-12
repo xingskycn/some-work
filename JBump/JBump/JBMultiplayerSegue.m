@@ -15,6 +15,7 @@
 
 - (void)perform {
     ((JBGameViewController*)self.destinationViewController).multiplayerAdapter=((JBPreGameViewController*)self.sourceViewController).multiplayerAdapter;
+    ((JBGameViewController*)self.destinationViewController).selectedMap=((JBPreGameViewController*)self.sourceViewController).selectedMap;
     
     [self.destinationViewController view].frame = CGRectMake(0, 0, 480, 320);
     [self.sourceViewController view].frame = CGRectMake(0, 0, 480, 320);

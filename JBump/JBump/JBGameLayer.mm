@@ -155,7 +155,7 @@ public:
         self.isTouchEnabled = YES;
         
         b2Vec2 gravity;
-        gravity.Set(.0f, -0.1f);
+        gravity.Set(.0f, -10.0f);
         world = new b2World(gravity,false);
         
         world->SetContinuousPhysics(true);
@@ -178,15 +178,6 @@ public:
         
         [self schedule:@selector(tick:)];
         
-        
-        JBMap* map = [JBMapManager getMapWithID:@"C__custom map"];
-        
-        CCSprite* image = [CCSprite spriteWithFile:@"island.png"];
-        
-        [self addChild:image z:0];
-        
-        [self insertCurves:map.curves];
-        [self insertEntities:map.mapEntities];
         multiplayer=NO;
         sendCounter=1;
     }
@@ -194,6 +185,46 @@ public:
     return self;
 }
 
+- (void)loadMap:(JBMap*)map {
+    CCSprite* image = [CCSprite spriteWithFile:map.arenaImageLocal];
+    
+    [self addChild:image z:0];
+    
+    [self insertCurves:map.curves];
+    [self insertEntities:map.mapEntities];
+    
+    
+    b2BodyDef groundBodyDef;
+    groundBodyDef.position.Set(-map.arenaImage.size.width/2/PTM_RATIO, -map.arenaImage.size.height/2/PTM_RATIO); // bottom-left corner
+    
+    // Call the body factory which allocates memory for the ground body
+    // from a pool and creates the ground box shape (also from a pool).
+    // The body is also added to the world.
+    b2Body* groundBody = world->CreateBody(&groundBodyDef);
+    
+    // Define the ground box shape.
+    b2PolygonShape groundBox;		
+    
+    // bottom
+    groundBox.SetAsEdge(b2Vec2(0,0), b2Vec2(map.arenaImage.size.width/PTM_RATIO,0));
+    groundBody->CreateFixture(&groundBox,0);
+    
+    // top
+    groundBox.SetAsEdge(b2Vec2(0,map.arenaImage.size.height/PTM_RATIO), b2Vec2(map.arenaImage.size.width/PTM_RATIO,map.arenaImage.size.height/PTM_RATIO));
+    groundBody->CreateFixture(&groundBox,0);
+    
+    // left
+    groundBox.SetAsEdge(b2Vec2(0,map.arenaImage.size.height/PTM_RATIO), b2Vec2(0,0));
+    groundBody->CreateFixture(&groundBox,0);
+    
+    // right
+    groundBox.SetAsEdge(b2Vec2(map.arenaImage.size.width/PTM_RATIO,map.arenaImage.size.height/PTM_RATIO), b2Vec2(map.arenaImage.size.width/PTM_RATIO,0));
+    groundBody->CreateFixture(&groundBox,0);
+    
+    [self insertHeroAtPosition:CGPointMake(0, 0)];
+    
+    [self setupSprites:[self.gameViewController.multiplayerAdapter.tavern getAllPlayers]];
+}
 
 - (void)tick:(ccTime)deltaTime{
     player.onGround=NO;
@@ -365,7 +396,7 @@ public:
     player.jumpForce=0.0f;
 }
 
-- (void)insertHero
+- (void)insertHeroAtPosition:(CGPoint)position
 {
     if (self.tavern!=nil) {
         player = self.tavern.localPlayer;
@@ -384,7 +415,7 @@ public:
     b2BodyDef bodyDef;
 	bodyDef.type = b2_dynamicBody;
     
-	bodyDef.position.Set(70./PTM_RATIO, 700./PTM_RATIO);
+	bodyDef.position.Set(position.x/PTM_RATIO, position.y/PTM_RATIO);
 	bodyDef.userData = player.sprite;
 	b2Body *body = world->CreateBody(&bodyDef);
 	

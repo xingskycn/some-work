@@ -42,6 +42,7 @@
 @synthesize mapsTablleView;
 @synthesize aNewConnectionbutton;
 @synthesize maps, players;
+@synthesize selectedMap;
 
 // Contents of request popout
 @synthesize requestTitelLabel;
@@ -253,8 +254,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    JBMap* map = [self.maps objectAtIndex:indexPath.row];
-    [self.multiplayerAdapter shoutMapChangeToMap:map.ID];
+    if (tableView==self.mapsTablleView) {
+        JBMap* map = [self.maps objectAtIndex:indexPath.row];
+        self.selectedMap = map;
+        [self.multiplayerAdapter shoutMapChangeToMap:map.ID];
+    }
 }
 
 #pragma mark JBGameAdapterPregameViewDelegate

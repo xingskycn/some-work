@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "JBMultiplayerAdapter.h"
 
+@class JBMap;
+
 @interface JBPreGameViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, JBMultiplayerAdapterPregameDelegate> {
     
     int playersWaitingForGame;
@@ -43,6 +45,7 @@
 @property (retain, nonatomic) IBOutlet UIProgressView *requestProgressBar;
 @property (retain, nonatomic) IBOutlet UIButton *closeRequestButton;
 @property (retain, nonatomic) IBOutlet UIView *requestPopout;
+@property (retain, nonatomic) JBMap *selectedMap;
 
 
 - (IBAction)sendImgTest:(id)sender;

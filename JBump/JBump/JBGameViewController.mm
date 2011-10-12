@@ -22,6 +22,7 @@
 
 @synthesize gameLayer;
 @synthesize multiplayerAdapter;
+@synthesize selectedMap;
 
 @synthesize sideView;
 @synthesize popout;
@@ -46,8 +47,9 @@
         self.gameLayer.tavern = self.multiplayerAdapter.tavern;
         self.multiplayerAdapter.tavern.gameLayer = self.gameLayer;
     }
-    [self.gameLayer insertHero];
-    [self.gameLayer setupSprites:[self.multiplayerAdapter.tavern getAllPlayers]];
+    if (self.selectedMap!=nil) {
+        [self.gameLayer loadMap:self.selectedMap];
+    }
 }
 
 - (void)viewDidUnload
