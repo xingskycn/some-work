@@ -234,6 +234,8 @@ static NSString *filePath = @"maps";
         UIImage* backgroundImage = [UIImage imageWithContentsOfFile:[[path stringByAppendingPathComponent:aMapId] stringByAppendingPathComponent:jbBACKGROUNDIMAGE]];
         UIImage* overlayImage = [UIImage imageWithContentsOfFile:[[path stringByAppendingPathComponent:aMapId] stringByAppendingPathComponent:jbOVERLAYIMAGE]];
         
+        UIImage* thumbnail = [UIImage imageWithContentsOfFile:[[path stringByAppendingPathComponent:aMapId] stringByAppendingPathComponent:jbTHUMBNAIL]];
+        
         if (dict && arenaImage) {
             [dict setObject:arenaImage forKey:jbARENAIMAGE];
         }
@@ -242,6 +244,10 @@ static NSString *filePath = @"maps";
         }
         if (dict && overlayImage) {
             [dict setObject:arenaImage forKey:jbOVERLAYIMAGE];
+        }
+        
+        if (dict && thumbnail) {
+            [dict setObject:thumbnail forKey:jbTHUMBNAIL];
         }
         JBMap *map = [[JBMap alloc] initWithDictionary:dict];
         [allMaps addObject:map];

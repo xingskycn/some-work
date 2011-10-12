@@ -68,4 +68,6 @@
 
 - (void)sendPlayerReadyChange:(BOOL)ready;
 
+- (void)sendImage:(UIImage *)image info:(NSDictionary *)info;
+
 @end

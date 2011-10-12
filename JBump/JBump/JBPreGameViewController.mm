@@ -15,6 +15,7 @@
 #import "JBMap.h"
 #import "JBPreGameMapsTableViewCell.h"
 #import "JBBluetoothAdapter.h"
+#import "JBMap.h"
 
 @interface JBPreGameViewController()
 
@@ -28,7 +29,10 @@
 @synthesize maptypes;
 @synthesize selectedMapType;
 
+
 //public
+
+@synthesize playersReady;
 @synthesize multiplayerAdapter;
 @synthesize gameTypeButton;
 @synthesize readyButton;
@@ -38,19 +42,6 @@
 @synthesize aNewConnectionbutton;
 
 @synthesize maps, players;
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-        self.players = [NSMutableArray array];
-        self.maptypes = [JBMapManager getMapTypes];
-        playersWaitingForGame = 1;
-        playersReady = [NSMutableDictionary dictionary];
-    }
-    return self;
-}
 
 - (void)didReceiveMemoryWarning
 {
@@ -83,7 +74,7 @@
         playersWaitingForGame = 1;
     }
     if (!playersReady) {
-        playersReady = [NSMutableDictionary dictionary];
+        self.playersReady = [NSMutableDictionary dictionary];
     }
     self.multiplayerAdapter = [[JBBluetoothAdapter alloc] init];
     //self.multiplayerAdapter.preGameDelegate = self;
@@ -93,6 +84,9 @@
                  [[self.maptypes objectAtIndex:selectedMapType] objectForKey:jbID]];
     [self.gameTypeButton setTitle:[[self.maptypes objectAtIndex:selectedMapType] objectForKey:jbNAME] forState:UIControlStateNormal];
     [self.startButton setEnabled:NO];
+    
+    self.playersReady = [NSMutableDictionary dictionary];
+    playersWaitingForGame = 1;
 }
 
 
@@ -142,9 +136,11 @@
     if ([playersReady objectForKey: myPlayerID]!=nil) {
         [self player:myPlayerID didReadyChange:NO];
         [self.multiplayerAdapter sendPlayerReadyChange:NO];
+        [self.readyButton setSelected:NO];
     } else {
         [self player:myPlayerID didReadyChange:YES];
         [self.multiplayerAdapter sendPlayerReadyChange:YES];
+        [self.readyButton setSelected:YES];
     }
 }
 
@@ -160,7 +156,11 @@
     [self.gameTypeButton setTitle:[[self.maptypes objectAtIndex:selectedMapType] objectForKey:jbNAME] forState:UIControlStateNormal];
     self.maps = [JBMapManager getAllMapsWithPrefix:
                  [[self.maptypes objectAtIndex:selectedMapType] objectForKey:jbID]];
-    [self.mapsTablleView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self.mapsTablleView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationLeft];
+}
+
+- (IBAction)sendImgTest:(id)sender {
+    [self.multiplayerAdapter sendImage:nil info:nil];
 }
 
 #pragma mark tableViewStuff
@@ -202,7 +202,8 @@
         if (cell == nil) {
             cell = [[[JBPreGameMapsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier] autorelease];
         }
-        cell.mainView.image = [[maps objectAtIndex:indexPath.row] thumbnail];
+        JBMap* map = [maps objectAtIndex:indexPath.row];
+        cell.mainView.image = map.thumbnail;
         return cell;
     }
     
@@ -222,24 +223,24 @@
 #pragma mark JBGameAdapterPregameViewDelegate
 
 - (void)newPlayerAnnounced:(JBHero *)hero {
-    playersWaitingForGame=[self.multiplayerAdapter.tavern getAllPlayers].count+1;
+    playersWaitingForGame=[self.multiplayerAdapter.tavern getAllPlayers].count;
     [self.playersTableView reloadData];
 }
 
 - (void)playerDisconnected:(JBHero *)hero {
-    playersWaitingForGame=[self.multiplayerAdapter.tavern getAllPlayers].count+1;
+    playersWaitingForGame=[self.multiplayerAdapter.tavern getAllPlayers].count;
     [self.playersTableView reloadData];
 }
 
 - (void)player:(NSString *)heroID didReadyChange:(BOOL)ready {
     if (ready) {
         [playersReady setObject:heroID forKey:heroID];
-        if ([playersReady allValues].count>=playersWaitingForGame) {
+        if ([playersReady allKeys].count>=playersWaitingForGame) {
             [self.startButton setEnabled:YES];
         }
     } else {
         [playersReady removeObjectForKey:heroID];
-        if ([playersReady allValues].count<playersWaitingForGame) {
+        if ([playersReady allKeys].count<playersWaitingForGame) {
             [self.startButton setEnabled:NO];
         }
     }

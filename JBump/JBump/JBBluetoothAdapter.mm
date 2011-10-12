@@ -270,6 +270,29 @@
 	}
 }
 
+- (void)sendImage:(UIImage *)image info:(NSDictionary *)info
+{
+    image = [UIImage imageNamed:@"brush_1.png"];
+    info  = [NSMutableDictionary dictionary];
+    [info setValue:@"ASDDDSA" forKey:@"ASA"];
+    
+    NSData* infoData = [jsonWriter dataWithObject:info];
+    NSString* sendString = [NSString stringWithFormat:@"|IMG:%08d",infoData.length];
+    NSMutableData* sendData = [[sendString dataUsingEncoding:NSUTF8StringEncoding] mutableCopy];
+    [sendData appendData:infoData];
+    [sendData appendData:UIImagePNGRepresentation(image)];
+    
+    if (self.activePeer) {
+        NSError* error;
+		[self.gameSession sendData:sendData
+						   toPeers:[NSArray arrayWithObject:self.activePeer] 
+					  withDataMode:GKSendDataReliable 
+							 error:&error];
+        NSLog(@"NSERROR IN SEND: %@",error);
+	}
+    
+}
+
 #pragma mark --- INCOMMING MESSSAGES ---
 
 - (BOOL)handlePlayerAnnouncement:(NSString *)inputString
@@ -368,6 +391,34 @@
     
 }
 
+- (BOOL)handleImgDataIncomming:(NSData *)data
+{
+    NSString* inputString = [[NSString alloc] initWithData:[data subdataWithRange:NSMakeRange(0, 5)] encoding:NSUTF8StringEncoding];
+    if ([inputString isEqualToString:@"|IMG:"]) {
+        [data retain];
+        [inputString release];
+        inputString = [[NSString alloc] initWithData:[data subdataWithRange:NSMakeRange(5, 8)] encoding:NSUTF8StringEncoding];
+        int infoLength = [inputString intValue];
+        [inputString release];
+        inputString = [[NSString alloc] initWithData:[data subdataWithRange:NSMakeRange(13, infoLength)] encoding:NSUTF8StringEncoding];
+        NSDictionary* info = [jsonParser objectWithString:inputString];
+        [inputString release];
+        UIImage* image = [UIImage imageWithData:[data subdataWithRange:NSMakeRange(13+infoLength, data.length-13-infoLength)]];
+        
+        NSLog(@"info:%@",info);
+        NSLog(@"imagesize:%@",NSStringFromCGSize(image.size));
+        
+        
+        [inputString release];
+        return TRUE;
+    }else{
+        [inputString release];
+        return FALSE;
+    }
+    
+    
+}
+
 - (void)receiveData:(NSData *)data fromPeer:(NSString *)peer inSession: (GKSession *)session context:(void *)context {
     NSString* inputString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     if (inputString) {
@@ -377,7 +428,9 @@
                     if (![self handleRequestForPlayerAnnouncement:inputString]) {
                         if (![self handlePlayerGameContextChange:inputString]) {
                             if (![self handlePlayerKilledByPlayer:inputString]) {
-                                [self handlePlayerPositionUpdates:data];
+                                if (![self handleImgDataIncomming:data]) {
+                                    [self handlePlayerPositionUpdates:data];
+                                }
                             }
                         }
                     }
@@ -386,7 +439,9 @@
         }
     }else
     {
-        [self handlePlayerPositionUpdates:data];
+        if (![self handleImgDataIncomming:data]) {
+            [self handlePlayerPositionUpdates:data];
+        }
     }
 }
 

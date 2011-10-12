@@ -60,6 +60,10 @@
         self.overlayImageLocal = [mapDict objectForKey:jbOVERLAYIMAGELOCATION];
         self.overlayImageURL = [mapDict objectForKey:jbOVERLAYIMAGEURL];
         
+        self.thumbnail = [mapDict objectForKey:jbTHUMBNAIL];
+        self.thumbnailLocal = [mapDict objectForKey:jbTHUMBNAILLOCATION];
+        self.thumbnailURL = [mapDict objectForKey:jbTHUMBNAILURL];
+        
         for (NSDictionary *dict in [mapDict objectForKey:jbENTITIES]) {
             JBEntity *aEntity = [JBEntityManager getEntityWithID:[dict objectForKey:jbID]];
             aEntity.position = CGPointFromString([dict objectForKey:jbPOSITION]);

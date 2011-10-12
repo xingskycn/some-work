@@ -64,6 +64,11 @@
     NSLog(@"%@ Not Yet Implemented?",_cmd);
 }
 
+- (void)sendImage:(UIImage *)image info:(NSDictionary *)info
+{
+    NSLog(@"%@ Not Yet Implemented?",_cmd);
+}
+
 - (void)dealloc {
     self.tavern = nil;
     [super dealloc];
