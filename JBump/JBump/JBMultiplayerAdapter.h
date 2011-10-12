@@ -38,7 +38,7 @@
 @property (nonatomic, retain)JBTavern *tavern;
 
 //		Method to send the player position to others
-- (void)sendPlayer:(JBHero *)player;
+- (void)sendPlayer;
 
 //		Tells the network about the new player
 //		If newIDRequest ist TRUE, a new chrID will be generated

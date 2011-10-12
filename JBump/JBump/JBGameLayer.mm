@@ -26,8 +26,6 @@
 
 #import "JBTavern.h"
 
-#define PTM_RATIO 32
-
 static JBHero* player;
 
 class MyContactListener : public b2ContactListener {
@@ -131,7 +129,7 @@ public:
         self.isTouchEnabled = YES;
         
         b2Vec2 gravity;
-        gravity.Set(.0f, -10.0f);
+        gravity.Set(.0f, -0.1f);
         world = new b2World(gravity,false);
         
         world->SetContinuousPhysics(true);
@@ -163,7 +161,7 @@ public:
         
         [self insertCurves:map.curves];
         [self insertEntities:map.mapEntities];
-        [self insertHero];
+        multiplayer=NO;
         sendCounter=1;
     }
     
@@ -231,12 +229,15 @@ public:
     if (player.body->GetLinearVelocity().y>6.5f) {
         player.body->SetLinearVelocity(b2Vec2(player.body->GetLinearVelocity().x, 6.5f));
     }
-
-    if (sendCounter>=2) {
-        sendCounter=1;
-        [self.tavern send]
-    } else {
-        sendCounter++;
+    
+    
+    if (multiplayer){
+        if (sendCounter>=2) {
+            sendCounter=1;
+            [self.tavern sendPlayerUpdate];
+        } else {
+            sendCounter++;
+        }
     }
 }
 
@@ -330,9 +331,14 @@ public:
 
 - (void)insertHero
 {
-    player = [[JBHero alloc] init];
-    player.name = [[NSUserDefaults standardUserDefaults] objectForKey:jbUSERDEFAULTS_PLAYER_NAME];
-    player.skinID = [[NSUserDefaults standardUserDefaults] objectForKey:jbUSERDEFAULTS_SKIN];
+    if (self.tavern!=nil) {
+        player = self.tavern.localPlayer;
+        multiplayer=YES;
+    } else {
+        player = [[JBHero alloc] init];
+        player.name = [[NSUserDefaults standardUserDefaults] objectForKey:jbUSERDEFAULTS_PLAYER_NAME];
+        player.skinID = [[NSUserDefaults standardUserDefaults] objectForKey:jbUSERDEFAULTS_SKIN];
+    }
     JBSkin *heroSkin = [JBSkinManager getSkinWithID:player.skinID];
     player.sprite = [CCSprite spriteWithFile:heroSkin.imageLocation];
     player.sprite.scale=(30.0/player.sprite.textureRect.size.height);
@@ -359,12 +365,12 @@ public:
     player.body=body;
 }
 
-- (void)setPositionForPlayer:(JBHero *)aPlayer {
+- (void)setPositionForPlayer:(JBHero*)aPlayer withPosition:(CGPoint)position velocityX:(float)x andVelocityY:(float)y {
     
     b2BodyDef bodyDef;
 	bodyDef.type = b2_dynamicBody;
     
-	bodyDef.position.Set(70./PTM_RATIO, 700./PTM_RATIO);
+	bodyDef.position.Set(position.x, position.y);
 	bodyDef.userData = player.sprite;
 	b2Body *body = world->CreateBody(&bodyDef);
 	
@@ -378,7 +384,7 @@ public:
     fixtureDef.density = 1.0f;
     fixtureDef.restitution = 0.050f;
 	body->CreateFixture(&fixtureDef);
-    
+    body->SetLinearVelocity(b2Vec2(y, y));
     if(aPlayer.body!=nil)
         world->DestroyBody(aPlayer.body);
     aPlayer.body=nil;

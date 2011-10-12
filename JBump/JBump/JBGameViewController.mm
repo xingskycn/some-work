@@ -46,6 +46,7 @@
         self.gameLayer.tavern = self.multiplayerAdapter.tavern;
         self.multiplayerAdapter.tavern.gameLayer = self.gameLayer;
     }
+    [self.gameLayer insertHero];
 }
 
 - (void)viewDidUnload

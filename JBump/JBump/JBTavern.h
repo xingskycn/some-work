@@ -23,6 +23,8 @@
 - (JBHero*)getPlayerWithName:(NSString*)aPlayerName;
 - (JBHero*)getPlayerWithReference:(char)reference;
 - (NSArray*)getAllPlayers;
-- (void)sendPlayerUpdate:(JBHero*)player;
+- (void)sendPlayerUpdate;
+- (void)exchangeLocalPlayer;
 
+- (void)player:(char)aPlayerID changedPosition:(CGPoint)position velocityX:(float)x velocityY:(float)Y withPackageNR:(int)packageNR;
 @end

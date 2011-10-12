@@ -153,6 +153,7 @@
             randomID = rand()*0.999/RAND_MAX * (255);
         }
 		super.tavern.localPlayer.playerID = randomID;
+        [super.tavern exchangeLocalPlayer];
 	}
 	
 	// New Player Announcement
@@ -254,12 +255,13 @@
     JBHero* player = super.tavern.localPlayer;
     
 	void* sendField = malloc(sizeof(int)+sizeof(short)*2+sizeof(char)*2);
- 	((int*)sendField)[0]=player.packageNr++<<8;
-	((char*)sendField)[0]=player.playerID;
-	((short *)sendField)[2]=player.body->GetWorldCenter().x*32;
-	((short *)sendField)[3]=player.body->GetWorldCenter().y*32;
-	((char *)sendField)[8]=player.body->GetLinearVelocity().x*255./20.;
-	((char *)sendField)[9]=player.body->GetLinearVelocity().y*255./20.;
+    int packageNr = super.tavern.localPlayer.packageNr++;
+ 	((int*)sendField)[0]=packageNr<<8;
+	((char*)sendField)[0]= super.tavern.localPlayer.playerID;
+	((short *)sendField)[2]=player.body->GetWorldCenter().x*PTM_RATIO;
+	((short *)sendField)[3]=player.body->GetWorldCenter().y*PTM_RATIO;
+	((char *)sendField)[8]=player.body->GetLinearVelocity().x*255.f/HERO_MAXIMUMSPEED;
+	((char *)sendField)[9]=player.body->GetLinearVelocity().y*255.f/HERO_MAXIMUMSPEED;
     
 	NSData* sendData = [NSData dataWithBytesNoCopy:sendField length:5*sizeof(float) freeWhenDone:YES];
 	
@@ -299,7 +301,7 @@
 - (BOOL)handlePlayerAnnouncement:(NSString *)inputString
 {
 	if ([inputString hasPrefix:@"|NPA:"]) {
-        NSString* announcement = [inputString substringWithRange:NSMakeRange(4,inputString.length-4)];
+        NSString* announcement = [inputString substringWithRange:NSMakeRange(5,inputString.length-5)];
         NSArray* parts = [announcement componentsSeparatedByString:@"|"];
         char playerID = [[parts objectAtIndex:0] intValue];
         NSString* playerName = [parts objectAtIndex:1];
@@ -316,7 +318,7 @@
 - (BOOL)handlePlayerReadyChange:(NSString *)inputString
 {
 	if ([inputString hasPrefix:@"|PRC:"]) {
-        NSString* announcement = [inputString substringWithRange:NSMakeRange(4,inputString.length-4)];
+        NSString* announcement = [inputString substringWithRange:NSMakeRange(5,inputString.length-5)];
         NSArray* parts = [announcement componentsSeparatedByString:@"|"];
         BOOL ready = [[parts objectAtIndex:1] boolValue];
         
@@ -331,7 +333,7 @@
 - (BOOL)handleDisconnectedPlayer:(NSString *)inputString
 {
 	if ([inputString hasPrefix:@"|DCN:"]) {
-        NSString* announcement = [inputString substringWithRange:NSMakeRange(4,inputString.length-4)];
+        NSString* announcement = [inputString substringWithRange:NSMakeRange(5,inputString.length-5)];
         char playerID = [announcement intValue];
         
         return TRUE;
@@ -343,7 +345,7 @@
 - (BOOL)handleRequestForPlayerAnnouncement:(NSString *)inputString
 {
 	if ([inputString hasPrefix:@"|PAR:"]) {
-		NSString* announcement = [inputString substringWithRange:NSMakeRange(4,inputString.length-4)];
+		NSString* announcement = [inputString substringWithRange:NSMakeRange(5,inputString.length-5)];
         char playerID = [announcement intValue];
         
         return TRUE;
@@ -356,7 +358,7 @@
 - (BOOL)handlePlayerGameContextChange:(NSString *)inputString
 {
 	if ([inputString hasPrefix:@"|PGC:"]) {
-		NSString* announcement = [inputString substringWithRange:NSMakeRange(4,inputString.length-4)];
+		NSString* announcement = [inputString substringWithRange:NSMakeRange(5,inputString.length-5)];
         NSArray* parts = [announcement componentsSeparatedByString:@"|"];
         char playerID = [[parts objectAtIndex:0] charValue];
         NSDictionary* gameContext = [jsonParser objectWithString:[parts objectAtIndex:1]];
@@ -370,7 +372,7 @@
 - (BOOL)handlePlayerKilledByPlayer:(NSString *)inputString
 {
 	if ([inputString hasPrefix:@"|PGC:"]) {
-		NSString* announcement = [inputString substringWithRange:NSMakeRange(4,inputString.length-4)];
+		NSString* announcement = [inputString substringWithRange:NSMakeRange(5,inputString.length-5)];
         NSArray* parts = [announcement componentsSeparatedByString:@"|"];
         char killedPlayerID = [[parts objectAtIndex:0] charValue];
         char killingPlayerID = [[parts objectAtIndex:1] charValue];
@@ -386,10 +388,11 @@
 {
 	unsigned char playerID = ((char *)[data bytes])[0];
 	int packageNr = ((char *)[data bytes])[0]>>8;
-	CGPoint position = CGPointMake(((short *)[data bytes])[2]/32.0f, ((short *)[data bytes])[3]/32.0f);
-    float velocityX = ((char *)[data bytes])[8]*20.f/255.f;
-    float velocityY = ((char *)[data bytes])[9]*20.f/255.f;
+	CGPoint position = CGPointMake(((short *)[data bytes])[2]/PTM_RATIO, ((short *)[data bytes])[3]/PTM_RATIO);
+    float velocityX = ((char *)[data bytes])[8]*HERO_MAXIMUMSPEED/255.f;
+    float velocityY = ((char *)[data bytes])[9]*HERO_MAXIMUMSPEED/255.f;
     
+    [self.tavern player:playerID changedPosition:position velocityX:velocityX velocityY:velocityY withPackageNR:packageNr];
 }
 
 - (BOOL)handleImgDataIncomming:(NSData *)data

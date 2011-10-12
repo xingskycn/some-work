@@ -38,6 +38,7 @@
         isRight=NO;
         jumpTouched=NO;
         self.gameContext = [NSMutableDictionary dictionary];
+        self.packageNr=-1;
     }
     
     return self;

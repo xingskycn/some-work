@@ -24,6 +24,7 @@
 #endif
     float timePlayerOnGround;
     int sendCounter;
+    bool multiplayer;
 }
 
 @property(nonatomic, assign)JBGameViewController *gameViewController;
@@ -38,5 +39,5 @@
 
 - (void)resetJumpForce;
 
-- (void)setPositionForPlayer:(JBHero*)aPlayer;
+- (void)setPositionForPlayer:(JBHero*)aPlayer withPosition:(CGPoint)position velocityX:(float)x andVelocityY:(float)y;
 @end

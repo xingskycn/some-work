@@ -48,7 +48,7 @@
 
 - (void) applicationDidFinishLaunching:(UIApplication*)application
 {
-    
+    srand(clock());
 	// Init the window
 	window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 	

@@ -114,4 +114,6 @@
 #define jbGAMECONTEXT_KILL_COUNT @"killCount"
 #define jbGAMECONTEXT_DEATH_COUNT @"deathCount" 
 
+#define PTM_RATIO 32.f
+#define HERO_MAXIMUMSPEED 20.f
 #endif

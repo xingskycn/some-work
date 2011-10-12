@@ -45,6 +45,16 @@
     return nil;
 }
 
+- (void)sendPlayerUpdate {
+    [self.multiplayerAdapter sendPlayer];
+}
+
+- (void)exchangeLocalPlayer {
+    [self.heroesInTavern removeObjectForKey:self.localPlayer.name];
+    [self.heroesInTavern setObject:self.localPlayer forKey:[NSString stringWithFormat:@"%d",self.localPlayer.playerID]];
+    
+}
+
 - (JBHero*)getPlayerWithReference:(char)reference {
     return [self.heroesInTavern objectForKey:[NSString stringWithFormat:@"%d",reference]];
 }
@@ -67,6 +77,23 @@
 
 - (void)player:(JBHero *)hero didChangeContext:(NSDictionary *)context {
     
+}
+
+- (void)player:(char)aPlayerID changedPosition:(CGPoint)position velocityX:(float)x velocityY:(float)y withPackageNR:(int)packageNR {
+    JBHero *aPlayer = [self getPlayerWithReference:aPlayerID];
+    if (aPlayer==nil) {
+        NSLog(@"No Player with ID: %i in Tavern", aPlayerID);
+        return;
+    }
+    if (aPlayer.packageNr<packageNR) {
+        //aPlayer.packageNr=packageNR;
+        
+        [self.gameLayer setPositionForPlayer:aPlayer withPosition:position velocityX:x andVelocityY:y];
+    }
+    else {
+        NSLog(@"Heroes in Tavern: %@", self.heroesInTavern);
+        NSLog(@"Recieved PackageNR: %i, localPackageNR: %i",packageNR ,aPlayer.packageNr);
+    }
 }
 
 
