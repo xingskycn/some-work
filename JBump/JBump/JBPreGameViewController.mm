@@ -21,6 +21,8 @@
 
 @property (nonatomic, retain) NSArray* maptypes;
 @property (assign) int selectedMapType;
+@property (retain, nonatomic) NSString* requestedMapID;
+@property (retain, nonatomic) NSString* missingMapID;
 
 @end
 
@@ -29,6 +31,8 @@
 //private
 @synthesize maptypes;
 @synthesize selectedMapType;
+@synthesize requestedMapID;
+@synthesize missingMapID;
 
 
 //public
@@ -75,7 +79,7 @@
 {
     [super viewDidLoad];
     //Hide Request Popout
-    //self.requestPopout.frame = CGRectMake(120, -120, 240, 120);
+    self.requestPopout.frame = CGRectMake(120, -120, 240, 120);
     
     if (!self.players) {
         self.players = [NSMutableArray array];
@@ -181,18 +185,22 @@
     [self.mapsTablleView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationLeft];
 }
 
-- (IBAction)sendImgTest:(id)sender {
-    UIImage* img = [UIImage imageNamed:@"default.png"];
-    
-    [self.multiplayerAdapter sendData:UIImagePNGRepresentation(img) info:nil];
-}
-
 - (IBAction)closeRequestPopout:(id)sender {
-    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:0.3];
+    self.requestPopout.frame = self.requestPopout.frame = CGRectMake(120, -120, 240, 120);
+    [UIView commitAnimations];
 }
 
 - (IBAction)confirmRequest:(id)sender {
-    
+    if (self.missingMapID) {
+        [self.multiplayerAdapter askForMapWithID:self.missingMapID];
+        self.requestMessageLabel.text = @"the request has been send";
+    }else{
+        [self.multiplayerAdapter sendMapForID:self.requestedMapID];
+        self.requestMessageLabel.text = @"map sending in progress";
+    }
 }
 
 #pragma mark tableViewStuff
@@ -289,7 +297,66 @@
 }
 
 - (void)playerDidStartGame:(JBHero *)hero {
-    //TODO
+    // TODO::
+}
+
+- (void)mapChangeToID:(NSString *)mapID
+{
+    [[mapID retain] autorelease];
+    if (![JBMapManager getMapWithID:mapID]) {
+        self.requestTitelLabel.text = [NSString stringWithFormat:@">%@< map missing!",[mapID substringFromIndex:3]];
+        self.requestMessageLabel.text = @"Do you want to transfer it?";
+        self.missingMapID = mapID;
+        self.requestedMapID = nil;
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationBeginsFromCurrentState:YES];
+        [UIView setAnimationDuration:0.3];
+        self.requestPopout.frame = self.requestPopout.frame = CGRectMake(120, 0, 240, 120);
+        [UIView commitAnimations];
+    }else{
+        self.missingMapID = nil;
+        self.requestedMapID = nil;
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationBeginsFromCurrentState:YES];
+        [UIView setAnimationDuration:0.3];
+        self.requestPopout.frame = self.requestPopout.frame = CGRectMake(120, -120, 240, 120);
+        [UIView commitAnimations];
+        
+        NSString*prefix = [mapID substringWithRange:NSMakeRange(0, 3)];
+        for (NSDictionary* dict in self.maptypes) {
+            if ([prefix isEqualToString:[dict objectForKey:jbID]]) {
+                self.selectedMapType =  [self.maptypes indexOfObject:dict];
+                [self.gameTypeButton setTitle:[dict objectForKey:jbNAME] forState:UIControlStateNormal];
+                self.maps = [JBMapManager getAllMapsWithPrefix:prefix];
+                [self.mapsTablleView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationLeft];
+                for (JBMap* map in self.maps) {
+                    if ([map.ID isEqualToString:mapID]) {
+                        [self.mapsTablleView selectRowAtIndexPath:
+                         [NSIndexPath indexPathForRow:[self.maps indexOfObject:map] inSection:0]
+                                                         animated:YES scrollPosition:UITableViewScrollPositionTop];
+                    }
+                }
+            }
+        }
+    }
+}
+
+- (void)newMapReceiving
+{
+    self.requestMessageLabel.text = @"receiving map data";
+}
+
+- (void)mapRequestReceivedForID:(NSString *)mapID
+{
+    self.requestTitelLabel.text = [NSString stringWithFormat:@"another player lacks >%@<",[mapID substringFromIndex:3]];
+    self.requestMessageLabel.text = @"Do you want to transfer it?";
+    self.missingMapID = nil;
+    self.requestedMapID = mapID;
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:0.3];
+    self.requestPopout.frame = self.requestPopout.frame = CGRectMake(120, 0, 240, 120);
+    [UIView commitAnimations];
 }
 
 @end

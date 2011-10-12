@@ -25,6 +25,8 @@
 - (void)player:(NSString *)playerID didReadyChange:(BOOL)ready;
 - (void)playerDidStartGame:(JBHero *)hero;
 - (void)mapChangeToID:(NSString *)mapID;
+- (void)newMapReceiving;
+- (void)mapRequestReceivedForID:(NSString *)mapID;
 
 @end
 
@@ -51,7 +53,7 @@
 - (void)shoutPlayerGameContextChange;
 - (void)shoutMapChangeToMap:(NSString *)mapID;
 - (void)playerKilledByChar:(JBHero *)player;
-- (void)sendData:(NSData *)data info:(NSDictionary *)info;
+- (void)sendData:(NSData *)data info:(NSDictionary *)info selector:(SEL)sel delegate:(id)delegate;
 - (void)continueDataTransfer:(NSString *)transferID;
 - (void)aboardDataTransferWithID:(NSString *)transferID;
 - (void)askForNextDataTransferWithID:(NSString *)transferID;

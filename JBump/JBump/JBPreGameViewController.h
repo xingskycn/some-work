@@ -48,7 +48,6 @@
 @property (retain, nonatomic) JBMap *selectedMap;
 
 
-- (IBAction)sendImgTest:(id)sender;
 - (IBAction)closeRequestPopout:(id)sender;
 - (IBAction)confirmRequest:(id)sender;
 

@@ -224,9 +224,7 @@
 - (void)shoutMapChangeToMap:(NSString *)mapID
 {	
 	NSString* sendString = 
-	[NSString stringWithFormat:	@"|PGC:%d|%@",
-     super.tavern.localPlayer.playerID,
-     super.tavern.localPlayer.gameContext];
+	[NSString stringWithFormat:	@"|MCG:%@",mapID];
 	
 	NSData* sendData = [sendString dataUsingEncoding:NSUTF8StringEncoding];
 	if (self.activePeer) {
@@ -280,7 +278,7 @@
 	}
 }
 
-- (void)sendData:(NSData *)data info:(NSDictionary *)info
+- (void)sendData:(NSData *)data info:(NSDictionary *)info selector:(SEL)sel delegate:(id)delegate
 {    
     NSString* transferID = [NSString stringWithFormat:@"%05d",1];
     NSString* transferSize = [NSString stringWithFormat:@"%08d",data.length];
@@ -299,8 +297,12 @@
 							 error:&error];
     }
     
+    
+    
     [self.activeDataTransfers setObject:data forKey:transferID];
     [self.activeDataTransfers setObject:@"0" forKey:[NSString stringWithFormat:@"%@pos",transferID]];
+    [self.activeDataTransfers setObject:NSStringFromSelector(sel) forKey:[NSString stringWithFormat:@"%@sel",transferID]];
+    [self.activeDataTransfers setObject:delegate forKey:[NSString stringWithFormat:@"%@del",transferID]];
 }
 
 - (void)continueDataTransfer:(NSString *)transferID
@@ -311,6 +313,13 @@
     NSString* sendString = [NSString stringWithFormat:@"|IDS:%@",transferID];
     NSMutableData* sendData = [[sendString dataUsingEncoding:NSUTF8StringEncoding] mutableCopy];
     [sendData appendData:[data subdataWithRange:NSMakeRange(pos, length)]];
+    
+    if (data.length == length+pos) {
+        NSLog(@"transfer finished");
+        SEL sel = NSSelectorFromString([self.activeDataTransfers objectForKey:[NSString stringWithFormat:@"%@sel",transferID]]);
+        id delegate = [self.activeDataTransfers objectForKey:[NSString stringWithFormat:@"%@del",transferID]];
+        [delegate performSelector:sel];
+    }
     
     if (self.activePeer) {
         NSError* error = nil;
@@ -386,7 +395,7 @@
     [sendData appendData:arenaImageData];
     [sendData appendData:thumbnailData];
     
-    [self sendData:sendData info:info];
+    [self sendData:sendData info:info selector:@selector(mapChangeToID:) delegate:preGameDelegate];
 }
 
 #pragma mark --- INCOMMING MESSSAGES ---
@@ -476,6 +485,28 @@
     }
 }
 
+- (BOOL)handleMapChange:(NSString *)inputString
+{
+    if ([inputString hasPrefix:@"|MCG:"]) {
+		NSString* announcement = [inputString substringWithRange:NSMakeRange(5,inputString.length-5)];
+        [preGameDelegate mapChangeToID:announcement];
+        return TRUE;
+    }else{
+        return FALSE;
+    }
+}
+
+- (BOOL)handleMapRequest:(NSString *)inputString
+{
+    if ([inputString hasPrefix:@"|MDR:"]) {
+		NSString* announcement = [inputString substringWithRange:NSMakeRange(5,inputString.length-5)];
+        [preGameDelegate mapRequestReceivedForID:announcement];
+        return TRUE;
+    }else{
+        return FALSE;
+    }
+}
+
 - (void)handlePlayerPositionUpdates:(NSData *)data
 {
 	unsigned char playerID = ((char *)[data bytes])[0];
@@ -539,6 +570,7 @@
             [inputString release];
             NSString* transferID = [[[NSString alloc] initWithData:[data subdataWithRange:NSMakeRange(5, 5)] encoding:NSUTF8StringEncoding] autorelease];
             
+            [preGameDelegate newMapReceiving];
             
             NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
             NSString* path = [[paths objectAtIndex:0] stringByAppendingPathComponent:transferID];
@@ -562,6 +594,7 @@
                     NSData* mapThumbnail = [mapData subdataWithRange:thumbnailRange];
                     NSString* mapID = [info objectForKey:jbID];
                     [JBMapManager storeNewMapWithID:mapID infoData:mapInfo arenaImageData:mapArena thumbnailImageData:mapThumbnail];
+                    [preGameDelegate mapChangeToID:mapID];
                 }
                 
                 
@@ -578,21 +611,35 @@
     }
 }
 
+
+- (BOOL)handlePregame:(NSString *)inputString
+{
+    if (![self handleMapRequest:inputString]) {
+        if (![self handleMapChange:inputString]) {
+            if (![self handlePlayerReadyChange:inputString]) {
+                if (![self handlePlayerAnnouncement:inputString]) {
+                    return FALSE;
+                }
+            }
+        }
+    }
+    return TRUE;
+}
+
+
 - (void)receiveData:(NSData *)data fromPeer:(NSString *)peer inSession: (GKSession *)session context:(void *)context {
     NSString* inputString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     if (inputString) {
-        if (![self handlePlayerReadyChange:inputString]) {
-            if (![self handlePlayerAnnouncement:inputString]) {
-                if (![self handleDisconnectedPlayer:inputString]) {
-                    if (![self handleRequestForPlayerAnnouncement:inputString]) {
-                        if (![self handlePlayerGameContextChange:inputString]) {
-                            if (![self handlePlayerKilledByPlayer:inputString]) {
-                                if (![self handleDataSendRequestIncomming:inputString]) {
-                                    if (![self handleNextDataRequestIncomming:inputString]) {
-                                        if (![self handleAboardTransferRequest:inputString]) {
-                                            if (![self handleTransferDataIncomming:data]) {
-                                                [self handlePlayerPositionUpdates:data];
-                                            }
+        if (![self handlePregame:inputString]) {
+            if (![self handleDisconnectedPlayer:inputString]) {
+                if (![self handleRequestForPlayerAnnouncement:inputString]) {
+                    if (![self handlePlayerGameContextChange:inputString]) {
+                        if (![self handlePlayerKilledByPlayer:inputString]) {
+                            if (![self handleDataSendRequestIncomming:inputString]) {
+                                if (![self handleNextDataRequestIncomming:inputString]) {
+                                    if (![self handleAboardTransferRequest:inputString]) {
+                                        if (![self handleTransferDataIncomming:data]) {
+                                            [self handlePlayerPositionUpdates:data];
                                         }
                                     }
                                 }
