@@ -26,6 +26,7 @@
 #define jbTHUMBNAILURL @"thumbnailURL"
 #define jbINFO @"info"
 #define jbDELETEBUTTON_TITLE @"Delete"
+#define jbINFOLOCATION @"infoLocation"
 
 #pragma mark Entities
 #define jbBODYTYPE @"bodyType"
@@ -82,6 +83,8 @@
 #define jbWEB_CONNECTIONFAILED_OK @"OK"
 
 #define jbBT_DATATRANSFER_SAVEPATH @"save_path"
+#define jbBT_TRANSFERTYPE @"type"
+#define jbBT_TRANSFERTYPE_MAP @"map"
 
 #pragma mark Map Creator
 #define jbMAPCREATOR_OFFX 180 

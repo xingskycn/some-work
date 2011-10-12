@@ -446,11 +446,11 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <progressView opaque="NO" contentMode="scaleToFill" progress="0.5" id="T87-3z-SSP">
-                                                <rect key="frame" x="45" y="38" width="150" height="9"/>
+                                                <rect key="frame" x="45" y="51" width="150" height="9"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </progressView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="PLX-wm-yb6">
-                                                <rect key="frame" x="90" y="55" width="60" height="37"/>
+                                                <rect key="frame" x="90" y="68" width="60" height="24"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                 <state key="normal" title="OK">
@@ -465,9 +465,16 @@
                                                 </connections>
                                             </button>
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="SEND MAP REQUEST" lineBreakMode="tailTruncation" minimumFontSize="10" id="cdG-ir-xjc">
-                                                <rect key="frame" x="32" y="9" width="176" height="21"/>
+                                                <rect key="frame" x="32" y="0.0" width="176" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="SEND MAP REQUEST" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="oHy-Xm-Rzy">
+                                                <rect key="frame" x="0.0" y="22" width="240" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -503,6 +510,7 @@
                         <outlet property="mapsTablleView" destination="eze-DP-gz1" id="GMB-4u-WTn"/>
                         <outlet property="playersTableView" destination="Nj1-Om-aHt" id="TWW-KK-6ir"/>
                         <outlet property="readyButton" destination="zPd-I1-7C2" id="QM0-ws-Jia"/>
+                        <outlet property="requestMessageLabel" destination="oHy-Xm-Rzy" id="rQ5-2q-oym"/>
                         <outlet property="requestPopout" destination="P9J-zh-Zhv" id="fYJ-y9-6ck"/>
                         <outlet property="requestProgressBar" destination="T87-3z-SSP" id="isK-aO-WFB"/>
                         <outlet property="requestTitelLabel" destination="cdG-ir-xjc" id="Clx-ki-KJr"/>
@@ -1096,6 +1104,7 @@
                 <relationship kind="outlet" name="mapsTablleView" candidateClass="UITableView"/>
                 <relationship kind="outlet" name="playersTableView" candidateClass="UITableView"/>
                 <relationship kind="outlet" name="readyButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="requestMessageLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="requestPopout" candidateClass="UIView"/>
                 <relationship kind="outlet" name="requestProgressBar" candidateClass="UIProgressView"/>
                 <relationship kind="outlet" name="requestTitelLabel" candidateClass="UILabel"/>
@@ -1135,9 +1144,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="3Fh-iF-90v"/>
         <segue reference="1RV-xt-lrX"/>
-        <segue reference="NTM-U9-Hn3"/>
-        <segue reference="IbT-su-ffC"/>
     </inferredMetricsTieBreakers>
 </document>

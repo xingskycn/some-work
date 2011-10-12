@@ -13,6 +13,31 @@ static NSString *filePath = @"maps";
 
 @implementation JBMapManager
 
++ (void)storeNewMapWithID:(NSString *)mapID
+                 infoData:(NSData *)infoData
+           arenaImageData:(NSData *)arenaImageData
+       thumbnailImageData:(NSData *)thumbnailImageData
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString* path = [[[paths objectAtIndex:0] stringByAppendingPathComponent:filePath] 
+                      stringByAppendingPathComponent:mapID];
+    
+    NSError* error;
+    if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {
+        if (![[NSFileManager defaultManager] createDirectoryAtPath:path
+                                       withIntermediateDirectories:NO
+                                                        attributes:nil
+                                                             error:&error])
+        {
+            NSLog(@"Create directory error: %@", error);
+        }
+    }
+    
+    [infoData writeToFile:[path stringByAppendingPathComponent:jbINFO] atomically:YES];
+    [arenaImageData writeToFile:[path stringByAppendingPathComponent:jbARENAIMAGE] atomically:YES];
+    [thumbnailImageData writeToFile:[path stringByAppendingPathComponent:jbTHUMBNAIL] atomically:YES];
+}
+
 + (void)storeNewMapWithID:(NSString*)mapID
                   mapName:(NSString *)mapName
                arenaImage:(UIImage *)arenaImage
@@ -96,7 +121,7 @@ static NSString *filePath = @"maps";
     if (settings) {
         [mapDict setObject:settings forKey:jbSETTINGS];
     }
-    
+    [mapDict setObject:[path stringByAppendingPathComponent:jbINFO] forKey:jbINFOLOCATION];
     [mapDict writeToFile:[path stringByAppendingPathComponent:jbINFO] atomically:YES];
 }
 
@@ -187,6 +212,7 @@ static NSString *filePath = @"maps";
     [mapDict setObject:curves forKey:jbCURVES];
     [mapDict setObject:entities forKey:jbENTITIES];
     
+    [mapDict setObject:[path stringByAppendingPathComponent:jbINFO] forKey:jbINFOLOCATION];
     [mapDict writeToFile:[path stringByAppendingPathComponent:jbINFO] atomically:YES];
 }
 
@@ -300,7 +326,8 @@ static NSString *filePath = @"maps";
     for (NSString* key in [dict allKeys]) {
         [mapDict setObject:[dict objectForKey:key] forKey:key];
     }
-
+    
+    [mapDict setObject:[[path stringByAppendingPathComponent:mapID] stringByAppendingPathComponent:jbINFO] forKey:jbINFOLOCATION];
     [mapDict writeToFile:[[path stringByAppendingPathComponent:mapID] stringByAppendingPathComponent:jbINFO] atomically:YES];
 }
 

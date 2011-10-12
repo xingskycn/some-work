@@ -12,7 +12,11 @@
 @class JBTavern;
 @class JBHero;
 
+@protocol JBProgressDelegate
 
+- (void)transferWithID:(NSString*)transferID updatedProgress:(float)progress;
+
+@end
 
 @protocol JBMultiplayerAdapterPregameDelegate <NSObject>
 
@@ -20,6 +24,7 @@
 - (void)playerDisconnected:(JBHero *)hero;
 - (void)player:(NSString *)playerID didReadyChange:(BOOL)ready;
 - (void)playerDidStartGame:(JBHero *)hero;
+- (void)mapChangeToID:(NSString *)mapID;
 
 @end
 
@@ -44,11 +49,13 @@
 - (void)requestForPlayerAnnouncement:(NSString *)playerID;
 - (void)playerKilledByChar:(JBHero *)player;
 - (void)shoutPlayerGameContextChange;
-- (void)shoutPlayerWantsMapChange;
+- (void)shoutMapChangeToMap:(NSString *)mapID;
 - (void)playerKilledByChar:(JBHero *)player;
 - (void)sendData:(NSData *)data info:(NSDictionary *)info;
 - (void)continueDataTransfer:(NSString *)transferID;
 - (void)aboardDataTransferWithID:(NSString *)transferID;
 - (void)askForNextDataTransferWithID:(NSString *)transferID;
+- (void)askForMapWithID:(NSString *)mapID;
+- (void)sendMapForID:(NSString *)mapID;
 
 @end

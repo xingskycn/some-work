@@ -30,6 +30,8 @@
 @property (nonatomic, retain)NSString* thumbnailLocal;
 @property (nonatomic, retain)NSString* thumbnailURL;
 
+@property (nonatomic, retain)NSString* infoLocal;
+
 //only a Dictionary with position and entityID
 @property (nonatomic, retain)NSMutableArray *mapEntities;
 @property (nonatomic, retain)NSMutableArray *curves;
