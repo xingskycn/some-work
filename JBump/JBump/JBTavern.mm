@@ -87,8 +87,9 @@
     }
     if (aPlayer.packageNr<=packageNR) {
         //aPlayer.packageNr=packageNR;
-        
-        [self.gameLayer setPositionForPlayer:aPlayer withPosition:position velocityX:x andVelocityY:y];
+        if (self.gameLayer) {
+            [self.gameLayer setPositionForPlayer:aPlayer withPosition:position velocityX:x andVelocityY:y];
+        }
     }
     else {
         NSLog(@"Heroes in Tavern: %@", self.heroesInTavern);
