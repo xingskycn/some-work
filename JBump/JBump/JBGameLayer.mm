@@ -293,7 +293,7 @@ public:
     
     [player.sprite setRotation:player.desiredRotation+((player.sprite.rotation-player.desiredRotation)/1.14)];
     
-    if (player.body->GetLinearVelocity().y>6.5f) {
+    if (player.body!=nil&&player.body->GetLinearVelocity().y>6.5f) {
         player.body->SetLinearVelocity(b2Vec2(player.body->GetLinearVelocity().x, 6.5f));
     }
     
