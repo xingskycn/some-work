@@ -35,6 +35,17 @@
 - (IBAction)startButtonPressed:(id)sender;
 - (IBAction)newConnectionPressed:(id)sender;
 - (IBAction)changeGameType:(id)sender;
+
+
+// Contents of request popout
+@property (retain, nonatomic) IBOutlet UILabel *requestTitelLabel;
+@property (retain, nonatomic) IBOutlet UIProgressView *requestProgressBar;
+@property (retain, nonatomic) IBOutlet UIButton *closeRequestButton;
+@property (retain, nonatomic) IBOutlet UIView *requestPopout;
+
 - (IBAction)sendImgTest:(id)sender;
+- (IBAction)closeRequestPopout:(id)sender;
+- (IBAction)confirmRequest:(id)sender;
+
 
 @end

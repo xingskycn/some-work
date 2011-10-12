@@ -25,6 +25,7 @@
 @end
 
 @implementation JBPreGameViewController
+
 //private
 @synthesize maptypes;
 @synthesize selectedMapType;
@@ -40,8 +41,13 @@
 @synthesize playersTableView;
 @synthesize mapsTablleView;
 @synthesize aNewConnectionbutton;
-
 @synthesize maps, players;
+
+// Contents of request popout
+@synthesize requestTitelLabel;
+@synthesize requestProgressBar;
+@synthesize closeRequestButton;
+@synthesize requestPopout;
 
 - (void)didReceiveMemoryWarning
 {
@@ -53,18 +59,21 @@
 
 #pragma mark - View lifecycle
 
-/*
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+            
+    }
+    return self;
 }
-*/
 
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    //Hide Request Popout
+    self.requestPopout.frame = CGRectMake(120, -120, 240, 120);
     
     if (!self.players) {
         self.players = [NSMutableArray array];
@@ -100,6 +109,10 @@
     [self setANewConnectionbutton:nil];
     [self setPlayers:nil];
     [self setMaps:nil];
+    [self setRequestTitelLabel:nil];
+    [self setRequestProgressBar:nil];
+    [self setCloseRequestButton:nil];
+    [self setRequestPopout:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -120,6 +133,10 @@
     [aNewConnectionbutton release];
     //[players release];
     //[maps release];
+    [requestTitelLabel release];
+    [requestProgressBar release];
+    [closeRequestButton release];
+    [requestPopout release];
     [super dealloc];
 }
 
@@ -164,6 +181,12 @@
     UIImage* img = [UIImage imageNamed:@"default.png"];
     
     [self.multiplayerAdapter sendData:UIImagePNGRepresentation(img) info:nil];
+}
+
+- (IBAction)closeRequestPopout:(id)sender {
+}
+
+- (IBAction)confirmRequest:(id)sender {
 }
 
 #pragma mark tableViewStuff

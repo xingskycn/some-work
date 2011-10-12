@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface JBQuickGameViewController : UIViewController
+@property (retain, nonatomic) IBOutlet UIButton *startBlueToothButton;
 
 @end

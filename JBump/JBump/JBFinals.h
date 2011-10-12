@@ -81,6 +81,8 @@
 #define jbWEB_CONNECTIONFAILED_MESSAGE @"Sry, not able to download the content"
 #define jbWEB_CONNECTIONFAILED_OK @"OK"
 
+#define jbBT_DATATRANSFER_SAVEPATH @"save_path"
+
 #pragma mark Map Creator
 #define jbMAPCREATOR_OFFX 180 
 #define jbMAPCREATOR_OFFY 120

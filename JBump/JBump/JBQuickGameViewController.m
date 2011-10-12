@@ -9,6 +9,7 @@
 #import "JBQuickGameViewController.h"
 
 @implementation JBQuickGameViewController
+@synthesize startBlueToothButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -46,6 +47,7 @@
 
 - (void)viewDidUnload
 {
+    [self setStartBlueToothButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -57,4 +59,8 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+- (void)dealloc {
+    [startBlueToothButton release];
+    [super dealloc];
+}
 @end

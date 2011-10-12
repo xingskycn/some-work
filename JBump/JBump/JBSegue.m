@@ -15,7 +15,7 @@
 @implementation JBSegue
 
 - (void)perform {
-    [self.destinationViewController view].frame = CGRectMake(0, 0, 480, 320);
+    [[self.destinationViewController view] setFrame:CGRectMake(0, 0, 480, 320)];
     [self.sourceViewController view].frame = CGRectMake(0, 0, 480, 320);
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:[self.sourceViewController view].superview cache:YES];
