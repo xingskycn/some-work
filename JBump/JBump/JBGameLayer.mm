@@ -81,6 +81,13 @@ public:
                 }
             }
         }
+        if ([(NSObject*)contact->GetFixtureA()->GetBody()->GetUserData() isKindOfClass:[CCSprite class]]) {
+            
+        } else if ([(NSObject*)contact->GetFixtureB()->GetBody()->GetUserData() isKindOfClass:[CCSprite class]]) {
+            
+        } {
+            
+        }
     }
     void PostSolve(b2Contact* contact, const b2ContactImpulse* impulse)
     { /* handle post-solve event */ 
