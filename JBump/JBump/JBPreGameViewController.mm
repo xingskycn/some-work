@@ -198,7 +198,7 @@
         [self.multiplayerAdapter askForMapWithID:self.missingMapID];
         self.requestMessageLabel.text = @"the request has been send";
     }else{
-        [self.multiplayerAdapter sendMapForID:self.requestedMapID];
+        [self.multiplayerAdapter sendMapForID:self.requestedMapID progrossDelegate:self.requestProgressBar];
         self.requestMessageLabel.text = @"map sending in progress";
     }
 }
@@ -316,6 +316,7 @@
         self.requestMessageLabel.text = @"Do you want to transfer it?";
         self.missingMapID = mapID;
         self.requestedMapID = nil;
+        self.requestProgressBar.progress = 0;
         [UIView beginAnimations:nil context:NULL];
         [UIView setAnimationBeginsFromCurrentState:YES];
         [UIView setAnimationDuration:0.3];
@@ -360,6 +361,7 @@
     self.requestMessageLabel.text = @"Do you want to transfer it?";
     self.missingMapID = nil;
     self.requestedMapID = mapID;
+    self.requestProgressBar.progress = 0;
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationBeginsFromCurrentState:YES];
     [UIView setAnimationDuration:0.3];

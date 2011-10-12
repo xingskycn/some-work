@@ -30,7 +30,7 @@
             entityHistory:(NSMutableArray*)entities;
 
 + (void)storeNewMapWithID:(NSString *)mapID
-                 infoData:(NSData *)infoData
+                 infoData:(NSDictionary *)infoData
            arenaImageData:(NSData *)arenaImageData
        thumbnailImageData:(NSData *)thumbnailImageData;
 

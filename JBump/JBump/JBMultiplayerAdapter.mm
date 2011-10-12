@@ -89,7 +89,7 @@
     NSLog(@"%@ Not Yet Implemented?",NSStringFromSelector(_cmd));
 }
 
-- (void)sendMapForID:(NSString *)mapID
+- (void)sendMapForID:(NSString *)mapID progrossDelegate:(id<JBProgressDelegate>)delegate
 {
     NSLog(@"%@ Not Yet Implemented?",NSStringFromSelector(_cmd));
 }

@@ -60,5 +60,6 @@
         selector:(SEL)sel 
   finishDelegate:(id)fDelegate
 progressDelegate:(id<JBProgressDelegate>)pDelegate;
+- (void)sendMapForID:(NSString *)mapID progrossDelegate:(id<JBProgressDelegate>)delegate;
 
 @end
