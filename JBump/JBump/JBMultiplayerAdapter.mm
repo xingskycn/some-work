@@ -75,10 +75,6 @@
     NSLog(@"%@ Not Yet Implemented?",NSStringFromSelector(_cmd));
 }
 
-- (void)sendData:(NSData *)data info:(NSDictionary *)info{
-    NSLog(@"%@ Not Yet Implemented?",NSStringFromSelector(_cmd));
-}
-
 - (void)askForNextDataTransferWithID:(NSString *)transferID
 {
     NSLog(@"%@ Not Yet Implemented?",NSStringFromSelector(_cmd));
@@ -114,6 +110,10 @@
     NSLog(@"%@ Not Yet Implemented?",NSStringFromSelector(_cmd));
 }
 
+- (void)sendData:(NSData *)data info:(NSDictionary *)info selector:(SEL)sel finishDelegate:(id)fDelegate progressDelegate:(id<JBProgressDelegate>)pDelegate
+{
+    NSLog(@"%@ Not Yet Implemented?",NSStringFromSelector(_cmd));
+}
 
 - (void)dealloc {
     self.tavern = nil;
