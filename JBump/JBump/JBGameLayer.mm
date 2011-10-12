@@ -38,8 +38,32 @@ public:
         
     }
     void PreSolve(b2Contact* contact, const b2Manifold* oldManifold) { /* handle pre-solve event */ 
+         b2WorldManifold worldManifold; contact->GetWorldManifold(&worldManifold);
+        if ([(NSObject*)contact->GetFixtureB()->GetUserData() isKindOfClass:[JBBrush class]]
+            &&worldManifold.points[0].y>contact->GetFixtureA()->GetBody()->GetWorldCenter().y) {
+            JBBrush *brush = (JBBrush*)contact->GetFixtureB()->GetUserData();
+            if ([brush.ID isEqualToString:jbBRUSH_PLATFORM]) {
+                //if (worldManifold.normal.y < 0.2f) {
+                if (contact->GetFixtureA()->GetBody()->GetLinearVelocity().y>0.0f) {
+                    contact->SetEnabled(false);
+                    player.desiredRotation = 0;
+                }
+                
+            }
+        }else if ([(NSObject*)contact->GetFixtureA()->GetUserData() isKindOfClass:[JBBrush class]]
+            &&worldManifold.points[0].y>contact->GetFixtureB()->GetBody()->GetWorldCenter().y) {
+            JBBrush *brush = (JBBrush*)contact->GetFixtureA()->GetUserData();
+            if ([brush.ID isEqualToString:jbBRUSH_PLATFORM]) {
+                //if (worldManifold.normal.y < -0.5f) {
+                if (contact->GetFixtureB()->GetBody()->GetLinearVelocity().y>0.0f) {
+                    contact->SetEnabled(false);
+                    player.desiredRotation = 0;
+                }
+            }
+        }
+
+        
         if(contact->GetFixtureA()->GetBody()==player.body) {
-            b2WorldManifold worldManifold; contact->GetWorldManifold(&worldManifold);
             float product = -acosf(worldManifold.normal.x)*180/M_PI+90;
             
             player.desiredRotation = product;
@@ -47,21 +71,7 @@ public:
             if (worldManifold.normal.y > 0.5f) {
                 player.onGround=true; 
             }
-            if ([(NSObject*)contact->GetFixtureB()->GetUserData() isKindOfClass:[JBBrush class]]
-                &&worldManifold.points[0].y>contact->GetFixtureA()->GetBody()->GetWorldCenter().y) {
-                JBBrush *brush = (JBBrush*)contact->GetFixtureB()->GetUserData();
-                if ([brush.ID isEqualToString:jbBRUSH_PLATFORM]) {
-                    //if (worldManifold.normal.y < 0.2f) {
-                    if (contact->GetFixtureA()->GetBody()->GetLinearVelocity().y>0.0f) {
-                        contact->SetEnabled(false);
-                        player.desiredRotation = 0;
-                    }
-                    
-                }
-            }
-            
         }else if (contact->GetFixtureB()->GetBody()==player.body) {
-            b2WorldManifold worldManifold; contact->GetWorldManifold(&worldManifold);
             float product = -acosf(worldManifold.normal.x)*180/M_PI+90;
             
             player.desiredRotation = product;
@@ -69,25 +79,24 @@ public:
             if (worldManifold.normal.y > 0.5f) {
                 player.onGround=true; 
             }
-            if ([(NSObject*)contact->GetFixtureA()->GetUserData() isKindOfClass:[JBBrush class]]
-                &&worldManifold.points[0].y>contact->GetFixtureB()->GetBody()->GetWorldCenter().y) {
-                JBBrush *brush = (JBBrush*)contact->GetFixtureA()->GetUserData();
-                if ([brush.ID isEqualToString:jbBRUSH_PLATFORM]) {
-                    //if (worldManifold.normal.y < -0.5f) {
-                    if (contact->GetFixtureB()->GetBody()->GetLinearVelocity().y>0.0f) {
-                        contact->SetEnabled(false);
-                        player.desiredRotation = 0;
-                    }
-                }
-            }
+            
         }
         if ([(NSObject*)contact->GetFixtureA()->GetBody()->GetUserData() isKindOfClass:[CCSprite class]]) {
+            if ([(NSObject*)contact->GetFixtureB()->GetBody()->GetUserData() isKindOfClass:[CCSprite class]]) {
+                if (contact->GetFixtureA()->GetBody()->GetWorldCenter().y>(contact->GetFixtureB()->GetBody()->GetWorldCenter().y+5.0f/PTM_RATIO)) {
+                    if (((CCSprite*)contact->GetFixtureB()->GetBody()->GetUserData()).userData) {
+                        NSLog(@"Player: %@ has lost a life.", ((CCSprite*)contact->GetFixtureB()->GetBody()->GetUserData()).userData);
+                    }
+                } else if (contact->GetFixtureB()->GetBody()->GetWorldCenter().y>(contact->GetFixtureA()->GetBody()->GetWorldCenter().y+5.0f/PTM_RATIO)){
+                    if (((CCSprite*)contact->GetFixtureA()->GetBody()->GetUserData()).userData) {
+                        NSLog(@"Player: %@ has lost a life.", ((CCSprite*)contact->GetFixtureA()->GetBody()->GetUserData()).userData);
+                    }
+                }
+            }
             
-        } else if ([(NSObject*)contact->GetFixtureB()->GetBody()->GetUserData() isKindOfClass:[CCSprite class]]) {
+        } /*else if ([(NSObject*)contact->GetFixtureB()->GetBody()->GetUserData() isKindOfClass:[CCSprite class]]) {
             
-        } {
-            
-        }
+        } */
     }
     void PostSolve(b2Contact* contact, const b2ContactImpulse* impulse)
     { /* handle post-solve event */ 
@@ -369,6 +378,8 @@ public:
     fixtureDef.restitution = 0.050f;
 	body->CreateFixture(&fixtureDef);
     
+    player.sprite.userData = player.name;
+    
     player.body=body;
 }
 
@@ -406,6 +417,7 @@ public:
         }
         aHero.sprite = [CCSprite spriteWithFile:aHero.skinLocation];
         aHero.sprite.scale=(30.0/player.sprite.textureRect.size.height);
+        aHero.sprite.userData = aHero.name;
         [self addChild:aHero.sprite z:0 tag:[aHero.name hash]];
 
     }
