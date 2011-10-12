@@ -17,6 +17,8 @@
 #import "JBBluetoothAdapter.h"
 #import "JBMap.h"
 
+#import "JBProgressView.h"
+
 @interface JBPreGameViewController()
 
 @property (nonatomic, retain) NSArray* maptypes;
@@ -350,9 +352,10 @@
     }
 }
 
-- (void)newMapReceiving
+- (id<JBProgressDelegate>)newMapReceiving
 {
     self.requestMessageLabel.text = @"receiving map data";
+    return self.requestProgressBar;
 }
 
 - (void)mapRequestReceivedForID:(NSString *)mapID

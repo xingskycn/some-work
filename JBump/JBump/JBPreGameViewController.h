@@ -10,6 +10,7 @@
 #import "JBMultiplayerAdapter.h"
 
 @class JBMap;
+@class JBProgressView;
 
 @interface JBPreGameViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, JBMultiplayerAdapterPregameDelegate> {
     
@@ -42,7 +43,7 @@
 // Contents of request popout
 @property (retain, nonatomic) IBOutlet UILabel *requestTitelLabel;
 @property (retain, nonatomic) IBOutlet UILabel *requestMessageLabel;
-@property (retain, nonatomic) IBOutlet UIProgressView *requestProgressBar;
+@property (retain, nonatomic) IBOutlet JBProgressView *requestProgressBar;
 @property (retain, nonatomic) IBOutlet UIButton *closeRequestButton;
 @property (retain, nonatomic) IBOutlet UIView *requestPopout;
 @property (retain, nonatomic) JBMap *selectedMap;

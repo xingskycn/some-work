@@ -393,20 +393,21 @@ progressDelegate:(id<JBProgressDelegate>)pDelegate
     [info setObject:jbBT_TRANSFERTYPE_MAP forKey:jbBT_TRANSFERTYPE];
     [info setObject:mapID forKey:jbID];
     
-    NSData* infoData = [NSData dataWithContentsOfFile:map.infoLocal];
+    
+    NSDictionary* dict = [NSDictionary dictionaryWithContentsOfFile:map.infoLocal];
+    NSData* infoData = [jsonWriter dataWithObject:dict];
     NSData* arenaImageData = [NSData dataWithContentsOfFile:map.arenaImageLocal];
     NSData* thumbnailData = [NSData dataWithContentsOfFile:map.thumbnailLocal];
     
     [info setObject:[NSNumber numberWithInt:infoData.length] forKey:@"infoLength"];
     [info setObject:[NSNumber numberWithInt:arenaImageData.length] forKey:@"arenaImageLength"];
     [info setObject:[NSNumber numberWithInt:thumbnailData.length] forKey:@"thumbnailLength"];
-    [info setObject:delegate forKey:jbDELEGATE];
     
     NSMutableData* sendData = [NSMutableData dataWithData:infoData];
     [sendData appendData:arenaImageData];
     [sendData appendData:thumbnailData];
     
-    [self sendData:sendData info:info selector:@selector(mapTransferCompleted) delegate:preGameDelegate];
+    [self sendData:sendData info:info selector:@selector(mapTransferCompleted) finishDelegate:preGameDelegate progressDelegate:delegate];
 }
 
 #pragma mark --- INCOMMING MESSSAGES ---
@@ -581,14 +582,14 @@ progressDelegate:(id<JBProgressDelegate>)pDelegate
             [inputString release];
             NSString* transferID = [[[NSString alloc] initWithData:[data subdataWithRange:NSMakeRange(5, 5)] encoding:NSUTF8StringEncoding] autorelease];
             
-            [preGameDelegate newMapReceiving];
-            
             NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
             NSString* path = [[paths objectAtIndex:0] stringByAppendingPathComponent:transferID];
             NSFileHandle* file = [NSFileHandle fileHandleForWritingAtPath:path];
             [file seekToEndOfFile];
             [file writeData:[data subdataWithRange:NSMakeRange(10, data.length-10)]];
             [file offsetInFile];
+            id<JBProgressDelegate> delegate = [preGameDelegate newMapReceiving];
+            [delegate transferWithID:transferID updatedProgress:((float)[file offsetInFile])/[[self.activeDataTransfers objectForKey:transferID] intValue]];
             
             NSLog(@"imageDataLength:%d",(int)[file offsetInFile]);
             if ([file offsetInFile] == [[self.activeDataTransfers objectForKey:transferID] intValue]) {
