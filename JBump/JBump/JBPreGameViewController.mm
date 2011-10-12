@@ -161,7 +161,9 @@
 }
 
 - (IBAction)sendImgTest:(id)sender {
-    [self.multiplayerAdapter sendImage:nil info:nil];
+    UIImage* img = [UIImage imageNamed:@"default.png"];
+    
+    [self.multiplayerAdapter sendData:UIImagePNGRepresentation(img) info:nil];
 }
 
 #pragma mark tableViewStuff

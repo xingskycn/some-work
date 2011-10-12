@@ -20,6 +20,7 @@
 @synthesize preGameDelegate;
 @synthesize jsonWriter;
 @synthesize jsonParser;
+@synthesize activeDataTransfers;
 
 
 - (id)init
@@ -28,6 +29,7 @@
     if (self) {
         self.jsonParser = [[SBJsonParser new] autorelease];
         self.jsonWriter = [[SBJsonWriter new] autorelease];
+        self.activeDataTransfers = [NSMutableDictionary dictionary];
     }
     return self;
 }
@@ -272,10 +274,10 @@
 							 error:nil];
 	}
 }
-
-- (void)sendImage:(UIImage *)image info:(NSDictionary *)info
+/*
+- (void)sendData:(UIData *)Data info:(NSDictionary *)info
 {
-    image = [UIImage imageNamed:@"brush_1.png"];
+    Data = [UIData DataNamed:@"brush_1.png"];
     info  = [NSMutableDictionary dictionary];
     [info setValue:@"ASDDDSA" forKey:@"ASA"];
     
@@ -283,10 +285,12 @@
     NSString* sendString = [NSString stringWithFormat:@"|IMG:%08d",infoData.length];
     NSMutableData* sendData = [[sendString dataUsingEncoding:NSUTF8StringEncoding] mutableCopy];
     [sendData appendData:infoData];
-    [sendData appendData:UIImagePNGRepresentation(image)];
+    [sendData appendData:UIDataPNGRepresentation(Data)];
+    
+    NSLog(@"senddata length:%d",sendData.length);
     
     if (self.activePeer) {
-        NSError* error;
+        NSError* error = nil;
 		[self.gameSession sendData:sendData
 						   toPeers:[NSArray arrayWithObject:self.activePeer] 
 					  withDataMode:GKSendDataReliable 
@@ -294,6 +298,82 @@
         NSLog(@"NSERROR IN SEND: %@",error);
 	}
     
+}
+ */
+
+- (void)sendData:(NSData *)data info:(NSDictionary *)info
+{
+    info  = [NSMutableDictionary dictionary];
+    [info setValue:@"ASDDDSA" forKey:@"ASA"];
+    
+    NSString* transferID = [NSString stringWithFormat:@"%05d",1];
+    NSString* transferSize = [NSString stringWithFormat:@"%08d",data.length];
+    
+    
+    NSData* infoData = [jsonWriter dataWithObject:info];
+    NSString* sendString = [NSString stringWithFormat:@"|ISR:%@%@",transferID,transferSize];
+    NSMutableData* sendData = [[sendString dataUsingEncoding:NSUTF8StringEncoding] mutableCopy];
+    [sendData appendData:infoData];
+    
+    if (self.activePeer) {
+        NSError* error = nil;
+		[self.gameSession sendData:sendData
+						   toPeers:[NSArray arrayWithObject:self.activePeer] 
+					  withDataMode:GKSendDataUnreliable 
+							 error:&error];
+    }
+    
+    [self.activeDataTransfers setObject:data forKey:transferID];
+    [self.activeDataTransfers setObject:@"0" forKey:[NSString stringWithFormat:@"%@pos",transferID]];
+}
+
+- (void)continueDataTransfer:(NSString *)transferID
+{
+    NSData* data = [self.activeDataTransfers objectForKey:transferID];
+    int pos = [[self.activeDataTransfers objectForKey:[NSString stringWithFormat:@"%@pos",transferID]] intValue];
+    int length = data.length -pos<2000?data.length -pos:2000;
+    NSString* sendString = [NSString stringWithFormat:@"|IDS:%@",transferID];
+    NSMutableData* sendData = [[sendString dataUsingEncoding:NSUTF8StringEncoding] mutableCopy];
+    [sendData appendData:[data subdataWithRange:NSMakeRange(pos, length)]];
+    
+    if (self.activePeer) {
+        NSError* error = nil;
+		[self.gameSession sendData:sendData
+						   toPeers:[NSArray arrayWithObject:self.activePeer] 
+					  withDataMode:GKSendDataUnreliable 
+							 error:&error];
+    }
+    [self.activeDataTransfers setObject:data forKey:transferID];
+    [self.activeDataTransfers setObject:[NSString stringWithFormat:@"%d",pos+length]
+                                  forKey:[NSString stringWithFormat:@"%@pos",transferID]];
+}
+
+- (void)aboardDataTransferWithID:(NSString *)transferID
+{
+    NSString* sendString = 
+	[NSString stringWithFormat:	@"|IAT:%@",transferID];
+	
+	NSData* sendData = [sendString dataUsingEncoding:NSUTF8StringEncoding];
+	if (self.activePeer) {
+		[self.gameSession sendData:sendData
+						   toPeers:[NSArray arrayWithObject:self.activePeer] 
+					  withDataMode:GKSendDataUnreliable
+							 error:nil];
+	}
+}
+
+- (void)askForNextDataTransferWithID:(NSString *)transferID
+{
+    NSString* sendString = 
+	[NSString stringWithFormat:	@"|IND:%@",transferID];
+	
+	NSData* sendData = [sendString dataUsingEncoding:NSUTF8StringEncoding];
+	if (self.activePeer) {
+		[self.gameSession sendData:sendData
+						   toPeers:[NSArray arrayWithObject:self.activePeer] 
+					  withDataMode:GKSendDataUnreliable
+							 error:nil];
+	}
 }
 
 #pragma mark --- INCOMMING MESSSAGES ---
@@ -395,28 +475,78 @@
     [self.tavern player:playerID changedPosition:position velocityX:velocityX velocityY:velocityY withPackageNR:packageNr];
 }
 
-- (BOOL)handleImgDataIncomming:(NSData *)data
+- (BOOL)handleDataSendRequestIncomming:(NSString*)inputString
+{
+    if ([inputString hasPrefix:@"|ISR:"]) {
+        NSString* transferID = [inputString substringWithRange:NSMakeRange(5, 5)];
+        NSString* transferSize = [inputString substringWithRange:NSMakeRange(10, 8)];
+        if ([self.activeDataTransfers objectForKey:transferID]) {
+            [self aboardDataTransferWithID:(NSString *)transferID];
+        }
+        else{
+            [self.activeDataTransfers setObject:transferSize forKey:transferID];
+            [self askForNextDataTransferWithID:transferID];
+            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+            NSString* path = [[paths objectAtIndex:0] stringByAppendingPathComponent:transferID];
+            
+            [[NSFileManager defaultManager] createFileAtPath:path contents:nil attributes:nil];
+        }
+        return TRUE;
+    }
+    return FALSE;
+}
+
+- (BOOL)handleNextDataRequestIncomming:(NSString *)inputString
+{
+    if ([inputString hasPrefix:@"|IND:"]) {
+        NSString* transerID = [inputString substringWithRange:NSMakeRange(5, 5)];
+        [self continueDataTransfer:transerID];
+        return TRUE;
+    }
+    return FALSE;
+}
+
+- (BOOL)handleImgAboardTransferRequest:(NSString *)inputString
+{
+    if ([inputString hasPrefix:@"|IAT:"]) {
+        NSString* transerID = [inputString substringWithRange:NSMakeRange(5, 5)];
+        [self.activeDataTransfers removeObjectForKey:transerID];
+        [self.activeDataTransfers removeObjectForKey:[NSString stringWithFormat:@"%@pos",transerID]];
+        return TRUE;
+    }
+    return FALSE;
+}
+
+- (BOOL)handleTransferDataIncomming:(NSData *)data
 {
     NSString* inputString = [[NSString alloc] initWithData:[data subdataWithRange:NSMakeRange(0, 5)] encoding:NSUTF8StringEncoding];
-    if ([inputString isEqualToString:@"|IMG:"]) {
-        [data retain];
-        [inputString release];
-        inputString = [[NSString alloc] initWithData:[data subdataWithRange:NSMakeRange(5, 8)] encoding:NSUTF8StringEncoding];
-        int infoLength = [inputString intValue];
-        [inputString release];
-        inputString = [[NSString alloc] initWithData:[data subdataWithRange:NSMakeRange(13, infoLength)] encoding:NSUTF8StringEncoding];
-        NSDictionary* info = [jsonParser objectWithString:inputString];
-        [inputString release];
-        UIImage* image = [UIImage imageWithData:[data subdataWithRange:NSMakeRange(13+infoLength, data.length-13-infoLength)]];
-        
-        NSLog(@"info:%@",info);
-        NSLog(@"imagesize:%@",NSStringFromCGSize(image.size));
-        
-        
-        [inputString release];
-        return TRUE;
+    if (inputString) {
+        if ([inputString isEqualToString:@"|IDS:"]) {
+            [data retain];
+            [inputString release];
+            NSString* transferID = [[[NSString alloc] initWithData:[data subdataWithRange:NSMakeRange(5, 5)] encoding:NSUTF8StringEncoding] autorelease];
+            
+            
+            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+            NSString* path = [[paths objectAtIndex:0] stringByAppendingPathComponent:transferID];
+            NSFileHandle* file = [NSFileHandle fileHandleForWritingAtPath:path];
+            [file seekToEndOfFile];
+            [file writeData:[data subdataWithRange:NSMakeRange(10, data.length-10)]];
+            [file offsetInFile];
+            
+            NSLog(@"imageDataLength:%d",(int)[file offsetInFile]);
+            if ([file offsetInFile] == [[self.activeDataTransfers objectForKey:transferID] intValue]) {
+                NSLog(@"finished img!");
+                
+            }else{
+                [self askForNextDataTransferWithID:transferID];
+            }
+            return TRUE;
+        }else{
+            [inputString release];
+            return FALSE;
+        }
     }else{
-        [inputString release];
         return FALSE;
     }
     
@@ -432,8 +562,14 @@
                     if (![self handleRequestForPlayerAnnouncement:inputString]) {
                         if (![self handlePlayerGameContextChange:inputString]) {
                             if (![self handlePlayerKilledByPlayer:inputString]) {
-                                if (![self handleImgDataIncomming:data]) {
-                                    [self handlePlayerPositionUpdates:data];
+                                if (![self handleDataSendRequestIncomming:inputString]) {
+                                    if (![self handleNextDataRequestIncomming:inputString]) {
+                                        if (![self handleImgAboardTransferRequest:inputString]) {
+                                            if (![self handleTransferDataIncomming:data]) {
+                                                [self handlePlayerPositionUpdates:data];
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -443,7 +579,7 @@
         }
     }else
     {
-        if (![self handleImgDataIncomming:data]) {
+        if (![self handleTransferDataIncomming:data]) {
             [self handlePlayerPositionUpdates:data];
         }
     }
