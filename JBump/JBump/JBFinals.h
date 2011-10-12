@@ -27,6 +27,7 @@
 #define jbINFO @"info"
 #define jbDELETEBUTTON_TITLE @"Delete"
 #define jbINFOLOCATION @"infoLocation"
+#define jbDELEGATE @"delegate"
 
 #pragma mark Entities
 #define jbBODYTYPE @"bodyType"

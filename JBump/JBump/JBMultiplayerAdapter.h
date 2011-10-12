@@ -9,14 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
+#import "JBProgressView.h"
+
 @class JBTavern;
 @class JBHero;
-
-@protocol JBProgressDelegate
-
-- (void)transferWithID:(NSString*)transferID updatedProgress:(float)progress;
-
-@end
 
 @protocol JBMultiplayerAdapterPregameDelegate <NSObject>
 
@@ -59,6 +55,10 @@
 - (void)aboardDataTransferWithID:(NSString *)transferID;
 - (void)askForNextDataTransferWithID:(NSString *)transferID;
 - (void)askForMapWithID:(NSString *)mapID;
-- (void)sendMapForID:(NSString *)mapID;
+- (void)sendData:(NSData *)data 
+            info:(NSDictionary *)info 
+        selector:(SEL)sel 
+  finishDelegate:(id)fDelegate
+progressDelegate:(id<JBProgressDelegate>)pDelegate;
 
 @end

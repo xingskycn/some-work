@@ -278,7 +278,11 @@
 	}
 }
 
-- (void)sendData:(NSData *)data info:(NSDictionary *)info selector:(SEL)sel delegate:(id)delegate
+- (void)sendData:(NSData *)data 
+            info:(NSDictionary *)info 
+        selector:(SEL)sel 
+  finishDelegate:(id)fDelegate
+progressDelegate:(id<JBProgressDelegate>)pDelegate
 {    
     NSString* transferID = [NSString stringWithFormat:@"%05d",1];
     NSString* transferSize = [NSString stringWithFormat:@"%08d",data.length];
@@ -302,13 +306,18 @@
     [self.activeDataTransfers setObject:data forKey:transferID];
     [self.activeDataTransfers setObject:@"0" forKey:[NSString stringWithFormat:@"%@pos",transferID]];
     [self.activeDataTransfers setObject:NSStringFromSelector(sel) forKey:[NSString stringWithFormat:@"%@sel",transferID]];
-    [self.activeDataTransfers setObject:delegate forKey:[NSString stringWithFormat:@"%@del",transferID]];
+    [self.activeDataTransfers setObject:fDelegate forKey:[NSString stringWithFormat:@"%@fdel",transferID]];
+    [self.activeDataTransfers setObject:pDelegate forKey:[NSString stringWithFormat:@"%@pdel",transferID]];
 }
 
 - (void)continueDataTransfer:(NSString *)transferID
 {
     NSData* data = [self.activeDataTransfers objectForKey:transferID];
     int pos = [[self.activeDataTransfers objectForKey:[NSString stringWithFormat:@"%@pos",transferID]] intValue];
+    id<JBProgressDelegate> pDelegate = [self.activeDataTransfers objectForKey:
+                                        [NSString stringWithFormat:@"%@pdel",transferID]];
+    [pDelegate transferWithID:transferID updatedProgress:((float)pos)/data.length];
+    
     int length = data.length -pos<2000?data.length -pos:2000;
     NSString* sendString = [NSString stringWithFormat:@"|IDS:%@",transferID];
     NSMutableData* sendData = [[sendString dataUsingEncoding:NSUTF8StringEncoding] mutableCopy];
@@ -317,7 +326,8 @@
     if (data.length == length+pos) {
         NSLog(@"transfer finished");
         SEL sel = NSSelectorFromString([self.activeDataTransfers objectForKey:[NSString stringWithFormat:@"%@sel",transferID]]);
-        id delegate = [self.activeDataTransfers objectForKey:[NSString stringWithFormat:@"%@del",transferID]];
+        id delegate = [self.activeDataTransfers objectForKey:[NSString stringWithFormat:@"%@fdel",transferID]];
+        
         [delegate performSelector:sel];
     }
     
@@ -375,7 +385,7 @@
 	}
 }
 
-- (void)sendMapForID:(NSString *)mapID
+- (void)sendMapForID:(NSString *)mapID progrossDelegate:(id<JBProgressDelegate>)delegate
 {
     
     JBMap* map = [JBMapManager getMapWithID:mapID];
@@ -390,6 +400,7 @@
     [info setObject:[NSNumber numberWithInt:infoData.length] forKey:@"infoLength"];
     [info setObject:[NSNumber numberWithInt:arenaImageData.length] forKey:@"arenaImageLength"];
     [info setObject:[NSNumber numberWithInt:thumbnailData.length] forKey:@"thumbnailLength"];
+    [info setObject:delegate forKey:jbDELEGATE];
     
     NSMutableData* sendData = [NSMutableData dataWithData:infoData];
     [sendData appendData:arenaImageData];
@@ -589,7 +600,7 @@
                                                     [[info objectForKey:@"arenaImageLength"] intValue]);
                     NSRange thumbnailRange = NSMakeRange(arenaRange.length+arenaRange.location,
                                                     [[info objectForKey:@"thumbnailLength"] intValue]);
-                    NSData* mapInfo = [mapData subdataWithRange:infoRange];
+                    NSDictionary* mapInfo = [jsonParser objectWithData:[mapData subdataWithRange:infoRange]];
                     NSData* mapArena = [mapData subdataWithRange:arenaRange];
                     NSData* mapThumbnail = [mapData subdataWithRange:thumbnailRange];
                     NSString* mapID = [info objectForKey:jbID];
