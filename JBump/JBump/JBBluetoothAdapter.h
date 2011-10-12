@@ -25,9 +25,10 @@
 @property (nonatomic, retain) JBPreGameViewController *preGameDelegate;
 @property (nonatomic, retain) SBJsonWriter* jsonWriter;
 @property (nonatomic, retain) SBJsonParser* jsonParser;
+@property (nonatomic, retain) NSMutableDictionary* activeDataTransfers;
 
 - (void)setupConnectionForPreGameViewController:(JBPreGameViewController*)aPreGameDelegate;
 - (void)receiveData:(NSData *)data fromPeer:(NSString *)peer inSession: (GKSession *)session context:(void *)context;
 
-- (void)sendImage:(UIImage *)image info:(NSDictionary *)info;
+- (void)sendData:(NSData *)data info:(NSDictionary *)info;
 @end
