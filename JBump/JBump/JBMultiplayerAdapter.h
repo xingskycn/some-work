@@ -38,36 +38,18 @@
 @interface JBMultiplayerAdapter : NSObject
 @property (nonatomic, retain)JBTavern* tavern;
 
-//		Method to send the player position to others
 - (void)sendPlayer:(JBHero *)player;
-
-//		Tells the network about the new player
-//		If newIDRequest ist TRUE, a new chrID will be generated
 - (void)announcePlayerWithNewID:(BOOL)newIDRequest;
-
-//		Tells the network that the player will disconnect
-- (void)disconnectPlayer;
-
-//		Asks the network for player information
-- (void)requestForPlayerAnnouncement:(NSString *)playerID;
-
-//		Tells the network that the player died, killed by player
-- (void)playerKilledByChar:(JBHero *)player;
-
-//		Tells the network that the player context did change
-- (void)shoutPlayer:(JBHero*)player GameContextChange:(NSDictionary *)context;
-
-//		User selected a new map to play
-- (void)sendNewMapID:(NSString *)mapID;
-
-//		User changed his ready state in pregameview
-- (void)sendPlayer:(NSString *)playerID readyChange:(NSString *)ready;
-
-//		User started the game
-- (void)sendGameStartedByPlayer:(NSString *)playerID;
-
 - (void)sendPlayerReadyChange:(BOOL)ready;
-
-- (void)sendImage:(UIImage *)image info:(NSDictionary *)info;
+- (void)disconnectPlayer;
+- (void)requestForPlayerAnnouncement:(NSString *)playerID;
+- (void)playerKilledByChar:(JBHero *)player;
+- (void)shoutPlayerGameContextChange;
+- (void)shoutPlayerWantsMapChange;
+- (void)playerKilledByChar:(JBHero *)player;
+- (void)sendData:(NSData *)data info:(NSDictionary *)info;
+- (void)continueDataTransfer:(NSString *)transferID;
+- (void)aboardDataTransferWithID:(NSString *)transferID;
+- (void)askForNextDataTransferWithID:(NSString *)transferID;
 
 @end

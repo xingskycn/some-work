@@ -115,9 +115,6 @@
     picker.delegate = nil;
     [picker dismiss];
     [picker autorelease];
-
-	
-	
 }
 
 - (void)peerPickerControllerDidCancel:(GKPeerPickerController *)picker
@@ -128,7 +125,7 @@
     [picker autorelease];
 }
 
-#pragma GAME SETUP --- INCOMMING
+#pragma OUTGOING
 
 - (void)sendPlayerReadyChange:(BOOL)ready
 {
@@ -155,12 +152,7 @@
         }
 		super.tavern.localPlayer.playerID = randomID;
 	}
-	
-	// New Player Announcement
-	// 1st Position for chrID
-	// 2nd Position to provide GameContext
-	// 3rd Position to send playername
-	NSString* sendString = 
+    NSString* sendString = 
 	[NSString stringWithFormat:	@"|NPA:%d|%@|%@",
      super.tavern.localPlayer.playerID,
      super.tavern.localPlayer.name,
@@ -210,11 +202,7 @@
 }
 
 - (void)shoutPlayerGameContextChange
-{
-	// Player Gamecontext Change
-	// 1st chrID
-	// 2nd new gamecontext
-	
+{	
 	NSString* sendString = 
 	[NSString stringWithFormat:	@"|PGC:%d|%@",
      super.tavern.localPlayer.playerID,
@@ -229,6 +217,21 @@
 	}
 }
 
+- (void)shoutPlayerWantsMapChange
+{	
+	NSString* sendString = 
+	[NSString stringWithFormat:	@"|PGC:%d|%@",
+     super.tavern.localPlayer.playerID,
+     super.tavern.localPlayer.gameContext];
+	
+	NSData* sendData = [sendString dataUsingEncoding:NSUTF8StringEncoding];
+	if (self.activePeer) {
+		[self.gameSession sendData:sendData
+						   toPeers:[NSArray arrayWithObject:self.activePeer] 
+					  withDataMode:GKSendDataUnreliable 
+							 error:nil];
+	}
+}
 
 - (void)playerKilledByChar:(JBHero *)player
 {
@@ -271,32 +274,6 @@
 							 error:nil];
 	}
 }
-/*
-- (void)sendData:(UIData *)Data info:(NSDictionary *)info
-{
-    Data = [UIData DataNamed:@"brush_1.png"];
-    info  = [NSMutableDictionary dictionary];
-    [info setValue:@"ASDDDSA" forKey:@"ASA"];
-    
-    NSData* infoData = [jsonWriter dataWithObject:info];
-    NSString* sendString = [NSString stringWithFormat:@"|IMG:%08d",infoData.length];
-    NSMutableData* sendData = [[sendString dataUsingEncoding:NSUTF8StringEncoding] mutableCopy];
-    [sendData appendData:infoData];
-    [sendData appendData:UIDataPNGRepresentation(Data)];
-    
-    NSLog(@"senddata length:%d",sendData.length);
-    
-    if (self.activePeer) {
-        NSError* error = nil;
-		[self.gameSession sendData:sendData
-						   toPeers:[NSArray arrayWithObject:self.activePeer] 
-					  withDataMode:GKSendDataReliable 
-							 error:&error];
-        NSLog(@"NSERROR IN SEND: %@",error);
-	}
-    
-}
- */
 
 - (void)sendData:(NSData *)data info:(NSDictionary *)info
 {

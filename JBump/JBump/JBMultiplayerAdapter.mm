@@ -69,6 +69,15 @@
     NSLog(@"%@ Not Yet Implemented?",_cmd);
 }
 
+- (void)shoutPlayerWantsMapChange:(NSString *)mapID
+{
+    NSLog(@"%@ Not Yet Implemented?",_cmd);
+}
+
+- (void)sendData:(NSData *)data info:(NSDictionary *)info{
+    NSLog(@"%@ Not Yet Implemented?",_cmd);
+}
+
 - (void)dealloc {
     self.tavern = nil;
     [super dealloc];

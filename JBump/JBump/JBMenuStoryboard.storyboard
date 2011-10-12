@@ -433,31 +433,77 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Rah-Io-2t3">
-                                <rect key="frame" x="268" y="268" width="90" height="37"/>
+                            <view contentMode="scaleToFill" id="P9J-zh-Zhv">
+                                <rect key="frame" x="120" y="0.0" width="240" height="120"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="send img">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="sendImgTest:" destination="cPF-01-Aut" eventType="touchUpInside" id="0ou-Uw-lsh"/>
-                                </connections>
-                            </button>
+                                <subviews>
+                                    <view contentMode="scaleToFill" id="Gwh-F6-gqu">
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="100"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <progressView opaque="NO" contentMode="scaleToFill" progress="0.5" id="T87-3z-SSP">
+                                                <rect key="frame" x="45" y="38" width="150" height="9"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </progressView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="PLX-wm-yb6">
+                                                <rect key="frame" x="90" y="55" width="60" height="37"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                <state key="normal" title="OK">
+                                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <state key="highlighted">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="confirmRequest:" destination="cPF-01-Aut" eventType="touchUpInside" id="dS3-gZ-0j5"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="SEND MAP REQUEST" lineBreakMode="tailTruncation" minimumFontSize="10" id="cdG-ir-xjc">
+                                                <rect key="frame" x="32" y="9" width="176" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="eqw-c6-Wko">
+                                        <rect key="frame" x="0.0" y="100" width="40" height="20"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="^">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="closeRequestPopout:" destination="cPF-01-Aut" eventType="touchUpInside" id="IOt-Kg-Xh9"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <connections>
                         <outlet property="aNewConnectionbutton" destination="tR1-ri-fe3" id="QXl-0x-SS0"/>
+                        <outlet property="closeMapRequestPopout" destination="eqw-c6-Wko" id="ExZ-od-lor"/>
+                        <outlet property="closeRequestButton" destination="eqw-c6-Wko" id="D89-rD-WMk"/>
+                        <outlet property="confirmRequest" destination="PLX-wm-yb6" id="5jr-7r-wnS"/>
                         <outlet property="gameTypeButton" destination="drq-aE-L1A" id="Aak-0X-tG7"/>
                         <outlet property="mapsTablleView" destination="eze-DP-gz1" id="GMB-4u-WTn"/>
                         <outlet property="playersTableView" destination="Nj1-Om-aHt" id="TWW-KK-6ir"/>
                         <outlet property="readyButton" destination="zPd-I1-7C2" id="QM0-ws-Jia"/>
+                        <outlet property="requestPopout" destination="P9J-zh-Zhv" id="fYJ-y9-6ck"/>
+                        <outlet property="requestProgressBar" destination="T87-3z-SSP" id="isK-aO-WFB"/>
+                        <outlet property="requestTitelLabel" destination="cdG-ir-xjc" id="Clx-ki-KJr"/>
                         <outlet property="startButton" destination="5fB-Og-Acg" id="rxH-FQ-0dL"/>
                     </connections>
                 </viewController>
@@ -975,8 +1021,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="yWk-7X-N6K"/>
-        <segue reference="Lcf-yq-bHb"/>
+        <segue reference="cqk-6h-sdo"/>
         <segue reference="1RV-xt-lrX"/>
     </inferredMetricsTieBreakers>
 </document>

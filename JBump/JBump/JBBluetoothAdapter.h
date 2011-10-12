@@ -29,6 +29,4 @@
 
 - (void)setupConnectionForPreGameViewController:(JBPreGameViewController*)aPreGameDelegate;
 - (void)receiveData:(NSData *)data fromPeer:(NSString *)peer inSession: (GKSession *)session context:(void *)context;
-
-- (void)sendData:(NSData *)data info:(NSDictionary *)info;
 @end
