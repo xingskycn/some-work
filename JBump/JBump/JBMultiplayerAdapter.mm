@@ -18,12 +18,13 @@
     
     if (self) {
         self.tavern = [[[JBTavern alloc] init] autorelease];
+        tavern.multiplayerAdapter = self;
     }
     
     return self;
 }
 
-- (void)sendPlayer:(JBHero *)player{
+- (void)sendPlayer{
     NSLog(@"%@ Not Yet Implemented?",_cmd);
 }
 
@@ -56,7 +57,7 @@
 }
 
 - (void)sendGameStartedByPlayer:(NSString *)playerName{
-    NSLog(@"%@ Not Yet Implemented?",_cmd);
+    //NSLog(@"%@ Not Yet Implemented?",_cmd);
 }
 
 - (void)sendPlayerReadyChange:(BOOL)ready

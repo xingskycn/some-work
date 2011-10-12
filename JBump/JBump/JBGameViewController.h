@@ -9,12 +9,15 @@
 #import <UIKit/UIKit.h>
 
 @class JBGameLayer;
+@class JBMultiplayerAdapter;
 
 @interface JBGameViewController : UIViewController{
     int sideViewState;
 }
 
 @property (nonatomic, retain)JBGameLayer *gameLayer;
+
+@property (nonatomic, assign)JBMultiplayerAdapter *multiplayerAdapter;
 
 @property (retain, nonatomic) IBOutlet UIView *sideView;
 @property (retain, nonatomic) IBOutlet UIButton *popout;

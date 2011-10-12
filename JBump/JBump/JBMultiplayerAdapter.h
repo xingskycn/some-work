@@ -7,10 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-
 #import "cocos2d.h"
-#import "JBTavern.h"
 
+@class JBTavern;
 @class JBHero;
 
 
@@ -36,9 +35,9 @@
 
 
 @interface JBMultiplayerAdapter : NSObject
-@property (nonatomic, retain)JBTavern* tavern;
+@property (nonatomic, retain)JBTavern *tavern;
 
-- (void)sendPlayer:(JBHero *)player;
+- (void)sendPlayer;
 - (void)announcePlayerWithNewID:(BOOL)newIDRequest;
 - (void)sendPlayerReadyChange:(BOOL)ready;
 - (void)disconnectPlayer;

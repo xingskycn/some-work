@@ -24,7 +24,7 @@
 #import "JBSkinManager.h"
 #import "JBSkin.h"
 
-#define PTM_RATIO 32
+#import "JBTavern.h"
 
 static JBHero* player;
 
@@ -91,6 +91,7 @@ public:
 @implementation JBGameLayer
 
 @synthesize gameViewController,spawnPoints;
+@synthesize tavern;
 
 +(CCScene *) scene
 {
@@ -128,7 +129,7 @@ public:
         self.isTouchEnabled = YES;
         
         b2Vec2 gravity;
-        gravity.Set(.0f, -10.0f);
+        gravity.Set(.0f, -0.1f);
         world = new b2World(gravity,false);
         
         world->SetContinuousPhysics(true);
@@ -160,7 +161,8 @@ public:
         
         [self insertCurves:map.curves];
         [self insertEntities:map.mapEntities];
-        [self insertHero];
+        multiplayer=NO;
+        sendCounter=1;
     }
     
     return self;
@@ -227,7 +229,16 @@ public:
     if (player.body->GetLinearVelocity().y>6.5f) {
         player.body->SetLinearVelocity(b2Vec2(player.body->GetLinearVelocity().x, 6.5f));
     }
-
+    
+    
+    if (multiplayer){
+        if (sendCounter>=2) {
+            sendCounter=1;
+            [self.tavern sendPlayerUpdate];
+        } else {
+            sendCounter++;
+        }
+    }
 }
 
 - (void)insertCurves:(NSArray *)objects
@@ -320,9 +331,14 @@ public:
 
 - (void)insertHero
 {
-    player = [[JBHero alloc] init];
-    player.name = [[NSUserDefaults standardUserDefaults] objectForKey:jbUSERDEFAULTS_PLAYER_NAME];
-    player.skinID = [[NSUserDefaults standardUserDefaults] objectForKey:jbUSERDEFAULTS_SKIN];
+    if (self.tavern!=nil) {
+        player = self.tavern.localPlayer;
+        multiplayer=YES;
+    } else {
+        player = [[JBHero alloc] init];
+        player.name = [[NSUserDefaults standardUserDefaults] objectForKey:jbUSERDEFAULTS_PLAYER_NAME];
+        player.skinID = [[NSUserDefaults standardUserDefaults] objectForKey:jbUSERDEFAULTS_SKIN];
+    }
     JBSkin *heroSkin = [JBSkinManager getSkinWithID:player.skinID];
     player.sprite = [CCSprite spriteWithFile:heroSkin.imageLocation];
     player.sprite.scale=(30.0/player.sprite.textureRect.size.height);
@@ -347,6 +363,45 @@ public:
 	body->CreateFixture(&fixtureDef);
     
     player.body=body;
+}
+
+- (void)setPositionForPlayer:(JBHero*)aPlayer withPosition:(CGPoint)position velocityX:(float)x andVelocityY:(float)y {
+    
+    b2BodyDef bodyDef;
+	bodyDef.type = b2_dynamicBody;
+    
+	bodyDef.position.Set(position.x, position.y);
+	bodyDef.userData = aPlayer.sprite;
+	b2Body *body = world->CreateBody(&bodyDef);
+	
+    b2CircleShape shape;
+    shape.m_radius = 0.45f;
+    //b2PolygonShape shape;
+    //shape.SetAsBox(30.0f/2/PTM_RATIO, 30.0f/2/PTM_RATIO);
+    b2FixtureDef fixtureDef;
+    fixtureDef.shape = &shape;	
+	fixtureDef.friction = 0.1f;
+    fixtureDef.density = 1.0f;
+    fixtureDef.restitution = 0.050f;
+	body->CreateFixture(&fixtureDef);
+    body->SetLinearVelocity(b2Vec2(y, y));
+    if(aPlayer.body!=nil)
+        world->DestroyBody(aPlayer.body);
+    aPlayer.body=nil;
+    aPlayer.body=body;
+
+}
+
+- (void)setupSprites:(NSArray*)heroes {
+    for (JBHero *aHero in heroes) {
+        if([aHero.name isEqualToString:player.name]){
+            continue;
+        }
+        aHero.sprite = [CCSprite spriteWithFile:aHero.skinLocation];
+        aHero.sprite.scale=(30.0/player.sprite.textureRect.size.height);
+        [self addChild:aHero.sprite z:0 tag:[aHero.name hash]];
+
+    }
 }
 
 @end

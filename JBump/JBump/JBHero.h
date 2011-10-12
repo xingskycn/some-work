@@ -22,7 +22,7 @@
 @property (nonatomic, retain) NSMutableDictionary* gameContext;
 @property (assign) int packageNr;
 @property (assign) char playerID;
-
+@property (nonatomic, retain)NSString *skinLocation;
 
 @property(nonatomic,retain) CCSprite *sprite;
 
