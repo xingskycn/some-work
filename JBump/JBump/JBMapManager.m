@@ -14,13 +14,14 @@ static NSString *filePath = @"maps";
 @implementation JBMapManager
 
 + (void)storeNewMapWithID:(NSString *)mapID
-                 infoData:(NSData *)infoData
+                 infoData:(NSDictionary *)infoData
            arenaImageData:(NSData *)arenaImageData
        thumbnailImageData:(NSData *)thumbnailImageData
 {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString* path = [[paths objectAtIndex:0] stringByAppendingPathComponent:filePath] 
-                      ;
+    NSString* path = [[paths objectAtIndex:0] stringByAppendingPathComponent:filePath];
+    
+    NSMutableDictionary *infoDict = [infoData mutableCopy];
     
     NSError* error;
     if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {
@@ -43,9 +44,12 @@ static NSString *filePath = @"maps";
         }
     }
     
-    [infoData writeToFile:[path stringByAppendingPathComponent:jbINFO] atomically:YES];
+    
     [arenaImageData writeToFile:[path stringByAppendingPathComponent:jbARENAIMAGE] atomically:YES];
     [thumbnailImageData writeToFile:[path stringByAppendingPathComponent:jbTHUMBNAIL] atomically:YES];
+    [infoDict setValue:[path stringByAppendingPathComponent:jbARENAIMAGE] forKey:jbARENAIMAGELOCATION];
+    [infoDict setValue:[path stringByAppendingPathComponent:jbTHUMBNAIL] forKey:jbTHUMBNAILLOCATION];
+    [infoDict writeToFile:[path stringByAppendingPathComponent:jbINFO] atomically:YES];
 }
 
 + (void)storeNewMapWithID:(NSString*)mapID

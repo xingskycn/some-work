@@ -141,6 +141,14 @@
     
     [animationsView release];
     
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if ([defaults objectForKey:jbUSERDEFAULTS_PLAYER_NAME]==nil) {
+        [defaults setObject:@"Player" forKey:jbUSERDEFAULTS_PLAYER_NAME];
+    }
+    if ([defaults objectForKey:jbUSERDEFAULTS_SKIN]==nil) {
+        [defaults setObject:@"scel2" forKey:jbUSERDEFAULTS_SKIN];
+    }
+    
     [JBSkinManager saveRessourceSkins];
     [JBEntityManager saveRessourceEntities];
     [JBBrushManager saveRessourceBrushes];
