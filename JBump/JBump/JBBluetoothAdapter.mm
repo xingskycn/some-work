@@ -431,7 +431,6 @@
         char killedPlayerID = [[parts objectAtIndex:0] charValue];
         char killingPlayerID = [[parts objectAtIndex:1] charValue];
         
-        
         return TRUE;
     }else{
         return FALSE;
@@ -445,7 +444,6 @@
 	CGPoint position = CGPointMake(((short *)[data bytes])[2]/32.0f, ((short *)[data bytes])[3]/32.0f);
     float velocityX = ((char *)[data bytes])[8]*20.f/255.f;
     float velocityY = ((char *)[data bytes])[9]*20.f/255.f;
-    
 }
 
 - (BOOL)handleDataSendRequestIncomming:(NSString*)inputString
@@ -522,8 +520,6 @@
     }else{
         return FALSE;
     }
-    
-    
 }
 
 - (void)receiveData:(NSData *)data fromPeer:(NSString *)peer inSession: (GKSession *)session context:(void *)context {
