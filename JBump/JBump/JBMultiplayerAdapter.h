@@ -27,6 +27,7 @@
 - (void)mapChangeToID:(NSString *)mapID;
 - (void)newMapReceiving;
 - (void)mapRequestReceivedForID:(NSString *)mapID;
+- (void)mapTransferCompleted;
 
 @end
 

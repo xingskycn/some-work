@@ -19,10 +19,20 @@ static NSString *filePath = @"maps";
        thumbnailImageData:(NSData *)thumbnailImageData
 {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString* path = [[[paths objectAtIndex:0] stringByAppendingPathComponent:filePath] 
-                      stringByAppendingPathComponent:mapID];
+    NSString* path = [[paths objectAtIndex:0] stringByAppendingPathComponent:filePath] 
+                      ;
     
     NSError* error;
+    if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {
+        if (![[NSFileManager defaultManager] createDirectoryAtPath:path
+                                       withIntermediateDirectories:NO
+                                                        attributes:nil
+                                                             error:&error])
+        {
+            NSLog(@"Create directory error: %@", error);
+        }
+    }
+    path = [path stringByAppendingPathComponent:mapID];
     if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {
         if (![[NSFileManager defaultManager] createDirectoryAtPath:path
                                        withIntermediateDirectories:NO
