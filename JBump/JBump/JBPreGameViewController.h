@@ -45,7 +45,6 @@
 @property (retain, nonatomic) IBOutlet UIView *requestPopout;
 
 
-- (IBAction)sendImgTest:(id)sender;
 - (IBAction)closeRequestPopout:(id)sender;
 - (IBAction)confirmRequest:(id)sender;
 

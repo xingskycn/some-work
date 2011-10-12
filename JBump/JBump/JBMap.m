@@ -78,6 +78,10 @@
         self.curves = [mapDict objectForKey:jbCURVES]; 
     }
     
+    if (!self.ID) {
+        return nil;
+    }
+    
     return self;
 }
 
