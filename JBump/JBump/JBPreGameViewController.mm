@@ -362,4 +362,16 @@
     [UIView commitAnimations];
 }
 
+- (void)mapTransferCompleted
+{
+    self.requestedMapID = nil;
+    self.missingMapID = nil;
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:0.3];
+    self.requestPopout.frame = self.requestPopout.frame = CGRectMake(120, -120, 240, 120);
+    [UIView commitAnimations];
+    
+}
+
 @end

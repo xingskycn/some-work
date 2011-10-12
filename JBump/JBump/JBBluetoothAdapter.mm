@@ -395,7 +395,7 @@
     [sendData appendData:arenaImageData];
     [sendData appendData:thumbnailData];
     
-    [self sendData:sendData info:info selector:@selector(mapChangeToID:) delegate:preGameDelegate];
+    [self sendData:sendData info:info selector:@selector(mapTransferCompleted) delegate:preGameDelegate];
 }
 
 #pragma mark --- INCOMMING MESSSAGES ---
