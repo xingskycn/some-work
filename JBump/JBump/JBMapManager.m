@@ -298,17 +298,48 @@ static NSString *filePath = @"maps";
     [mapDict writeToFile:[[path stringByAppendingPathComponent:mapID] stringByAppendingPathComponent:jbINFO] atomically:YES];
 }
 
-+ (NSMutableArray*)getAllStandardMaps {
++ (NSMutableArray*)getAllMapsWithPrefix:(NSString *)prefix {
     NSMutableArray *allMaps = [self getAllMaps];
-    NSMutableArray *standardMaps = [NSMutableArray array];
+    NSMutableArray *filtered = [NSMutableArray array];
     
     for (JBMap *map in allMaps) {
-        if ([[map.ID substringToIndex:2] isEqualToString:jBSTANDARMAP]) {
-            [standardMaps addObject:map];
+        if ([map.ID hasPrefix:prefix]) {
+            [filtered addObject:map];
         }
     }
     
-    return standardMaps;
+    return filtered;
+}
+
++ (NSMutableArray *)getMapTypes
+{
+    NSMutableArray* maptypes = [NSMutableArray array];
+    NSMutableDictionary* dict = [NSMutableDictionary dictionary];
+    [dict setObject:jbMAPPREFIX_STANDARD forKey:jbID];
+    [dict setObject:@"standard" forKey:jbNAME];
+    [maptypes addObject:dict];
+    
+    dict = [NSMutableDictionary dictionary];
+    [dict setObject:jbMAPPREFIX_TDM forKey:jbID];
+    [dict setObject:@"team death match" forKey:jbNAME];
+    [maptypes addObject:dict];
+    
+    dict = [NSMutableDictionary dictionary];
+    [dict setObject:jbMAPPREFIX_CTF forKey:jbID];
+    [dict setObject:@"capture the flag" forKey:jbNAME];
+    [maptypes addObject:dict];
+    
+    dict = [NSMutableDictionary dictionary];
+    [dict setObject:jbMAPPREFIX_SOCCER forKey:jbID];
+    [dict setObject:@"soccer" forKey:jbNAME];
+    [maptypes addObject:dict];
+    
+    dict = [NSMutableDictionary dictionary];
+    [dict setObject:jbMAPPREFIX_CUSTOM forKey:jbID];
+    [dict setObject:@"custom" forKey:jbNAME];
+    [maptypes addObject:dict];
+    
+    return maptypes;
 }
 
 + (NSMutableArray *)getAllPredefinedSettings

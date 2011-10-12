@@ -113,14 +113,14 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"startMapCreatorWithSettings"]) {
-        [JBMapManager storeNewMapWithID:[NSString stringWithFormat:@"%@%@",jbCUSTOMMAP_PREFIX,mapNameField.text]
+        [JBMapManager storeNewMapWithID:[NSString stringWithFormat:@"%@%@",jbMAPPREFIX_CUSTOM,mapNameField.text]
                                 mapName:mapNameField.text
                              arenaImage:imageView.image
                                settings:self.advancedSettings
                            curveHistory:nil 
                           entityHistory:nil];
         JBMapCreatorViewController* destination = (JBMapCreatorViewController *)segue.destinationViewController;
-        destination.mapID = [NSString stringWithFormat:@"%@%@",jbCUSTOMMAP_PREFIX,mapNameField.text];
+        destination.mapID = [NSString stringWithFormat:@"%@%@",jbMAPPREFIX_CUSTOM,mapNameField.text];
     }
 }
 - (IBAction)downloadImageButtonPressed:(id)sender {

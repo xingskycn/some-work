@@ -32,5 +32,6 @@
 - (IBAction)readyButtonPressed:(id)sender;
 - (IBAction)startButtonPressed:(id)sender;
 - (IBAction)newConnectionPressed:(id)sender;
+- (IBAction)changeGameType:(id)sender;
 
 @end

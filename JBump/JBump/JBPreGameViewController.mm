@@ -16,8 +16,19 @@
 #import "JBPreGameMapsTableViewCell.h"
 #import "JBBluetoothAdapter.h"
 
-@implementation JBPreGameViewController
+@interface JBPreGameViewController()
 
+@property (nonatomic, retain) NSArray* maptypes;
+@property (assign) int selectedMapType;
+
+@end
+
+@implementation JBPreGameViewController
+//private
+@synthesize maptypes;
+@synthesize selectedMapType;
+
+//public
 @synthesize multiplayerAdapter;
 @synthesize gameTypeButton;
 @synthesize readyButton;
@@ -34,7 +45,7 @@
     if (self) {
         // Custom initialization
         self.players = [NSMutableArray array];
-        
+        self.maptypes = [JBMapManager getMapTypes];
         playersWaitingForGame = 1;
         playersReady = [NSMutableDictionary dictionary];
     }
@@ -64,13 +75,24 @@
 {
     [super viewDidLoad];
     
+    if (!self.players) {
+        self.players = [NSMutableArray array];
+    }
+    if (!self.maptypes) {
+        self.maptypes = [JBMapManager getMapTypes];
+        playersWaitingForGame = 1;
+    }
+    if (!playersReady) {
+        playersReady = [NSMutableDictionary dictionary];
+    }
     self.multiplayerAdapter = [[JBBluetoothAdapter alloc] init];
     //self.multiplayerAdapter.preGameDelegate = self;
     //[self.bluetoothAdapter setupConnectionForPreGameViewController:self];
     
-    self.maps = [JBMapManager getAllStandardMaps];
+    self.maps = [JBMapManager getAllMapsWithPrefix:
+                 [[self.maptypes objectAtIndex:selectedMapType] objectForKey:jbID]];
+    [self.gameTypeButton setTitle:[[self.maptypes objectAtIndex:selectedMapType] objectForKey:jbNAME] forState:UIControlStateNormal];
     [self.startButton setEnabled:NO];
-    [self.gameTypeButton setEnabled:NO];
 }
 
 
@@ -133,11 +155,15 @@
     [(JBBluetoothAdapter*)self.multiplayerAdapter setupConnectionForPreGameViewController:self];
 }
 
-#pragma mark tableViewStuff
-
-- (int)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+- (IBAction)changeGameType:(id)sender {
+    self.selectedMapType = (self.selectedMapType +1)%maptypes.count;
+    [self.gameTypeButton setTitle:[[self.maptypes objectAtIndex:selectedMapType] objectForKey:jbNAME] forState:UIControlStateNormal];
+    self.maps = [JBMapManager getAllMapsWithPrefix:
+                 [[self.maptypes objectAtIndex:selectedMapType] objectForKey:jbID]];
+    [self.mapsTablleView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
+
+#pragma mark tableViewStuff
 
 - (int)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (tableView==self.playersTableView) {
@@ -176,6 +202,7 @@
         if (cell == nil) {
             cell = [[[JBPreGameMapsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier] autorelease];
         }
+        cell.mainView.image = [[maps objectAtIndex:indexPath.row] thumbnail];
         return cell;
     }
     
@@ -184,7 +211,9 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (tableView==self.mapsTablleView) {
-        return 120.0f;
+        JBMap* map = [maps objectAtIndex:indexPath.row];
+        
+        return map.thumbnail.size.height;
     }
     
     return 80.0f;

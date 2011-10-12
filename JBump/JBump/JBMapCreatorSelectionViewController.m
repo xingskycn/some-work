@@ -82,7 +82,7 @@
         NSMutableDictionary* mapDict = [self.existingMaps objectAtIndex:indexPath.row];
         cell.imageView.image = [mapDict objectForKey:jbTHUMBNAIL];
         cell.textLabel.text = [mapDict objectForKey:jbNAME];
-        if (![[mapDict objectForKey:jbID] hasPrefix:jbCUSTOMMAP_PREFIX]) {
+        if (![[mapDict objectForKey:jbID] hasPrefix:jbMAPPREFIX_CUSTOM]) {
             cell.selectionStyle=UITableViewCellSelectionStyleGray;
             cell.backgroundView.backgroundColor = [UIColor colorWithRed:.8f green:.1f blue:.1f alpha:.4f];
         }else{
@@ -97,7 +97,7 @@
 {
     if (tableView==existingMapsTableView) {
         NSMutableDictionary* mapDict = [self.existingMaps objectAtIndex:indexPath.row];
-        if (![[mapDict objectForKey:jbID] hasPrefix:jbCUSTOMMAP_PREFIX]) {
+        if (![[mapDict objectForKey:jbID] hasPrefix:jbMAPPREFIX_CUSTOM]) {
             editExistingMapButton.alpha = .4f;
             editExistingMapButton.enabled = FALSE;
         }else{

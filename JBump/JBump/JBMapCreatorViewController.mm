@@ -167,7 +167,7 @@ CGFloat DistanceBetweenTwoPoints(CGPoint point1,CGPoint point2)
                         start = end;
                     }
                 }
-                [pointsArray addObject:NSStringFromCGPoint(start)];
+                [savePointsArray addObject:NSStringFromCGPoint(start)];
                 
                 NSMutableDictionary* saveDict = [NSMutableDictionary new];
                 [saveDict setObject:brush.ID forKey:jbID];

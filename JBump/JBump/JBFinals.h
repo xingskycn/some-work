@@ -56,9 +56,12 @@
 #define jbENTITIES @"entities"
 #define jbCURVES @"curves"
 #define jbSETTINGS @"settings"
-#define jbCUSTOMMAP_PREFIX @"C__"
 #define jbHIGHTLIGHT_CROSS @"cross"
-#define jBSTANDARMAP @"S__"
+#define jbMAPPREFIX_CUSTOM @"C__"
+#define jbMAPPREFIX_STANDARD @"S__"
+#define jbMAPPREFIX_TDM @"T__"
+#define jbMAPPREFIX_CTF @"F__"
+#define jbMAPPREFIX_SOCCER @"B__"
 
 #pragma mark Predefined Settings
 #define jbMAPSETTINGS_SETTINGS @"settings"
