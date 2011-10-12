@@ -64,7 +64,28 @@ static NSString *filePath = @"maps";
     [mapDict setObject:mapID forKey:jbID];
     [mapDict setObject:mapName forKey:jbNAME];
     [UIImagePNGRepresentation(arenaImage) writeToFile:[path stringByAppendingPathComponent:jbARENAIMAGE] atomically:YES];
+    
+    float thumbHeight = 180 * arenaImage.size.height /arenaImage.size.width;
+    CGRect thumbRect = CGRectIntegral(CGRectMake(0, 0, 180, thumbHeight));
+    CGImageRef imageRef = arenaImage.CGImage;
+    CGContextRef bitmap = CGBitmapContextCreate(NULL,
+                                                thumbRect.size.width,
+                                                thumbRect.size.height,
+                                                CGImageGetBitsPerComponent(imageRef),
+                                                0,
+                                                CGImageGetColorSpace(imageRef),
+                                                CGImageGetBitmapInfo(imageRef));
+    
+    CGContextSetInterpolationQuality(bitmap, 1.);
+    CGContextDrawImage(bitmap, thumbRect, imageRef);
+    CGImageRef thumbnailRef = CGBitmapContextCreateImage(bitmap);
+    UIImage *thumbnail = [UIImage imageWithCGImage:thumbnailRef];
+    CGContextRelease(bitmap);
+    CGImageRelease(thumbnailRef);
+    [UIImagePNGRepresentation(thumbnail) writeToFile:[path stringByAppendingPathComponent:jbTHUMBNAIL] atomically:YES];
+    
     [mapDict setObject:[path stringByAppendingPathComponent:jbARENAIMAGE] forKey:jbARENAIMAGELOCATION];
+    [mapDict setObject:[path stringByAppendingPathComponent:jbTHUMBNAIL] forKey:jbTHUMBNAILLOCATION];
     if (curves) {
         [mapDict setObject:curves forKey:jbCURVES];
     }

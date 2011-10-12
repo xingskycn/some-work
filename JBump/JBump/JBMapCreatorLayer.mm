@@ -314,8 +314,15 @@ CGFloat DistanceBetweenPoints(CGPoint point1,CGPoint point2)
                     [self.history removeLastObject];
                 }else{
                     JBBrush* brush = (JBBrush *)userSelection;
-                    if ([brush.ID isEqualToString:@"brush"]) {
-                        
+                    if ([brush.ID isEqualToString:jbBRUSH_ASSEMBLYLEFT ]||
+                         [brush.ID isEqualToString:jbBRUSH_ASSEMBLYRIGHT]||
+                         [brush.ID isEqualToString:jbBRUSH_HORIZONTAL_PLATFORM]) {
+                        CGPoint start = CGPointFromString([activeLine.pointArray objectAtIndex:0]);
+                        CGPoint end = CGPointFromString([activeLine.pointArray lastObject]);
+                        end.y = start.y;
+                        activeLine.pointArray = [NSArray arrayWithObjects:
+                                                 NSStringFromCGPoint(start),
+                                                 NSStringFromCGPoint(end),nil];
                     }
                 }
             }

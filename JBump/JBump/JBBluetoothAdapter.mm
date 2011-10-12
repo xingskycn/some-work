@@ -294,7 +294,6 @@
 	if ([inputString hasPrefix:@"|PRC:"]) {
         NSString* announcement = [inputString substringWithRange:NSMakeRange(4,inputString.length-4)];
         NSArray* parts = [announcement componentsSeparatedByString:@"|"];
-        //char playerID = [[parts objectAtIndex:0] intValue];
         BOOL ready = [[parts objectAtIndex:1] boolValue];
         
         [preGameDelegate player:[parts objectAtIndex:0] didReadyChange:ready];
