@@ -29,6 +29,11 @@
              curveHistory:(NSMutableArray *)curves
             entityHistory:(NSMutableArray*)entities;
 
++ (void)storeNewMapWithID:(NSString *)mapID
+                 infoData:(NSData *)infoData
+           arenaImageData:(NSData *)arenaImageData
+       thumbnailImageData:(NSData *)thumbnailImageData;
+
 + (JBMap*)getMapWithID:(NSString*)aMapID;
 + (NSArray*)getAllMapIDs;
 + (NSMutableArray *)getAllPredefinedSettings;

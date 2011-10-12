@@ -48,6 +48,7 @@
 @synthesize requestProgressBar;
 @synthesize closeRequestButton;
 @synthesize requestPopout;
+@synthesize requestMessageLabel;
 
 - (void)didReceiveMemoryWarning
 {
@@ -73,7 +74,7 @@
 {
     [super viewDidLoad];
     //Hide Request Popout
-    self.requestPopout.frame = CGRectMake(120, -120, 240, 120);
+    //self.requestPopout.frame = CGRectMake(120, -120, 240, 120);
     
     if (!self.players) {
         self.players = [NSMutableArray array];
@@ -113,6 +114,7 @@
     [self setRequestProgressBar:nil];
     [self setCloseRequestButton:nil];
     [self setRequestPopout:nil];
+    [self setRequestMessageLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -137,6 +139,7 @@
     [requestProgressBar release];
     [closeRequestButton release];
     [requestPopout release];
+    [requestMessageLabel release];
     [super dealloc];
 }
 
@@ -184,9 +187,11 @@
 }
 
 - (IBAction)closeRequestPopout:(id)sender {
+    
 }
 
 - (IBAction)confirmRequest:(id)sender {
+    
 }
 
 #pragma mark tableViewStuff
@@ -244,6 +249,12 @@
     }
     
     return 80.0f;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    JBMap* map = [self.maps objectAtIndex:indexPath.row];
+    [self.multiplayerAdapter shoutMapChangeToMap:map.ID];
 }
 
 #pragma mark JBGameAdapterPregameViewDelegate

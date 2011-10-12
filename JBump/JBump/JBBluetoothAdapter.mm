@@ -11,6 +11,8 @@
 #import "JBHero.h"
 #import "SBJson.h"
 #import "JBTavern.h"
+#import "JBMapManager.h"
+#import "JBMap.h"
 
 
 @implementation JBBluetoothAdapter
@@ -219,7 +221,7 @@
 	}
 }
 
-- (void)shoutPlayerWantsMapChange
+- (void)shoutMapChangeToMap:(NSString *)mapID
 {	
 	NSString* sendString = 
 	[NSString stringWithFormat:	@"|PGC:%d|%@",
@@ -279,10 +281,7 @@
 }
 
 - (void)sendData:(NSData *)data info:(NSDictionary *)info
-{
-    info  = [NSMutableDictionary dictionary];
-    [info setValue:@"ASDDDSA" forKey:@"ASA"];
-    
+{    
     NSString* transferID = [NSString stringWithFormat:@"%05d",1];
     NSString* transferSize = [NSString stringWithFormat:@"%08d",data.length];
     
@@ -351,6 +350,43 @@
 					  withDataMode:GKSendDataUnreliable
 							 error:nil];
 	}
+}
+
+- (void)askForMapWithID:(NSString *)mapID
+{
+    NSString* sendString = 
+	[NSString stringWithFormat:	@"|MDR:%@",mapID];
+	
+	NSData* sendData = [sendString dataUsingEncoding:NSUTF8StringEncoding];
+	if (self.activePeer) {
+		[self.gameSession sendData:sendData
+						   toPeers:[NSArray arrayWithObject:self.activePeer] 
+					  withDataMode:GKSendDataUnreliable
+							 error:nil];
+	}
+}
+
+- (void)sendMapForID:(NSString *)mapID
+{
+    
+    JBMap* map = [JBMapManager getMapWithID:mapID];
+    NSMutableDictionary* info = [NSMutableDictionary dictionary];
+    [info setObject:jbBT_TRANSFERTYPE_MAP forKey:jbBT_TRANSFERTYPE];
+    [info setObject:mapID forKey:jbID];
+    
+    NSData* infoData = [NSData dataWithContentsOfFile:map.infoLocal];
+    NSData* arenaImageData = [NSData dataWithContentsOfFile:map.arenaImageLocal];
+    NSData* thumbnailData = [NSData dataWithContentsOfFile:map.thumbnailLocal];
+    
+    [info setObject:[NSNumber numberWithInt:infoData.length] forKey:@"infoLength"];
+    [info setObject:[NSNumber numberWithInt:arenaImageData.length] forKey:@"arenaImageLength"];
+    [info setObject:[NSNumber numberWithInt:thumbnailData.length] forKey:@"thumbnailLength"];
+    
+    NSMutableData* sendData = [NSMutableData dataWithData:infoData];
+    [sendData appendData:arenaImageData];
+    [sendData appendData:thumbnailData];
+    
+    [self sendData:sendData info:info];
 }
 
 #pragma mark --- INCOMMING MESSSAGES ---
@@ -428,7 +464,7 @@
 
 - (BOOL)handlePlayerKilledByPlayer:(NSString *)inputString
 {
-	if ([inputString hasPrefix:@"|PGC:"]) {
+	if ([inputString hasPrefix:@"|PKC:"]) {
 		NSString* announcement = [inputString substringWithRange:NSMakeRange(5,inputString.length-5)];
         NSArray* parts = [announcement componentsSeparatedByString:@"|"];
         char killedPlayerID = [[parts objectAtIndex:0] charValue];
@@ -464,8 +500,9 @@
             [self askForNextDataTransferWithID:transferID];
             NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
             NSString* path = [[paths objectAtIndex:0] stringByAppendingPathComponent:transferID];
-            
             [[NSFileManager defaultManager] createFileAtPath:path contents:nil attributes:nil];
+            NSDictionary* info = [jsonParser objectWithString:[inputString substringFromIndex:18]];
+            [self.activeDataTransfers setObject:info forKey:[NSString stringWithFormat:@"%@info",transferID]];
         }
         return TRUE;
     }
@@ -482,7 +519,7 @@
     return FALSE;
 }
 
-- (BOOL)handleImgAboardTransferRequest:(NSString *)inputString
+- (BOOL)handleAboardTransferRequest:(NSString *)inputString
 {
     if ([inputString hasPrefix:@"|IAT:"]) {
         NSString* transerID = [inputString substringWithRange:NSMakeRange(5, 5)];
@@ -512,7 +549,21 @@
             
             NSLog(@"imageDataLength:%d",(int)[file offsetInFile]);
             if ([file offsetInFile] == [[self.activeDataTransfers objectForKey:transferID] intValue]) {
-                NSLog(@"finished img!");
+                NSDictionary* info = [self.activeDataTransfers objectForKey:[NSString stringWithFormat:@"%@info",transferID]];
+                if ([[info objectForKey:jbBT_TRANSFERTYPE] isEqualToString:jbBT_TRANSFERTYPE_MAP]) {
+                    NSData* mapData = [NSData dataWithContentsOfFile:path];
+                    NSRange infoRange = NSMakeRange(0,[[info objectForKey:@"infoLength"] intValue]);
+                    NSRange arenaRange = NSMakeRange(infoRange.length+infoRange.location,
+                                                    [[info objectForKey:@"arenaImageLength"] intValue]);
+                    NSRange thumbnailRange = NSMakeRange(arenaRange.length+arenaRange.location,
+                                                    [[info objectForKey:@"thumbnailLength"] intValue]);
+                    NSData* mapInfo = [mapData subdataWithRange:infoRange];
+                    NSData* mapArena = [mapData subdataWithRange:arenaRange];
+                    NSData* mapThumbnail = [mapData subdataWithRange:thumbnailRange];
+                    NSString* mapID = [info objectForKey:jbID];
+                    [JBMapManager storeNewMapWithID:mapID infoData:mapInfo arenaImageData:mapArena thumbnailImageData:mapThumbnail];
+                }
+                
                 
             }else{
                 [self askForNextDataTransferWithID:transferID];
@@ -538,7 +589,7 @@
                             if (![self handlePlayerKilledByPlayer:inputString]) {
                                 if (![self handleDataSendRequestIncomming:inputString]) {
                                     if (![self handleNextDataRequestIncomming:inputString]) {
-                                        if (![self handleImgAboardTransferRequest:inputString]) {
+                                        if (![self handleAboardTransferRequest:inputString]) {
                                             if (![self handleTransferDataIncomming:data]) {
                                                 [self handlePlayerPositionUpdates:data];
                                             }

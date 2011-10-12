@@ -36,6 +36,7 @@
 @synthesize curves;
 
 @synthesize settings;
+@synthesize infoLocal;
 
 -(id)initWithDictionary:(NSDictionary *)mapDict {
     self = [super init];
@@ -63,6 +64,8 @@
         self.thumbnail = [mapDict objectForKey:jbTHUMBNAIL];
         self.thumbnailLocal = [mapDict objectForKey:jbTHUMBNAILLOCATION];
         self.thumbnailURL = [mapDict objectForKey:jbTHUMBNAILURL];
+        
+        self.infoLocal = [mapDict objectForKey:jbINFOLOCATION];
         
         for (NSDictionary *dict in [mapDict objectForKey:jbENTITIES]) {
             JBEntity *aEntity = [JBEntityManager getEntityWithID:[dict objectForKey:jbID]];
