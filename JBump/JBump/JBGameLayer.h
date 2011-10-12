@@ -16,6 +16,7 @@
 @class JBHero;
 @class JBGameViewController;
 @class JBTavern;
+@class JBMap;
 
 @interface JBGameLayer : CCLayer {
     b2World* world;
@@ -33,12 +34,15 @@
 
 +(CCScene *) scene;
 
+- (void)loadMap:(JBMap*)map;
 - (void)insertCurves:(NSArray *)objects;
 - (void)insertEntities:(NSArray *)objects;
-- (void)insertHero;
+- (void)insertHeroAtPosition:(CGPoint)position;
 
 - (void)resetJumpForce;
+- (void)resetOwnPositionAfterDeath;
 
 - (void)setPositionForPlayer:(JBHero*)aPlayer withPosition:(CGPoint)position velocityX:(float)x andVelocityY:(float)y;
 - (void)setupSprites:(NSArray*)heroes;
+
 @end

@@ -46,6 +46,7 @@
 @synthesize mapsTablleView;
 @synthesize aNewConnectionbutton;
 @synthesize maps, players;
+@synthesize selectedMap;
 
 // Contents of request popout
 @synthesize requestTitelLabel;
@@ -261,15 +262,19 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    JBMap* map = [self.maps objectAtIndex:indexPath.row];
-    [self.multiplayerAdapter shoutMapChangeToMap:map.ID];
-    self.missingMapID = nil;
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationBeginsFromCurrentState:YES];
-    [UIView setAnimationDuration:0.3];
-    self.requestPopout.frame = self.requestPopout.frame = CGRectMake(120, -120, 240, 120);
-    [UIView commitAnimations];
-    self.requestedMapID = map.ID;
+    if (tableView==self.mapsTablleView) {
+        JBMap* map = [self.maps objectAtIndex:indexPath.row];
+        self.selectedMap = map;
+        [self.multiplayerAdapter shoutMapChangeToMap:map.ID];
+        [self.multiplayerAdapter shoutMapChangeToMap:map.ID];
+        self.missingMapID = nil;
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationBeginsFromCurrentState:YES];
+        [UIView setAnimationDuration:0.3];
+        self.requestPopout.frame = self.requestPopout.frame = CGRectMake(120, -120, 240, 120);
+        [UIView commitAnimations];
+        self.requestedMapID = map.ID;
+    }
 }
 
 #pragma mark JBGameAdapterPregameViewDelegate

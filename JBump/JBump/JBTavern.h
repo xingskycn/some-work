@@ -27,4 +27,5 @@
 - (void)exchangeLocalPlayer;
 
 - (void)player:(char)aPlayerID changedPosition:(CGPoint)position velocityX:(float)x velocityY:(float)Y withPackageNR:(int)packageNR;
+- (void)Player:(char)aPlayerID isDead:(bool)isDead;
 @end
