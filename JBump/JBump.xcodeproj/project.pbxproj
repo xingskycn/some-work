@@ -42,6 +42,7 @@
 		66E141E11442344800F47D83 /* JBMapItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E141E01442344700F47D83 /* JBMapItem.m */; };
 		66E141E31442414C00F47D83 /* cross.png in Resources */ = {isa = PBXBuildFile; fileRef = 66E141E21442414C00F47D83 /* cross.png */; };
 		66E141E6144243CB00F47D83 /* redbrush.png in Resources */ = {isa = PBXBuildFile; fileRef = 66E141E5144243CB00F47D83 /* redbrush.png */; };
+		9E0CE7A31445AA8E002369A4 /* JBMultiplayerSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E0CE7A21445AA8E002369A4 /* JBMultiplayerSegue.m */; };
 		9E4334461442FC43004FA281 /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E43342E1442FC43004FA281 /* NSObject+SBJson.m */; };
 		9E4334471442FC43004FA281 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E4334311442FC43004FA281 /* SBJsonParser.m */; };
 		9E4334481442FC43004FA281 /* SBJsonStreamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E4334331442FC43004FA281 /* SBJsonStreamParser.m */; };
@@ -290,6 +291,8 @@
 		66E141E01442344700F47D83 /* JBMapItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBMapItem.m; sourceTree = "<group>"; };
 		66E141E21442414C00F47D83 /* cross.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cross.png; sourceTree = "<group>"; };
 		66E141E5144243CB00F47D83 /* redbrush.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redbrush.png; sourceTree = "<group>"; };
+		9E0CE7A11445AA8E002369A4 /* JBMultiplayerSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBMultiplayerSegue.h; sourceTree = "<group>"; };
+		9E0CE7A21445AA8E002369A4 /* JBMultiplayerSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBMultiplayerSegue.m; sourceTree = "<group>"; };
 		9E43342C1442FC43004FA281 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSON.h; path = SBJson/JSON.h; sourceTree = "<group>"; };
 		9E43342D1442FC43004FA281 /* NSObject+SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+SBJson.h"; path = "SBJson/NSObject+SBJson.h"; sourceTree = "<group>"; };
 		9E43342E1442FC43004FA281 /* NSObject+SBJson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+SBJson.m"; path = "SBJson/NSObject+SBJson.m"; sourceTree = "<group>"; };
@@ -1343,6 +1346,8 @@
 				9E664FF71444863300F2485A /* JBPreGameViewController.mm */,
 				9E6650091444A8DE00F2485A /* JBPreGameMapsTableViewCell.h */,
 				9E66500A1444A8DE00F2485A /* JBPreGameMapsTableViewCell.m */,
+				9E0CE7A11445AA8E002369A4 /* JBMultiplayerSegue.h */,
+				9E0CE7A21445AA8E002369A4 /* JBMultiplayerSegue.m */,
 			);
 			name = Menu;
 			sourceTree = "<group>";
@@ -1733,6 +1738,7 @@
 				9E664FF81444863300F2485A /* JBPreGameViewController.mm in Sources */,
 				9E6650071444A13F00F2485A /* JBTavern.mm in Sources */,
 				9E66500B1444A8DE00F2485A /* JBPreGameMapsTableViewCell.m in Sources */,
+				9E0CE7A31445AA8E002369A4 /* JBMultiplayerSegue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,6 +10,7 @@
 #import "JBPreGameViewController.h"
 #import "JBHero.h"
 #import "SBJson.h"
+#import "JBTavern.h"
 
 
 @implementation JBBluetoothAdapter

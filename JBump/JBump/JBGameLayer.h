@@ -15,7 +15,7 @@
 
 @class JBHero;
 @class JBGameViewController;
-
+@class JBTavern;
 
 @interface JBGameLayer : CCLayer {
     b2World* world;
@@ -23,10 +23,12 @@
     GLESDebugDraw *m_debugDraw;
 #endif
     float timePlayerOnGround;
+    int sendCounter;
 }
 
 @property(nonatomic, assign)JBGameViewController *gameViewController;
 @property(nonatomic, retain)NSMutableDictionary* spawnPoints;
+@property(nonatomic, assign)JBTavern *tavern;
 
 +(CCScene *) scene;
 
@@ -35,4 +37,6 @@
 - (void)insertHero;
 
 - (void)resetJumpForce;
+
+- (void)setPositionForPlayer:(JBHero*)aPlayer;
 @end

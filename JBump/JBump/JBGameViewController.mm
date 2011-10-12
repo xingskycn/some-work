@@ -8,7 +8,8 @@
 
 #import "JBGameViewController.h"
 #import "JBGameLayer.h"
-
+#import "JBMultiplayerAdapter.h"
+#import "JBTavern.h"
 
 @interface JBGameViewController()
 
@@ -20,6 +21,8 @@
 @implementation JBGameViewController
 
 @synthesize gameLayer;
+@synthesize multiplayerAdapter;
+
 @synthesize sideView;
 @synthesize popout;
 @synthesize popin;
@@ -39,6 +42,10 @@
     [self moveSideViewToState:sideViewState];
     
     self.gameLayer.gameViewController=self;
+    if (self.multiplayerAdapter!=nil) {
+        self.gameLayer.tavern = self.multiplayerAdapter.tavern;
+        self.multiplayerAdapter.tavern.gameLayer = self.gameLayer;
+    }
 }
 
 - (void)viewDidUnload

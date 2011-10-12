@@ -7,17 +7,22 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "JBMultiplayerAdapter.h"
+#import "JBGameLayer.h"
 
 @class JBHero;
 
-@interface JBTavern : NSObject
+@interface JBTavern : NSObject <JBMultiplayerAdapterGameDelegate>
 
 @property (retain, nonatomic)NSMutableDictionary *heroesInTavern;
 @property (retain, nonatomic)JBHero *localPlayer;
+@property (assign, nonatomic)JBMultiplayerAdapter *multiplayerAdapter;
+@property (assign, nonatomic)JBGameLayer *gameLayer;
 
 - (void)addNewPlayer:(JBHero*)aPlayer;
 - (JBHero*)getPlayerWithName:(NSString*)aPlayerName;
 - (JBHero*)getPlayerWithReference:(char)reference;
 - (NSArray*)getAllPlayers;
+- (void)sendPlayerUpdate:(JBHero*)player;
 
 @end

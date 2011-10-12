@@ -7,10 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-
 #import "cocos2d.h"
-#import "JBTavern.h"
 
+@class JBTavern;
 @class JBHero;
 
 
@@ -36,7 +35,7 @@
 
 
 @interface JBMultiplayerAdapter : NSObject
-@property (nonatomic, retain)JBTavern* tavern;
+@property (nonatomic, retain)JBTavern *tavern;
 
 //		Method to send the player position to others
 - (void)sendPlayer:(JBHero *)player;

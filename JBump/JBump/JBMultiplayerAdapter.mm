@@ -18,6 +18,7 @@
     
     if (self) {
         self.tavern = [[[JBTavern alloc] init] autorelease];
+        tavern.multiplayerAdapter = self;
     }
     
     return self;

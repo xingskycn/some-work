@@ -145,6 +145,7 @@
 }
 
 - (IBAction)startButtonPressed:(id)sender {
+    [self.multiplayerAdapter sendGameStartedByPlayer:self.multiplayerAdapter.tavern.localPlayer.name];
 }
 
 - (IBAction)newConnectionPressed:(id)sender {

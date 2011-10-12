@@ -13,13 +13,15 @@
 
 @synthesize heroesInTavern;
 @synthesize localPlayer;
+@synthesize multiplayerAdapter;
+@synthesize gameLayer;
 
 - (id)init {
     self = [super init];
     
     if (self) {
         self.heroesInTavern = [NSMutableDictionary dictionary];
-        self.localPlayer = [[JBHero alloc] init];
+        self.localPlayer = [[[JBHero alloc] init] autorelease];
         self.localPlayer.name = [[NSUserDefaults standardUserDefaults] objectForKey:jbUSERDEFAULTS_PLAYER_NAME];
         self.localPlayer.skinID = [[NSUserDefaults standardUserDefaults] objectForKey:jbUSERDEFAULTS_SKIN];
         [self.localPlayer.gameContext setObject:self.localPlayer.skinID forKey:jbGAMECONTEXT_SKIN_ID];
@@ -49,6 +51,22 @@
 
 - (NSArray *)getAllPlayers {
     return [self.heroesInTavern allValues];
+}
+
+- (void)newPlayerAnnounced:(JBHero *)hero {
+    
+}
+
+- (JBHero *)requestPlayerAnnouncement:(NSString *)playerID {
+    return [self getPlayerWithReference:[playerID intValue]];
+}
+
+- (void)receivedPlayerInfo:(JBHero *)hero {
+    
+}
+
+- (void)player:(JBHero *)hero didChangeContext:(NSDictionary *)context {
+    
 }
 
 

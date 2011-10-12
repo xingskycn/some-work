@@ -24,6 +24,8 @@
 #import "JBSkinManager.h"
 #import "JBSkin.h"
 
+#import "JBTavern.h"
+
 #define PTM_RATIO 32
 
 static JBHero* player;
@@ -91,6 +93,7 @@ public:
 @implementation JBGameLayer
 
 @synthesize gameViewController,spawnPoints;
+@synthesize tavern;
 
 +(CCScene *) scene
 {
@@ -161,6 +164,7 @@ public:
         [self insertCurves:map.curves];
         [self insertEntities:map.mapEntities];
         [self insertHero];
+        sendCounter=1;
     }
     
     return self;
@@ -228,6 +232,12 @@ public:
         player.body->SetLinearVelocity(b2Vec2(player.body->GetLinearVelocity().x, 6.5f));
     }
 
+    if (sendCounter>=2) {
+        sendCounter=1;
+        [self.tavern send]
+    } else {
+        sendCounter++;
+    }
 }
 
 - (void)insertCurves:(NSArray *)objects
@@ -347,6 +357,33 @@ public:
 	body->CreateFixture(&fixtureDef);
     
     player.body=body;
+}
+
+- (void)setPositionForPlayer:(JBHero *)aPlayer {
+    
+    b2BodyDef bodyDef;
+	bodyDef.type = b2_dynamicBody;
+    
+	bodyDef.position.Set(70./PTM_RATIO, 700./PTM_RATIO);
+	bodyDef.userData = player.sprite;
+	b2Body *body = world->CreateBody(&bodyDef);
+	
+    b2CircleShape shape;
+    shape.m_radius = 0.45f;
+    //b2PolygonShape shape;
+    //shape.SetAsBox(30.0f/2/PTM_RATIO, 30.0f/2/PTM_RATIO);
+    b2FixtureDef fixtureDef;
+    fixtureDef.shape = &shape;	
+	fixtureDef.friction = 0.1f;
+    fixtureDef.density = 1.0f;
+    fixtureDef.restitution = 0.050f;
+	body->CreateFixture(&fixtureDef);
+    
+    if(aPlayer.body!=nil)
+        world->DestroyBody(aPlayer.body);
+    aPlayer.body=nil;
+    aPlayer.body=body;
+
 }
 
 @end
