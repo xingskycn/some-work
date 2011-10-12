@@ -371,7 +371,7 @@ public:
 	bodyDef.type = b2_dynamicBody;
     
 	bodyDef.position.Set(position.x, position.y);
-	bodyDef.userData = player.sprite;
+	bodyDef.userData = aPlayer.sprite;
 	b2Body *body = world->CreateBody(&bodyDef);
 	
     b2CircleShape shape;
@@ -390,6 +390,18 @@ public:
     aPlayer.body=nil;
     aPlayer.body=body;
 
+}
+
+- (void)setupSprites:(NSArray*)heroes {
+    for (JBHero *aHero in heroes) {
+        if([aHero.name isEqualToString:player.name]){
+            continue;
+        }
+        aHero.sprite = [CCSprite spriteWithFile:aHero.skinLocation];
+        aHero.sprite.scale=(30.0/player.sprite.textureRect.size.height);
+        [self addChild:aHero.sprite z:0 tag:[aHero.name hash]];
+
+    }
 }
 
 @end

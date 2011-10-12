@@ -40,4 +40,5 @@
 - (void)resetJumpForce;
 
 - (void)setPositionForPlayer:(JBHero*)aPlayer withPosition:(CGPoint)position velocityX:(float)x andVelocityY:(float)y;
+- (void)setupSprites:(NSArray*)heroes;
 @end

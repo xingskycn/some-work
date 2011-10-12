@@ -8,6 +8,8 @@
 
 #import "JBHero.h"
 #import "cocos2d.h"
+#import "JBSkinManager.h"
+#import "JBSkin.h"
 
 @implementation JBHero
 
@@ -18,6 +20,7 @@
 @synthesize sprite;
 @synthesize friction, restitution;
 @synthesize body;
+@synthesize skinLocation;
 
 @synthesize onGround;
 @synthesize jumpTouched;
@@ -38,6 +41,7 @@
         isRight=NO;
         jumpTouched=NO;
         self.gameContext = [NSMutableDictionary dictionary];
+        [self.gameContext setObject:[[NSUserDefaults standardUserDefaults] objectForKey:jbUSERDEFAULTS_SKIN] forKey:jbGAMECONTEXT_SKIN_ID];
         self.packageNr=-1;
     }
     
@@ -52,6 +56,7 @@
         self.name = playerName;
         self.gameContext = [context mutableCopy];
         self.skinID = [gameContext objectForKey:jbGAMECONTEXT_SKIN_ID];
+        self.skinLocation = [[JBSkinManager getSkinWithID:skinID] imageLocation];
     }
     
     return self;

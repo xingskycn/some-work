@@ -85,7 +85,7 @@
         NSLog(@"No Player with ID: %i in Tavern", aPlayerID);
         return;
     }
-    if (aPlayer.packageNr<packageNR) {
+    if (aPlayer.packageNr<=packageNR) {
         //aPlayer.packageNr=packageNR;
         
         [self.gameLayer setPositionForPlayer:aPlayer withPosition:position velocityX:x andVelocityY:y];
