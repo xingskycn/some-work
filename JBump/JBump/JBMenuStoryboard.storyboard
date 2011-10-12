@@ -1017,13 +1017,127 @@
             <point key="canvasLocation" x="708" y="1030"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="JBAboutViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/JBAboutViewController.h"/>
+        </class>
+        <class className="JBGameViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/JBGameViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="jumpButtonPressed:"/>
+                <relationship kind="action" name="leftButtonPressed:"/>
+                <relationship kind="action" name="popinButtonPressed:"/>
+                <relationship kind="action" name="popoutButtonPressed:"/>
+                <relationship kind="action" name="rightButtonPressed:"/>
+                <relationship kind="outlet" name="jumpButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="moveLeftButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="moveRightButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="popin" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="popout" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="sideView" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="JBMapCreatorSelectionViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/JBMapCreatorSelectionViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="editExistingMapButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="existingMapsTableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="settingsTableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="JBMapCreatorSettingsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/JBMapCreatorSettingsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="downloadImageButtonPressed:"/>
+                <relationship kind="outlet" name="activityIndicator" candidateClass="UIActivityIndicatorView"/>
+                <relationship kind="outlet" name="advancedSettingsTableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="createButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="downloadImageButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="imageUrlField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="mapNameField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="settingsNameLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="JBMapCreatorViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/JBMapCreatorViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="backButtonPressed:"/>
+                <relationship kind="action" name="closeSidebar:"/>
+                <relationship kind="action" name="switchKind:"/>
+                <relationship kind="outlet" name="contentsTable" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="forwarder" candidateClass="JBTouchForwardView"/>
+                <relationship kind="outlet" name="kindChooser" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="magnifier" candidateClass="UISlider"/>
+                <relationship kind="outlet" name="menuContainer" candidateClass="UIView"/>
+                <relationship kind="outlet" name="openButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="sideView" candidateClass="JBTouchForwardView"/>
+            </relationships>
+        </class>
+        <class className="JBMenuViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/JBMenuViewController.h"/>
+        </class>
+        <class className="JBNewGameViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/JBNewGameViewController.h"/>
+        </class>
+        <class className="JBPreGameViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/JBPreGameViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="changeGameType:"/>
+                <relationship kind="action" name="closeRequestPopout:"/>
+                <relationship kind="action" name="confirmRequest:"/>
+                <relationship kind="action" name="newConnectionPressed:"/>
+                <relationship kind="action" name="readyButtonPressed:"/>
+                <relationship kind="action" name="sendImgTest:"/>
+                <relationship kind="action" name="startButtonPressed:"/>
+                <relationship kind="outlet" name="aNewConnectionbutton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="closeRequestButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="gameTypeButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="mapsTablleView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="playersTableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="readyButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="requestPopout" candidateClass="UIView"/>
+                <relationship kind="outlet" name="requestProgressBar" candidateClass="UIProgressView"/>
+                <relationship kind="outlet" name="requestTitelLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="startButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="JBQuickGameViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/JBQuickGameViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="startBlueToothButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="JBSettingsViewVontroller" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/JBSettingsViewVontroller.h"/>
+            <relationships>
+                <relationship kind="action" name="customSkinDownloadValueChanged:"/>
+                <relationship kind="action" name="playerNameSizeValueChanged:"/>
+                <relationship kind="action" name="playerNameTextChanged:"/>
+                <relationship kind="action" name="showScoreBoardValueChanged:"/>
+                <relationship kind="outlet" name="cSkinDownloadSwitch" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="playerNameSlider" candidateClass="UISlider"/>
+                <relationship kind="outlet" name="playerNameText" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="scoreBoardSwitch" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="skinTableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="JBStoreViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/JBStoreViewController.h"/>
+        </class>
+        <class className="JBTouchForwardView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/JBTouchForwardView.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <nil key="statusBar"/>
         <simulatedOrientationMetrics key="orientation" orientation="landscapeRight"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="3Fh-iF-90v"/>
         <segue reference="1RV-xt-lrX"/>
-        <segue reference="cqk-6h-sdo"/>
+        <segue reference="NTM-U9-Hn3"/>
+        <segue reference="IbT-su-ffC"/>
     </inferredMetricsTieBreakers>
 </document>
