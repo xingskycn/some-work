@@ -30,7 +30,8 @@
 @synthesize packageNr;
 
 @synthesize maxLeft, maxRight;
-
+@synthesize isDead;
+@synthesize isDeadSended;
 - (id)init {
     self = [super init];
     
@@ -57,6 +58,8 @@
         self.gameContext = [context mutableCopy];
         self.skinID = [gameContext objectForKey:jbGAMECONTEXT_SKIN_ID];
         self.skinLocation = [[JBSkinManager getSkinWithID:skinID] imageLocation];
+        isDead=NO;
+        isDeadSended=NO;
     }
     
     return self;

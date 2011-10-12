@@ -62,7 +62,7 @@ public:
             }
         }
 
-        
+        //Rotate a Player acording to the grounf
         if(contact->GetFixtureA()->GetBody()==player.body) {
             float product = -acosf(worldManifold.normal.x)*180/M_PI+90;
             
@@ -81,20 +81,30 @@ public:
             }
             
         }
-        if ([(NSObject*)contact->GetFixtureA()->GetBody()->GetUserData() isKindOfClass:[CCSprite class]]) {
-            if ([(NSObject*)contact->GetFixtureB()->GetBody()->GetUserData() isKindOfClass:[CCSprite class]]) {
-                if (contact->GetFixtureA()->GetBody()->GetWorldCenter().y>(contact->GetFixtureB()->GetBody()->GetWorldCenter().y+5.0f/PTM_RATIO)) {
-                    if (((CCSprite*)contact->GetFixtureB()->GetBody()->GetUserData()).userData) {
-                        NSLog(@"Player: %@ has lost a life.", ((CCSprite*)contact->GetFixtureB()->GetBody()->GetUserData()).userData);
-                    }
-                } else if (contact->GetFixtureB()->GetBody()->GetWorldCenter().y>(contact->GetFixtureA()->GetBody()->GetWorldCenter().y+5.0f/PTM_RATIO)){
-                    if (((CCSprite*)contact->GetFixtureA()->GetBody()->GetUserData()).userData) {
-                        NSLog(@"Player: %@ has lost a life.", ((CCSprite*)contact->GetFixtureA()->GetBody()->GetUserData()).userData);
-                    }
+        
+        //Detect Colision between two Players
+        if ([(NSObject*)contact->GetFixtureA()->GetBody()->GetUserData() isKindOfClass:[CCSprite class]]&&
+             [(NSObject*)contact->GetFixtureB()->GetBody()->GetUserData() isKindOfClass:[CCSprite class]]) {
+                 CCSprite *cSpriteA = (CCSprite*)contact->GetFixtureA()->GetBody()->GetUserData();
+                 CCSprite *cSpriteB = (CCSprite*)contact->GetFixtureB()->GetBody()->GetUserData();
+            if (cSpriteA.userData != nil && cSpriteB.userData !=nil && [(NSObject*)cSpriteA.userData isKindOfClass:[JBHero class]] 
+                && [(NSObject*)cSpriteA.userData isKindOfClass:[JBHero class]]) {
+                JBHero *cHeroA = (JBHero*)cSpriteA.userData;
+                JBHero *cHeroB = (JBHero*)cSpriteB.userData;
+                
+                if (!cHeroA.isDead && !cHeroB.isDead && contact->GetFixtureA()->GetBody()->GetWorldCenter().y>(contact->GetFixtureB()->GetBody()->GetWorldCenter().y+5.0f/PTM_RATIO)) {
+                    NSLog(@"Player: %@ has lost a life.", cHeroB.name);
+                    cHeroB.isDead=YES;
+                    cHeroB.isDeadSended=NO;
+                } else if (!cHeroA.isDead && !cHeroB.isDead && contact->GetFixtureB()->GetBody()->GetWorldCenter().y>(contact->GetFixtureA()->GetBody()->GetWorldCenter().y+5.0f/PTM_RATIO)) {
+                    NSLog(@"Player: %@ has lost a life.", cHeroA.name);
+                    cHeroA.isDead=YES;
+                    cHeroA.isDeadSended=NO;
                 }
+                
             }
-            
-        } /*else if ([(NSObject*)contact->GetFixtureB()->GetBody()->GetUserData() isKindOfClass:[CCSprite class]]) {
+        }
+        /*else if ([(NSObject*)contact->GetFixtureB()->GetBody()->GetUserData() isKindOfClass:[CCSprite class]]) {
             
         } */
     }
@@ -203,6 +213,13 @@ public:
             if(player.sprite!=myActor){
                 myActor.rotation = -1 * CC_RADIANS_TO_DEGREES(body->GetAngle());
             }
+            if ([(NSObject*)myActor.userData isKindOfClass:[JBHero class]]) {
+                JBHero *checkHero = (JBHero*)myActor.userData;
+                if (checkHero.isDead&&!checkHero.isDeadSended) {
+                    [self.tavern Player:checkHero.playerID isDead:YES];
+                    checkHero.isDeadSended=YES;
+                }
+            }
 		}	
 	}
     
@@ -218,6 +235,9 @@ public:
             timePlayerOnGround +=(float)deltaTime;
         }else{
             timePlayerOnGround =0;
+        }
+        if (player.isDead) {
+            [self resetOwnPositionAfterDeath];
         }
     }
     
@@ -358,6 +378,7 @@ public:
     JBSkin *heroSkin = [JBSkinManager getSkinWithID:player.skinID];
     player.sprite = [CCSprite spriteWithFile:heroSkin.imageLocation];
     player.sprite.scale=(30.0/player.sprite.textureRect.size.height);
+    player.sprite.userData=player;
     [self addChild:player.sprite z:0 tag:[player.name hash]];
     
     b2BodyDef bodyDef;
@@ -378,7 +399,7 @@ public:
     fixtureDef.restitution = 0.050f;
 	body->CreateFixture(&fixtureDef);
     
-    player.sprite.userData = player.name;
+    player.sprite.userData = player;
     
     player.body=body;
 }
@@ -417,10 +438,35 @@ public:
         }
         aHero.sprite = [CCSprite spriteWithFile:aHero.skinLocation];
         aHero.sprite.scale=(30.0/player.sprite.textureRect.size.height);
-        aHero.sprite.userData = aHero.name;
+        aHero.sprite.userData = aHero;
         [self addChild:aHero.sprite z:0 tag:[aHero.name hash]];
 
     }
+}
+
+- (void)resetOwnPositionAfterDeath {
+    b2BodyDef bodyDef;
+	bodyDef.type = b2_dynamicBody;
+    
+	bodyDef.position.Set(70./PTM_RATIO, 700./PTM_RATIO);
+	bodyDef.userData = player.sprite;
+	b2Body *body = world->CreateBody(&bodyDef);
+	
+    b2CircleShape shape;
+    shape.m_radius = 0.45f;
+    //b2PolygonShape shape;
+    //shape.SetAsBox(30.0f/2/PTM_RATIO, 30.0f/2/PTM_RATIO);
+    b2FixtureDef fixtureDef;
+    fixtureDef.shape = &shape;	
+	fixtureDef.friction = 0.1f;
+    fixtureDef.density = 1.0f;
+    fixtureDef.restitution = 0.050f;
+	body->CreateFixture(&fixtureDef);
+
+    world->DestroyBody(player.body);
+    player.body=nil;
+    player.body=body;
+    player.isDead=NO;
 }
 
 @end

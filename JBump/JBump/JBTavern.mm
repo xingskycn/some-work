@@ -96,6 +96,8 @@
         NSLog(@"Recieved PackageNR: %i, localPackageNR: %i",packageNR ,aPlayer.packageNr);
     }
 }
-
+- (void)Player:(char)aPlayerID isDead:(bool)isDead {
+    NSLog(@"Eant send that Player with ID: %i is dead", aPlayerID);
+}
 
 @end

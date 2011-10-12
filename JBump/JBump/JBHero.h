@@ -36,6 +36,8 @@
 @property(assign)float jumpForce;
 @property(assign)float maxLeft;
 @property(assign)float maxRight;
+@property bool isDead;
+@property bool isDeadSended;
 
 @property(assign)float desiredRotation;
 
