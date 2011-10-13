@@ -664,11 +664,11 @@ public:
 
 - (void)setupSprites:(NSArray*)heroes {
     for (JBHero *aHero in heroes) {
-        if([aHero.name isEqualToString:player.name]){
+        if(aHero.playerID == player.playerID){
             continue;
         }
         aHero.sprite = [CCSprite spriteWithFile:aHero.skinLocation];
-        aHero.sprite.scale=(30.0/player.sprite.textureRect.size.height);
+        aHero.sprite.scale=(30.0/aHero.sprite.textureRect.size.height);
         aHero.sprite.userData = aHero;
         [self addChild:aHero.sprite z:0 tag:[aHero.name hash]];
 
