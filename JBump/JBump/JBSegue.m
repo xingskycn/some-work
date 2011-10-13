@@ -11,6 +11,7 @@
 #import "JBMapCreatorViewController.h"
 #import "JBGameViewController.h"
 #import "JBMenuViewController.h"
+#import "JBQuickGameViewController.h"
 
 @implementation JBSegue
 

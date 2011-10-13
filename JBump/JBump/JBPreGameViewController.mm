@@ -409,4 +409,11 @@
     
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([self.mapsTablleView indexPathForSelectedRow]!=nil) {
+        self.selectedMap = [self.maps objectAtIndex:[self.mapsTablleView indexPathForSelectedRow].row];
+    }
+    
+}
+
 @end

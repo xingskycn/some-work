@@ -327,7 +327,7 @@ public:
     
     [player.sprite setRotation:player.desiredRotation+((player.sprite.rotation-player.desiredRotation)/1.14)];
     
-    if (player.body->GetLinearVelocity().y>6.5f) {
+    if (player.body!=nil&&player.body->GetLinearVelocity().y>6.5f) {
         player.body->SetLinearVelocity(b2Vec2(player.body->GetLinearVelocity().x, 6.5f));
     }
     
@@ -544,7 +544,7 @@ public:
     b2BodyDef bodyDef;
 	bodyDef.type = b2_dynamicBody;
     
-	bodyDef.position.Set(70./PTM_RATIO, 700./PTM_RATIO);
+	bodyDef.position.Set(0.f/PTM_RATIO, 0.f/PTM_RATIO);
 	bodyDef.userData = player.sprite;
 	b2Body *body = world->CreateBody(&bodyDef);
 	

@@ -88,7 +88,7 @@
     }
     if (aPlayer.packageNr<=packageNR) {
         //aPlayer.packageNr=packageNR;
-        if (self.gameLayer) {
+        if (self.gameLayer!=nil) {
             [self.gameLayer setPositionForPlayer:aPlayer withPosition:position velocityX:x andVelocityY:y];
         }
     }
@@ -100,5 +100,7 @@
 - (void)Player:(char)aPlayerID isDead:(bool)isDead {
     NSLog(@"Eant send that Player with ID: %i is dead", aPlayerID);
 }
+
+
 
 @end
