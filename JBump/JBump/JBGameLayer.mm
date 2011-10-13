@@ -252,8 +252,10 @@ public:
         world->SetContinuousPhysics(true);
 		world->SetContactListener(new MyContactListener);
 		// Debug Draw functions
-		m_debugDraw = new GLESDebugDraw( PTM_RATIO );
 #ifdef __jbDEBUG_GAMEVIEW
+        
+		m_debugDraw = new GLESDebugDraw( PTM_RATIO );
+
 		world->SetDebugDraw(m_debugDraw);
 		
 		uint32 flags = 0;
@@ -421,7 +423,9 @@ public:
         line.green = brush.green;
         NSArray* points = [dict objectForKey:jBMAPITEM_POINTS];
         line.pointArray = [points mutableCopy];
+#ifdef __jbDEBUG_GAMEVIEW
         line.visible = TRUE;
+#endif
         [self addChild:line];
         if (points.count>1) {
             CGPoint start = CGPointFromString([points objectAtIndex:0]);
