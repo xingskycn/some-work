@@ -211,6 +211,7 @@ public:
 
 @synthesize gameViewController,spawnPoints;
 @synthesize tavern,mapSize;
+@synthesize isServer;
 
 +(CCScene *) scene
 {
@@ -334,7 +335,10 @@ public:
     player.onGround=NO;
     int32 velocityIterations = 8;
 	int32 positionIterations = 1;
-	world->Step(deltaTime, velocityIterations, positionIterations);
+    if (self.isServer) {
+        world->Step(deltaTime, velocityIterations, positionIterations);
+    }
+	
     
 	for (b2Body* body = world->GetBodyList(); body; body = body->GetNext())
 	{
@@ -420,16 +424,20 @@ public:
     
     
     if (multiplayer){
+        for(NSString* heroID in [tavern.heroesInTavern allKeys]) {
+            if (self.tavern.localPlayer.playerID>[heroID intValue]) {
+                [self.tavern.multiplayerAdapter sendBall];
+                self.isServer=false;
+            }
+        }
+        if (self.isServer){
+            [self.tavern sendPlayerUpdate];
+        } else {
+            int i = 1;
+        }
+        /*
         if (sendCounter>=1) {
             sendCounter=1;
-            [self.tavern sendPlayerUpdate];
-            BOOL send = TRUE;
-            for(NSString* heroID in [tavern.heroesInTavern allKeys]) {
-                if (self.tavern.localPlayer.playerID>[heroID intValue]) {
-                    [self.tavern.multiplayerAdapter sendBall];
-                    send = FALSE;
-                }
-            }
             if (send) {
                 if (tavern.ball.hitGoalLine) {
                     [self resetBall];
@@ -443,7 +451,7 @@ public:
             }
         } else {
             sendCounter++;
-        }
+        }*/
     }
 }
 

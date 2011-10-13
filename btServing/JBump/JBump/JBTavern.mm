@@ -12,6 +12,8 @@
 @implementation JBTavern
 
 @synthesize heroesInTavern;
+@synthesize entitiesInTavern;
+
 @synthesize localPlayer;
 @synthesize multiplayerAdapter;
 @synthesize gameLayer;
@@ -21,7 +23,10 @@
     self = [super init];
     
     if (self) {
+        lastHeroPackageNumber = 0;
+        lastHeroPackageNumber = 0;
         self.heroesInTavern = [NSMutableDictionary dictionary];
+        self.entitiesInTavern = [NSMutableDictionary dictionary];
         self.localPlayer = [[[JBHero alloc] init] autorelease];
         self.localPlayer.name = [[NSUserDefaults standardUserDefaults] objectForKey:jbUSERDEFAULTS_PLAYER_NAME];
         self.localPlayer.skinID = [[NSUserDefaults standardUserDefaults] objectForKey:jbUSERDEFAULTS_SKIN];
@@ -131,6 +136,42 @@
 - (void)updateBallWithPositionx:(CGPoint)position velocityX:(float)x andVelocityY:(float)y
 {
     [self.gameLayer setPhysicsForBallWithPosition:position velocityX:x andVelocityY:y];
+}
+
+- (void)setAllHeroSpritesInWorld:(NSArray*)allSprites withPackageNumber:(int)packageNumber {
+    if (packageNumber<lastHeroPackageNumber) {
+        return;
+    }
+    lastHeroPackageNumber=packageNumber;
+
+    for (NSDictionary *spriteDict in allSprites) {
+        JBHero *hero = [self.heroesInTavern objectForKey:[spriteDict objectForKey:jbID]];
+        if (hero) {
+            hero.sprite.position=CGPointFromString([spriteDict objectForKey:jbPOSITION]);
+            hero.sprite.rotation=[[spriteDict objectForKey:jbROTATION] floatValue];
+            hero.sprite.flipX = [[spriteDict objectForKey:jbFLIPX] intValue];
+        } else {
+            self.localPlayer.sprite.position = CGPointFromString([spriteDict objectForKey:jbPOSITION]);
+            self.localPlayer.sprite.rotation = [[spriteDict objectForKey:jbROTATION] floatValue];
+            self.localPlayer.sprite.flipX = [[spriteDict objectForKey:jbFLIPX] intValue];
+
+        }
+    }
+}
+
+- (void)setAllEntitiesInWorld:(NSArray*)allEntities withPackageNumber:(int)packageNumber {
+    if (packageNumber<lastEntityPackageNumber) {
+        return;
+    }
+    lastEntityPackageNumber=packageNumber;
+    for (NSDictionary *entityDict in allEntities) {
+        JBEntity *entity = [self.heroesInTavern objectForKey:[entityDict objectForKey:jbID]];
+        if (entity) {
+            entity.sprite.position=CGPointFromString([entityDict objectForKey:jbPOSITION]);
+            entity.sprite.rotation=[[entityDict objectForKey:jbROTATION] floatValue];
+            entity.sprite.flipX = [[entityDict objectForKey:jbFLIPX] intValue];
+        }
+    }
 }
 
 @end

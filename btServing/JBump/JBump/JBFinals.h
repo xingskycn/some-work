@@ -122,6 +122,10 @@
 #define jbGAMECONTEXT_KILL_COUNT @"killCount"
 #define jbGAMECONTEXT_DEATH_COUNT @"deathCount" 
 
+#pragma mark bluetooth keys
+#define jbFLIPX @"flipX"
+#define jbROTATION @"rotation"
+
 #define PTM_RATIO 32.f
 #define HERO_MAXIMUMSPEED 20.f
 #endif

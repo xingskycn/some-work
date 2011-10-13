@@ -32,6 +32,7 @@
 @property(nonatomic, retain)NSMutableDictionary* spawnPoints;
 @property(nonatomic, assign)JBTavern *tavern;
 @property(assign)CGSize mapSize;
+@property (assign) bool isServer;
 
 +(CCScene *) scene;
 

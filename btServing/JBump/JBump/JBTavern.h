@@ -13,9 +13,14 @@
 
 @class JBHero;
 
-@interface JBTavern : NSObject <JBMultiplayerAdapterGameDelegate>
+@interface JBTavern : NSObject <JBMultiplayerAdapterGameDelegate> {
+    int lastHeroPackageNumber;
+    int lastEntityPackageNumber;
+}
 
 @property (retain, nonatomic)NSMutableDictionary *heroesInTavern;
+@property (retain, nonatomic)NSMutableDictionary *entitiesInTavern;
+
 @property (retain, nonatomic)JBHero *localPlayer;
 @property (assign, nonatomic)JBMultiplayerAdapter *multiplayerAdapter;
 @property (assign, nonatomic)JBGameLayer *gameLayer;
@@ -31,4 +36,7 @@
 - (void)player:(char)aPlayerID changedPosition:(CGPoint)position velocityX:(float)x velocityY:(float)y forceX:(float)forceX forceY:(float)forceY withPackageNR:(int)packageNR;
 - (void)Player:(char)aPlayerID isDead:(bool)isDead;
 - (void)updateBallWithPositionx:(CGPoint)position velocityX:(float)x andVelocityY:(float)y;
+
+- (void)setAllEntitiesInWorld:(NSArray*)allEntities withPackageNumber:(int)packageNumber;
+- (void)setAllHeroSpritesInWorld:(NSArray*)allSprites withPackageNumber:(int)packageNumber;
 @end
