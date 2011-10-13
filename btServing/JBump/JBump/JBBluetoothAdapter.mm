@@ -255,6 +255,20 @@
 	}
 }
 
+- (void)sendUserInput:(NSString *)inputs
+{
+    NSString* sendString = 
+	[NSString stringWithFormat:	@"|SUI:%@",inputs];
+	
+	NSData* sendData = [sendString dataUsingEncoding:NSUTF8StringEncoding];
+	if (self.activePeer) {
+		[self.gameSession sendData:sendData
+						   toPeers:[NSArray arrayWithObject:self.activePeer] 
+					  withDataMode:GKSendDataUnreliable 
+							 error:nil];
+	}
+}
+
 - (void)sendPlayer
 {
     int length = [self.tavern.heroesInTavern allKeys].count*(3*sizeof(float)+sizeof(int)+sizeof(int))+sizeof(int);
@@ -277,23 +291,6 @@
         ((float*)sendField)[index]=0;
         index++;
     }
-    
-    /*
-    
-    JBHero* player = self.tavern.localPlayer;
-    
-	void* sendField = malloc(sizeof(int)+sizeof(short)*2+sizeof(char)*2+sizeof(short)*2);
-    int packageNr = self.tavern.localPlayer.packageNr++;
- 	((int*)sendField)[0]=packageNr<<8;
-	((char*)sendField)[0]= self.tavern.localPlayer.playerID;
-	((short *)sendField)[2]=player.body->GetWorldCenter().x*PTM_RATIO;
-	((short *)sendField)[3]=player.body->GetWorldCenter().y*PTM_RATIO;
-	((char *)sendField)[8]=player.body->GetLinearVelocity().x*126.f/HERO_MAXIMUMSPEED;
-	((char *)sendField)[9]=player.body->GetLinearVelocity().y*126.f/HERO_MAXIMUMSPEED;
-    ((short *)sendField)[5]=player.force.x*15;
-    ((short *)sendField)[6]=player.force.y*15;
-    
-    */
     
 	NSData* sendData = [NSData dataWithBytesNoCopy:sendField length:length freeWhenDone:YES];
 	
@@ -721,6 +718,18 @@ progressDelegate:(id<JBProgressDelegate>)pDelegate
     return TRUE;
 }
 
+- (BOOL)handleReceiveUserInput:(NSString *)inputString
+{
+    if ([inputString hasPrefix:@"|SUI:"]) {
+        NSString* announcement = [inputString substringWithRange:NSMakeRange(5,inputString.length-5)];
+        NSArray* parts = [announcement componentsSeparatedByString:@"|"];
+        int playerID = [[parts objectAtIndex:0] intValue];
+        NSString* inputs = [parts objectAtIndex:1];
+        return TRUE;
+	}else {
+		return FALSE;
+	}
+}
 
 - (void)receiveData:(NSData *)data fromPeer:(NSString *)peer inSession: (GKSession *)session context:(void *)context {
     NSString* inputString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
