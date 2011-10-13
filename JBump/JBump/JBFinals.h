@@ -101,6 +101,8 @@
 #define jbBRUSH_ASSEMBLYLEFT @"assemblyleft"
 #define jbBRUSH_ASSEMBLYRIGHT @"assembleright"
 #define jbBRUSH_HORIZONTAL_PLATFORM @"horizontal platform"
+#define jBBRUSH_GOALLINE_TEAM1 @"goalline_team1"
+#define jBBRUSH_GOALLINE_TEAM2 @"goalline_team2"
 
 #pragma mark Map Creator Entities
 #define jbENTITY_BODYTYPE_GHOST @"ghost"

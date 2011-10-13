@@ -33,6 +33,7 @@
 		6685DCD814434760009C2024 /* ball_05.png in Resources */ = {isa = PBXBuildFile; fileRef = 6685DCD21443475F009C2024 /* ball_05.png */; };
 		6685DCD914434760009C2024 /* ball_06.png in Resources */ = {isa = PBXBuildFile; fileRef = 6685DCD31443475F009C2024 /* ball_06.png */; };
 		668C135E144644B100E62E79 /* JBProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 668C135D144644B100E62E79 /* JBProgressView.m */; };
+		669C30A914471EC100E5F8CA /* ball_spawner.png in Resources */ = {isa = PBXBuildFile; fileRef = 669C30A714471EC100E5F8CA /* ball_spawner.png */; };
 		669D047014427B0000ED3B40 /* island.png in Resources */ = {isa = PBXBuildFile; fileRef = 669D046F14427B0000ED3B40 /* island.png */; };
 		66E141CF1442173600F47D83 /* JBMapCreatorViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 66E141CE1442173600F47D83 /* JBMapCreatorViewController.mm */; };
 		66E141D21442175700F47D83 /* JBLineSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E141D11442175700F47D83 /* JBLineSprite.m */; };
@@ -277,6 +278,7 @@
 		6685DCD31443475F009C2024 /* ball_06.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ball_06.png; sourceTree = "<group>"; };
 		668C135C144644B100E62E79 /* JBProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBProgressView.h; sourceTree = "<group>"; };
 		668C135D144644B100E62E79 /* JBProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBProgressView.m; sourceTree = "<group>"; };
+		669C30A714471EC100E5F8CA /* ball_spawner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ball_spawner.png; sourceTree = "<group>"; };
 		669D046F14427B0000ED3B40 /* island.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = island.png; sourceTree = "<group>"; };
 		66E141CD1442173600F47D83 /* JBMapCreatorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBMapCreatorViewController.h; sourceTree = "<group>"; };
 		66E141CE1442173600F47D83 /* JBMapCreatorViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = JBMapCreatorViewController.mm; sourceTree = "<group>"; };
@@ -717,6 +719,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		669C30A414471B0300E5F8CA /* maps */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = maps;
+			sourceTree = "<group>";
+		};
 		66E141CB144215E700F47D83 /* MapCreator */ = {
 			isa = PBXGroup;
 			children = (
@@ -862,6 +871,7 @@
 		9E67F6771440723D000ED8F0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				669C30A414471B0300E5F8CA /* maps */,
 				66E141E4144243C000F47D83 /* brush */,
 				9EE890C81441D827002099FA /* enteties */,
 				9E8819CE1440F6DE00A4E421 /* chars */,
@@ -1412,6 +1422,7 @@
 		9EE890C81441D827002099FA /* enteties */ = {
 			isa = PBXGroup;
 			children = (
+				669C30A714471EC100E5F8CA /* ball_spawner.png */,
 				6685DCCE1443475F009C2024 /* ball_01.png */,
 				6685DCCF1443475F009C2024 /* ball_02.png */,
 				6685DCD01443475F009C2024 /* ball_03.png */,
@@ -1553,6 +1564,7 @@
 				6683AA9C14438E5E005D6A22 /* brush_7.png in Resources */,
 				6683AA9D14438E5E005D6A22 /* brush_8.png in Resources */,
 				6683AA9E14438E5E005D6A22 /* brush_9.png in Resources */,
+				669C30A914471EC100E5F8CA /* ball_spawner.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

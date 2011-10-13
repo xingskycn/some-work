@@ -116,7 +116,7 @@ static NSString *filePath = @"maps";
                                                 CGImageGetColorSpace(imageRef),
                                                 CGImageGetBitmapInfo(imageRef));
     
-    CGContextSetInterpolationQuality(bitmap, kCGInterpolationHigh);
+    CGContextSetInterpolationQuality(bitmap, kCGInterpolationNone);
     CGContextDrawImage(bitmap, thumbRect, imageRef);
     CGImageRef thumbnailRef = CGBitmapContextCreateImage(bitmap);
     UIImage *thumbnail = [UIImage imageWithCGImage:thumbnailRef];

@@ -124,10 +124,10 @@ static NSString *filePath = @"brushes";
     NSMutableDictionary *brush = [NSMutableDictionary dictionary];
     
     UIImage *brushImage = [UIImage imageNamed:@"brush_1.png"];
-    [brush setValue:jbBRUSH_SOLID forKey:jbID];
+    [brush setValue:jBBRUSH_GOALLINE_TEAM1 forKey:jbID];
     [brush setValue:brushImage forKey:jbTHUMBNAIL];
-    [brush setValue:@"concrete" forKey:jbNAME];
-    [brush setValue:@"stops move" forKey:jbFURTHER];
+    [brush setValue:@"goal line" forKey:jbNAME];
+    [brush setValue:@"team 1" forKey:jbFURTHER];
     [brush setValue:[NSNumber numberWithFloat:0.4f] forKey:jbFRICTION];
     [brush setValue:[NSNumber numberWithFloat:0.0f] forKey:jbRESTITUTION];
     [brush setValue:[NSNumber numberWithFloat:1.f] forKey:jbRED];
@@ -150,10 +150,10 @@ static NSString *filePath = @"brushes";
     [JBBrushManager saveNewBrush:brush thumbnail:brushImage];
     
     brushImage = [UIImage imageNamed:@"brush_3.png"];
-    [brush setValue:jbBRUSH_ICE forKey:jbID];
+    [brush setValue:jBBRUSH_GOALLINE_TEAM2 forKey:jbID];
     [brush setValue:brushImage forKey:jbTHUMBNAIL];
-    [brush setValue:@"ice" forKey:jbNAME];
-    [brush setValue:@"dont slip!" forKey:jbFURTHER];
+    [brush setValue:@"goal line" forKey:jbNAME];
+    [brush setValue:@"team 2" forKey:jbFURTHER];
     [brush setValue:[NSNumber numberWithFloat:0.4f] forKey:jbFRICTION];
     [brush setValue:[NSNumber numberWithFloat:0.0f] forKey:jbRESTITUTION];
     [brush setValue:[NSNumber numberWithFloat:0.f] forKey:jbRED];
@@ -161,7 +161,8 @@ static NSString *filePath = @"brushes";
     [brush setValue:[NSNumber numberWithFloat:1.f] forKey:jbBLUE];
     [brush setValue:[NSNumber numberWithFloat:1.f] forKey:jbALPHA];
     [JBBrushManager saveNewBrush:brush thumbnail:brushImage];
-    
+
+    /*
     brushImage = [UIImage imageNamed:@"brush_4.png"];
     [brush setValue:jbBRUSH_DEATH forKey:jbID];
     [brush setValue:brushImage forKey:jbTHUMBNAIL];
@@ -174,7 +175,8 @@ static NSString *filePath = @"brushes";
     [brush setValue:[NSNumber numberWithFloat:.5f] forKey:jbBLUE];
     [brush setValue:[NSNumber numberWithFloat:1.f] forKey:jbALPHA];
     [JBBrushManager saveNewBrush:brush thumbnail:brushImage];
-    
+ */
+    /*
     brushImage = [UIImage imageNamed:@"brush_5.png"];
     [brush setValue:jbBRUSH_DOORLEFT forKey:jbID];
     [brush setValue:brushImage forKey:jbTHUMBNAIL];
@@ -187,12 +189,14 @@ static NSString *filePath = @"brushes";
     [brush setValue:[NSNumber numberWithFloat:1.f] forKey:jbBLUE];
     [brush setValue:[NSNumber numberWithFloat:1.f] forKey:jbALPHA];
     [JBBrushManager saveNewBrush:brush thumbnail:brushImage];
+    */
+    
     
     brushImage = [UIImage imageNamed:@"brush_6.png"];
-    [brush setValue:jbBRUSH_DOORRIGHT forKey:jbID];
+    [brush setValue:jbBRUSH_HORIZONTAL_PLATFORM forKey:jbID];
     [brush setValue:brushImage forKey:jbTHUMBNAIL];
-    [brush setValue:@"exit only" forKey:jbNAME];
-    [brush setValue:@"heros can pass from right" forKey:jbFURTHER];
+    [brush setValue:@"platform" forKey:jbNAME];
+    [brush setValue:@"horizontal platform" forKey:jbFURTHER];
     [brush setValue:[NSNumber numberWithFloat:0.4f] forKey:jbFRICTION];
     [brush setValue:[NSNumber numberWithFloat:0.0f] forKey:jbRESTITUTION];
     [brush setValue:[NSNumber numberWithFloat:0.f] forKey:jbRED];
@@ -200,7 +204,7 @@ static NSString *filePath = @"brushes";
     [brush setValue:[NSNumber numberWithFloat:0.5f] forKey:jbBLUE];
     [brush setValue:[NSNumber numberWithFloat:1.f] forKey:jbALPHA];
     [JBBrushManager saveNewBrush:brush thumbnail:brushImage];
-    
+    /*
     brushImage = [UIImage imageNamed:@"brush_7.png"];
     [brush setValue:jbBRUSH_ASSEMBLYLEFT forKey:jbID];
     [brush setValue:brushImage forKey:jbTHUMBNAIL];
@@ -213,7 +217,9 @@ static NSString *filePath = @"brushes";
     [brush setValue:[NSNumber numberWithFloat:0.f] forKey:jbBLUE];
     [brush setValue:[NSNumber numberWithFloat:1.f] forKey:jbALPHA];
     [JBBrushManager saveNewBrush:brush thumbnail:brushImage];
+    */
     
+    /*
     brushImage = [UIImage imageNamed:@"brush_8.png"];
     [brush setValue:jbBRUSH_ASSEMBLYRIGHT forKey:jbID];
     [brush setValue:brushImage forKey:jbTHUMBNAIL];
@@ -226,12 +232,13 @@ static NSString *filePath = @"brushes";
     [brush setValue:[NSNumber numberWithFloat:0.f] forKey:jbBLUE];
     [brush setValue:[NSNumber numberWithFloat:1.f] forKey:jbALPHA];
     [JBBrushManager saveNewBrush:brush thumbnail:brushImage];
+    */
     
     brushImage = [UIImage imageNamed:@"brush_9.png"];
-    [brush setValue:jbBRUSH_HORIZONTAL_PLATFORM forKey:jbID];
+    [brush setValue:jbBRUSH_SOLID forKey:jbID];
     [brush setValue:brushImage forKey:jbTHUMBNAIL];
-    [brush setValue:@"horizontal platform" forKey:jbNAME];
-    [brush setValue:@"passable from bottom" forKey:jbFURTHER];
+    [brush setValue:@"solid" forKey:jbNAME];
+    [brush setValue:@"concrete" forKey:jbFURTHER];
     [brush setValue:[NSNumber numberWithFloat:0.4f] forKey:jbFRICTION];
     [brush setValue:[NSNumber numberWithFloat:0.0f] forKey:jbRESTITUTION];
     [brush setValue:[NSNumber numberWithFloat:.8f] forKey:jbRED];
