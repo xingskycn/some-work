@@ -26,6 +26,7 @@
 
 #import "JBTavern.h"
 
+
 static JBHero* player;
 
 class MyContactListener : public b2ContactListener {
@@ -58,7 +59,7 @@ public:
                                 float forceX;
                                 if (worldManifold.normal.x!=0) {
                                     forceX = worldManifold.normal.x;
-                                    forceX = forceX/fabs(forceX)*1000;
+                                    forceX = forceX/fabs(forceX)*500;
                                 }
                                 
                                 entity.body->ApplyForce(b2Vec2(forceX, 1000), entity.body->GetWorldCenter());
@@ -208,7 +209,7 @@ public:
 @implementation JBGameLayer
 
 @synthesize gameViewController,spawnPoints;
-@synthesize tavern;
+@synthesize tavern,mapSize;
 
 +(CCScene *) scene
 {
@@ -314,6 +315,8 @@ public:
     groundBox.SetAsEdge(b2Vec2(map.arenaImage.size.width/PTM_RATIO,map.arenaImage.size.height/PTM_RATIO), b2Vec2(map.arenaImage.size.width/PTM_RATIO,0));
     groundBody->CreateFixture(&groundBox,0);
     
+    self.mapSize = map.arenaImage.size;
+    
     for (NSDictionary* setting in map.settings) {
         if ([[setting objectForKey:jbID] isEqualToString:jbMAPSETTINGS_SOCCER]&&[[setting objectForKey:jbMAPSETTINGS_DATA] boolValue]) {
             [self insertBallAtPosition:CGPointMake(0, 0)];
@@ -357,6 +360,18 @@ public:
     if (player) {
         float newX = player.sprite.position.x - [[CCDirector sharedDirector] winSize].width/2;
         float newY = player.sprite.position.y - [[CCDirector sharedDirector] winSize].height/2;
+        if (newX<-self.mapSize.width/2) {
+            newX=-self.mapSize.width/2;
+        }
+        if (newY<-self.mapSize.height/2) {
+            newY=-self.mapSize.height/2;
+        }
+        if (newX+[[CCDirector sharedDirector] winSize].width>self.mapSize.width/2) {
+            newX = self.mapSize.width/2-[[CCDirector sharedDirector] winSize].width;
+        }
+        if (newY+[[CCDirector sharedDirector] winSize].height>self.mapSize.height) {
+            newY = self.mapSize.height/2- [[CCDirector sharedDirector] winSize].height;
+        }
         
         [self.camera setCenterX:newX centerY:newY centerZ:0];
         [self.camera setEyeX:newX eyeY:newY eyeZ:1];
@@ -456,9 +471,10 @@ public:
     for (JBEntity* entity in objects) {
         entity.sprite = [CCSprite spriteWithFile:entity.imageLocal];
         entity.sprite.position = entity.position;
-        [self addChild:entity.sprite];
+        
         
         if ([entity.bodyType isEqualToString:jbENTITY_BODYTYPE_DENSE]) {
+           [self addChild:entity.sprite];
             b2BodyDef bodyDef;
             bodyDef.type = b2_dynamicBody;
             
@@ -489,6 +505,9 @@ public:
         }
         
         if ([entity.ID hasPrefix:@"spawnpoint"]) {
+#ifdef __jbDEBUG_GAMEVIEW
+            [self addChild:entity.sprite];
+#endif
             if (![self.spawnPoints objectForKey:entity.ID]) {
                 [self.spawnPoints setObject:[NSMutableArray array] forKey:entity.ID];
             }
