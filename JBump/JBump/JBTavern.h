@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "JBMultiplayerAdapter.h"
 #import "JBGameLayer.h"
+#import "JBEntity.h"
 
 @class JBHero;
 
@@ -18,6 +19,7 @@
 @property (retain, nonatomic)JBHero *localPlayer;
 @property (assign, nonatomic)JBMultiplayerAdapter *multiplayerAdapter;
 @property (assign, nonatomic)JBGameLayer *gameLayer;
+@property (assign, nonatomic)JBEntity* ball;
 
 - (void)addNewPlayer:(JBHero*)aPlayer;
 - (JBHero*)getPlayerWithName:(NSString*)aPlayerName;

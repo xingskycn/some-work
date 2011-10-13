@@ -15,6 +15,8 @@
 @synthesize shape;
 @synthesize density;
 @synthesize bodyType;
+@synthesize body;
+@synthesize shootable;
 
 - (id)initWithEntityDictionary:(NSDictionary*)entityDict {
     self = [super init];

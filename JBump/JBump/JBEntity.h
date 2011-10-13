@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #import "JBMapItem.h"
-
+#import "Box2D.h"
 @interface JBEntity : JBMapItem
 
 @property (assign)CGPoint position;
@@ -17,6 +17,8 @@
 @property (assign)float density;
 @property (nonatomic, retain) NSString* shape;
 @property (nonatomic, retain) NSString* bodyType;
+@property (assign)b2Body *body;
+@property (assign) BOOL shootable;
 
 - (id)initWithEntityDictionary:(NSDictionary*)entityDict;
 

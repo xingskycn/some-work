@@ -15,6 +15,7 @@
 @synthesize localPlayer;
 @synthesize multiplayerAdapter;
 @synthesize gameLayer;
+@synthesize ball;
 
 - (id)init {
     self = [super init];

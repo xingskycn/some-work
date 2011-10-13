@@ -237,8 +237,8 @@
 		9E8819D91440F71900A4E421 /* scel_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E8819D31440F71900A4E421 /* scel_1.png */; };
 		9E8819DA1440F71900A4E421 /* scel_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E8819D41440F71900A4E421 /* scel_2.png */; };
 		9E8819DD144109FE00A4E421 /* JBSettingsViewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E8819DC144109FE00A4E421 /* JBSettingsViewTableViewCell.m */; };
-		9EE890C41441D0C6002099FA /* JBEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EE890C31441D0C6002099FA /* JBEntity.m */; };
-		9EE890C71441D0D3002099FA /* JBEntityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EE890C61441D0D3002099FA /* JBEntityManager.m */; };
+		9EE890C41441D0C6002099FA /* JBEntity.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9EE890C31441D0C6002099FA /* JBEntity.mm */; };
+		9EE890C71441D0D3002099FA /* JBEntityManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9EE890C61441D0D3002099FA /* JBEntityManager.mm */; };
 		9EE890CA1441D85B002099FA /* entity_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EE890C91441D85B002099FA /* entity_1.png */; };
 		9EE890CE1441DEB7002099FA /* JBMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EE890CD1441DEB7002099FA /* JBMap.m */; };
 		9EE890D11441DEC3002099FA /* JBMapManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EE890D01441DEC3002099FA /* JBMapManager.m */; };
@@ -682,9 +682,9 @@
 		9E8819DB144109FE00A4E421 /* JBSettingsViewTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBSettingsViewTableViewCell.h; sourceTree = "<group>"; };
 		9E8819DC144109FE00A4E421 /* JBSettingsViewTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBSettingsViewTableViewCell.m; sourceTree = "<group>"; };
 		9EE890C21441D0C6002099FA /* JBEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBEntity.h; sourceTree = "<group>"; };
-		9EE890C31441D0C6002099FA /* JBEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBEntity.m; sourceTree = "<group>"; };
+		9EE890C31441D0C6002099FA /* JBEntity.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = JBEntity.mm; sourceTree = "<group>"; };
 		9EE890C51441D0D3002099FA /* JBEntityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBEntityManager.h; sourceTree = "<group>"; };
-		9EE890C61441D0D3002099FA /* JBEntityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBEntityManager.m; sourceTree = "<group>"; };
+		9EE890C61441D0D3002099FA /* JBEntityManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = JBEntityManager.mm; sourceTree = "<group>"; };
 		9EE890C91441D85B002099FA /* entity_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = entity_1.png; sourceTree = "<group>"; };
 		9EE890CC1441DEB7002099FA /* JBMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBMap.h; sourceTree = "<group>"; };
 		9EE890CD1441DEB7002099FA /* JBMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBMap.m; sourceTree = "<group>"; };
@@ -1398,9 +1398,9 @@
 				66E141DF1442344700F47D83 /* JBMapItem.h */,
 				66E141E01442344700F47D83 /* JBMapItem.m */,
 				9EE890C21441D0C6002099FA /* JBEntity.h */,
-				9EE890C31441D0C6002099FA /* JBEntity.m */,
+				9EE890C31441D0C6002099FA /* JBEntity.mm */,
 				9EE890C51441D0D3002099FA /* JBEntityManager.h */,
-				9EE890C61441D0D3002099FA /* JBEntityManager.m */,
+				9EE890C61441D0D3002099FA /* JBEntityManager.mm */,
 				66E141D914421CA300F47D83 /* JBBrush.h */,
 				66E141DA14421CA300F47D83 /* JBBrush.m */,
 				66E141DC14421CC400F47D83 /* JBBrushManager.h */,
@@ -1709,8 +1709,8 @@
 				9E8819CA1440E82600A4E421 /* JBSkin.m in Sources */,
 				9E8819CD1440EA9D00A4E421 /* JBSkinManager.m in Sources */,
 				9E8819DD144109FE00A4E421 /* JBSettingsViewTableViewCell.m in Sources */,
-				9EE890C41441D0C6002099FA /* JBEntity.m in Sources */,
-				9EE890C71441D0D3002099FA /* JBEntityManager.m in Sources */,
+				9EE890C41441D0C6002099FA /* JBEntity.mm in Sources */,
+				9EE890C71441D0D3002099FA /* JBEntityManager.mm in Sources */,
 				9EE890CE1441DEB7002099FA /* JBMap.m in Sources */,
 				9EE890D11441DEC3002099FA /* JBMapManager.m in Sources */,
 				66E141CF1442173600F47D83 /* JBMapCreatorViewController.mm in Sources */,
