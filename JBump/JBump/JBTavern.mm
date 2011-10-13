@@ -81,8 +81,9 @@
     changeH.gameContext=[context mutableCopy];
 }
 
-- (void)player:(char)aPlayerID changedPosition:(CGPoint)position velocityX:(float)x velocityY:(float)y withPackageNR:(int)packageNR {
+- (void)player:(char)aPlayerID changedPosition:(CGPoint)position velocityX:(float)x velocityY:(float)y forceX:(float)forceX forceY:(float)forceY withPackageNR:(int)packageNR {
     JBHero *aPlayer = [self getPlayerWithReference:aPlayerID];
+    aPlayer.force = CGPointMake(forceX, forceY);
     if (aPlayer==nil) {
         NSLog(@"No Player with ID: %i in Tavern", aPlayerID);
         return;

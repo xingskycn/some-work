@@ -33,6 +33,7 @@
 @synthesize isDead;
 @synthesize isDeadSended;
 @synthesize killingPlayerID;
+@synthesize force;
 
 - (id)init {
     self = [super init];
@@ -72,11 +73,13 @@
         jumpForce=1.0f;
         if (body->GetLinearVelocity().y<6.5f) {
             body->ApplyForce(b2Vec2(0, (42*time*60*jumpForce)), body->GetWorldCenter());
+            self.force = CGPointMake(self.force.x, self.force.y+(42*time*60*jumpForce));
         }
            }else {
         jumpForce=jumpForce*exp(log(0.990)*time*1000);
         if (body->GetLinearVelocity().y<6.5f) {
             body->ApplyForce(b2Vec2(0, (42*time*60*jumpForce)), body->GetWorldCenter());
+            self.force = CGPointMake(self.force.x, self.force.y+(42*time*60*jumpForce));
         }
     }
 }
@@ -86,6 +89,7 @@
     
     if (velocity.x>maxLeft) {
         body->ApplyForce(b2Vec2((-10.0f*time*60), 0), body->GetWorldCenter());
+        self.force = CGPointMake(self.force.x+(-10.0f*time*60), self.force.y);
     }
     if (isRight) {
         sprite.flipX=YES;

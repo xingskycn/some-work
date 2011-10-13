@@ -259,16 +259,19 @@
 {
     JBHero* player = self.tavern.localPlayer;
     
-	void* sendField = malloc(sizeof(int)+sizeof(short)*2+sizeof(char)*2);
+	void* sendField = malloc(sizeof(int)+sizeof(short)*2+sizeof(char)*2+sizeof(short)*2);
     int packageNr = self.tavern.localPlayer.packageNr++;
  	((int*)sendField)[0]=packageNr<<8;
 	((char*)sendField)[0]= self.tavern.localPlayer.playerID;
 	((short *)sendField)[2]=player.body->GetWorldCenter().x*PTM_RATIO;
 	((short *)sendField)[3]=player.body->GetWorldCenter().y*PTM_RATIO;
-	((char *)sendField)[8]=player.body->GetLinearVelocity().x*255.f/HERO_MAXIMUMSPEED;
-	((char *)sendField)[9]=player.body->GetLinearVelocity().y*255.f/HERO_MAXIMUMSPEED;
+	((char *)sendField)[8]=player.body->GetLinearVelocity().x*126.f/HERO_MAXIMUMSPEED;
+	((char *)sendField)[9]=player.body->GetLinearVelocity().y*126.f/HERO_MAXIMUMSPEED;
+    ((short *)sendField)[5]=player.force.x*15;
+    ((short *)sendField)[6]=player.force.y*15;
     
-	NSData* sendData = [NSData dataWithBytesNoCopy:sendField length:5*sizeof(float) freeWhenDone:YES];
+    
+	NSData* sendData = [NSData dataWithBytesNoCopy:sendField length:14 freeWhenDone:YES];
 	
 	if (self.activePeer) {
 		[self.gameSession sendData:sendData
@@ -288,8 +291,8 @@
 	((char*)sendField)[0]= [@"ball" hash];
 	((short *)sendField)[2]=ball.body->GetWorldCenter().x*PTM_RATIO;
 	((short *)sendField)[3]=ball.body->GetWorldCenter().y*PTM_RATIO;
-	((char *)sendField)[8]=ball.body->GetLinearVelocity().x*255.f/HERO_MAXIMUMSPEED;
-	((char *)sendField)[9]=ball.body->GetLinearVelocity().y*255.f/HERO_MAXIMUMSPEED;
+	((char *)sendField)[8]=ball.body->GetLinearVelocity().x*126.f/HERO_MAXIMUMSPEED;
+	((char *)sendField)[9]=ball.body->GetLinearVelocity().y*126.f/HERO_MAXIMUMSPEED;
     
 	NSData* sendData = [NSData dataWithBytesNoCopy:sendField length:5*sizeof(float) freeWhenDone:YES];
 	
@@ -552,13 +555,15 @@ progressDelegate:(id<JBProgressDelegate>)pDelegate
 	unsigned char playerID = ((char *)[data bytes])[0];
 	int packageNr = ((int *)[data bytes])[0]>>8;
 	CGPoint position = CGPointMake(((short *)[data bytes])[2]/PTM_RATIO, ((short *)[data bytes])[3]/PTM_RATIO);
-    float velocityX = ((char *)[data bytes])[8]*HERO_MAXIMUMSPEED/255.f;
-    float velocityY = ((char *)[data bytes])[9]*HERO_MAXIMUMSPEED/255.f;
+    float velocityX = ((char *)[data bytes])[8]*HERO_MAXIMUMSPEED/126.f;
+    float velocityY = ((char *)[data bytes])[9]*HERO_MAXIMUMSPEED/126.f;
+    float forceX = ((short *)[data bytes])[5]/15.;
+    float forceY = ((short *)[data bytes])[6]/15.;
     
     if (playerID == (unsigned char)[@"ball" hash]) {
         [self.tavern updateBallWithPositionx:position velocityX:velocityX andVelocityY:velocityY];
     }else{
-        [self.tavern player:playerID changedPosition:position velocityX:velocityX velocityY:velocityY withPackageNR:packageNr];
+        [self.tavern player:playerID changedPosition:position velocityX:velocityX velocityY:velocityY forceX:(float)forceX forceY:(float)forceY withPackageNR:packageNr];
     }
     
 }
