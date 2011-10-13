@@ -397,7 +397,7 @@ public:
     
     
     if (multiplayer){
-        if (sendCounter>=1) {
+        if (sendCounter>=2) {
             sendCounter=1;
             [self.tavern sendPlayerUpdate];
         } else {
