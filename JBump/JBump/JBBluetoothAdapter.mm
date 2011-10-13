@@ -140,7 +140,7 @@
 	if (self.activePeer) {
 		[self.gameSession sendData:sendData
 						   toPeers:[NSArray arrayWithObject:self.activePeer] 
-					  withDataMode:GKSendDataReliable 
+					  withDataMode:GKSendDataUnreliable 
 							 error:nil];
 	}
 
@@ -260,10 +260,7 @@
     JBHero* player = self.tavern.localPlayer;
     
 	void* sendField = malloc(sizeof(int)+sizeof(short)*2+sizeof(char)*2);
-    int packageNr = self.tavern.localPlayer.packageNr;
-    packageNr++;
-    self.tavern.localPlayer.packageNr=packageNr;
-    NSLog(@"Tavern PackageNr is %i, sended PackageNR is:%i", self.tavern.localPlayer.packageNr, packageNr);
+    int packageNr = self.tavern.localPlayer.packageNr++;
  	((int*)sendField)[0]=packageNr<<8;
 	((char*)sendField)[0]= self.tavern.localPlayer.playerID;
 	((short *)sendField)[2]=player.body->GetWorldCenter().x*PTM_RATIO;
@@ -300,7 +297,7 @@ progressDelegate:(id<JBProgressDelegate>)pDelegate
         NSError* error = nil;
 		[self.gameSession sendData:sendData
 						   toPeers:[NSArray arrayWithObject:self.activePeer] 
-					  withDataMode:GKSendDataUnreliable 
+					  withDataMode:GKSendDataReliable 
 							 error:&error];
     }
     
