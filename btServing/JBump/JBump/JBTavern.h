@@ -39,4 +39,5 @@
 
 - (void)setAllEntitiesInWorld:(NSArray*)allEntities withPackageNumber:(int)packageNumber;
 - (void)setAllHeroSpritesInWorld:(NSArray*)allSprites withPackageNumber:(int)packageNumber;
+- (void)testForBodies;
 @end

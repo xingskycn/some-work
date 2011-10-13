@@ -276,7 +276,7 @@ public:
         
         multiplayer=NO;
         sendCounter=1;
-        self.isServer=YES;
+        self.isServer=NO;
     }
     
     return self;
@@ -327,45 +327,121 @@ public:
         }
     }
     
-    [self insertHeroAtPosition:CGPointMake(0, 0)];
+    [self insertHero:nil atPosition:CGPointMake(0, 0)];
     
     [self setupSprites:[self.gameViewController.multiplayerAdapter.tavern getAllPlayers]];
 }
 
 - (void)tick:(ccTime)deltaTime{
-    player.onGround=NO;
-    int32 velocityIterations = 8;
-	int32 positionIterations = 1;
-    if (self.isServer) {
-        world->Step(deltaTime, velocityIterations, positionIterations);
+    
+    for(NSString* heroID in [tavern.heroesInTavern allKeys]) {
+        if (self.tavern.localPlayer.playerID>[heroID intValue]) {
+            //[self.tavern.multiplayerAdapter sendBall];
+            self.isServer=false;
+        } else {
+            self.isServer = YES;
+        }
     }
-	
-    
-	for (b2Body* body = world->GetBodyList(); body; body = body->GetNext())
-	{
-		if (body->GetUserData() != NULL) {
-            if ([(NSObject*)body->GetUserData() isKindOfClass:[JBBrush class]]) {
-                continue;
-            }
-			CCSprite *myActor = (CCSprite*)body->GetUserData();
-			myActor.position = CGPointMake( body->GetPosition().x * PTM_RATIO,
-                                            body->GetPosition().y * PTM_RATIO);
-            if(player.sprite!=myActor){
-                myActor.rotation = -1 * CC_RADIANS_TO_DEGREES(body->GetAngle());
-            }
-            if ([(NSObject*)myActor.userData isKindOfClass:[JBHero class]]) {
-                JBHero *checkHero = (JBHero*)myActor.userData;
-                if (checkHero.isDead&&!checkHero.isDeadSended) {
-                    [self.tavern Player:checkHero.playerID isDead:YES];
-                    checkHero.isDeadSended=YES;
+
+    if (self.isServer) {
+        [tavern testForBodies];
+        
+        player.onGround=NO;
+        int32 velocityIterations = 8;
+        int32 positionIterations = 1;
+        if (self.isServer) {
+            world->Step(deltaTime, velocityIterations, positionIterations);
+        }
+        
+        
+        for (b2Body* body = world->GetBodyList(); body; body = body->GetNext())
+        {
+            if (body->GetUserData() != NULL) {
+                if ([(NSObject*)body->GetUserData() isKindOfClass:[JBBrush class]]) {
+                    continue;
                 }
-                if (checkHero != player) {
-                    checkHero.body->ApplyForce(b2Vec2(checkHero.force.x,checkHero.force.y), checkHero.body->GetWorldCenter());
+                CCSprite *myActor = (CCSprite*)body->GetUserData();
+                myActor.position = CGPointMake( body->GetPosition().x * PTM_RATIO,
+                                               body->GetPosition().y * PTM_RATIO);
+                if(player.sprite!=myActor){
+                    myActor.rotation = -1 * CC_RADIANS_TO_DEGREES(body->GetAngle());
+                }
+                if ([(NSObject*)myActor.userData isKindOfClass:[JBHero class]]) {
+                    JBHero *checkHero = (JBHero*)myActor.userData;
+                    if (checkHero.isDead&&!checkHero.isDeadSended) {
+                        [self.tavern Player:checkHero.playerID isDead:YES];
+                        checkHero.isDeadSended=YES;
+                    }
+                    if (checkHero != player) {
+                        checkHero.body->ApplyForce(b2Vec2(checkHero.force.x,checkHero.force.y), checkHero.body->GetWorldCenter());
+                    }
+                }
+            }	
+        }
+    
+        
+        player.force = CGPointMake(0,0);
+        
+        if (self.gameViewController.jumpButton.isTouchInside) {
+            [player jump:(float)deltaTime timeOnGround:timePlayerOnGround];
+            player.jumpTouched = YES;
+        }
+        
+        if (self.gameViewController.moveLeftButton.isTouchInside) {
+            [player moveLeft:(float)deltaTime];
+        }
+        
+        if (self.gameViewController.moveRightButton.isTouchInside) {
+            [player moveRight:(float)deltaTime];
+        }
+        if (!player.onGround) {
+            if (player.sprite.rotation<180) {
+                //player.sprite.rotation=player.sprite.rotation/1.14;
+                player.desiredRotation=0;
+            }
+        }
+        
+        [player.sprite setRotation:player.desiredRotation+((player.sprite.rotation-player.desiredRotation)/1.14)];
+        
+        if (player.body!=nil&&player.body->GetLinearVelocity().y>6.5f) {
+            player.body->SetLinearVelocity(b2Vec2(player.body->GetLinearVelocity().x, 6.5f));
+        }
+        
+        
+        if (multiplayer){
+            for(NSString* heroID in [tavern.heroesInTavern allKeys]) {
+                if (self.tavern.localPlayer.playerID>[heroID intValue]) {
+                    //[self.tavern.multiplayerAdapter sendBall];
+                    self.isServer=false;
+                } else {
+                    self.isServer = YES;
                 }
             }
-		}	
-	}
-    
+            if (self.isServer){
+                [self.tavern sendPlayerUpdate];
+            } else {
+                int i = 1;
+            }
+            /*
+             if (sendCounter>=1) {
+             sendCounter=1;
+             if (send) {
+             if (tavern.ball.hitGoalLine) {
+             [self resetBall];
+             [self.tavern.multiplayerAdapter sendBall];
+             self.tavern.ball.needsSend = FALSE;
+             }
+             if (tavern.ball.needsSend) {
+             [self.tavern.multiplayerAdapter sendBall];
+             self.tavern.ball.needsSend = FALSE;
+             }
+             }
+             } else {
+             sendCounter++;
+             }*/
+        }
+    }
+
     if (player) {
         float newX = player.sprite.position.x - [[CCDirector sharedDirector] winSize].width/2;
         float newY = player.sprite.position.y - [[CCDirector sharedDirector] winSize].height/2;
@@ -384,75 +460,6 @@ public:
         
         [self.camera setCenterX:newX centerY:newY centerZ:0];
         [self.camera setEyeX:newX eyeY:newY eyeZ:1];
-        
-        if(player.onGround)
-        {
-            timePlayerOnGround +=(float)deltaTime;
-        }else{
-            timePlayerOnGround =0;
-        }
-        if (player.isDead) {
-            [self resetOwnPositionAfterDeath];
-        }
-    }
-    
-    player.force = CGPointMake(0,0);
-    
-    if (self.gameViewController.jumpButton.isTouchInside) {
-        [player jump:(float)deltaTime timeOnGround:timePlayerOnGround];
-        player.jumpTouched = YES;
-    }
-    
-    if (self.gameViewController.moveLeftButton.isTouchInside) {
-        [player moveLeft:(float)deltaTime];
-    }
-    
-    if (self.gameViewController.moveRightButton.isTouchInside) {
-        [player moveRight:(float)deltaTime];
-    }
-    if (!player.onGround) {
-        if (player.sprite.rotation<180) {
-            //player.sprite.rotation=player.sprite.rotation/1.14;
-            player.desiredRotation=0;
-        }
-    }
-    
-    [player.sprite setRotation:player.desiredRotation+((player.sprite.rotation-player.desiredRotation)/1.14)];
-    
-    if (player.body!=nil&&player.body->GetLinearVelocity().y>6.5f) {
-        player.body->SetLinearVelocity(b2Vec2(player.body->GetLinearVelocity().x, 6.5f));
-    }
-    
-    
-    if (multiplayer){
-        for(NSString* heroID in [tavern.heroesInTavern allKeys]) {
-            if (self.tavern.localPlayer.playerID>[heroID intValue]) {
-                //[self.tavern.multiplayerAdapter sendBall];
-                self.isServer=false;
-            }
-        }
-        if (self.isServer){
-            [self.tavern sendPlayerUpdate];
-        } else {
-            int i = 1;
-        }
-        /*
-        if (sendCounter>=1) {
-            sendCounter=1;
-            if (send) {
-                if (tavern.ball.hitGoalLine) {
-                    [self resetBall];
-                    [self.tavern.multiplayerAdapter sendBall];
-                    self.tavern.ball.needsSend = FALSE;
-                }
-                if (tavern.ball.needsSend) {
-                    [self.tavern.multiplayerAdapter sendBall];
-                    self.tavern.ball.needsSend = FALSE;
-                }
-            }
-        } else {
-            sendCounter++;
-        }*/
     }
 }
 
@@ -583,27 +590,30 @@ public:
     }
 }
 
-- (void)insertHeroAtPosition:(CGPoint)position
+- (void)insertHero:(JBHero *)hero atPosition:(CGPoint)position
 {
-    if (self.tavern!=nil) {
-        player = self.tavern.localPlayer;
-        multiplayer=YES;
-    } else {
-        player = [[JBHero alloc] init];
-        player.name = [[NSUserDefaults standardUserDefaults] objectForKey:jbUSERDEFAULTS_PLAYER_NAME];
-        player.skinID = [[NSUserDefaults standardUserDefaults] objectForKey:jbUSERDEFAULTS_SKIN];
+    if (!hero) {
+        if (self.tavern!=nil) {
+            hero = self.tavern.localPlayer;
+            multiplayer=YES;
+        } else {
+            hero = [[JBHero alloc] init];
+            hero.name = [[NSUserDefaults standardUserDefaults] objectForKey:jbUSERDEFAULTS_PLAYER_NAME];
+            hero.skinID = [[NSUserDefaults standardUserDefaults] objectForKey:jbUSERDEFAULTS_SKIN];
+        }
     }
-    JBSkin *heroSkin = [JBSkinManager getSkinWithID:player.skinID];
-    player.sprite = [CCSprite spriteWithFile:heroSkin.imageLocation];
-    player.sprite.scale=(30.0/player.sprite.textureRect.size.height);
-    player.sprite.userData=player;
-    [self addChild:player.sprite z:0 tag:[player.name hash]];
+    
+    JBSkin *heroSkin = [JBSkinManager getSkinWithID:hero.skinID];
+    hero.sprite = [CCSprite spriteWithFile:heroSkin.imageLocation];
+    hero.sprite.scale=(30.0/hero.sprite.textureRect.size.height);
+    hero.sprite.userData=hero;
+    [self addChild:hero.sprite z:0 tag:[hero.name hash]];
     
     b2BodyDef bodyDef;
 	bodyDef.type = b2_dynamicBody;
     
 	bodyDef.position.Set(position.x/PTM_RATIO, position.y/PTM_RATIO);
-	bodyDef.userData = player.sprite;
+	bodyDef.userData = hero.sprite;
 	b2Body *body = world->CreateBody(&bodyDef);
 	
     b2CircleShape shape;
@@ -617,9 +627,9 @@ public:
     fixtureDef.restitution = 0.050f;
 	body->CreateFixture(&fixtureDef);
     
-    player.sprite.userData = player;
+    hero.sprite.userData = hero;
     
-    player.body=body;
+    hero.body=body;
 }
 
 - (void)setPositionForPlayer:(JBHero*)aPlayer withPosition:(CGPoint)position velocityX:(float)x andVelocityY:(float)y {

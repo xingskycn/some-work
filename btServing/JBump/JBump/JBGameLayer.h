@@ -39,7 +39,7 @@
 - (void)loadMap:(JBMap*)map;
 - (void)insertCurves:(NSArray *)objects;
 - (void)insertEntities:(NSArray *)objects;
-- (void)insertHeroAtPosition:(CGPoint)position;
+- (void)insertHero:(JBHero *)hero atPosition:(CGPoint)position;
 
 - (void)resetJumpForce;
 - (void)resetOwnPositionAfterDeath;

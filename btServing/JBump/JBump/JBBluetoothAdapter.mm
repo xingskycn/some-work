@@ -271,12 +271,13 @@
 
 - (void)sendPlayer
 {
-    int length = [self.tavern.heroesInTavern allKeys].count*(3*sizeof(float)+sizeof(int)+sizeof(int))+sizeof(int);
+    int length = [self.tavern.heroesInTavern allKeys].count*(3*sizeof(float)+sizeof(int)+sizeof(int)+sizeof(int))+sizeof(int);
     void* sendField = malloc(length);
     int packageNr = self.tavern.localPlayer.packageNr++;
  	((int*)sendField)[0]=packageNr<<8;
     int index = 1;
-    for (JBHero* hero in [self.tavern.heroesInTavern allValues]) {
+    NSArray *allHeroes = [[[self.tavern.heroesInTavern allValues] retain] autorelease];
+    for (JBHero* hero in allHeroes) {
         ((short*)sendField)[2*index]=hero.playerID;
         ((short*)sendField)[2*index+1]=hero.sprite.flipX;
         index++;
