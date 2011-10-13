@@ -17,6 +17,8 @@
 @synthesize bodyType;
 @synthesize body;
 @synthesize shootable;
+@synthesize shottime;
+@synthesize needsSend;
 
 - (id)initWithEntityDictionary:(NSDictionary*)entityDict {
     self = [super init];

@@ -19,7 +19,7 @@
 @property (retain, nonatomic)JBHero *localPlayer;
 @property (assign, nonatomic)JBMultiplayerAdapter *multiplayerAdapter;
 @property (assign, nonatomic)JBGameLayer *gameLayer;
-@property (assign, nonatomic)JBEntity* ball;
+@property (retain, nonatomic)JBEntity* ball;
 
 - (void)addNewPlayer:(JBHero*)aPlayer;
 - (JBHero*)getPlayerWithName:(NSString*)aPlayerName;

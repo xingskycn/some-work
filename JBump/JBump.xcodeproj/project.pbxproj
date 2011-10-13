@@ -38,8 +38,8 @@
 		66E141D21442175700F47D83 /* JBLineSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E141D11442175700F47D83 /* JBLineSprite.m */; };
 		66E141D51442177400F47D83 /* JBMapCreatorLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 66E141D41442177400F47D83 /* JBMapCreatorLayer.mm */; };
 		66E141D8144217A800F47D83 /* JBTouchForwardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E141D7144217A800F47D83 /* JBTouchForwardView.m */; };
-		66E141DB14421CA300F47D83 /* JBBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E141DA14421CA300F47D83 /* JBBrush.m */; };
-		66E141DE14421CC500F47D83 /* JBBrushManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E141DD14421CC400F47D83 /* JBBrushManager.m */; };
+		66E141DB14421CA300F47D83 /* JBBrush.mm in Sources */ = {isa = PBXBuildFile; fileRef = 66E141DA14421CA300F47D83 /* JBBrush.mm */; };
+		66E141DE14421CC500F47D83 /* JBBrushManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 66E141DD14421CC400F47D83 /* JBBrushManager.mm */; };
 		66E141E11442344800F47D83 /* JBMapItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E141E01442344700F47D83 /* JBMapItem.m */; };
 		66E141E31442414C00F47D83 /* cross.png in Resources */ = {isa = PBXBuildFile; fileRef = 66E141E21442414C00F47D83 /* cross.png */; };
 		66E141E6144243CB00F47D83 /* redbrush.png in Resources */ = {isa = PBXBuildFile; fileRef = 66E141E5144243CB00F47D83 /* redbrush.png */; };
@@ -240,8 +240,8 @@
 		9EE890C41441D0C6002099FA /* JBEntity.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9EE890C31441D0C6002099FA /* JBEntity.mm */; };
 		9EE890C71441D0D3002099FA /* JBEntityManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9EE890C61441D0D3002099FA /* JBEntityManager.mm */; };
 		9EE890CA1441D85B002099FA /* entity_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EE890C91441D85B002099FA /* entity_1.png */; };
-		9EE890CE1441DEB7002099FA /* JBMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EE890CD1441DEB7002099FA /* JBMap.m */; };
-		9EE890D11441DEC3002099FA /* JBMapManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EE890D01441DEC3002099FA /* JBMapManager.m */; };
+		9EE890CE1441DEB7002099FA /* JBMap.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9EE890CD1441DEB7002099FA /* JBMap.mm */; };
+		9EE890D11441DEC3002099FA /* JBMapManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9EE890D01441DEC3002099FA /* JBMapManager.mm */; };
 		9EE8910614424D1A002099FA /* JBGameViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9EE8910514424D1A002099FA /* JBGameViewController.mm */; };
 		9EE8910914424D7F002099FA /* JBGameLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9EE8910814424D7E002099FA /* JBGameLayer.mm */; };
 /* End PBXBuildFile section */
@@ -287,9 +287,9 @@
 		66E141D6144217A800F47D83 /* JBTouchForwardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBTouchForwardView.h; sourceTree = "<group>"; };
 		66E141D7144217A800F47D83 /* JBTouchForwardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBTouchForwardView.m; sourceTree = "<group>"; };
 		66E141D914421CA300F47D83 /* JBBrush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBBrush.h; sourceTree = "<group>"; };
-		66E141DA14421CA300F47D83 /* JBBrush.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBBrush.m; sourceTree = "<group>"; };
+		66E141DA14421CA300F47D83 /* JBBrush.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = JBBrush.mm; sourceTree = "<group>"; };
 		66E141DC14421CC400F47D83 /* JBBrushManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBBrushManager.h; sourceTree = "<group>"; };
-		66E141DD14421CC400F47D83 /* JBBrushManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBBrushManager.m; sourceTree = "<group>"; };
+		66E141DD14421CC400F47D83 /* JBBrushManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = JBBrushManager.mm; sourceTree = "<group>"; };
 		66E141DF1442344700F47D83 /* JBMapItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBMapItem.h; sourceTree = "<group>"; };
 		66E141E01442344700F47D83 /* JBMapItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBMapItem.m; sourceTree = "<group>"; };
 		66E141E21442414C00F47D83 /* cross.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cross.png; sourceTree = "<group>"; };
@@ -687,9 +687,9 @@
 		9EE890C61441D0D3002099FA /* JBEntityManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = JBEntityManager.mm; sourceTree = "<group>"; };
 		9EE890C91441D85B002099FA /* entity_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = entity_1.png; sourceTree = "<group>"; };
 		9EE890CC1441DEB7002099FA /* JBMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBMap.h; sourceTree = "<group>"; };
-		9EE890CD1441DEB7002099FA /* JBMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBMap.m; sourceTree = "<group>"; };
+		9EE890CD1441DEB7002099FA /* JBMap.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = JBMap.mm; sourceTree = "<group>"; };
 		9EE890CF1441DEC3002099FA /* JBMapManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBMapManager.h; sourceTree = "<group>"; };
-		9EE890D01441DEC3002099FA /* JBMapManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = JBMapManager.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		9EE890D01441DEC3002099FA /* JBMapManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; lineEnding = 0; path = JBMapManager.mm; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		9EE8910414424D1A002099FA /* JBGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBGameViewController.h; sourceTree = "<group>"; };
 		9EE8910514424D1A002099FA /* JBGameViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = JBGameViewController.mm; sourceTree = "<group>"; };
 		9EE8910714424D7E002099FA /* JBGameLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBGameLayer.h; sourceTree = "<group>"; };
@@ -1402,9 +1402,9 @@
 				9EE890C51441D0D3002099FA /* JBEntityManager.h */,
 				9EE890C61441D0D3002099FA /* JBEntityManager.mm */,
 				66E141D914421CA300F47D83 /* JBBrush.h */,
-				66E141DA14421CA300F47D83 /* JBBrush.m */,
+				66E141DA14421CA300F47D83 /* JBBrush.mm */,
 				66E141DC14421CC400F47D83 /* JBBrushManager.h */,
-				66E141DD14421CC400F47D83 /* JBBrushManager.m */,
+				66E141DD14421CC400F47D83 /* JBBrushManager.mm */,
 			);
 			name = Entities/Brushes;
 			sourceTree = "<group>";
@@ -1436,9 +1436,9 @@
 			children = (
 				66E141CB144215E700F47D83 /* MapCreator */,
 				9EE890CC1441DEB7002099FA /* JBMap.h */,
-				9EE890CD1441DEB7002099FA /* JBMap.m */,
+				9EE890CD1441DEB7002099FA /* JBMap.mm */,
 				9EE890CF1441DEC3002099FA /* JBMapManager.h */,
-				9EE890D01441DEC3002099FA /* JBMapManager.m */,
+				9EE890D01441DEC3002099FA /* JBMapManager.mm */,
 			);
 			name = Map;
 			sourceTree = "<group>";
@@ -1711,14 +1711,14 @@
 				9E8819DD144109FE00A4E421 /* JBSettingsViewTableViewCell.m in Sources */,
 				9EE890C41441D0C6002099FA /* JBEntity.mm in Sources */,
 				9EE890C71441D0D3002099FA /* JBEntityManager.mm in Sources */,
-				9EE890CE1441DEB7002099FA /* JBMap.m in Sources */,
-				9EE890D11441DEC3002099FA /* JBMapManager.m in Sources */,
+				9EE890CE1441DEB7002099FA /* JBMap.mm in Sources */,
+				9EE890D11441DEC3002099FA /* JBMapManager.mm in Sources */,
 				66E141CF1442173600F47D83 /* JBMapCreatorViewController.mm in Sources */,
 				66E141D21442175700F47D83 /* JBLineSprite.m in Sources */,
 				66E141D51442177400F47D83 /* JBMapCreatorLayer.mm in Sources */,
 				66E141D8144217A800F47D83 /* JBTouchForwardView.m in Sources */,
-				66E141DB14421CA300F47D83 /* JBBrush.m in Sources */,
-				66E141DE14421CC500F47D83 /* JBBrushManager.m in Sources */,
+				66E141DB14421CA300F47D83 /* JBBrush.mm in Sources */,
+				66E141DE14421CC500F47D83 /* JBBrushManager.mm in Sources */,
 				66E141E11442344800F47D83 /* JBMapItem.m in Sources */,
 				9EE8910614424D1A002099FA /* JBGameViewController.mm in Sources */,
 				9EE8910914424D7F002099FA /* JBGameLayer.mm in Sources */,

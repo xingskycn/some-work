@@ -19,6 +19,8 @@
 @property (nonatomic, retain) NSString* bodyType;
 @property (assign)b2Body *body;
 @property (assign) BOOL shootable;
+@property (assign) double shottime;
+@property (assign) BOOL needsSend;
 
 - (id)initWithEntityDictionary:(NSDictionary*)entityDict;
 
