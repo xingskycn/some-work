@@ -238,6 +238,7 @@
 		9E8819D91440F71900A4E421 /* scel_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E8819D31440F71900A4E421 /* scel_1.png */; };
 		9E8819DA1440F71900A4E421 /* scel_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E8819D41440F71900A4E421 /* scel_2.png */; };
 		9E8819DD144109FE00A4E421 /* JBSettingsViewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E8819DC144109FE00A4E421 /* JBSettingsViewTableViewCell.m */; };
+		9ED18EA914474BC000230AA6 /* JBPauseSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ED18EA814474BC000230AA6 /* JBPauseSegue.m */; };
 		9EE890C41441D0C6002099FA /* JBEntity.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9EE890C31441D0C6002099FA /* JBEntity.mm */; };
 		9EE890C71441D0D3002099FA /* JBEntityManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9EE890C61441D0D3002099FA /* JBEntityManager.mm */; };
 		9EE890CA1441D85B002099FA /* entity_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EE890C91441D85B002099FA /* entity_1.png */; };
@@ -683,6 +684,8 @@
 		9E8819D41440F71900A4E421 /* scel_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scel_2.png; sourceTree = "<group>"; };
 		9E8819DB144109FE00A4E421 /* JBSettingsViewTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBSettingsViewTableViewCell.h; sourceTree = "<group>"; };
 		9E8819DC144109FE00A4E421 /* JBSettingsViewTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBSettingsViewTableViewCell.m; sourceTree = "<group>"; };
+		9ED18EA714474BBF00230AA6 /* JBPauseSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBPauseSegue.h; sourceTree = "<group>"; };
+		9ED18EA814474BC000230AA6 /* JBPauseSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBPauseSegue.m; sourceTree = "<group>"; };
 		9EE890C21441D0C6002099FA /* JBEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBEntity.h; sourceTree = "<group>"; };
 		9EE890C31441D0C6002099FA /* JBEntity.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = JBEntity.mm; sourceTree = "<group>"; };
 		9EE890C51441D0D3002099FA /* JBEntityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBEntityManager.h; sourceTree = "<group>"; };
@@ -1361,6 +1364,8 @@
 				9E66500A1444A8DE00F2485A /* JBPreGameMapsTableViewCell.m */,
 				9E0CE7A11445AA8E002369A4 /* JBMultiplayerSegue.h */,
 				9E0CE7A21445AA8E002369A4 /* JBMultiplayerSegue.m */,
+				9ED18EA714474BBF00230AA6 /* JBPauseSegue.h */,
+				9ED18EA814474BC000230AA6 /* JBPauseSegue.m */,
 			);
 			name = Menu;
 			sourceTree = "<group>";
@@ -1757,6 +1762,7 @@
 				9E66500B1444A8DE00F2485A /* JBPreGameMapsTableViewCell.m in Sources */,
 				9E0CE7A31445AA8E002369A4 /* JBMultiplayerSegue.m in Sources */,
 				668C135E144644B100E62E79 /* JBProgressView.m in Sources */,
+				9ED18EA914474BC000230AA6 /* JBPauseSegue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

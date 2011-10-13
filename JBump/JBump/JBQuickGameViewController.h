@@ -10,5 +10,5 @@
 
 @interface JBQuickGameViewController : UIViewController
 @property (retain, nonatomic) IBOutlet UIButton *startBlueToothButton;
-
+@property (retain, nonatomic) UIViewController *gameViewController;
 @end

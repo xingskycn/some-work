@@ -195,7 +195,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Njw-d5-mxn" kind="custom" customClass="JBSegue" id="a3d-cP-thG"/>
+                                    <segue destination="Njw-d5-mxn" kind="custom" identifier="pauseBackSegue" customClass="JBPauseSegue" id="a3d-cP-thG"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -230,10 +230,10 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="QxI-0O-xWW" kind="custom" identifier="gameViewBackSegue" customClass="JBSegue" id="91s-Q1-iEZ"/>
+                                    <segue destination="QxI-0O-xWW" kind="custom" identifier="gameViewBackSegue" customClass="JBPauseSegue" id="91s-Q1-iEZ"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="BBG-Q0-dgG" userLabel="move right">
+                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="BBG-Q0-dgG" userLabel="move right">
                                 <rect key="frame" x="408" y="248" width="72" height="72"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -248,7 +248,7 @@
                                     <action selector="rightButtonPressed:" destination="Njw-d5-mxn" eventType="touchUpInside" id="Fzd-Tg-T4b"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="3de-of-QV0" userLabel="move left">
+                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="3de-of-QV0" userLabel="move left">
                                 <rect key="frame" x="338" y="248" width="72" height="72"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -263,7 +263,7 @@
                                     <action selector="leftButtonPressed:" destination="Njw-d5-mxn" eventType="touchUpInside" id="Wbi-vq-EJh"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Xbp-Pp-5cI" userLabel="jump">
+                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Xbp-Pp-5cI" userLabel="jump">
                                 <rect key="frame" x="0.0" y="248" width="72" height="72"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -1165,9 +1165,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="3Fh-iF-90v"/>
+        <segue reference="zHo-oC-CPQ"/>
         <segue reference="1RV-xt-lrX"/>
-        <segue reference="a3d-cP-thG"/>
-        <segue reference="NTM-U9-Hn3"/>
     </inferredMetricsTieBreakers>
 </document>
