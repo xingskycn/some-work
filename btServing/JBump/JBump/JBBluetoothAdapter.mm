@@ -257,6 +257,29 @@
 
 - (void)sendPlayer
 {
+    int length = [self.tavern.heroesInTavern allKeys].count*(3*sizeof(float)+sizeof(int)+sizeof(int))+sizeof(int);
+    void* sendField = malloc(length);
+    int packageNr = self.tavern.localPlayer.packageNr++;
+ 	((int*)sendField)[0]=packageNr<<8;
+    int index = 1;
+    for (JBHero* hero in [self.tavern.heroesInTavern allValues]) {
+        ((short*)sendField)[2*index]=hero.playerID;
+        ((short*)sendField)[2*index+1]=hero.sprite.flipX;
+        index++;
+        ((float*)sendField)[index]=hero.playerID;
+        index++;
+        ((float*)sendField)[index]=hero.sprite.position.x;
+        index++;
+        ((float*)sendField)[index]=hero.sprite.position.y;
+        index++;
+        ((float*)sendField)[index]=hero.sprite.rotation;
+        index++;
+        ((float*)sendField)[index]=0;
+        index++;
+    }
+    
+    /*
+    
     JBHero* player = self.tavern.localPlayer;
     
 	void* sendField = malloc(sizeof(int)+sizeof(short)*2+sizeof(char)*2+sizeof(short)*2);
@@ -270,8 +293,9 @@
     ((short *)sendField)[5]=player.force.x*15;
     ((short *)sendField)[6]=player.force.y*15;
     
+    */
     
-	NSData* sendData = [NSData dataWithBytesNoCopy:sendField length:14 freeWhenDone:YES];
+	NSData* sendData = [NSData dataWithBytesNoCopy:sendField length:length freeWhenDone:YES];
 	
 	if (self.activePeer) {
 		[self.gameSession sendData:sendData
@@ -552,6 +576,26 @@ progressDelegate:(id<JBProgressDelegate>)pDelegate
 
 - (void)handlePlayerPositionUpdates:(NSData *)data
 {
+    int packackgeNr = ((int *)[data bytes])[0]>>8;
+    int length = ([data length] -4)/16;
+    
+    NSMutableArray* heroes = [NSMutableArray array];
+    for (int i=0;i<length;i++)
+    {
+        NSMutableDictionary* heroDict = [NSMutableDictionary dictionary];
+        [heroDict setObject:[NSNumber numberWithInt:((short *)[data bytes])[2+8*i]] forKey:jbID];
+        [heroDict setObject:[NSNumber numberWithInt:((short *)[data bytes])[3+8*i]] forKey:@"flipX"];
+        float posX = ((float *)[data bytes])[2+4*i];
+        float posY = ((float *)[data bytes])[3+4*i];
+        CGPoint pos = CGPointMake(posX, posY);
+        [heroDict setObject:NSStringFromCGPoint(pos) forKey:jbPOSITION];
+        [heroDict setObject:[NSNumber numberWithFloat:((float *)[data bytes])[4+4*i]] forKey:@"rotation"];
+        [heroes addObject:heroDict];
+    }
+    
+    
+    
+    /*
 	unsigned char playerID = ((char *)[data bytes])[0];
 	int packageNr = ((int *)[data bytes])[0]>>8;
 	CGPoint position = CGPointMake(((short *)[data bytes])[2]/PTM_RATIO, ((short *)[data bytes])[3]/PTM_RATIO);
@@ -565,6 +609,7 @@ progressDelegate:(id<JBProgressDelegate>)pDelegate
     }else{
         [self.tavern player:playerID changedPosition:position velocityX:velocityX velocityY:velocityY forceX:(float)forceX forceY:(float)forceY withPackageNR:packageNr];
     }
+     */
     
 }
 
