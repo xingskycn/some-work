@@ -39,6 +39,66 @@ public:
     }
     void PreSolve(b2Contact* contact, const b2Manifold* oldManifold) { /* handle pre-solve event */ 
          b2WorldManifold worldManifold; contact->GetWorldManifold(&worldManifold);
+        
+        if ([(NSObject*)contact->GetFixtureB()->GetUserData() isKindOfClass:[JBEntity class]])
+        {
+            if(contact->GetFixtureA()->GetBody()==player.body)
+            {
+                JBEntity* entity = (JBEntity*)contact->GetFixtureB()->GetUserData();
+                if (entity.shootable) 
+                {
+                    if (player.jumpTouched) {
+                        if (player.body->GetWorldCenter().y<entity.body->GetWorldCenter().y) {
+                            if (entity.shottime+0.2<[[NSDate date] timeIntervalSince1970]) 
+                            {    
+                                entity.shottime = [[NSDate date] timeIntervalSince1970];
+                                NSLog(@"playerA!");
+                                
+                                float forceX;
+                                if (worldManifold.normal.x!=0) {
+                                    forceX = worldManifold.normal.x;
+                                    forceX = forceX/fabs(forceX)*1000;
+                                }
+                                
+                                entity.body->ApplyForce(b2Vec2(forceX, 1000), entity.body->GetWorldCenter());
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        if ([(NSObject*)contact->GetFixtureA()->GetUserData() isKindOfClass:[JBEntity class]])
+        {
+            JBEntity* entity = (JBEntity*)contact->GetFixtureA()->GetUserData();
+            if (entity.shootable) 
+            {
+                if(contact->GetFixtureB()->GetBody()==player.body)
+                {
+                    if (player.body->GetWorldCenter().y<entity.body->GetWorldCenter().y) 
+                    {
+                        if (player.jumpTouched) 
+                        {
+                            if (entity.shottime+0.2<[[NSDate date] timeIntervalSince1970]) 
+                            {                        
+                                entity.shottime = [[NSDate date] timeIntervalSince1970];
+                                NSLog(@"playerB! %f",worldManifold.normal.x);
+                                
+                                float forceX;
+                                if (worldManifold.normal.x!=0) {
+                                    forceX = worldManifold.normal.x;
+                                    forceX = forceX/fabs(forceX)*-1000;
+                                }
+                                
+                                entity.body->ApplyForce(b2Vec2(forceX, 1000), entity.body->GetWorldCenter());
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        
         if ([(NSObject*)contact->GetFixtureB()->GetUserData() isKindOfClass:[JBBrush class]]
             &&worldManifold.points[0].y>contact->GetFixtureA()->GetBody()->GetWorldCenter().y) {
             JBBrush *brush = (JBBrush*)contact->GetFixtureB()->GetUserData();
@@ -225,6 +285,12 @@ public:
     groundBox.SetAsEdge(b2Vec2(map.arenaImage.size.width/PTM_RATIO,map.arenaImage.size.height/PTM_RATIO), b2Vec2(map.arenaImage.size.width/PTM_RATIO,0));
     groundBody->CreateFixture(&groundBox,0);
     
+    for (NSDictionary* setting in map.settings) {
+        if ([[setting objectForKey:jbID] isEqualToString:jbMAPSETTINGS_SOCCER]&&[[setting objectForKey:jbMAPSETTINGS_DATA] boolValue]) {
+            [self insertBallAtPosition:CGPointMake(0, 200)];
+        }
+    }
+    
     [self insertHeroAtPosition:CGPointMake(0, 0)];
     
     [self setupSprites:[self.gameViewController.multiplayerAdapter.tavern getAllPlayers]];
@@ -398,6 +464,39 @@ public:
 - (void)resetJumpForce{
     player.jumpTouched=NO;
     player.jumpForce=0.0f;
+}
+
+
+- (void)insertBallAtPosition:(CGPoint)position
+{
+    if (self.tavern!=nil) {
+        tavern.ball = [JBEntityManager getEntityWithID:@"ball_04"];
+        tavern.ball.shootable = YES;
+        tavern.ball.sprite = [CCSprite spriteWithFile:tavern.ball.imageLocal];
+        tavern.ball.sprite.scale=(50.0/tavern.ball.sprite.textureRect.size.height);
+        [self addChild:tavern.ball.sprite z:0 tag:[tavern.ball.name hash]];
+        
+        b2BodyDef bodyDef;
+        bodyDef.type = b2_dynamicBody;
+        
+        bodyDef.position.Set(position.x/PTM_RATIO, position.y/PTM_RATIO);
+        bodyDef.userData = tavern.ball.sprite;
+        b2Body *body = world->CreateBody(&bodyDef);
+        
+        b2CircleShape shape;
+        shape.m_radius = 25/PTM_RATIO;
+        
+        b2FixtureDef fixtureDef;
+        fixtureDef.shape = &shape;	
+        fixtureDef.friction = 0.1f;
+        fixtureDef.density = 1.0f;
+        fixtureDef.restitution = 0.050f;
+        fixtureDef.userData = tavern.ball;
+        body->CreateFixture(&fixtureDef);
+        
+        tavern.ball.sprite.userData = tavern.ball;
+        tavern.ball.body=body;
+    }
 }
 
 - (void)insertHeroAtPosition:(CGPoint)position

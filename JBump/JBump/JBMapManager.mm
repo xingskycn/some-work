@@ -8,6 +8,7 @@
 
 #import "JBMapManager.h"
 #import "JBMap.h"
+#import <QuartzCore/QuartzCore.h>
 
 static NSString *filePath = @"maps";
 
@@ -115,7 +116,7 @@ static NSString *filePath = @"maps";
                                                 CGImageGetColorSpace(imageRef),
                                                 CGImageGetBitmapInfo(imageRef));
     
-    CGContextSetInterpolationQuality(bitmap, 1.);
+    CGContextSetInterpolationQuality(bitmap, kCGInterpolationHigh);
     CGContextDrawImage(bitmap, thumbRect, imageRef);
     CGImageRef thumbnailRef = CGBitmapContextCreateImage(bitmap);
     UIImage *thumbnail = [UIImage imageWithCGImage:thumbnailRef];
