@@ -49,6 +49,7 @@
 @synthesize aNewConnectionbutton;
 @synthesize maps, players;
 @synthesize selectedMap;
+@synthesize confirmRequestButton;
 
 // Contents of request popout
 @synthesize requestTitelLabel;
@@ -122,6 +123,7 @@
     [self setCloseRequestButton:nil];
     [self setRequestPopout:nil];
     [self setRequestMessageLabel:nil];
+    [self setConfirmRequestButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -147,6 +149,7 @@
     [closeRequestButton release];
     [requestPopout release];
     [requestMessageLabel release];
+    [confirmRequestButton release];
     [super dealloc];
 }
 
@@ -193,15 +196,20 @@
     [UIView setAnimationDuration:0.3];
     self.requestPopout.frame = self.requestPopout.frame = CGRectMake(120, -120, 240, 120);
     [UIView commitAnimations];
+    [self.multiplayerAdapter aboardDataTransferWithID:nil];
 }
 
 - (IBAction)confirmRequest:(id)sender {
     if (self.missingMapID) {
         [self.multiplayerAdapter askForMapWithID:self.missingMapID];
         self.requestMessageLabel.text = @"the request has been send";
+        self.confirmRequestButton.enabled = FALSE;
+        self.confirmRequestButton.alpha = 0.4;
     }else{
         [self.multiplayerAdapter sendMapForID:self.requestedMapID progrossDelegate:self.requestProgressBar];
         self.requestMessageLabel.text = @"map sending in progress";
+        self.confirmRequestButton.enabled = FALSE;
+        self.confirmRequestButton.alpha = 0.4;
     }
 }
 
@@ -319,6 +327,8 @@
         self.missingMapID = mapID;
         self.requestedMapID = nil;
         self.requestProgressBar.progress = 0;
+        self.confirmRequestButton.alpha = 1;
+        self.confirmRequestButton.enabled = TRUE;
         [UIView beginAnimations:nil context:NULL];
         [UIView setAnimationBeginsFromCurrentState:YES];
         [UIView setAnimationDuration:0.3];
@@ -333,18 +343,31 @@
         self.requestPopout.frame = self.requestPopout.frame = CGRectMake(120, -120, 240, 120);
         [UIView commitAnimations];
         
-        NSString*prefix = [mapID substringWithRange:NSMakeRange(0, 3)];
-        for (NSDictionary* dict in self.maptypes) {
-            if ([prefix isEqualToString:[dict objectForKey:jbID]]) {
-                self.selectedMapType =  [self.maptypes indexOfObject:dict];
-                [self.gameTypeButton setTitle:[dict objectForKey:jbNAME] forState:UIControlStateNormal];
-                self.maps = [JBMapManager getAllMapsWithPrefix:prefix];
-                [self.mapsTablleView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationLeft];
-                for (JBMap* map in self.maps) {
-                    if ([map.ID isEqualToString:mapID]) {
-                        [self.mapsTablleView selectRowAtIndexPath:
-                         [NSIndexPath indexPathForRow:[self.maps indexOfObject:map] inSection:0]
-                                                         animated:YES scrollPosition:UITableViewScrollPositionTop];
+        BOOL inActiveSet = FALSE;
+        for (JBMap* map in self.maps)
+        {
+            if ([map.ID isEqualToString:mapID]) {
+                [self.mapsTablleView selectRowAtIndexPath:
+                 [NSIndexPath indexPathForRow:[self.maps indexOfObject:map] inSection:0]
+                                                 animated:YES scrollPosition:UITableViewScrollPositionTop];
+                inActiveSet = TRUE;
+            }
+        }
+        if (!inActiveSet) {
+            NSString*prefix = [mapID substringWithRange:NSMakeRange(0, 3)];
+            for (NSDictionary* dict in self.maptypes) {
+                if ([prefix isEqualToString:[dict objectForKey:jbID]]) {
+                    self.selectedMapType =  [self.maptypes indexOfObject:dict];
+                    [self.gameTypeButton setTitle:[dict objectForKey:jbNAME] forState:UIControlStateNormal];
+                    self.maps = [JBMapManager getAllMapsWithPrefix:prefix];
+                    [self.mapsTablleView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationLeft];
+                    for (JBMap* map in self.maps) {
+                        if ([map.ID isEqualToString:mapID]) {
+                            [self.mapsTablleView selectRowAtIndexPath:
+                             [NSIndexPath indexPathForRow:[self.maps indexOfObject:map] inSection:0]
+                                                             animated:YES scrollPosition:UITableViewScrollPositionTop];
+                            
+                        }
                     }
                 }
             }
@@ -365,6 +388,8 @@
     self.missingMapID = nil;
     self.requestedMapID = mapID;
     self.requestProgressBar.progress = 0;
+    self.confirmRequestButton.enabled = TRUE;
+    self.confirmRequestButton.alpha = 1;
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationBeginsFromCurrentState:YES];
     [UIView setAnimationDuration:0.3];

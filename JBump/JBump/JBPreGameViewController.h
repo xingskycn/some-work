@@ -47,6 +47,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *closeRequestButton;
 @property (retain, nonatomic) IBOutlet UIView *requestPopout;
 @property (retain, nonatomic) JBMap *selectedMap;
+@property (retain, nonatomic) IBOutlet UIButton *confirmRequestButton;
 
 
 - (IBAction)closeRequestPopout:(id)sender;
