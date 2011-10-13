@@ -38,6 +38,7 @@
 @property(assign)float maxRight;
 @property bool isDead;
 @property bool isDeadSended;
+@property char killingPlayerID;
 
 @property(assign)float desiredRotation;
 

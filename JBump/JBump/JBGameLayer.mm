@@ -153,13 +153,19 @@ public:
                 JBHero *cHeroB = (JBHero*)cSpriteB.userData;
                 
                 if (!cHeroA.isDead && !cHeroB.isDead && contact->GetFixtureA()->GetBody()->GetWorldCenter().y>(contact->GetFixtureB()->GetBody()->GetWorldCenter().y+5.0f/PTM_RATIO)) {
-                    NSLog(@"Player: %@ has lost a life.", cHeroB.name);
-                    cHeroB.isDead=YES;
-                    cHeroB.isDeadSended=NO;
+                    if (cHeroB.playerID==player.playerID) {
+                        NSLog(@"Player: %@ has lost a life.", cHeroB.name);
+                        cHeroB.isDead=YES;
+                        cHeroB.isDeadSended=NO;
+                        cHeroB.killingPlayerID=cHeroA.playerID;
+                    }
                 } else if (!cHeroA.isDead && !cHeroB.isDead && contact->GetFixtureB()->GetBody()->GetWorldCenter().y>(contact->GetFixtureA()->GetBody()->GetWorldCenter().y+5.0f/PTM_RATIO)) {
-                    NSLog(@"Player: %@ has lost a life.", cHeroA.name);
-                    cHeroA.isDead=YES;
-                    cHeroA.isDeadSended=NO;
+                    if (cHeroA.playerID==player.playerID) {
+                        NSLog(@"Player: %@ has lost a life.", cHeroA.name);
+                        cHeroA.isDead=YES;
+                        cHeroA.isDeadSended=NO;
+                        cHeroA.killingPlayerID=cHeroB.playerID;
+                    }
                 }
                 
             }
