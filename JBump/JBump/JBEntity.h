@@ -21,6 +21,7 @@
 @property (assign) BOOL shootable;
 @property (assign) double shottime;
 @property (assign) BOOL needsSend;
+@property (assign) int hitGoalLine;
 
 - (id)initWithEntityDictionary:(NSDictionary*)entityDict;
 
