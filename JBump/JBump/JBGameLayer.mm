@@ -377,7 +377,6 @@ public:
         [self.camera setCenterX:newX centerY:newY centerZ:0];
         [self.camera setEyeX:newX eyeY:newY eyeZ:1];
         
-        
         if(player.onGround)
         {
             timePlayerOnGround +=(float)deltaTime;
@@ -419,19 +418,27 @@ public:
         if (sendCounter>=2) {
             sendCounter=1;
             [self.tavern sendPlayerUpdate];
+            BOOL send = TRUE;
+            for(NSString* heroID in [tavern.heroesInTavern allKeys]) {
+                if (self.tavern.localPlayer.playerID>[heroID intValue]) {
+                    [self.tavern.multiplayerAdapter sendBall];
+                    send = FALSE;
+                }
+            }
+            if (send) {
+                if (tavern.ball.hitGoalLine) {
+                    [self resetBall];
+                    [self.tavern.multiplayerAdapter sendBall];
+                    self.tavern.ball.needsSend = FALSE;
+                }
+                if (tavern.ball.needsSend) {
+                    [self.tavern.multiplayerAdapter sendBall];
+                    self.tavern.ball.needsSend = FALSE;
+                }
+            }
         } else {
             sendCounter++;
         }
-    }
-    
-    if (tavern.ball.hitGoalLine) {
-        [self resetBall];
-        [self.tavern.multiplayerAdapter sendBall];
-        self.tavern.ball.needsSend = FALSE;
-    }
-    if (tavern.ball.needsSend) {
-        [self.tavern.multiplayerAdapter sendBall];
-        self.tavern.ball.needsSend = FALSE;
     }
 }
 
