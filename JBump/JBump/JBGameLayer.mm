@@ -638,8 +638,13 @@ public:
 
 }
 
-- (void)setPhysicsForBallWithPosition:(CGPoint)position velocityX:(float)x andVelocityY:(float)y {
+- (void)setPhysicsForBallWithPosition:(CGPoint)position velocityX:(float)x andVelocityY:(float)y 
+{
+    float newVX = 30*(position.x - self.tavern.ball.body->GetWorldCenter().x) +x;
+    float newVY = 30*(position.y - self.tavern.ball.body->GetWorldCenter().y) +y;
+    self.tavern.ball.body->SetLinearVelocity(b2Vec2(newVX,newVY));
     
+    /*
     b2BodyDef bodyDef;
 	bodyDef.type = b2_dynamicBody;
     
@@ -660,7 +665,7 @@ public:
         world->DestroyBody(self.tavern.ball.body);
     self.tavern.ball.body=nil;
     self.tavern.ball.body=body;
-    
+    */
 }
 
 - (void)setupSprites:(NSArray*)heroes {
