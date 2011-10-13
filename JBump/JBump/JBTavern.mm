@@ -76,8 +76,9 @@
     
 }
 
-- (void)player:(JBHero *)hero didChangeContext:(NSDictionary *)context {
-    
+- (void)player:(char)heroID didChangeContext:(NSDictionary *)context {
+    JBHero *changeH = [self getPlayerWithReference:heroID];
+    changeH.gameContext=[context mutableCopy];
 }
 
 - (void)player:(char)aPlayerID changedPosition:(CGPoint)position velocityX:(float)x velocityY:(float)y withPackageNR:(int)packageNR {
@@ -86,8 +87,8 @@
         NSLog(@"No Player with ID: %i in Tavern", aPlayerID);
         return;
     }
-    if (aPlayer.packageNr<=packageNR) {
-        //aPlayer.packageNr=packageNR;
+    if (aPlayer.packageNr<packageNR) {
+        aPlayer.packageNr=packageNR;
         if (self.gameLayer!=nil) {
             [self.gameLayer setPositionForPlayer:aPlayer withPosition:position velocityX:x andVelocityY:y];
         }
@@ -98,9 +99,33 @@
     }
 }
 - (void)Player:(char)aPlayerID isDead:(bool)isDead {
-    NSLog(@"Eant send that Player with ID: %i is dead", aPlayerID);
+    [self.multiplayerAdapter playerKilledByChar:[self getPlayerWithReference:self.localPlayer.killingPlayerID]];
+    NSLog(@"Want send that Player with ID: %i is dead", aPlayerID);
+    NSNumber *deathCount= [self.localPlayer.gameContext objectForKey:jbGAMECONTEXT_DEATH_COUNT];
+    if (deathCount) {
+        int kills= [deathCount intValue];
+        deathCount = [NSNumber numberWithInt:(kills++)];
+    } else {
+        deathCount = [NSNumber numberWithInt:1];
+    }
+    [self.localPlayer.gameContext setObject:deathCount forKey:jbGAMECONTEXT_DEATH_COUNT];
+    [self.multiplayerAdapter shoutPlayerGameContextChange];
 }
 
+- (void)reveivedAKill:(char)killingPlayerID {
+    if (self.localPlayer.playerID==killingPlayerID) {
+        NSNumber *killCount= [self.localPlayer.gameContext objectForKey:jbGAMECONTEXT_KILL_COUNT];
+        if (killCount) {
+            int kills= [killCount intValue];
+            killCount = [NSNumber numberWithInt:(kills++)];
+        } else {
+            killCount = [NSNumber numberWithInt:1];
+        }
+        [self.localPlayer.gameContext setObject:killCount forKey:jbGAMECONTEXT_KILL_COUNT];
+    }
+    
+    [self.multiplayerAdapter shoutPlayerGameContextChange];
+}
 
 
 @end

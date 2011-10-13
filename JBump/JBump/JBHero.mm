@@ -32,6 +32,8 @@
 @synthesize maxLeft, maxRight;
 @synthesize isDead;
 @synthesize isDeadSended;
+@synthesize killingPlayerID;
+
 - (id)init {
     self = [super init];
     

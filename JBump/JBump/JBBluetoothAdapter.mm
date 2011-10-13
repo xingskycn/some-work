@@ -140,7 +140,7 @@
 	if (self.activePeer) {
 		[self.gameSession sendData:sendData
 						   toPeers:[NSArray arrayWithObject:self.activePeer] 
-					  withDataMode:GKSendDataUnreliable 
+					  withDataMode:GKSendDataReliable 
 							 error:nil];
 	}
 
@@ -477,6 +477,8 @@ progressDelegate:(id<JBProgressDelegate>)pDelegate
         char playerID = [[parts objectAtIndex:0] charValue];
         NSDictionary* gameContext = [jsonParser objectWithString:[parts objectAtIndex:1]];
         
+        [self.tavern player:playerID didChangeContext:gameContext];
+        
         return TRUE;
     }else{
         return FALSE;
@@ -486,10 +488,13 @@ progressDelegate:(id<JBProgressDelegate>)pDelegate
 - (BOOL)handlePlayerKilledByPlayer:(NSString *)inputString
 {
 	if ([inputString hasPrefix:@"|PKC:"]) {
+        NSLog(@"received a killcount");
 		NSString* announcement = [inputString substringWithRange:NSMakeRange(5,inputString.length-5)];
         NSArray* parts = [announcement componentsSeparatedByString:@"|"];
         char killedPlayerID = [[parts objectAtIndex:0] charValue];
         char killingPlayerID = [[parts objectAtIndex:1] charValue];
+        
+        [self.tavern reveivedAKill:killingPlayerID];
         
         return TRUE;
     }else{

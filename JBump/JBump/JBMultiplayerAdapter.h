@@ -32,7 +32,8 @@
 - (void)newPlayerAnnounced:(JBHero *)hero;
 - (JBHero *)requestPlayerAnnouncement:(NSString *)playerID;
 - (void)receivedPlayerInfo:(JBHero *)hero;
-- (void)player:(JBHero *)hero didChangeContext:(NSDictionary *)context;
+- (void)player:(char)heroID didChangeContext:(NSDictionary *)context;
+- (void)reveivedAKill:(char)killingPlayerID;
 
 @end
 
