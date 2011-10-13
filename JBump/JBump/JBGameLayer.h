@@ -31,6 +31,7 @@
 @property(nonatomic, assign)JBGameViewController *gameViewController;
 @property(nonatomic, retain)NSMutableDictionary* spawnPoints;
 @property(nonatomic, assign)JBTavern *tavern;
+@property(assign)CGSize mapSize;
 
 +(CCScene *) scene;
 
