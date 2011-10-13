@@ -137,10 +137,6 @@
     }
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    self.multiplayerAdapter.tavern.gameLayer=nil;
-}
-
 - (IBAction)leftButtonPressed:(id)sender {
 }
 @end
