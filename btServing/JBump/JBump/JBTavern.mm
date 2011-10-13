@@ -8,6 +8,8 @@
 
 #import "JBTavern.h"
 #import "JBHero.h"
+#import "JBSkinManager.h"
+#import "JBSkin.h"
 
 @implementation JBTavern
 
@@ -30,6 +32,7 @@
         self.localPlayer = [[[JBHero alloc] init] autorelease];
         self.localPlayer.name = [[NSUserDefaults standardUserDefaults] objectForKey:jbUSERDEFAULTS_PLAYER_NAME];
         self.localPlayer.skinID = [[NSUserDefaults standardUserDefaults] objectForKey:jbUSERDEFAULTS_SKIN];
+        self.localPlayer.skinLocation = [[JBSkinManager getSkinWithID:self.localPlayer.skinID] imageLocation];
         [self.localPlayer.gameContext setObject:self.localPlayer.skinID forKey:jbGAMECONTEXT_SKIN_ID];
         
         [self.heroesInTavern setObject:self.localPlayer forKey:self.localPlayer.name];
