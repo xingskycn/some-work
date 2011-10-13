@@ -134,7 +134,7 @@
 {
     NSString* sendString = 
 	[NSString stringWithFormat:	@"|PRC:%d|%d",
-     super.tavern.localPlayer.playerID,ready]; 
+     self.tavern.localPlayer.playerID,ready]; 
 	
 	NSData* sendData = [sendString dataUsingEncoding:NSUTF8StringEncoding];
 	if (self.activePeer) {
@@ -153,14 +153,14 @@
 		while(randomID == '|'){
             randomID = rand()*0.999/RAND_MAX * (255);
         }
-		super.tavern.localPlayer.playerID = randomID;
-        [super.tavern exchangeLocalPlayer];
+		self.tavern.localPlayer.playerID = randomID;
+        [self.tavern exchangeLocalPlayer];
 	}
     NSString* sendString = 
 	[NSString stringWithFormat:	@"|NPA:%d|%@|%@",
-     super.tavern.localPlayer.playerID,
-     super.tavern.localPlayer.name,
-     [jsonWriter stringWithObject:super.tavern.localPlayer.gameContext]]; 
+     self.tavern.localPlayer.playerID,
+     self.tavern.localPlayer.name,
+     [jsonWriter stringWithObject:self.tavern.localPlayer.gameContext]]; 
 	
 	NSData* sendData = [sendString dataUsingEncoding:NSUTF8StringEncoding];
 	if (self.activePeer) {
@@ -176,8 +176,8 @@
 	//Player DisCoNnected
 	NSString* sendString = 
 	[NSString stringWithFormat:	@"|DCN:%d",
-        super.tavern.localPlayer.playerID,
-        super.tavern.localPlayer.name]; 
+        self.tavern.localPlayer.playerID,
+        self.tavern.localPlayer.name]; 
 	
 	NSData* sendData = [sendString dataUsingEncoding:NSUTF8StringEncoding];
 	if (self.activePeer) {
@@ -209,8 +209,8 @@
 {	
 	NSString* sendString = 
 	[NSString stringWithFormat:	@"|PGC:%d|%@",
-     super.tavern.localPlayer.playerID,
-     super.tavern.localPlayer.gameContext];
+     self.tavern.localPlayer.playerID,
+     self.tavern.localPlayer.gameContext];
 	
 	NSData* sendData = [sendString dataUsingEncoding:NSUTF8StringEncoding];
 	if (self.activePeer) {
@@ -243,7 +243,7 @@
 	
 	NSString* sendString = 
 	[NSString stringWithFormat:	@"|PKC:%d|%d",
-     super.tavern.localPlayer.playerID,
+     self.tavern.localPlayer.playerID,
      player.playerID];
 	
 	NSData* sendData = [sendString dataUsingEncoding:NSUTF8StringEncoding];
@@ -257,12 +257,15 @@
 
 - (void)sendPlayer
 {
-    JBHero* player = super.tavern.localPlayer;
+    JBHero* player = self.tavern.localPlayer;
     
 	void* sendField = malloc(sizeof(int)+sizeof(short)*2+sizeof(char)*2);
-    int packageNr = super.tavern.localPlayer.packageNr++;
+    int packageNr = self.tavern.localPlayer.packageNr;
+    packageNr++;
+    self.tavern.localPlayer.packageNr=packageNr;
+    NSLog(@"Tavern PackageNr is %i, sended PackageNR is:%i", self.tavern.localPlayer.packageNr, packageNr);
  	((int*)sendField)[0]=packageNr<<8;
-	((char*)sendField)[0]= super.tavern.localPlayer.playerID;
+	((char*)sendField)[0]= self.tavern.localPlayer.playerID;
 	((short *)sendField)[2]=player.body->GetWorldCenter().x*PTM_RATIO;
 	((short *)sendField)[3]=player.body->GetWorldCenter().y*PTM_RATIO;
 	((char *)sendField)[8]=player.body->GetLinearVelocity().x*255.f/HERO_MAXIMUMSPEED;
@@ -421,7 +424,7 @@ progressDelegate:(id<JBProgressDelegate>)pDelegate
         NSString* playerName = [parts objectAtIndex:1];
         NSDictionary* gameContext = [jsonParser objectWithString:[parts objectAtIndex:2]];
         JBHero* player = [[[JBHero alloc] initWithPlayerId:playerID playerName:playerName gameContext:gameContext] autorelease];
-        [super.tavern addNewPlayer:player];
+        [self.tavern addNewPlayer:player];
 		[self.preGameDelegate newPlayerAnnounced:nil];
         return TRUE;
 	}else {
@@ -474,7 +477,7 @@ progressDelegate:(id<JBProgressDelegate>)pDelegate
 	if ([inputString hasPrefix:@"|PGC:"]) {
 		NSString* announcement = [inputString substringWithRange:NSMakeRange(5,inputString.length-5)];
         NSArray* parts = [announcement componentsSeparatedByString:@"|"];
-        char playerID = [[parts objectAtIndex:0] charValue];
+        char playerID = [[parts objectAtIndex:0] intValue];
         NSDictionary* gameContext = [jsonParser objectWithString:[parts objectAtIndex:1]];
         
         [self.tavern player:playerID didChangeContext:gameContext];
@@ -491,8 +494,8 @@ progressDelegate:(id<JBProgressDelegate>)pDelegate
         NSLog(@"received a killcount");
 		NSString* announcement = [inputString substringWithRange:NSMakeRange(5,inputString.length-5)];
         NSArray* parts = [announcement componentsSeparatedByString:@"|"];
-        char killedPlayerID = [[parts objectAtIndex:0] charValue];
-        char killingPlayerID = [[parts objectAtIndex:1] charValue];
+        char killedPlayerID = [[parts objectAtIndex:0] intValue];
+        char killingPlayerID = [[parts objectAtIndex:1] intValue];
         
         [self.tavern reveivedAKill:killingPlayerID];
         
@@ -527,7 +530,7 @@ progressDelegate:(id<JBProgressDelegate>)pDelegate
 - (void)handlePlayerPositionUpdates:(NSData *)data
 {
 	unsigned char playerID = ((char *)[data bytes])[0];
-	int packageNr = ((char *)[data bytes])[0]>>8;
+	int packageNr = ((int *)[data bytes])[0]>>8;
 	CGPoint position = CGPointMake(((short *)[data bytes])[2]/PTM_RATIO, ((short *)[data bytes])[3]/PTM_RATIO);
     float velocityX = ((char *)[data bytes])[8]*HERO_MAXIMUMSPEED/255.f;
     float velocityY = ((char *)[data bytes])[9]*HERO_MAXIMUMSPEED/255.f;

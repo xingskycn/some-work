@@ -125,7 +125,7 @@ public:
         if ([(NSObject*)contact->GetFixtureB()->GetUserData() isKindOfClass:[JBBrush class]]
             &&worldManifold.points[0].y>contact->GetFixtureA()->GetBody()->GetWorldCenter().y) {
             JBBrush *brush = (JBBrush*)contact->GetFixtureB()->GetUserData();
-            if ([brush.ID isEqualToString:jbBRUSH_PLATFORM]) {
+            if ([brush.ID isEqualToString:jbBRUSH_PLATFORM]||[brush.ID isEqualToString:jbBRUSH_HORIZONTAL_PLATFORM]) {
                 //if (worldManifold.normal.y < 0.2f) {
                 if (contact->GetFixtureA()->GetBody()->GetLinearVelocity().y>0.0f) {
                     contact->SetEnabled(false);
@@ -136,7 +136,7 @@ public:
         }else if ([(NSObject*)contact->GetFixtureA()->GetUserData() isKindOfClass:[JBBrush class]]
             &&worldManifold.points[0].y>contact->GetFixtureB()->GetBody()->GetWorldCenter().y) {
             JBBrush *brush = (JBBrush*)contact->GetFixtureA()->GetUserData();
-            if ([brush.ID isEqualToString:jbBRUSH_PLATFORM]) {
+            if ([brush.ID isEqualToString:jbBRUSH_PLATFORM]||[brush.ID isEqualToString:jbBRUSH_HORIZONTAL_PLATFORM]) {
                 //if (worldManifold.normal.y < -0.5f) {
                 if (contact->GetFixtureB()->GetBody()->GetLinearVelocity().y>0.0f) {
                     contact->SetEnabled(false);
@@ -399,7 +399,7 @@ public:
     
     
     if (multiplayer){
-        if (sendCounter>=2) {
+        if (sendCounter>=1) {
             sendCounter=1;
             [self.tavern sendPlayerUpdate];
         } else {
