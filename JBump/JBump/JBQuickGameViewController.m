@@ -10,6 +10,7 @@
 
 @implementation JBQuickGameViewController
 @synthesize startBlueToothButton;
+@synthesize gameViewController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

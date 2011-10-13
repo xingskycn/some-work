@@ -221,7 +221,7 @@
 		9E67F862144080A4000ED8F0 /* JBMenuStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E67F861144080A4000ED8F0 /* JBMenuStoryboard.storyboard */; };
 		9E67F8651440810D000ED8F0 /* JBMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E67F8641440810D000ED8F0 /* JBMenuViewController.m */; };
 		9E67F8671440A7E8000ED8F0 /* ClearButtonBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E67F8661440A7E8000ED8F0 /* ClearButtonBackground.png */; };
-		9E67F89A1440B90D000ED8F0 /* JBSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E67F8991440B90D000ED8F0 /* JBSegue.m */; };
+		9E67F89A1440B90D000ED8F0 /* JBSegue.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9E67F8991440B90D000ED8F0 /* JBSegue.mm */; };
 		9E67F89D1440BB8F000ED8F0 /* JBStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E67F89C1440BB8E000ED8F0 /* JBStoreViewController.m */; };
 		9E67F89F1440BE74000ED8F0 /* World1.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E67F89E1440BE74000ED8F0 /* World1.png */; };
 		9E67F8A21440C66B000ED8F0 /* JBSettingsViewVontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E67F8A11440C66B000ED8F0 /* JBSettingsViewVontroller.m */; };
@@ -238,6 +238,7 @@
 		9E8819D91440F71900A4E421 /* scel_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E8819D31440F71900A4E421 /* scel_1.png */; };
 		9E8819DA1440F71900A4E421 /* scel_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E8819D41440F71900A4E421 /* scel_2.png */; };
 		9E8819DD144109FE00A4E421 /* JBSettingsViewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E8819DC144109FE00A4E421 /* JBSettingsViewTableViewCell.m */; };
+		9ED18EA914474BC000230AA6 /* JBPauseSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ED18EA814474BC000230AA6 /* JBPauseSegue.m */; };
 		9EE890C41441D0C6002099FA /* JBEntity.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9EE890C31441D0C6002099FA /* JBEntity.mm */; };
 		9EE890C71441D0D3002099FA /* JBEntityManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9EE890C61441D0D3002099FA /* JBEntityManager.mm */; };
 		9EE890CA1441D85B002099FA /* entity_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EE890C91441D85B002099FA /* entity_1.png */; };
@@ -657,7 +658,7 @@
 		9E67F8641440810D000ED8F0 /* JBMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBMenuViewController.m; sourceTree = "<group>"; };
 		9E67F8661440A7E8000ED8F0 /* ClearButtonBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ClearButtonBackground.png; sourceTree = "<group>"; };
 		9E67F8981440B90C000ED8F0 /* JBSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBSegue.h; sourceTree = "<group>"; };
-		9E67F8991440B90D000ED8F0 /* JBSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBSegue.m; sourceTree = "<group>"; };
+		9E67F8991440B90D000ED8F0 /* JBSegue.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = JBSegue.mm; sourceTree = "<group>"; };
 		9E67F89B1440BB8E000ED8F0 /* JBStoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBStoreViewController.h; sourceTree = "<group>"; };
 		9E67F89C1440BB8E000ED8F0 /* JBStoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBStoreViewController.m; sourceTree = "<group>"; };
 		9E67F89E1440BE74000ED8F0 /* World1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = World1.png; sourceTree = "<group>"; };
@@ -683,6 +684,8 @@
 		9E8819D41440F71900A4E421 /* scel_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scel_2.png; sourceTree = "<group>"; };
 		9E8819DB144109FE00A4E421 /* JBSettingsViewTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBSettingsViewTableViewCell.h; sourceTree = "<group>"; };
 		9E8819DC144109FE00A4E421 /* JBSettingsViewTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBSettingsViewTableViewCell.m; sourceTree = "<group>"; };
+		9ED18EA714474BBF00230AA6 /* JBPauseSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBPauseSegue.h; sourceTree = "<group>"; };
+		9ED18EA814474BC000230AA6 /* JBPauseSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBPauseSegue.m; sourceTree = "<group>"; };
 		9EE890C21441D0C6002099FA /* JBEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBEntity.h; sourceTree = "<group>"; };
 		9EE890C31441D0C6002099FA /* JBEntity.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = JBEntity.mm; sourceTree = "<group>"; };
 		9EE890C51441D0D3002099FA /* JBEntityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBEntityManager.h; sourceTree = "<group>"; };
@@ -1342,7 +1345,7 @@
 				9E67F8631440810D000ED8F0 /* JBMenuViewController.h */,
 				9E67F8641440810D000ED8F0 /* JBMenuViewController.m */,
 				9E67F8981440B90C000ED8F0 /* JBSegue.h */,
-				9E67F8991440B90D000ED8F0 /* JBSegue.m */,
+				9E67F8991440B90D000ED8F0 /* JBSegue.mm */,
 				9E67F89B1440BB8E000ED8F0 /* JBStoreViewController.h */,
 				9E67F89C1440BB8E000ED8F0 /* JBStoreViewController.m */,
 				9E67F8A01440C66B000ED8F0 /* JBSettingsViewVontroller.h */,
@@ -1361,6 +1364,8 @@
 				9E66500A1444A8DE00F2485A /* JBPreGameMapsTableViewCell.m */,
 				9E0CE7A11445AA8E002369A4 /* JBMultiplayerSegue.h */,
 				9E0CE7A21445AA8E002369A4 /* JBMultiplayerSegue.m */,
+				9ED18EA714474BBF00230AA6 /* JBPauseSegue.h */,
+				9ED18EA814474BC000230AA6 /* JBPauseSegue.m */,
 			);
 			name = Menu;
 			sourceTree = "<group>";
@@ -1711,7 +1716,7 @@
 				9E67F8461440723F000ED8F0 /* GLES-Render.mm in Sources */,
 				9E67F86014407BB8000ED8F0 /* JBMenuLayer.m in Sources */,
 				9E67F8651440810D000ED8F0 /* JBMenuViewController.m in Sources */,
-				9E67F89A1440B90D000ED8F0 /* JBSegue.m in Sources */,
+				9E67F89A1440B90D000ED8F0 /* JBSegue.mm in Sources */,
 				9E67F89D1440BB8F000ED8F0 /* JBStoreViewController.m in Sources */,
 				9E67F8A21440C66B000ED8F0 /* JBSettingsViewVontroller.m in Sources */,
 				9E67F8A51440C689000ED8F0 /* JBNewGameViewController.m in Sources */,
@@ -1757,6 +1762,7 @@
 				9E66500B1444A8DE00F2485A /* JBPreGameMapsTableViewCell.m in Sources */,
 				9E0CE7A31445AA8E002369A4 /* JBMultiplayerSegue.m in Sources */,
 				668C135E144644B100E62E79 /* JBProgressView.m in Sources */,
+				9ED18EA914474BC000230AA6 /* JBPauseSegue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

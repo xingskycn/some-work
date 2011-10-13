@@ -12,6 +12,9 @@
 #import "JBGameViewController.h"
 #import "JBMenuViewController.h"
 #import "JBQuickGameViewController.h"
+#import "JBPreGameViewController.h"
+#import "JBMultiplayerAdapter.h"
+#import "JBTavern.h"
 
 @implementation JBSegue
 
@@ -34,6 +37,10 @@
     */
     if ([self.destinationViewController isKindOfClass:[JBMenuViewController class]]) {
         [[CCDirector sharedDirector] replaceScene:((JBAppDelegate*)[UIApplication sharedApplication].delegate).menuScene];
+    }
+    
+    if ([self.sourceViewController isKindOfClass:[JBPreGameViewController class]]&&[self.destinationViewController isKindOfClass:[JBMenuViewController class]]) {
+        ((JBPreGameViewController*)self.sourceViewController).multiplayerAdapter.tavern.gameLayer=nil;
     }
     
     [UIView commitAnimations];
