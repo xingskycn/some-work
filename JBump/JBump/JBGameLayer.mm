@@ -354,6 +354,9 @@ public:
                     [self.tavern Player:checkHero.playerID isDead:YES];
                     checkHero.isDeadSended=YES;
                 }
+                if (checkHero != player) {
+                    checkHero.body->ApplyForce(b2Vec2(checkHero.force.x,checkHero.force.y), checkHero.body->GetWorldCenter());
+                }
             }
 		}	
 	}
@@ -377,7 +380,6 @@ public:
         [self.camera setCenterX:newX centerY:newY centerZ:0];
         [self.camera setEyeX:newX eyeY:newY eyeZ:1];
         
-        
         if(player.onGround)
         {
             timePlayerOnGround +=(float)deltaTime;
@@ -388,6 +390,8 @@ public:
             [self resetOwnPositionAfterDeath];
         }
     }
+    
+    player.force = CGPointMake(0,0);
     
     if (self.gameViewController.jumpButton.isTouchInside) {
         [player jump:(float)deltaTime timeOnGround:timePlayerOnGround];
@@ -419,19 +423,27 @@ public:
         if (sendCounter>=1) {
             sendCounter=1;
             [self.tavern sendPlayerUpdate];
+            BOOL send = TRUE;
+            for(NSString* heroID in [tavern.heroesInTavern allKeys]) {
+                if (self.tavern.localPlayer.playerID>[heroID intValue]) {
+                    [self.tavern.multiplayerAdapter sendBall];
+                    send = FALSE;
+                }
+            }
+            if (send) {
+                if (tavern.ball.hitGoalLine) {
+                    [self resetBall];
+                    [self.tavern.multiplayerAdapter sendBall];
+                    self.tavern.ball.needsSend = FALSE;
+                }
+                if (tavern.ball.needsSend) {
+                    [self.tavern.multiplayerAdapter sendBall];
+                    self.tavern.ball.needsSend = FALSE;
+                }
+            }
         } else {
             sendCounter++;
         }
-    }
-    
-    if (tavern.ball.hitGoalLine) {
-        [self resetBall];
-        [self.tavern.multiplayerAdapter sendBall];
-        self.tavern.ball.needsSend = FALSE;
-    }
-    if (tavern.ball.needsSend) {
-        [self.tavern.multiplayerAdapter sendBall];
-        self.tavern.ball.needsSend = FALSE;
     }
 }
 
@@ -612,15 +624,13 @@ public:
 	
     b2CircleShape shape;
     shape.m_radius = 0.45f;
-    //b2PolygonShape shape;
-    //shape.SetAsBox(30.0f/2/PTM_RATIO, 30.0f/2/PTM_RATIO);
     b2FixtureDef fixtureDef;
     fixtureDef.shape = &shape;	
 	fixtureDef.friction = 0.1f;
     fixtureDef.density = 1.0f;
     fixtureDef.restitution = 0.050f;
 	body->CreateFixture(&fixtureDef);
-    body->SetLinearVelocity(b2Vec2(y, y));
+    body->SetLinearVelocity(b2Vec2(x, y));
     if(aPlayer.body!=nil)
         world->DestroyBody(aPlayer.body);
     aPlayer.body=nil;
@@ -639,15 +649,13 @@ public:
 	
     b2CircleShape shape;
     shape.m_radius = 0.45f;
-    //b2PolygonShape shape;
-    //shape.SetAsBox(30.0f/2/PTM_RATIO, 30.0f/2/PTM_RATIO);
     b2FixtureDef fixtureDef;
     fixtureDef.shape = &shape;	
 	fixtureDef.friction = 0.1f;
     fixtureDef.density = 1.0f;
     fixtureDef.restitution = 0.050f;
 	body->CreateFixture(&fixtureDef);
-    body->SetLinearVelocity(b2Vec2(y, y));
+    body->SetLinearVelocity(b2Vec2(x, y));
     if(self.tavern.ball.body!=nil)
         world->DestroyBody(self.tavern.ball.body);
     self.tavern.ball.body=nil;

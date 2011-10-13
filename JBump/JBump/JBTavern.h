@@ -28,7 +28,7 @@
 - (void)sendPlayerUpdate;
 - (void)exchangeLocalPlayer;
 
-- (void)player:(char)aPlayerID changedPosition:(CGPoint)position velocityX:(float)x velocityY:(float)Y withPackageNR:(int)packageNR;
+- (void)player:(char)aPlayerID changedPosition:(CGPoint)position velocityX:(float)x velocityY:(float)y forceX:(float)forceX forceY:(float)forceY withPackageNR:(int)packageNR;
 - (void)Player:(char)aPlayerID isDead:(bool)isDead;
 - (void)updateBallWithPositionx:(CGPoint)position velocityX:(float)x andVelocityY:(float)y;
 @end

@@ -42,6 +42,8 @@
 
 @property(assign)float desiredRotation;
 
+@property(assign)CGPoint force;
+
 - (id)initWithPlayerId:(char)aPlayerID playerName:(NSString*)name gameContext:(NSDictionary*)context;
 - (void)jump:(float)time timeOnGround:(float)playerTimeOnGround;
 - (void)moveLeft:(float)time;
