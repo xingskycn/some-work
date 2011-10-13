@@ -88,7 +88,7 @@
     JBHero *changeH = [self getPlayerWithReference:heroID];
     changeH.gameContext=[context mutableCopy];
 }
-
+/*
 - (void)player:(char)aPlayerID changedPosition:(CGPoint)position velocityX:(float)x velocityY:(float)y forceX:(float)forceX forceY:(float)forceY withPackageNR:(int)packageNR {
     JBHero *aPlayer = [self getPlayerWithReference:aPlayerID];
     aPlayer.force = CGPointMake(forceX, forceY);
@@ -107,6 +107,8 @@
         NSLog(@"Recieved PackageNR: %i, localPackageNR: %i",packageNR ,aPlayer.packageNr);
     }
 }
+ */
+
 - (void)Player:(char)aPlayerID isDead:(bool)isDead {
     [self.multiplayerAdapter playerKilledByChar:[self getPlayerWithReference:self.localPlayer.killingPlayerID]];
     NSLog(@"Want send that Player with ID: %i is dead", aPlayerID);
@@ -135,12 +137,12 @@
     
     [self.multiplayerAdapter shoutPlayerGameContextChange];
 }
-
+/*
 - (void)updateBallWithPositionx:(CGPoint)position velocityX:(float)x andVelocityY:(float)y
 {
     [self.gameLayer setPhysicsForBallWithPosition:position velocityX:x andVelocityY:y];
 }
-
+*/
 - (void)setAllHeroSpritesInWorld:(NSArray*)allSprites withPackageNumber:(int)packageNumber {
     if (packageNumber<lastHeroPackageNumber) {
         return;
