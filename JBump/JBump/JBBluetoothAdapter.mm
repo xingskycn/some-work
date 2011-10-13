@@ -278,6 +278,29 @@
 	}
 }
 
+- (void)sendBall
+{
+    JBEntity* ball = self.tavern.ball;
+    
+	void* sendField = malloc(sizeof(int)+sizeof(short)*2+sizeof(char)*2);
+    int packageNr = self.tavern.ball.packageNr++;
+ 	((int*)sendField)[0]=packageNr<<8;
+	((char*)sendField)[0]= [@"ball" hash];
+	((short *)sendField)[2]=ball.body->GetWorldCenter().x*PTM_RATIO;
+	((short *)sendField)[3]=ball.body->GetWorldCenter().y*PTM_RATIO;
+	((char *)sendField)[8]=ball.body->GetLinearVelocity().x*255.f/HERO_MAXIMUMSPEED;
+	((char *)sendField)[9]=ball.body->GetLinearVelocity().y*255.f/HERO_MAXIMUMSPEED;
+    
+	NSData* sendData = [NSData dataWithBytesNoCopy:sendField length:5*sizeof(float) freeWhenDone:YES];
+	
+	if (self.activePeer) {
+		[self.gameSession sendData:sendData
+						   toPeers:[NSArray arrayWithObject:self.activePeer] 
+					  withDataMode:GKSendDataUnreliable 
+							 error:nil];
+	}
+}
+
 - (void)sendData:(NSData *)data 
             info:(NSDictionary *)info 
         selector:(SEL)sel 
@@ -494,7 +517,7 @@ progressDelegate:(id<JBProgressDelegate>)pDelegate
         char killedPlayerID = [[parts objectAtIndex:0] intValue];
         char killingPlayerID = [[parts objectAtIndex:1] intValue];
         
-        [self.tavern reveivedAKill:killingPlayerID];
+        [self.tavern receivedAKill:killingPlayerID];
         
         return TRUE;
     }else{
@@ -532,7 +555,12 @@ progressDelegate:(id<JBProgressDelegate>)pDelegate
     float velocityX = ((char *)[data bytes])[8]*HERO_MAXIMUMSPEED/255.f;
     float velocityY = ((char *)[data bytes])[9]*HERO_MAXIMUMSPEED/255.f;
     
-    [self.tavern player:playerID changedPosition:position velocityX:velocityX velocityY:velocityY withPackageNR:packageNr];
+    if (playerID == (unsigned char)[@"ball" hash]) {
+        [self.tavern updateBallWithPositionx:position velocityX:velocityX andVelocityY:velocityY];
+    }else{
+        [self.tavern player:playerID changedPosition:position velocityX:velocityX velocityY:velocityY withPackageNR:packageNr];
+    }
+    
 }
 
 - (BOOL)handleDataSendRequestIncomming:(NSString*)inputString

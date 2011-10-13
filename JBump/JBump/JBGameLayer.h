@@ -48,4 +48,5 @@
 - (void)insertBallAtPosition:(CGPoint)position;
 - (CGPoint)getSpawnPositionForID:(NSString *)spawnID;
 - (void)resetBall;
+- (void)setPhysicsForBallWithPosition:(CGPoint)position velocityX:(float)x andVelocityY:(float)y;
 @end

@@ -115,6 +115,11 @@
     NSLog(@"%@ Not Yet Implemented?",NSStringFromSelector(_cmd));
 }
 
+- (void)sendBall
+{
+    NSLog(@"%@ Not Yet Implemented?",NSStringFromSelector(_cmd));
+}
+
 - (void)dealloc {
     self.tavern = nil;
     [super dealloc];

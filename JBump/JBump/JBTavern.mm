@@ -112,7 +112,7 @@
     [self.multiplayerAdapter shoutPlayerGameContextChange];
 }
 
-- (void)reveivedAKill:(char)killingPlayerID {
+- (void)receivedAKill:(char)killingPlayerID {
     if (self.localPlayer.playerID==killingPlayerID) {
         NSNumber *killCount= [self.localPlayer.gameContext objectForKey:jbGAMECONTEXT_KILL_COUNT];
         if (killCount) {
@@ -127,5 +127,9 @@
     [self.multiplayerAdapter shoutPlayerGameContextChange];
 }
 
+- (void)updateBallWithPositionx:(CGPoint)position velocityX:(float)x andVelocityY:(float)y
+{
+    [self.gameLayer setPhysicsForBallWithPosition:position velocityX:x andVelocityY:y];
+}
 
 @end

@@ -61,6 +61,7 @@ public:
                                     forceX = worldManifold.normal.x;
                                     forceX = forceX/fabs(forceX)*500;
                                 }
+                                entity.needsSend = TRUE;
                                 
                                 entity.body->ApplyForce(b2Vec2(forceX, 1000), entity.body->GetWorldCenter());
                                 return;
@@ -102,7 +103,7 @@ public:
                                     forceX = worldManifold.normal.x;
                                     forceX = forceX/fabs(forceX)*-1000;
                                 }
-                                
+                                entity.needsSend = TRUE;
                                 entity.body->ApplyForce(b2Vec2(forceX, 1000), entity.body->GetWorldCenter());
                                 return;
                             }
@@ -376,6 +377,7 @@ public:
         [self.camera setCenterX:newX centerY:newY centerZ:0];
         [self.camera setEyeX:newX eyeY:newY eyeZ:1];
         
+        
         if(player.onGround)
         {
             timePlayerOnGround +=(float)deltaTime;
@@ -424,6 +426,12 @@ public:
     
     if (tavern.ball.hitGoalLine) {
         [self resetBall];
+        [self.tavern.multiplayerAdapter sendBall];
+        self.tavern.ball.needsSend = FALSE;
+    }
+    if (tavern.ball.needsSend) {
+        [self.tavern.multiplayerAdapter sendBall];
+        self.tavern.ball.needsSend = FALSE;
     }
 }
 
@@ -618,6 +626,33 @@ public:
     aPlayer.body=nil;
     aPlayer.body=body;
 
+}
+
+- (void)setPhysicsForBallWithPosition:(CGPoint)position velocityX:(float)x andVelocityY:(float)y {
+    
+    b2BodyDef bodyDef;
+	bodyDef.type = b2_dynamicBody;
+    
+	bodyDef.position.Set(position.x, position.y);
+	bodyDef.userData = self.tavern.ball.sprite;
+	b2Body *body = world->CreateBody(&bodyDef);
+	
+    b2CircleShape shape;
+    shape.m_radius = 0.45f;
+    //b2PolygonShape shape;
+    //shape.SetAsBox(30.0f/2/PTM_RATIO, 30.0f/2/PTM_RATIO);
+    b2FixtureDef fixtureDef;
+    fixtureDef.shape = &shape;	
+	fixtureDef.friction = 0.1f;
+    fixtureDef.density = 1.0f;
+    fixtureDef.restitution = 0.050f;
+	body->CreateFixture(&fixtureDef);
+    body->SetLinearVelocity(b2Vec2(y, y));
+    if(self.tavern.ball.body!=nil)
+        world->DestroyBody(self.tavern.ball.body);
+    self.tavern.ball.body=nil;
+    self.tavern.ball.body=body;
+    
 }
 
 - (void)setupSprites:(NSArray*)heroes {

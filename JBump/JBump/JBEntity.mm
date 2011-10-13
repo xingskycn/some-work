@@ -20,6 +20,7 @@
 @synthesize shottime;
 @synthesize needsSend;
 @synthesize hitGoalLine;
+@synthesize packageNr;
 
 - (id)initWithEntityDictionary:(NSDictionary*)entityDict {
     self = [super init];

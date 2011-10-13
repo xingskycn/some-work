@@ -33,7 +33,7 @@
 - (JBHero *)requestPlayerAnnouncement:(NSString *)playerID;
 - (void)receivedPlayerInfo:(JBHero *)hero;
 - (void)player:(char)heroID didChangeContext:(NSDictionary *)context;
-- (void)reveivedAKill:(char)killingPlayerID;
+- (void)receivedAKill:(char)killingPlayerID;
 
 @end
 
@@ -61,5 +61,5 @@
   finishDelegate:(id)fDelegate
 progressDelegate:(id<JBProgressDelegate>)pDelegate;
 - (void)sendMapForID:(NSString *)mapID progrossDelegate:(id<JBProgressDelegate>)delegate;
-
+- (void)sendBall;
 @end
