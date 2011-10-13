@@ -479,7 +479,7 @@ public:
     b2BodyDef bodyDef;
 	bodyDef.type = b2_dynamicBody;
     
-	bodyDef.position.Set(70./PTM_RATIO, 700./PTM_RATIO);
+	bodyDef.position.Set(0.f/PTM_RATIO, 0.f/PTM_RATIO);
 	bodyDef.userData = player.sprite;
 	b2Body *body = world->CreateBody(&bodyDef);
 	
