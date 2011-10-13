@@ -276,6 +276,7 @@ public:
         
         multiplayer=NO;
         sendCounter=1;
+        self.isServer=YES;
     }
     
     return self;
@@ -426,7 +427,7 @@ public:
     if (multiplayer){
         for(NSString* heroID in [tavern.heroesInTavern allKeys]) {
             if (self.tavern.localPlayer.playerID>[heroID intValue]) {
-                [self.tavern.multiplayerAdapter sendBall];
+                //[self.tavern.multiplayerAdapter sendBall];
                 self.isServer=false;
             }
         }

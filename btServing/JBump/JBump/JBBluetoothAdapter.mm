@@ -581,15 +581,16 @@ progressDelegate:(id<JBProgressDelegate>)pDelegate
     {
         NSMutableDictionary* heroDict = [NSMutableDictionary dictionary];
         [heroDict setObject:[NSNumber numberWithInt:((short *)[data bytes])[2+8*i]] forKey:jbID];
-        [heroDict setObject:[NSNumber numberWithInt:((short *)[data bytes])[3+8*i]] forKey:@"flipX"];
+        [heroDict setObject:[NSNumber numberWithInt:((short *)[data bytes])[3+8*i]] forKey:jbFLIPX];
         float posX = ((float *)[data bytes])[2+4*i];
         float posY = ((float *)[data bytes])[3+4*i];
         CGPoint pos = CGPointMake(posX, posY);
         [heroDict setObject:NSStringFromCGPoint(pos) forKey:jbPOSITION];
-        [heroDict setObject:[NSNumber numberWithFloat:((float *)[data bytes])[4+4*i]] forKey:@"rotation"];
+        [heroDict setObject:[NSNumber numberWithFloat:((float *)[data bytes])[4+4*i]] forKey:jbROTATION];
         [heroes addObject:heroDict];
     }
     
+    [self.tavern setAllHeroSpritesInWorld:heroes withPackageNumber:packackgeNr];
     
     
     /*
