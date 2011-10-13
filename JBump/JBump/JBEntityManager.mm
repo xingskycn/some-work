@@ -319,7 +319,7 @@ static NSString *filePath = @"entities";
     
     entity = [NSMutableDictionary dictionary];
     entityImage = [UIImage imageNamed:@"ball_spawner.png"];
-    [entity setValue:@"ball spawn" forKey:jbID];
+    [entity setValue:@"spawnpoint_ball" forKey:jbID];
     [entity setValue:entityImage forKey:jbIMAGE];
     [entity setValue:@"ball spawn" forKey:jbNAME];
     [entity setValue:@"the ball spawns here" forKey:jbFURTHER];
@@ -328,7 +328,7 @@ static NSString *filePath = @"entities";
     [entity setValue:NSStringFromCGSize(CGSizeMake(60.0f, 59.f)) forKey:jbSIZE];
     [entity setValue:jbENTITY_SHAPE_CIRCLE forKey:jbSHAPE];
     [entity setValue:[NSNumber numberWithFloat:.3f] forKey:jbDENSITY];
-    [entity setValue:jbENTITY_BODYTYPE_DENSE forKey:jbBODYTYPE];
+    [entity setValue:jbENTITY_BODYTYPE_GHOST forKey:jbBODYTYPE];
     [JBEntityManager saveNewEntity:entity entityImage:entityImage];
 }
 
