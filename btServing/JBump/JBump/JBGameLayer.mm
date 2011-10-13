@@ -378,9 +378,6 @@ public:
                 }
             }	
         }
-    
-        
-        player.force = CGPointMake(0,0);
         
         if (self.gameViewController.jumpButton.isTouchInside) {
             [player jump:(float)deltaTime timeOnGround:timePlayerOnGround];
@@ -396,7 +393,6 @@ public:
         }
         if (!player.onGround) {
             if (player.sprite.rotation<180) {
-                //player.sprite.rotation=player.sprite.rotation/1.14;
                 player.desiredRotation=0;
             }
         }
@@ -407,7 +403,7 @@ public:
             player.body->SetLinearVelocity(b2Vec2(player.body->GetLinearVelocity().x, 6.5f));
         }
         
-        
+        /*
         if (multiplayer){
             for(NSString* heroID in [tavern.heroesInTavern allKeys]) {
                 if (self.tavern.localPlayer.playerID>[heroID intValue]) {
@@ -439,7 +435,7 @@ public:
              } else {
              sendCounter++;
              }*/
-        }
+        //}
     }
 
     if (player) {
@@ -557,7 +553,7 @@ public:
     player.jumpForce=0.0f;
 }
 
-
+/*
 - (void)insertBallAtPosition:(CGPoint)position
 {
     if (self.tavern!=nil) {
@@ -588,7 +584,7 @@ public:
         tavern.ball.sprite.userData = tavern.ball;
         tavern.ball.body=body;
     }
-}
+}*/
 
 - (void)insertHero:(JBHero *)hero atPosition:(CGPoint)position
 {
@@ -631,7 +627,7 @@ public:
     
     hero.body=body;
 }
-
+/*
 - (void)setPositionForPlayer:(JBHero*)aPlayer withPosition:(CGPoint)position velocityX:(float)x andVelocityY:(float)y {
     
     b2BodyDef bodyDef;
@@ -655,37 +651,16 @@ public:
     aPlayer.body=nil;
     aPlayer.body=body;
 
-}
-
+}*/
+/*
 - (void)setPhysicsForBallWithPosition:(CGPoint)position velocityX:(float)x andVelocityY:(float)y 
 {
     float newVX = 30*(position.x - self.tavern.ball.body->GetWorldCenter().x) +x;
     float newVY = 30*(position.y - self.tavern.ball.body->GetWorldCenter().y) +y;
     self.tavern.ball.body->SetLinearVelocity(b2Vec2(newVX,newVY));
-    
-    /*
-    b2BodyDef bodyDef;
-	bodyDef.type = b2_dynamicBody;
-    
-	bodyDef.position.Set(position.x, position.y);
-	bodyDef.userData = self.tavern.ball.sprite;
-	b2Body *body = world->CreateBody(&bodyDef);
-	
-    b2CircleShape shape;
-    shape.m_radius = 0.45f;
-    b2FixtureDef fixtureDef;
-    fixtureDef.shape = &shape;	
-	fixtureDef.friction = 0.1f;
-    fixtureDef.density = 1.0f;
-    fixtureDef.restitution = 0.050f;
-	body->CreateFixture(&fixtureDef);
-    body->SetLinearVelocity(b2Vec2(x, y));
-    if(self.tavern.ball.body!=nil)
-        world->DestroyBody(self.tavern.ball.body);
-    self.tavern.ball.body=nil;
-    self.tavern.ball.body=body;
-    */
+
 }
+*/
 
 - (void)setupSprites:(NSArray*)heroes {
     for (JBHero *aHero in heroes) {
@@ -699,6 +674,7 @@ public:
 
     }
 }
+
 
 - (void)resetOwnPositionAfterDeath {
     b2BodyDef bodyDef;
@@ -726,6 +702,7 @@ public:
     player.isDead=NO;
 }
 
+
 - (CGPoint)getSpawnPositionForID:(NSString *)spawnID
 {
     NSArray* spawns = [self.spawnPoints objectForKey:spawnID];
@@ -736,7 +713,7 @@ public:
     }
     return CGPointMake(0, 0);
 }
-
+/*
 - (void)resetBall
 {
     b2BodyDef bodyDef;
@@ -762,6 +739,6 @@ public:
     self.tavern.ball.body=nil;
     self.tavern.ball.body=body;
     self.tavern.ball.hitGoalLine = 0;
-}
+}*/
 
 @end
