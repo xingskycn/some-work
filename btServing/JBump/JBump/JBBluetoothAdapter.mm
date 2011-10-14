@@ -739,16 +739,18 @@ progressDelegate:(id<JBProgressDelegate>)pDelegate
 - (void)receiveData:(NSData *)data fromPeer:(NSString *)peer inSession: (GKSession *)session context:(void *)context {
     NSString* inputString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     if (inputString) {
-        if (![self handlePregame:inputString]) {
-            if (![self handleDisconnectedPlayer:inputString]) {
-                if (![self handleRequestForPlayerAnnouncement:inputString]) {
-                    if (![self handlePlayerGameContextChange:inputString]) {
-                        if (![self handlePlayerKilledByPlayer:inputString]) {
-                            if (![self handleDataSendRequestIncomming:inputString]) {
-                                if (![self handleNextDataRequestIncomming:inputString]) {
-                                    if (![self handleAboardTransferRequest:inputString]) {
-                                        if (![self handleTransferDataIncomming:data]) {
-                                            [self handlePlayerPositionUpdates:data];
+        if (![self handleReceiveUserInput:inputString]) {
+            if (![self handlePregame:inputString]) {
+                if (![self handleDisconnectedPlayer:inputString]) {
+                    if (![self handleRequestForPlayerAnnouncement:inputString]) {
+                        if (![self handlePlayerGameContextChange:inputString]) {
+                            if (![self handlePlayerKilledByPlayer:inputString]) {
+                                if (![self handleDataSendRequestIncomming:inputString]) {
+                                    if (![self handleNextDataRequestIncomming:inputString]) {
+                                        if (![self handleAboardTransferRequest:inputString]) {
+                                            if (![self handleTransferDataIncomming:data]) {
+                                                [self handlePlayerPositionUpdates:data];
+                                            }
                                         }
                                     }
                                 }
