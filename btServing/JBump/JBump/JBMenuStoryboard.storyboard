@@ -14,22 +14,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="l48-au-mJk">
-                                <rect key="frame" x="115" y="65" width="250" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Quick Game">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="QxI-0O-xWW" kind="custom" customClass="JBSegue" id="3Fh-iF-90v"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="3hw-ZD-Cug">
-                                <rect key="frame" x="115" y="110" width="250" height="37"/>
+                                <rect key="frame" x="115" y="51" width="250" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="New Game">
@@ -40,11 +25,11 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Pn7-oW-a73" kind="custom" identifier="newGameSegue" customClass="JBSegue" id="r3d-cH-qHd"/>
+                                    <segue destination="QxI-0O-xWW" kind="custom" customClass="JBSegue" id="3Fh-iF-90v"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="5Fz-8t-QPt">
-                                <rect key="frame" x="115" y="200" width="250" height="37"/>
+                                <rect key="frame" x="115" y="141" width="250" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Settings">
@@ -58,20 +43,8 @@
                                     <segue destination="gfV-t3-Rg3" kind="custom" identifier="settingsSegue" customClass="JBSegue" id="I6m-E3-zC0"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="eJp-bJ-3HO">
-                                <rect key="frame" x="115" y="20" width="250" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Resume">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="m3J-wV-zjZ">
-                                <rect key="frame" x="115" y="245" width="250" height="37"/>
+                                <rect key="frame" x="115" y="186" width="250" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -87,7 +60,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="gNr-9V-Q2M">
-                                <rect key="frame" x="342" y="245" width="138" height="37"/>
+                                <rect key="frame" x="171" y="231" width="138" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -103,7 +76,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="fov-UJ-7uf">
-                                <rect key="frame" x="115" y="155" width="250" height="37"/>
+                                <rect key="frame" x="115" y="96" width="250" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -153,21 +126,6 @@
                                     <segue destination="zaW-i8-IAz" kind="custom" identifier="quickGameBackSegue" customClass="JBSegue" id="NTM-U9-Hn3"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="RD4-iB-h2y">
-                                <rect key="frame" x="151" y="141" width="179" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Start Test Game">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="Njw-d5-mxn" kind="custom" identifier="gameViewSegue" customClass="JBSegue" id="r8H-Mk-7EP"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="zTj-fG-aC8">
                                 <rect key="frame" x="151" y="186" width="179" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -184,7 +142,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="iYT-zS-pBq">
-                                <rect key="frame" x="151" y="96" width="179" height="37"/>
+                                <rect key="frame" x="151" y="141" width="179" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" size="button"/>
                                 <state key="normal" title="Resume">
@@ -537,38 +495,6 @@
                 </viewController>
             </objects>
             <point key="canvasLocation" x="1419" y="174"/>
-        </scene>
-        <scene sceneID="faq-ui-ySa">
-            <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HpX-c2-uB4" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController id="Pn7-oW-a73" customClass="JBNewGameViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="a2Y-bd-loL">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="320"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="zCw-Aa-xjJ">
-                                <rect key="frame" x="20" y="20" width="72" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Back">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="zaW-i8-IAz" kind="custom" identifier="newGameBackSegue" customClass="JBSegue" id="cqk-6h-sdo"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
-                    </view>
-                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
-                </viewController>
-            </objects>
-            <point key="canvasLocation" x="708" y="116"/>
         </scene>
         <scene sceneID="JtU-rc-War">
             <objects>
@@ -1001,6 +927,18 @@
                                     <segue destination="zaW-i8-IAz" kind="custom" identifier="aboutBackSegue" customClass="JBSegue" id="zHo-oC-CPQ"/>
                                 </connections>
                             </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="JBump
+(c) Nils Ziehn &amp; 
+Sebastian Pretscher
+
+This Project was initiated during
+the Seminar: IOS Game Developement" textAlignment="center" id="RDm-oB-aRA">
+                                <rect key="frame" x="132" y="96" width="240" height="140"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -1033,6 +971,14 @@
                                     <segue destination="zaW-i8-IAz" kind="custom" identifier="storeBackSegue" customClass="JBSegue" id="nI5-cD-pzh"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="This will become a webstore for skins and maps
+" textAlignment="center" lineBreakMode="middleTruncation" numberOfLines="2" minimumFontSize="10" id="wm8-Ur-jB3">
+                                <rect key="frame" x="56" y="130" width="369" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -1103,9 +1049,6 @@
         <class className="JBMenuViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/JBMenuViewController.h"/>
         </class>
-        <class className="JBNewGameViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/JBNewGameViewController.h"/>
-        </class>
         <class className="JBPreGameViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/JBPreGameViewController.h"/>
             <relationships>
@@ -1165,7 +1108,9 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="zHo-oC-CPQ"/>
+        <segue reference="3Fh-iF-90v"/>
+        <segue reference="nI5-cD-pzh"/>
         <segue reference="1RV-xt-lrX"/>
+        <segue reference="a3d-cP-thG"/>
     </inferredMetricsTieBreakers>
 </document>
