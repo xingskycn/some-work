@@ -170,7 +170,8 @@ public:
                     hero.onGround=true; 
                 }
             }
-        }else if(contact->GetFixtureB()->GetUserData()) {
+        }
+        if(contact->GetFixtureB()->GetUserData()) {
             if ([(NSObject *)contact->GetFixtureB()->GetUserData() isKindOfClass:[JBHero class]]) {
                 JBHero* hero = (JBHero *)contact->GetFixtureB()->GetUserData(); 
                 float product = -acosf(worldManifold.normal.x)*180/M_PI+90;
