@@ -46,9 +46,9 @@ public:
             JBEntity* entity = (JBEntity*)contact->GetFixtureB()->GetUserData();
             if (entity.shootable) 
             {
-                if(contact->GetFixtureA()->GetBody()->GetUserData()) {
-                    if ([(NSObject *)contact->GetFixtureA()->GetBody()->GetUserData() isKindOfClass:[JBHero class]]) {
-                        JBHero* hero = (JBHero *)contact->GetFixtureA()->GetBody()->GetUserData();
+                if(contact->GetFixtureA()->GetUserData()) {
+                    if ([(NSObject *)contact->GetFixtureA()->GetUserData() isKindOfClass:[JBHero class]]) {
+                        JBHero* hero = (JBHero *)contact->GetFixtureA()->GetUserData();
                         if (hero.jumpTouched) 
                         {
                             if (hero.body->GetWorldCenter().y<entity.body->GetWorldCenter().y) {
@@ -89,9 +89,9 @@ public:
             JBEntity* entity = (JBEntity*)contact->GetFixtureA()->GetUserData();
             if (entity.shootable) 
             {
-                if(contact->GetFixtureB()->GetBody()->GetUserData()) {
-                    if ([(NSObject *)contact->GetFixtureB()->GetBody()->GetUserData() isKindOfClass:[JBHero class]]) {
-                        JBHero* hero = (JBHero *)contact->GetFixtureB()->GetBody()->GetUserData(); 
+                if(contact->GetFixtureB()->GetUserData()) {
+                    if ([(NSObject *)contact->GetFixtureB()->GetUserData() isKindOfClass:[JBHero class]]) {
+                        JBHero* hero = (JBHero *)contact->GetFixtureB()->GetUserData(); 
                         if (hero.body->GetWorldCenter().y<entity.body->GetWorldCenter().y) 
                         {
                             if (hero.jumpTouched) 
@@ -130,10 +130,10 @@ public:
         
         if ([(NSObject*)contact->GetFixtureB()->GetUserData() isKindOfClass:[JBBrush class]]
             &&worldManifold.points[0].y>contact->GetFixtureA()->GetBody()->GetWorldCenter().y
-            &&contact->GetFixtureA()->GetBody()->GetUserData()!=nil
-            &&[(NSObject *)contact->GetFixtureA()->GetBody()->GetUserData() isKindOfClass:[JBHero class]]) {
+            &&contact->GetFixtureA()->GetUserData()!=nil
+            &&[(NSObject *)contact->GetFixtureA()->GetUserData() isKindOfClass:[JBHero class]]) {
             JBBrush *brush = (JBBrush*)contact->GetFixtureB()->GetUserData();
-            JBHero *hero = (JBHero *)contact->GetFixtureA()->GetBody()->GetUserData();
+            JBHero *hero = (JBHero *)contact->GetFixtureA()->GetUserData();
             if ([brush.ID isEqualToString:jbBRUSH_PLATFORM]||[brush.ID isEqualToString:jbBRUSH_HORIZONTAL_PLATFORM]) {
                 //if (worldManifold.normal.y < 0.2f) {
                 if (contact->GetFixtureA()->GetBody()->GetLinearVelocity().y>0.0f) {
@@ -144,9 +144,9 @@ public:
             }
         }else if ([(NSObject*)contact->GetFixtureA()->GetUserData() isKindOfClass:[JBBrush class]]
             &&worldManifold.points[0].y>contact->GetFixtureB()->GetBody()->GetWorldCenter().y
-            &&contact->GetFixtureB()->GetBody()->GetUserData()!=nil&&[((NSObject*)contact->GetFixtureB()->GetBody()->GetUserData()) isKindOfClass:[JBHero class]]) {
+            &&contact->GetFixtureB()->GetUserData()!=nil&&[((NSObject*)contact->GetFixtureB()->GetUserData()) isKindOfClass:[JBHero class]]) {
             
-            JBHero *hero = (JBHero*)contact->GetFixtureB()->GetBody()->GetUserData();
+            JBHero *hero = (JBHero*)contact->GetFixtureB()->GetUserData();
             
             JBBrush *brush = (JBBrush*)contact->GetFixtureA()->GetUserData();
             if ([brush.ID isEqualToString:jbBRUSH_PLATFORM]||[brush.ID isEqualToString:jbBRUSH_HORIZONTAL_PLATFORM]) {
@@ -159,9 +159,9 @@ public:
         }
 
         //Rotate a Player acording to the grounf
-        if(contact->GetFixtureA()->GetBody()->GetUserData()) {
-            if ([(NSObject *)contact->GetFixtureA()->GetBody()->GetUserData() isKindOfClass:[JBHero class]]) {
-                JBHero* hero = (JBHero *)contact->GetFixtureA()->GetBody()->GetUserData(); 
+        if(contact->GetFixtureA()->GetUserData()) {
+            if ([(NSObject *)contact->GetFixtureA()->GetUserData() isKindOfClass:[JBHero class]]) {
+                JBHero* hero = (JBHero *)contact->GetFixtureA()->GetUserData(); 
                 float product = -acosf(worldManifold.normal.x)*180/M_PI+90;
                 
                 hero.desiredRotation = product;
@@ -170,9 +170,9 @@ public:
                     hero.onGround=true; 
                 }
             }
-        }else if(contact->GetFixtureB()->GetBody()->GetUserData()) {
-            if ([(NSObject *)contact->GetFixtureB()->GetBody()->GetUserData() isKindOfClass:[JBHero class]]) {
-                JBHero* hero = (JBHero *)contact->GetFixtureB()->GetBody()->GetUserData(); 
+        }else if(contact->GetFixtureB()->GetUserData()) {
+            if ([(NSObject *)contact->GetFixtureB()->GetUserData() isKindOfClass:[JBHero class]]) {
+                JBHero* hero = (JBHero *)contact->GetFixtureB()->GetUserData(); 
                 float product = -acosf(worldManifold.normal.x)*180/M_PI+90;
                 
                 hero.desiredRotation = product;
@@ -630,6 +630,7 @@ public:
 	fixtureDef.friction = 0.1f;
     fixtureDef.density = 1.0f;
     fixtureDef.restitution = 0.050f;
+    fixtureDef.userData = hero;
 	body->CreateFixture(&fixtureDef);
     
     hero.sprite.userData = hero;
@@ -703,6 +704,7 @@ public:
 	fixtureDef.friction = 0.1f;
     fixtureDef.density = 1.0f;
     fixtureDef.restitution = 0.050f;
+    fixtureDef.userData = player;
 	body->CreateFixture(&fixtureDef);
 
     world->DestroyBody(player.body);
