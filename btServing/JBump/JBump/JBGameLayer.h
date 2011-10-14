@@ -35,6 +35,7 @@
 @property(nonatomic, retain) NSString *gameType; 
 @property(assign)CGSize mapSize;
 @property(assign) bool isServer;
+@property(nonatomic, retain)NSMutableArray* deadlies;
 
 +(CCScene *) scene;
 
@@ -53,4 +54,5 @@
 - (CGPoint)getSpawnPositionForID:(NSString *)spawnID;
 - (void)performUserInputsOnHero:(JBHero *)hero withTimeDelta:(float)timeDelta;
 - (void)insertEntity:(JBEntity *)entity atPosition:(CGPoint)position;
+- (void)spawnDeadlies;
 @end

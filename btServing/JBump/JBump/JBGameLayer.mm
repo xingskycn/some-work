@@ -82,6 +82,16 @@ public:
                     }
                 }
             }
+            if([entity.ID isEqualToString:@"deadly_2"])
+            {
+                if(contact->GetFixtureA()->GetUserData()) {
+                    if ([(NSObject *)contact->GetFixtureA()->GetUserData() isKindOfClass:[JBHero class]]) {
+                        JBHero* hero = (JBHero *)contact->GetFixtureA()->GetUserData();
+                        hero.isDead = TRUE;
+                    }
+                }
+                contact->SetEnabled(false);
+            }
         }
         
         if ([(NSObject*)contact->GetFixtureA()->GetUserData() isKindOfClass:[JBEntity class]])
@@ -124,6 +134,17 @@ public:
                         }
                     }
                 }
+            }
+            if([entity.ID isEqualToString:@"deadly_2"])
+            {
+                if(contact->GetFixtureB()->GetUserData()) {
+                    if ([(NSObject *)contact->GetFixtureB()->GetUserData() isKindOfClass:[JBHero class]]) {
+                        JBHero* hero = (JBHero *)contact->GetFixtureB()->GetUserData();
+                        hero.isDead = TRUE;
+                        
+                    }
+                }
+                contact->SetEnabled(false);
             }
         }
         
@@ -226,6 +247,7 @@ public:
 @synthesize tavern,mapSize;
 @synthesize isServer;
 @synthesize gameType;
+@synthesize deadlies;
 
 +(CCScene *) scene
 {
@@ -287,6 +309,7 @@ public:
         
         
         self.spawnPoints = [NSMutableDictionary dictionary];
+        self.deadlies = [NSMutableArray array];
         
         [self schedule:@selector(tick:)];
         
@@ -300,6 +323,14 @@ public:
 
 - (void)loadMap:(JBMap*)map {
     CCSprite* image = [CCSprite spriteWithFile:map.arenaImageLocal];
+    
+    NSArray* allHeroIDs = [[[tavern.heroesInTavern allKeys] retain] autorelease];
+    self.isServer = YES;
+    for(NSString* heroID in allHeroIDs) {
+        if (self.tavern.localPlayer.playerID>[heroID intValue]) {
+            self.isServer=NO;
+        }
+    }
     
     [self addChild:image z:0];
     
@@ -370,8 +401,10 @@ public:
             self.isServer=NO;
         }
     }
-
+    [self spawnDeadlies];
+    
     if (self.isServer) {
+        
         [tavern testForBodies];
         
         NSArray* allHeroes = [[[self.tavern.heroesInTavern allValues] retain] autorelease];
@@ -623,7 +656,16 @@ public:
             player = hero;
             multiplayer=YES;
             JBSkin *heroSkin = [JBSkinManager getSkinWithID:hero.skinID];
-            hero.sprite = [CCSprite spriteWithFile:heroSkin.imageLocation];
+            if (self.gameType == jbMAPSETTINGS_SOCCER) {
+                hero.sprite = [CCSprite spriteWithFile:heroSkin.imageLocation];
+            }else{
+                if (self.isServer) {
+                    hero.sprite = [CCSprite spriteWithFile:[NSString stringWithFormat:@"%@_red",heroSkin.imageLocation]];
+                }else{
+                    hero.sprite = [CCSprite spriteWithFile:[NSString stringWithFormat:@"%@_blue",heroSkin.imageLocation]];
+                }
+                
+            }
             hero.sprite.scale=(30.0/hero.sprite.textureRect.size.height);
             hero.sprite.userData=hero;
             [self addChild:hero.sprite z:0 tag:[hero.name hash]];
@@ -670,6 +712,11 @@ public:
         position = [self getSpawnPositionForID:@"spawn_ball"];
     }
     
+    if (!entity.sprite) {
+        entity.sprite = [CCSprite spriteWithFile:entity.imageLocal];
+        [self addChild:entity.sprite z:0 tag:[@"deadly" hash]];
+    }
+    
     b2BodyDef bodyDef;
 	bodyDef.type = b2_dynamicBody;
     
@@ -696,6 +743,17 @@ public:
     for (JBHero *aHero in heroes) {
         if(aHero.playerID == player.playerID){
             continue;
+        }
+        
+        if (self.gameType == jbMAPSETTINGS_SOCCER) {
+            aHero.sprite = [CCSprite spriteWithFile:aHero.skinLocation];
+        }else{
+            if (self.isServer) {
+                aHero.sprite = [CCSprite spriteWithFile:[NSString stringWithFormat:@"%@_blue",aHero.skinLocation]];
+            }else{
+                aHero.sprite = [CCSprite spriteWithFile:[NSString stringWithFormat:@"%@_red",aHero.skinLocation]];
+            }
+            
         }
         aHero.sprite = [CCSprite spriteWithFile:aHero.skinLocation];
         aHero.sprite.scale=(30.0/aHero.sprite.textureRect.size.height);
@@ -768,7 +826,31 @@ public:
     entity.needsSend = 0;
 }
 
-
+- (void)spawnDeadlies{
+    for (JBEntity* spawn in [self.spawnPoints objectForKey:@"spawnpoint_deadly"]) {
+        if(rand()%10005/10000.f>1-0.002)
+        {
+            JBEntity* entity = [[JBEntityManager getEntityWithID:@"deadly_2"] retain];
+            [self insertEntity:entity atPosition:spawn.position];
+            [self.deadlies addObject:entity];
+            [entity autorelease];
+        }
+    }
+    NSMutableArray* toDelete = [NSMutableArray array];
+    for (JBEntity* entity in self.deadlies) {
+        if (entity.sprite.position.y<-1000) {
+            [toDelete addObject:entity];
+            [self removeChild:entity.sprite cleanup:YES];
+            world->DestroyBody(entity.body);
+            entity.body = nil;
+            entity.sprite = nil;
+        }
+    }
+    for (JBEntity* entity in toDelete) {
+        [self.deadlies removeObject:entity];
+    }
+    [toDelete removeAllObjects];
+}
 
 - (CGPoint)getSpawnPositionForID:(NSString *)spawnID
 {

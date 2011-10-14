@@ -73,7 +73,7 @@ static NSString *filePath = @"skins";
 }
 
 
-+ (bool)saveNewSkin:(NSMutableDictionary*)skinDict withThumbnail:(UIImage*)thumbnail andSkin:(UIImage*)skin {
++ (bool)saveNewSkin:(NSMutableDictionary*)skinDict withThumbnail:(UIImage*)thumbnail andSkin:(UIImage*)skin andBlue:(UIImage *)blue andRed:(UIImage *)red{
     NSString *folderName = [skinDict valueForKey:jbID];
     NSString *path;
     
@@ -116,6 +116,12 @@ static NSString *filePath = @"skins";
         [skinDict setValue:[path stringByAppendingPathComponent:jbIMAGE] forKey:jbIMAGELOCATION];
         [skinDict removeObjectForKey:jbIMAGE];
     }
+    if (blue){
+        [UIImagePNGRepresentation(blue) writeToFile:[[path stringByAppendingPathComponent:jbIMAGE] stringByAppendingString:@"_blue"] atomically:YES];
+    }
+    if (red){
+        [UIImagePNGRepresentation(red) writeToFile:[[path stringByAppendingPathComponent:jbIMAGE] stringByAppendingString:@"_red"] atomically:YES];
+    }
     
     [skinDict writeToFile:[path stringByAppendingPathComponent:jbINFO] atomically:YES];
     
@@ -135,19 +141,11 @@ static NSString *filePath = @"skins";
 
 + (void)saveRessourceSkins {
     NSMutableDictionary *skin = [NSMutableDictionary dictionary];
-    UIImage *skinImage = [UIImage imageNamed:@"bird_1.png"];
-    UIImage *thumb = [UIImage imageNamed:@"bird_1.png"];
     
-    [skin setValue:@"bird1" forKey:jbID];
-    [skin setValue:@"bird1" forKey:jbNAME];
-    [skin setValue:thumb forKey:jbTHUMBNAIL];
-    [skin setValue:skinImage forKey:jbIMAGE];
-    [skin setValue:@"LocalImage_Bird1" forKey:jbFURTHER];
-    
-    [JBSkinManager saveNewSkin:skin withThumbnail:thumb andSkin:skinImage];
-    
-    skinImage = [UIImage imageNamed:@"bull_1.png"];
-    thumb = [UIImage imageNamed:@"bull_1.png"];
+    UIImage *skinImage = [UIImage imageNamed:@"bull_1.png"];
+    UIImage *thumb = [UIImage imageNamed:@"bull_1.png"];
+    UIImage * blue = [UIImage imageNamed:@"bull_1_blue.png"];
+    UIImage * red = [UIImage imageNamed:@"bull_1_red.png"];
     
     [skin setValue:@"bull1" forKey:jbID];
     [skin setValue:@"bull1" forKey:jbNAME];
@@ -155,19 +153,10 @@ static NSString *filePath = @"skins";
     [skin setValue:skinImage forKey:jbIMAGE];
     [skin setValue:@"LocalImage_Bull1" forKey:jbFURTHER];
     
-    [JBSkinManager saveNewSkin:skin withThumbnail:thumb andSkin:skinImage];
-    
-    skinImage = [UIImage imageNamed:@"bunny_1.png"];
-    thumb = [UIImage imageNamed:@"bunny_1.png"];
-    
-    [skin setValue:@"bunny1" forKey:jbID];
-    [skin setValue:@"bunny1" forKey:jbNAME];
-    [skin setValue:thumb forKey:jbTHUMBNAIL];
-    [skin setValue:skinImage forKey:jbIMAGE];
-    [skin setValue:@"LocalImage:bunny1" forKey:jbFURTHER];
-    
-    [JBSkinManager saveNewSkin:skin withThumbnail:thumb andSkin:skinImage];
-    
+    [JBSkinManager saveNewSkin:skin withThumbnail:thumb andSkin:skinImage andBlue:blue andRed:red];
+
+    blue = [UIImage imageNamed:@"bunny_2_blue.png"];
+    red = [UIImage imageNamed:@"bunny_2_red.png"];
     skinImage = [UIImage imageNamed:@"bunny_2.png"];
     thumb = [UIImage imageNamed:@"bunny_2.png"];
     
@@ -177,8 +166,10 @@ static NSString *filePath = @"skins";
     [skin setValue:skin forKey:jbIMAGE];
     [skin setValue:@"LocalImage_bunny2" forKey:jbFURTHER];
     
-    [JBSkinManager saveNewSkin:skin withThumbnail:thumb andSkin:skinImage];
+    [JBSkinManager saveNewSkin:skin withThumbnail:thumb andSkin:skinImage andBlue:blue andRed:red];
     
+    blue = [UIImage imageNamed:@"scel2_blue.png"];
+    red = [UIImage imageNamed:@"scel2_red.png"];
     skinImage = [UIImage imageNamed:@"scel_2.png"];
     thumb = [UIImage imageNamed:@"scel_2.png"];
     
@@ -188,7 +179,7 @@ static NSString *filePath = @"skins";
     [skin setValue:skinImage forKey:jbIMAGE];
     [skin setValue:@"LocalImage_scel2" forKey:jbFURTHER];
     
-    [JBSkinManager saveNewSkin:skin withThumbnail:thumb andSkin:skinImage];
+    [JBSkinManager saveNewSkin:skin withThumbnail:thumb andSkin:skinImage andBlue:blue andRed:red];
 }
 
 

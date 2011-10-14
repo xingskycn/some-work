@@ -106,6 +106,7 @@
     
     if (isLeft) {
         sprite.flipX=YES;
+        
     } else {
         sprite.flipX=NO;
     }
