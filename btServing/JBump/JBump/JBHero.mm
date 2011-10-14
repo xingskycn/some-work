@@ -72,6 +72,7 @@
 - (void)jump:(float)time timeOnGround:(float)playerTimeOnGround {
     if(onGround && !jumpTouched) {
         jumpForce=1.0f;
+        onGround=false;
         if (body->GetLinearVelocity().y<6.5f) {
             body->ApplyForce(b2Vec2(0, (42*time*60*jumpForce)), body->GetWorldCenter());
         }
