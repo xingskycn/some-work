@@ -33,7 +33,7 @@
 - (JBHero *)requestPlayerAnnouncement:(NSString *)playerID;
 - (void)receivedPlayerInfo:(JBHero *)hero;
 - (void)player:(char)heroID didChangeContext:(NSDictionary *)context;
-- (void)receivedAKill:(char)killingPlayerID;
+- (void)receivedAKill:(char)killingPlayerID forKilledPlayer:(char)killedPlayerID;
 
 @end
 
@@ -47,7 +47,7 @@
 - (void)sendPlayerReadyChange:(BOOL)ready;
 - (void)disconnectPlayer;
 - (void)requestForPlayerAnnouncement:(NSString *)playerID;
-- (void)playerKilledByChar:(JBHero *)player;
+- (void)player:(JBHero*)killedPlayer KilledByChar:(JBHero *)player;
 - (void)shoutPlayerGameContextChange:(JBHero*)aHero;
 - (void)shoutMapChangeToMap:(NSString *)mapID;
 - (void)playerKilledByChar:(JBHero *)player;

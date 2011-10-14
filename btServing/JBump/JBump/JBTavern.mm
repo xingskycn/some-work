@@ -114,32 +114,55 @@
  */
 
 - (void)Player:(char)aPlayerID isDead:(bool)isDead {
-    [self.multiplayerAdapter playerKilledByChar:[self getPlayerWithReference:self.localPlayer.killingPlayerID]];
+    JBHero *killedPlayer = [self getPlayerWithReference:aPlayerID];
+    [self.multiplayerAdapter player:killedPlayer KilledByChar:[self getPlayerWithReference:killedPlayer.killingPlayerID]];
     NSLog(@"Want send that Player with ID: %i is dead", aPlayerID);
-    NSNumber *deathCount= [self.localPlayer.gameContext objectForKey:jbGAMECONTEXT_DEATH_COUNT];
+    NSNumber *deathCount= [killedPlayer.gameContext objectForKey:jbGAMECONTEXT_DEATH_COUNT];
     if (deathCount) {
         int kills= [deathCount intValue];
         deathCount = [NSNumber numberWithInt:(kills++)];
     } else {
         deathCount = [NSNumber numberWithInt:1];
     }
-    [self.localPlayer.gameContext setObject:deathCount forKey:jbGAMECONTEXT_DEATH_COUNT];
-    [self.multiplayerAdapter shoutPlayerGameContextChange];
+    [killedPlayer.gameContext setObject:deathCount forKey:jbGAMECONTEXT_DEATH_COUNT];
+    [self.multiplayerAdapter shoutPlayerGameContextChange:killedPlayer];
+    //[self.multiplayerAdapter player:killedPlayer KilledByChar:[self getPlayerWithReference: killedPlayer.killingPlayerID]];
+    
+    JBHero* killingHero=[self getPlayerWithReference:killedPlayer.killingPlayerID];
+    NSString *killCount= [killingHero.gameContext objectForKey:jbGAMECONTEXT_KILL_COUNT];
+    if (killCount) {
+        int kills= [killCount intValue];
+        kills++;
+        killCount = [NSString stringWithFormat:@"%i", kills];
+    } else {
+        int kills= [killCount intValue];
+        kills++;
+        killCount = [NSString stringWithFormat:@"%i", kills];
+
+    }
+    [killingHero.gameContext setObject:killCount forKey:jbGAMECONTEXT_KILL_COUNT];
+    
+    [self.gameLayer.gameViewController.scoreTableView reloadData];
 }
 
-- (void)receivedAKill:(char)killingPlayerID {
-    if (self.localPlayer.playerID==killingPlayerID) {
-        NSNumber *killCount= [self.localPlayer.gameContext objectForKey:jbGAMECONTEXT_KILL_COUNT];
-        if (killCount) {
-            int kills= [killCount intValue];
-            killCount = [NSNumber numberWithInt:(kills++)];
-        } else {
-            killCount = [NSNumber numberWithInt:1];
-        }
-        [self.localPlayer.gameContext setObject:killCount forKey:jbGAMECONTEXT_KILL_COUNT];
+- (void)receivedAKill:(char)killingPlayerID forKilledPlayer:(char)killedPlayerID {
+    JBHero* killingHero=[self getPlayerWithReference:killingPlayerID];
+    NSString *killCount= [killingHero.gameContext objectForKey:jbGAMECONTEXT_KILL_COUNT];
+    if (killCount) {
+        int kills= [killCount intValue];
+        kills++;
+        killCount = [NSString stringWithFormat:@"%i", kills];
+    } else {
+        int kills= [killCount intValue];
+        kills++;
+        killCount = [NSString stringWithFormat:@"%i", kills];
+        
     }
+    [killingHero.gameContext setObject:killCount forKey:jbGAMECONTEXT_KILL_COUNT];
     
-    [self.multiplayerAdapter shoutPlayerGameContextChange];
+    [self.multiplayerAdapter shoutPlayerGameContextChange:killingHero];
+    
+    [self.gameLayer.gameViewController.scoreTableView reloadData];
 }
 /*
 - (void)updateBallWithPositionx:(CGPoint)position velocityX:(float)x andVelocityY:(float)y
