@@ -362,7 +362,11 @@ public:
     if (self.isServer) {
         [tavern testForBodies];
         
-        player.onGround=NO;
+        NSArray* allHeroes = [[[self.tavern.heroesInTavern allValues] retain] autorelease];
+        for (JBHero *aHero in allHeroes) {
+            aHero.onGround=NO;
+        }
+        //player.onGround=NO;
         int32 velocityIterations = 8;
         int32 positionIterations = 1;
         if (self.isServer) {
@@ -379,7 +383,11 @@ public:
                 CCSprite *myActor = (CCSprite*)body->GetUserData();
                 myActor.position = CGPointMake( body->GetPosition().x * PTM_RATIO,
                                                body->GetPosition().y * PTM_RATIO);
-                if(player.sprite!=myActor){
+                bool rotate=YES;
+                if (myActor.userData&&[(id)myActor.userData isKindOfClass:[JBHero class]]) {
+                    rotate=NO;
+                }
+                if(rotate){
                     myActor.rotation = -1 * CC_RADIANS_TO_DEGREES(body->GetAngle());
                 }
                 if ([(NSObject*)myActor.userData isKindOfClass:[JBHero class]]) {
@@ -414,7 +422,6 @@ public:
         }
         player.userInput = userInput;
         
-        NSArray* allHeroes = [[[self.tavern.heroesInTavern allValues] retain] autorelease];
         for (JBHero* hero in allHeroes)
         {
             [self performUserInputsOnHero:hero withTimeDelta:(float)deltaTime];
@@ -573,19 +580,27 @@ public:
             hero = self.tavern.localPlayer;
             player = hero;
             multiplayer=YES;
+            JBSkin *heroSkin = [JBSkinManager getSkinWithID:hero.skinID];
+            hero.sprite = [CCSprite spriteWithFile:heroSkin.imageLocation];
+            hero.sprite.scale=(30.0/hero.sprite.textureRect.size.height);
+            hero.sprite.userData=hero;
+            [self addChild:hero.sprite z:0 tag:[hero.name hash]];
         } else {
             hero = [[JBHero alloc] init];
             hero.name = [[NSUserDefaults standardUserDefaults] objectForKey:jbUSERDEFAULTS_PLAYER_NAME];
             hero.skinID = [[NSUserDefaults standardUserDefaults] objectForKey:jbUSERDEFAULTS_SKIN];
+            JBSkin *heroSkin = [JBSkinManager getSkinWithID:hero.skinID];
+            hero.sprite = [CCSprite spriteWithFile:heroSkin.imageLocation];
+            hero.sprite.scale=(30.0/hero.sprite.textureRect.size.height);
+            hero.sprite.userData=hero;
+            [self addChild:hero.sprite z:0 tag:[hero.name hash]];
         }
     }
     
-    JBSkin *heroSkin = [JBSkinManager getSkinWithID:hero.skinID];
-    hero.sprite = [CCSprite spriteWithFile:heroSkin.imageLocation];
-    hero.sprite.scale=(30.0/hero.sprite.textureRect.size.height);
-    hero.sprite.userData=hero;
-    [self addChild:hero.sprite z:0 tag:[hero.name hash]];
+    /*
     
+    */
+    position = [self getSpawnPositionForID:@"spawnpoint"];
     b2BodyDef bodyDef;
 	bodyDef.type = b2_dynamicBody;
     
