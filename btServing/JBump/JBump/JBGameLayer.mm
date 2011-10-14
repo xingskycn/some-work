@@ -170,7 +170,8 @@ public:
                     hero.onGround=true; 
                 }
             }
-        }else if(contact->GetFixtureB()->GetUserData()) {
+        } 
+        if(contact->GetFixtureB()->GetUserData()) {
             if ([(NSObject *)contact->GetFixtureB()->GetUserData() isKindOfClass:[JBHero class]]) {
                 JBHero* hero = (JBHero *)contact->GetFixtureB()->GetUserData(); 
                 float product = -acosf(worldManifold.normal.x)*180/M_PI+90;
@@ -421,6 +422,10 @@ public:
             
             if (hero.body!=nil&&hero.body->GetLinearVelocity().y>6.5f) {
                 hero.body->SetLinearVelocity(b2Vec2(hero.body->GetLinearVelocity().x, 6.5f));
+            }
+            
+            if (hero.isDead) {
+                [self resetPositionAfterDeathForPlayer:hero];
             }
         }
         
@@ -686,7 +691,7 @@ public:
 }
 
 
-- (void)resetOwnPositionAfterDeath {
+- (void)resetPositionAfterDeathForPlayer:(JBHero*)aHero {
     b2BodyDef bodyDef;
 	bodyDef.type = b2_dynamicBody;
     CGPoint pos = [self getSpawnPositionForID:@"spawnpoint"];
@@ -704,13 +709,14 @@ public:
 	fixtureDef.friction = 0.1f;
     fixtureDef.density = 1.0f;
     fixtureDef.restitution = 0.050f;
-    fixtureDef.userData = player;
+    fixtureDef.userData = aHero;
 	body->CreateFixture(&fixtureDef);
 
-    world->DestroyBody(player.body);
-    player.body=nil;
-    player.body=body;
-    player.isDead=NO;
+    world->DestroyBody(aHero.body);
+    aHero.body=nil;
+    aHero.body=body;
+    aHero.isDead=NO;
+    aHero.isDeadSended=YES;
 }
 
 
