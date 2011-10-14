@@ -34,6 +34,7 @@
 @synthesize isDeadSended;
 @synthesize killingPlayerID;
 @synthesize force;
+@synthesize userInput;
 
 - (id)init {
     self = [super init];
