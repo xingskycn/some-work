@@ -258,7 +258,7 @@
 - (void)sendUserInput:(NSString *)inputs
 {
     NSString* sendString = 
-	[NSString stringWithFormat:	@"|SUI:%@",inputs];
+	[NSString stringWithFormat:	@"|SUI:%d|%@",self.tavern.localPlayer.playerID ,inputs];
 	
 	NSData* sendData = [sendString dataUsingEncoding:NSUTF8StringEncoding];
 	if (self.activePeer) {
@@ -281,15 +281,15 @@
         ((short*)sendField)[2*index]=hero.playerID;
         ((short*)sendField)[2*index+1]=hero.sprite.flipX;
         index++;
-        ((float*)sendField)[index]=hero.playerID;
-        index++;
         ((float*)sendField)[index]=hero.sprite.position.x;
         index++;
         ((float*)sendField)[index]=hero.sprite.position.y;
         index++;
         ((float*)sendField)[index]=hero.sprite.rotation;
         index++;
-        ((float*)sendField)[index]=0;
+        ((int*)sendField)[index]=0;
+        index++;
+        ((int*)sendField)[index]=0;
         index++;
     }
     
@@ -575,19 +575,19 @@ progressDelegate:(id<JBProgressDelegate>)pDelegate
 - (void)handlePlayerPositionUpdates:(NSData *)data
 {
     int packackgeNr = ((int *)[data bytes])[0]>>8;
-    int length = ([data length] -4)/16;
+    int length = ([data length] -4)/24;
     
     NSMutableArray* heroes = [NSMutableArray array];
     for (int i=0;i<length;i++)
     {
         NSMutableDictionary* heroDict = [NSMutableDictionary dictionary];
-        [heroDict setObject:[NSNumber numberWithInt:((short *)[data bytes])[2+8*i]] forKey:jbID];
-        [heroDict setObject:[NSNumber numberWithInt:((short *)[data bytes])[3+8*i]] forKey:jbFLIPX];
-        float posX = ((float *)[data bytes])[2+4*i];
-        float posY = ((float *)[data bytes])[3+4*i];
+        [heroDict setObject:[NSNumber numberWithInt:((short *)[data bytes])[2+12*i]] forKey:jbID];
+        [heroDict setObject:[NSNumber numberWithInt:((short *)[data bytes])[3+12*i]] forKey:jbFLIPX];
+        float posX = ((float *)[data bytes])[2+6*i];
+        float posY = ((float *)[data bytes])[3+6*i];
         CGPoint pos = CGPointMake(posX, posY);
         [heroDict setObject:NSStringFromCGPoint(pos) forKey:jbPOSITION];
-        [heroDict setObject:[NSNumber numberWithFloat:((float *)[data bytes])[4+4*i]] forKey:jbROTATION];
+        [heroDict setObject:[NSNumber numberWithFloat:((float *)[data bytes])[4+6*i]] forKey:jbROTATION];
         [heroes addObject:heroDict];
     }
     
@@ -727,6 +727,14 @@ progressDelegate:(id<JBProgressDelegate>)pDelegate
         NSArray* parts = [announcement componentsSeparatedByString:@"|"];
         int playerID = [[parts objectAtIndex:0] intValue];
         NSString* inputs = [parts objectAtIndex:1];
+        JBHero* hero = [self.tavern getPlayerWithReference:playerID];
+        
+        if ([[hero.userInput substringWithRange:NSMakeRange(2, 1)] isEqualToString:@"J"]
+            &&[[inputs substringWithRange:NSMakeRange(2, 1)] isEqualToString:@"X"]) {
+            hero.jumpTouched = NO;
+        }
+        hero.userInput = inputs;
+        
         return TRUE;
 	}else {
 		return FALSE;
@@ -736,16 +744,18 @@ progressDelegate:(id<JBProgressDelegate>)pDelegate
 - (void)receiveData:(NSData *)data fromPeer:(NSString *)peer inSession: (GKSession *)session context:(void *)context {
     NSString* inputString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     if (inputString) {
-        if (![self handlePregame:inputString]) {
-            if (![self handleDisconnectedPlayer:inputString]) {
-                if (![self handleRequestForPlayerAnnouncement:inputString]) {
-                    if (![self handlePlayerGameContextChange:inputString]) {
-                        if (![self handlePlayerKilledByPlayer:inputString]) {
-                            if (![self handleDataSendRequestIncomming:inputString]) {
-                                if (![self handleNextDataRequestIncomming:inputString]) {
-                                    if (![self handleAboardTransferRequest:inputString]) {
-                                        if (![self handleTransferDataIncomming:data]) {
-                                            [self handlePlayerPositionUpdates:data];
+        if (![self handleReceiveUserInput:inputString]) {
+            if (![self handlePregame:inputString]) {
+                if (![self handleDisconnectedPlayer:inputString]) {
+                    if (![self handleRequestForPlayerAnnouncement:inputString]) {
+                        if (![self handlePlayerGameContextChange:inputString]) {
+                            if (![self handlePlayerKilledByPlayer:inputString]) {
+                                if (![self handleDataSendRequestIncomming:inputString]) {
+                                    if (![self handleNextDataRequestIncomming:inputString]) {
+                                        if (![self handleAboardTransferRequest:inputString]) {
+                                            if (![self handleTransferDataIncomming:data]) {
+                                                [self handlePlayerPositionUpdates:data];
+                                            }
                                         }
                                     }
                                 }

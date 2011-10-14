@@ -62,4 +62,6 @@
 progressDelegate:(id<JBProgressDelegate>)pDelegate;
 - (void)sendMapForID:(NSString *)mapID progrossDelegate:(id<JBProgressDelegate>)delegate;
 - (void)sendBall;
+- (void)sendUserInput:(NSString *)inputs;
+
 @end

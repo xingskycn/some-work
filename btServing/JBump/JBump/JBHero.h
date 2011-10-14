@@ -17,6 +17,7 @@
     bool isLeft, isRight;
 }
 
+@property (nonatomic, retain) NSString *userInput;
 @property (nonatomic, retain) NSString* name;
 @property (nonatomic, retain) NSString* skinID;
 @property (nonatomic, retain) NSMutableDictionary* gameContext;
