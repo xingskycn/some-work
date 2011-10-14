@@ -12,7 +12,7 @@
 @class JBMultiplayerAdapter;
 @class JBMap;
 
-@interface JBGameViewController : UIViewController{
+@interface JBGameViewController : UIViewController <UITableViewDataSource>{
     int sideViewState;
 }
 
@@ -27,6 +27,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *moveLeftButton;
 @property (retain, nonatomic) IBOutlet UIButton *moveRightButton;
 @property (retain, nonatomic) JBMap *selectedMap;
+@property (retain, nonatomic) IBOutlet UITableView *scoreTableView;
 
 - (IBAction)jumpButtonPressed:(id)sender;
 - (IBAction)leftButtonPressed:(id)sender;

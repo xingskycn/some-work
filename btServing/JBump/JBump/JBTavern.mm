@@ -10,6 +10,7 @@
 #import "JBHero.h"
 #import "JBSkinManager.h"
 #import "JBSkin.h"
+#import "JBGameViewController.h"
 
 @implementation JBTavern
 
@@ -87,6 +88,8 @@
 - (void)player:(char)heroID didChangeContext:(NSDictionary *)context {
     JBHero *changeH = [self getPlayerWithReference:heroID];
     changeH.gameContext=[context mutableCopy];
+    
+    [self.gameLayer.gameViewController.scoreTableView reloadData];
 }
 /*
 - (void)player:(char)aPlayerID changedPosition:(CGPoint)position velocityX:(float)x velocityY:(float)y forceX:(float)forceX forceY:(float)forceY withPackageNR:(int)packageNR {

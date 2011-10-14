@@ -225,6 +225,7 @@ public:
 @synthesize gameViewController,spawnPoints;
 @synthesize tavern,mapSize;
 @synthesize isServer;
+@synthesize gameType;
 
 +(CCScene *) scene
 {
@@ -337,12 +338,21 @@ public:
     
     [self insertHero:nil atPosition:CGPointMake(0, 0)];
     
+    NSArray* allHeroes = [[[self.tavern.heroesInTavern allValues] retain] autorelease];
+    for (JBHero *aHero in allHeroes) {
+        [aHero.gameContext setObject:@"0" forKey:jbGAMECONTEXT_KILL_COUNT];
+    }
+    
     for (NSDictionary* setting in map.settings) {
         if ([[setting objectForKey:jbID] isEqualToString:jbMAPSETTINGS_SOCCER]&&[[setting objectForKey:jbMAPSETTINGS_DATA] boolValue])
         {
             JBEntity* ball = [JBEntityManager getEntityWithID:@"ball_04"];
             [self.tavern.entitiesInTavern addObject:ball];
             ball.shootable = YES;
+            self.gameType = jbMAPSETTINGS_SOCCER;
+            for (JBHero *aHero in allHeroes) {
+                [aHero.gameContext setObject:@"0" forKey:jbGAMECONTEXT_GOALS];
+            }
         }
     }
     
@@ -368,6 +378,29 @@ public:
         for (JBHero *aHero in allHeroes) {
             aHero.onGround=NO;
         }
+        
+        for (JBEntity *entity in self.tavern.entitiesInTavern) {
+            if (entity.hitGoalLine==1) {
+                entity.hitGoalLine=0;
+                int goals = [[self.tavern.localPlayer.gameContext objectForKey:jbGAMECONTEXT_GOALS] intValue];
+                goals++;
+                [self.tavern.localPlayer.gameContext setObject:[NSString stringWithFormat:@"%i", goals] forKey:jbGAMECONTEXT_GOALS];
+            }
+            else if (entity.hitGoalLine==2) {
+                entity.hitGoalLine=0;
+                NSArray* allHeros = [[[tavern.heroesInTavern allValues] retain] autorelease];
+                for (JBHero *aHero in allHeros) {
+                    if (aHero.playerID!=self.tavern.localPlayer.playerID) {
+                        int goals = [[aHero.gameContext objectForKey:jbGAMECONTEXT_GOALS] intValue];
+                        goals++;
+                        [aHero.gameContext setObject:[NSString stringWithFormat:@"%i", goals] forKey:jbGAMECONTEXT_GOALS];
+                        
+                    }
+                }
+            }
+        }
+        
+        
         //player.onGround=NO;
         int32 velocityIterations = 8;
         int32 positionIterations = 1;

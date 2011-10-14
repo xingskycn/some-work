@@ -50,7 +50,7 @@ static NSString *filePath = @"maps";
     [thumbnailImageData writeToFile:[path stringByAppendingPathComponent:jbTHUMBNAIL] atomically:YES];
     [infoDict setValue:[path stringByAppendingPathComponent:jbARENAIMAGE] forKey:jbARENAIMAGELOCATION];
     [infoDict setValue:[path stringByAppendingPathComponent:jbTHUMBNAIL] forKey:jbTHUMBNAILLOCATION];
-    [infoDict setObject:[path stringByAppendingFormat:jbINFO] forKey:jbINFOLOCATION];
+    [infoDict setObject:[path stringByAppendingPathComponent:jbINFO] forKey:jbINFOLOCATION];
     [infoDict writeToFile:[path stringByAppendingPathComponent:jbINFO] atomically:YES];
 }
 

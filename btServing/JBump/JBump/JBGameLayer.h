@@ -32,8 +32,9 @@
 @property(nonatomic, assign)JBGameViewController *gameViewController;
 @property(nonatomic, retain)NSMutableDictionary* spawnPoints;
 @property(nonatomic, assign)JBTavern *tavern;
+@property(nonatomic, retain) NSString *gameType; 
 @property(assign)CGSize mapSize;
-@property (assign) bool isServer;
+@property(assign) bool isServer;
 
 +(CCScene *) scene;
 
