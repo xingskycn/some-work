@@ -272,9 +272,10 @@
 
 - (void)sendPlayer
 {
-    int length = [self.tavern.heroesInTavern allKeys].count*(3*sizeof(float)+sizeof(int)+sizeof(int)+sizeof(int))+sizeof(int);
+    int length = [self.tavern.heroesInTavern allKeys].count*(3*sizeof(float)+sizeof(int)+sizeof(int)+sizeof(int))+
+                  self.tavern.entitiesInTavern.count*(3*sizeof(float)+sizeof(int)+sizeof(int)+sizeof(int))+sizeof(int);
     void* sendField = malloc(length);
-    int packageNr = self.tavern.localPlayer.packageNr++;
+    int packageNr = self.tavern.localPlayer.packageNr = self.tavern.localPlayer.packageNr+2;
  	((int*)sendField)[0]=packageNr<<8;
     int index = 1;
     NSArray *allHeroes = [[[self.tavern.heroesInTavern allValues] retain] autorelease];
@@ -291,6 +292,22 @@
         ((int*)sendField)[index]=0;
         index++;
         ((int*)sendField)[index]=0;
+        index++;
+    }
+    
+    for (JBEntity* entity in self.tavern.entitiesInTavern) {
+        ((short*)sendField)[2*index]=0;
+        ((short*)sendField)[2*index+1]=entity.sprite.flipX;
+        index++;
+        ((float*)sendField)[index]=entity.sprite.position.x;
+        index++;
+        ((float*)sendField)[index]=entity.sprite.position.y;
+        index++;
+        ((float*)sendField)[index]=entity.sprite.rotation;
+        index++;
+        ((int*)sendField)[index]=[entity.ID hash];
+        index++;
+        ((int*)sendField)[index]=[self.tavern.entitiesInTavern indexOfObject:entity];
         index++;
     }
     
@@ -579,21 +596,36 @@ progressDelegate:(id<JBProgressDelegate>)pDelegate
     int length = ([data length] -4)/24;
     
     NSMutableArray* heroes = [NSMutableArray array];
+    NSMutableArray* entities = [NSMutableArray array];
     for (int i=0;i<length;i++)
     {
-        NSMutableDictionary* heroDict = [NSMutableDictionary dictionary];
-        [heroDict setObject:[NSNumber numberWithInt:((short *)[data bytes])[2+12*i]] forKey:jbID];
-        [heroDict setObject:[NSNumber numberWithInt:((short *)[data bytes])[3+12*i]] forKey:jbFLIPX];
-        float posX = ((float *)[data bytes])[2+6*i];
-        float posY = ((float *)[data bytes])[3+6*i];
-        CGPoint pos = CGPointMake(posX, posY);
-        [heroDict setObject:NSStringFromCGPoint(pos) forKey:jbPOSITION];
-        [heroDict setObject:[NSNumber numberWithFloat:((float *)[data bytes])[4+6*i]] forKey:jbROTATION];
-        [heroes addObject:heroDict];
+        if (((short *)[data bytes])[2+12*i]) {
+            NSMutableDictionary* heroDict = [NSMutableDictionary dictionary];
+            [heroDict setObject:[NSNumber numberWithInt:((short *)[data bytes])[2+12*i]] forKey:jbID];
+            [heroDict setObject:[NSNumber numberWithInt:((short *)[data bytes])[3+12*i]] forKey:jbFLIPX];
+            float posX = ((float *)[data bytes])[2+6*i];
+            float posY = ((float *)[data bytes])[3+6*i];
+            CGPoint pos = CGPointMake(posX, posY);
+            [heroDict setObject:NSStringFromCGPoint(pos) forKey:jbPOSITION];
+            [heroDict setObject:[NSNumber numberWithFloat:((float *)[data bytes])[4+6*i]] forKey:jbROTATION];
+            [heroes addObject:heroDict];
+        }else{
+            NSMutableDictionary* entityDict = [NSMutableDictionary dictionary];
+            [entityDict setObject:[NSNumber numberWithInt:((short *)[data bytes])[3+12*i]] forKey:jbFLIPX];
+            float posX = ((float *)[data bytes])[2+6*i];
+            float posY = ((float *)[data bytes])[3+6*i];
+            CGPoint pos = CGPointMake(posX, posY);
+            [entityDict setObject:NSStringFromCGPoint(pos) forKey:jbPOSITION];
+            [entityDict setObject:[NSNumber numberWithFloat:((float *)[data bytes])[4+6*i]] forKey:jbROTATION];
+            [entityDict setObject:[NSNumber numberWithInt:((int *)[data bytes])[5+6*i]] forKey:@"id_hash"];
+            [entityDict setObject:[NSNumber numberWithInt:((int *)[data bytes])[6+6*i]] forKey:@"index"];
+            [entities addObject:entityDict];
+        }
+        
     }
     
-    [self.tavern setAllHeroSpritesInWorld:heroes withPackageNumber:packackgeNr];
-    
+    [self.tavern setAllHeroSpritesInWorld:heroes withPackageNumber:packackgeNr++];
+    [self.tavern setAllEntitiesInWorld:entities withPackageNumber:packackgeNr];
     
     /*
 	unsigned char playerID = ((char *)[data bytes])[0];
