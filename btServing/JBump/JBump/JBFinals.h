@@ -121,6 +121,7 @@
 #define jbGAMECONTEXT_SKIN_ID @"skinID"
 #define jbGAMECONTEXT_KILL_COUNT @"killCount"
 #define jbGAMECONTEXT_DEATH_COUNT @"deathCount" 
+#define jbGAMECONTEXT_GOALS @"goals"
 
 #pragma mark bluetooth keys
 #define jbFLIPX @"flipX"

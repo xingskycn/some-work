@@ -278,6 +278,10 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="144" height="247"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <connections>
+                                                    <outlet property="dataSource" destination="Njw-d5-mxn" id="xuL-eJ-bu2"/>
+                                                    <outlet property="delegate" destination="Njw-d5-mxn" id="PMg-8f-rRS"/>
+                                                </connections>
                                             </tableView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -295,6 +299,7 @@
                         <outlet property="moveRightButton" destination="BBG-Q0-dgG" id="Wed-XI-Rn6"/>
                         <outlet property="popin" destination="JSB-LN-DAS" id="vr8-BM-eaX"/>
                         <outlet property="popout" destination="Wrv-uE-Jsl" id="dYH-Dy-ggT"/>
+                        <outlet property="scoreTableView" destination="tih-hd-OEm" id="cLb-XA-aPc"/>
                         <outlet property="sideView" destination="rws-S6-ImX" id="T4O-7d-Q7s"/>
                     </connections>
                 </viewController>
@@ -927,12 +932,7 @@
                                     <segue destination="zaW-i8-IAz" kind="custom" identifier="aboutBackSegue" customClass="JBSegue" id="zHo-oC-CPQ"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="JBump
-(c) Nils Ziehn &amp; 
-Sebastian Pretscher
-
-This Project was initiated during
-the Seminar: IOS Game Developement" textAlignment="center" id="RDm-oB-aRA">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="JBump (c) Nils Ziehn &amp;  Sebastian Pretscher  This Project was initiated during the Seminar: IOS Game Developement" textAlignment="center" id="RDm-oB-aRA">
                                 <rect key="frame" x="132" y="96" width="240" height="140"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -971,8 +971,7 @@ the Seminar: IOS Game Developement" textAlignment="center" id="RDm-oB-aRA">
                                     <segue destination="zaW-i8-IAz" kind="custom" identifier="storeBackSegue" customClass="JBSegue" id="nI5-cD-pzh"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="This will become a webstore for skins and maps
-" textAlignment="center" lineBreakMode="middleTruncation" numberOfLines="2" minimumFontSize="10" id="wm8-Ur-jB3">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="This will become a webstore for skins and maps " textAlignment="center" lineBreakMode="middleTruncation" numberOfLines="2" minimumFontSize="10" id="wm8-Ur-jB3">
                                 <rect key="frame" x="56" y="130" width="369" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -1006,6 +1005,7 @@ the Seminar: IOS Game Developement" textAlignment="center" id="RDm-oB-aRA">
                 <relationship kind="outlet" name="moveRightButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="popin" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="popout" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="scoreTableView" candidateClass="UITableView"/>
                 <relationship kind="outlet" name="sideView" candidateClass="UIView"/>
             </relationships>
         </class>
@@ -1108,9 +1108,7 @@ the Seminar: IOS Game Developement" textAlignment="center" id="RDm-oB-aRA">
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="3Fh-iF-90v"/>
         <segue reference="nI5-cD-pzh"/>
         <segue reference="1RV-xt-lrX"/>
-        <segue reference="a3d-cP-thG"/>
     </inferredMetricsTieBreakers>
 </document>

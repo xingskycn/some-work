@@ -10,6 +10,7 @@
 #import "JBGameLayer.h"
 #import "JBMultiplayerAdapter.h"
 #import "JBTavern.h"
+#import "JBHero.h"
 
 @interface JBGameViewController()
 
@@ -23,6 +24,7 @@
 @synthesize gameLayer;
 @synthesize multiplayerAdapter;
 @synthesize selectedMap;
+@synthesize scoreTableView;
 
 @synthesize sideView;
 @synthesize popout;
@@ -60,6 +62,7 @@
     [self setJumpButton:nil];
     [self setMoveLeftButton:nil];
     [self setMoveRightButton:nil];
+    [self setScoreTableView:nil];
     [super viewDidUnload];
 }
 - (void)dealloc {
@@ -72,6 +75,7 @@
     [jumpButton release];
     [moveLeftButton release];
     [moveRightButton release];
+    [scoreTableView release];
     [super dealloc];
 }
 
@@ -139,4 +143,34 @@
 
 - (IBAction)leftButtonPressed:(id)sender {
 }
+
+#pragma mark tableView
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [self.gameLayer.tavern.heroesInTavern allValues].count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *cellIdentifier = @"ScoreTableViewCell";
+
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier] autorelease];
+    }
+    
+    NSArray *allPlayers = [self.gameLayer.tavern.heroesInTavern allValues];
+    JBHero *aHero = [allPlayers objectAtIndex:indexPath.row];
+    
+    cell.imageView.image = [UIImage imageWithContentsOfFile:aHero.skinLocation];
+    
+    if ([self.gameLayer.gameType isEqualToString:jbMAPSETTINGS_SOCCER]) {
+        cell.textLabel.text = [NSString stringWithFormat:@"%@: %@", aHero.name, [aHero.gameContext objectForKey:jbGAMECONTEXT_GOALS]];
+    } else {
+        cell.textLabel.text = [NSString stringWithFormat:@"%@: %@", aHero.name, [aHero.gameContext objectForKey:jbGAMECONTEXT_KILL_COUNT]];
+    }
+    
+    
+    return cell;
+}
+
 @end
