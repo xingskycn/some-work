@@ -91,6 +91,7 @@
     
     [self.gameLayer.gameViewController.scoreTableView reloadData];
 }
+
 /*
 - (void)player:(char)aPlayerID changedPosition:(CGPoint)position velocityX:(float)x velocityY:(float)y forceX:(float)forceX forceY:(float)forceY withPackageNR:(int)packageNR {
     JBHero *aPlayer = [self getPlayerWithReference:aPlayerID];

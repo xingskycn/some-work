@@ -205,12 +205,12 @@
 	}
 }
 
-- (void)shoutPlayerGameContextChange
+- (void)shoutPlayerGameContextChange:(JBHero*)aHero 
 {	
 	NSString* sendString = 
 	[NSString stringWithFormat:	@"|PGC:%d|%@",
-     self.tavern.localPlayer.playerID,
-     self.tavern.localPlayer.gameContext];
+     aHero.playerID,
+     [jsonWriter stringWithObject:aHero.gameContext]];
 	
 	NSData* sendData = [sendString dataUsingEncoding:NSUTF8StringEncoding];
 	if (self.activePeer) {

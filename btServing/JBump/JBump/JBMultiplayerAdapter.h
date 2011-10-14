@@ -48,7 +48,7 @@
 - (void)disconnectPlayer;
 - (void)requestForPlayerAnnouncement:(NSString *)playerID;
 - (void)playerKilledByChar:(JBHero *)player;
-- (void)shoutPlayerGameContextChange;
+- (void)shoutPlayerGameContextChange:(JBHero*)aHero;
 - (void)shoutMapChangeToMap:(NSString *)mapID;
 - (void)playerKilledByChar:(JBHero *)player;
 - (void)continueDataTransfer:(NSString *)transferID;

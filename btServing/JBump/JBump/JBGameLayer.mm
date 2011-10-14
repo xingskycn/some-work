@@ -379,28 +379,6 @@ public:
             aHero.onGround=NO;
         }
         
-        for (JBEntity *entity in self.tavern.entitiesInTavern) {
-            if (entity.hitGoalLine==1) {
-                entity.hitGoalLine=0;
-                int goals = [[self.tavern.localPlayer.gameContext objectForKey:jbGAMECONTEXT_GOALS] intValue];
-                goals++;
-                [self.tavern.localPlayer.gameContext setObject:[NSString stringWithFormat:@"%i", goals] forKey:jbGAMECONTEXT_GOALS];
-            }
-            else if (entity.hitGoalLine==2) {
-                entity.hitGoalLine=0;
-                NSArray* allHeros = [[[tavern.heroesInTavern allValues] retain] autorelease];
-                for (JBHero *aHero in allHeros) {
-                    if (aHero.playerID!=self.tavern.localPlayer.playerID) {
-                        int goals = [[aHero.gameContext objectForKey:jbGAMECONTEXT_GOALS] intValue];
-                        goals++;
-                        [aHero.gameContext setObject:[NSString stringWithFormat:@"%i", goals] forKey:jbGAMECONTEXT_GOALS];
-                        
-                    }
-                }
-            }
-        }
-        
-        
         //player.onGround=NO;
         int32 velocityIterations = 8;
         int32 positionIterations = 1;
@@ -473,6 +451,25 @@ public:
         
         for (JBEntity* entity in self.tavern.entitiesInTavern)
         {
+            if (entity.hitGoalLine==1) {
+                int goals = [[self.tavern.localPlayer.gameContext objectForKey:jbGAMECONTEXT_GOALS] intValue];
+                goals++;
+                [self.tavern.localPlayer.gameContext setObject:[NSString stringWithFormat:@"%i", goals] forKey:jbGAMECONTEXT_GOALS];
+                [self.gameViewController.scoreTableView reloadData];
+                [self.tavern.multiplayerAdapter shoutPlayerGameContextChange:self.tavern.localPlayer];
+            }
+            else if (entity.hitGoalLine==2) {
+                NSArray* allHeros = [[[tavern.heroesInTavern allValues] retain] autorelease];
+                for (JBHero *aHero in allHeros) {
+                    if (aHero.playerID!=self.tavern.localPlayer.playerID) {
+                        int goals = [[aHero.gameContext objectForKey:jbGAMECONTEXT_GOALS] intValue];
+                        goals++;
+                        [aHero.gameContext setObject:[NSString stringWithFormat:@"%i", goals] forKey:jbGAMECONTEXT_GOALS];
+                        [self.gameViewController.scoreTableView reloadData];
+                        [self.tavern.multiplayerAdapter shoutPlayerGameContextChange:aHero];
+                    }
+                }
+            }
             if (entity.hitGoalLine) {
                 [self resetPositionForEntity:entity];
             }
