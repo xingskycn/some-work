@@ -385,9 +385,6 @@ public:
                         [self.tavern Player:checkHero.playerID isDead:YES];
                         checkHero.isDeadSended=YES;
                     }
-                    if (checkHero != player) {
-                        checkHero.body->ApplyForce(b2Vec2(checkHero.force.x,checkHero.force.y), checkHero.body->GetWorldCenter());
-                    }
                 }
             }	
         }
@@ -697,7 +694,7 @@ public:
     CGPoint pos = [self getSpawnPositionForID:@"spawnpoint"];
     
 	bodyDef.position.Set(pos.x/PTM_RATIO, pos.y/PTM_RATIO);
-	bodyDef.userData = player.sprite;
+	bodyDef.userData = aHero.sprite;
 	b2Body *body = world->CreateBody(&bodyDef);
 	
     b2CircleShape shape;
