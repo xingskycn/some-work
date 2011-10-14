@@ -170,7 +170,7 @@ public:
                     hero.onGround=true; 
                 }
             }
-        } 
+        }   
         if(contact->GetFixtureB()->GetUserData()) {
             if ([(NSObject *)contact->GetFixtureB()->GetUserData() isKindOfClass:[JBHero class]]) {
                 JBHero* hero = (JBHero *)contact->GetFixtureB()->GetUserData(); 
@@ -774,7 +774,6 @@ public:
             hero.desiredRotation=0;
         }
     }
-    
 }
 
 @end
