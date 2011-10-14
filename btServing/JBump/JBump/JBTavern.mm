@@ -169,12 +169,14 @@
         return;
     }
     lastEntityPackageNumber=packageNumber;
-    for (NSDictionary *entityDict in allEntities) {
-        JBEntity *entity = [self.entitiesInTavern objectAtIndex:[[entityDict objectForKey:@"index"] intValue]];
-        if (entity) {
-            entity.sprite.position=CGPointFromString([entityDict objectForKey:jbPOSITION]);
-            entity.sprite.rotation=[[entityDict objectForKey:jbROTATION] floatValue];
-            entity.sprite.flipX = [[entityDict objectForKey:jbFLIPX] intValue];
+    if (self.entitiesInTavern.count) {
+        for (NSDictionary *entityDict in allEntities) {
+            JBEntity *entity = [self.entitiesInTavern objectAtIndex:[[entityDict objectForKey:@"index"] intValue]];
+            if (entity) {
+                entity.sprite.position=CGPointFromString([entityDict objectForKey:jbPOSITION]);
+                entity.sprite.rotation=[[entityDict objectForKey:jbROTATION] floatValue];
+                entity.sprite.flipX = [[entityDict objectForKey:jbFLIPX] intValue];
+            }
         }
     }
 }
