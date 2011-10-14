@@ -315,7 +315,6 @@
 }
 
 - (void)playerDidStartGame:(JBHero *)hero {
-    // TODO::
 }
 
 - (void)mapChangeToID:(NSString *)mapID

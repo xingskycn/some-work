@@ -419,7 +419,6 @@ public:
         }
         player.userInput = userInput;
         
-        NSArray* allHeroes = [[[self.tavern.heroesInTavern allValues] retain] autorelease];
         for (JBHero* hero in allHeroes)
         {
             [self performUserInputsOnHero:hero withTimeDelta:(float)deltaTime];
