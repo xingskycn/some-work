@@ -69,16 +69,16 @@ public:
                                 }
                             }
                         }
-                    }
-                }else if([(NSObject*)contact->GetFixtureA()->GetUserData() isKindOfClass:[JBBrush class]])
-                {
-                    JBBrush *brush = (JBBrush*)contact->GetFixtureA()->GetUserData();
-                    if ([brush.ID isEqualToString:jBBRUSH_GOALLINE_TEAM1]) {
-                        entity.hitGoalLine = 1;
-                        NSLog(@"HAS HIT GOAL LINE 1");
-                    }else if([brush.ID isEqualToString:jBBRUSH_GOALLINE_TEAM2]){
-                        entity.hitGoalLine = 2;
-                        NSLog(@"HAS HIT GOAL LINE 2");
+                    }else if([(NSObject*)contact->GetFixtureA()->GetUserData() isKindOfClass:[JBBrush class]])
+                    {
+                        JBBrush *brush = (JBBrush*)contact->GetFixtureA()->GetUserData();
+                        if ([brush.ID isEqualToString:jBBRUSH_GOALLINE_TEAM1]) {
+                            entity.hitGoalLine = 1;
+                            NSLog(@"HAS HIT GOAL LINE 1");
+                        }else if([brush.ID isEqualToString:jBBRUSH_GOALLINE_TEAM2]){
+                            entity.hitGoalLine = 2;
+                            NSLog(@"HAS HIT GOAL LINE 2");
+                        }
                     }
                 }
             }
@@ -112,16 +112,16 @@ public:
                                 }
                             }
                         }
-                    }
-                }else if([(NSObject*)contact->GetFixtureB()->GetUserData() isKindOfClass:[JBBrush class]])
-                {
-                    JBBrush *brush = (JBBrush*)contact->GetFixtureB()->GetUserData();
-                    if ([brush.ID isEqualToString:jBBRUSH_GOALLINE_TEAM1]) {
-                        entity.hitGoalLine = 1;
-                        NSLog(@"HAS HIT GOAL LINE 1");
-                    }else if([brush.ID isEqualToString:jBBRUSH_GOALLINE_TEAM2]){
-                        entity.hitGoalLine = 2;
-                        NSLog(@"HAS HIT GOAL LINE 2");
+                    }else if([(NSObject*)contact->GetFixtureB()->GetUserData() isKindOfClass:[JBBrush class]])
+                    {
+                        JBBrush *brush = (JBBrush*)contact->GetFixtureB()->GetUserData();
+                        if ([brush.ID isEqualToString:jBBRUSH_GOALLINE_TEAM1]) {
+                            entity.hitGoalLine = 1;
+                            NSLog(@"HAS HIT GOAL LINE 1");
+                        }else if([brush.ID isEqualToString:jBBRUSH_GOALLINE_TEAM2]){
+                            entity.hitGoalLine = 2;
+                            NSLog(@"HAS HIT GOAL LINE 2");
+                        }
                     }
                 }
             }
@@ -340,7 +340,9 @@ public:
     for (NSDictionary* setting in map.settings) {
         if ([[setting objectForKey:jbID] isEqualToString:jbMAPSETTINGS_SOCCER]&&[[setting objectForKey:jbMAPSETTINGS_DATA] boolValue])
         {
-            [self.tavern.entitiesInTavern addObject:[JBEntityManager getEntityWithID:@"ball_04"]];
+            JBEntity* ball = [JBEntityManager getEntityWithID:@"ball_04"];
+            [self.tavern.entitiesInTavern addObject:ball];
+            ball.shootable = YES;
         }
     }
     
@@ -433,6 +435,13 @@ public:
             
             if (hero.isDead) {
                 [self resetPositionAfterDeathForPlayer:hero];
+            }
+        }
+        
+        for (JBEntity* entity in self.tavern.entitiesInTavern)
+        {
+            if (entity.hitGoalLine) {
+                [self resetPositionForEntity:entity];
             }
         }
         
@@ -597,9 +606,6 @@ public:
         }
     }
     
-    /*
-    
-    */
     position = [self getSpawnPositionForID:@"spawnpoint"];
     b2BodyDef bodyDef;
 	bodyDef.type = b2_dynamicBody;
@@ -639,7 +645,7 @@ public:
 	b2Body *body = world->CreateBody(&bodyDef);
 	
     b2CircleShape shape;
-    shape.m_radius = 0.45f;
+    shape.m_radius = entity.sprite.textureRect.size.width/2/PTM_RATIO;
     b2FixtureDef fixtureDef;
     fixtureDef.shape = &shape;	
 	fixtureDef.friction = 0.1f;
@@ -688,8 +694,6 @@ public:
 	
     b2CircleShape shape;
     shape.m_radius = 0.45f;
-    //b2PolygonShape shape;
-    //shape.SetAsBox(30.0f/2/PTM_RATIO, 30.0f/2/PTM_RATIO);
     b2FixtureDef fixtureDef;
     fixtureDef.shape = &shape;	
 	fixtureDef.friction = 0.1f;
@@ -704,6 +708,33 @@ public:
     aHero.isDead=NO;
     aHero.isDeadSended=YES;
 }
+
+- (void)resetPositionForEntity:(JBEntity*)entity {
+    b2BodyDef bodyDef;
+	bodyDef.type = b2_dynamicBody;
+    CGPoint pos = [self getSpawnPositionForID:@"spawnpoint_ball"];
+    
+	bodyDef.position.Set(pos.x/PTM_RATIO, pos.y/PTM_RATIO);
+	bodyDef.userData = entity.sprite;
+	b2Body *body = world->CreateBody(&bodyDef);
+	
+    b2CircleShape shape;
+    shape.m_radius = entity.sprite.textureRect.size.width/2/PTM_RATIO;
+    b2FixtureDef fixtureDef;
+    fixtureDef.shape = &shape;	
+	fixtureDef.friction = 0.1f;
+    fixtureDef.density = 1.0f;
+    fixtureDef.restitution = 0.050f;
+    fixtureDef.userData = entity;
+	body->CreateFixture(&fixtureDef);
+    
+    world->DestroyBody(entity.body);
+    entity.body=nil;
+    entity.body=body;
+    entity.hitGoalLine = 0;
+    entity.needsSend = 0;
+}
+
 
 
 - (CGPoint)getSpawnPositionForID:(NSString *)spawnID

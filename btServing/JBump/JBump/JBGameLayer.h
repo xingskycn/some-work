@@ -44,6 +44,7 @@
 
 - (void)resetJumpForce;
 - (void)resetPositionAfterDeathForPlayer:(JBHero*)aHero;
+- (void)resetPositionForEntity:(JBEntity*)entity;
 
 - (void)setPositionForPlayer:(JBHero*)aPlayer withPosition:(CGPoint)position velocityX:(float)x andVelocityY:(float)y;
 - (void)setupHeroSprites:(NSArray*)heroes;
