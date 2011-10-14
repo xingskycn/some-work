@@ -19,7 +19,7 @@
 }
 
 @property (retain, nonatomic)NSMutableDictionary *heroesInTavern;
-@property (retain, nonatomic)NSMutableDictionary *entitiesInTavern;
+@property (retain, nonatomic)NSMutableArray *entitiesInTavern;
 
 @property (retain, nonatomic)JBHero *localPlayer;
 @property (assign, nonatomic)JBMultiplayerAdapter *multiplayerAdapter;

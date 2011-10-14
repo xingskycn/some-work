@@ -28,7 +28,7 @@
         lastHeroPackageNumber = 0;
         lastHeroPackageNumber = 0;
         self.heroesInTavern = [NSMutableDictionary dictionary];
-        self.entitiesInTavern = [NSMutableDictionary dictionary];
+        self.entitiesInTavern = [NSMutableArray array];
         self.localPlayer = [[[JBHero alloc] init] autorelease];
         self.localPlayer.name = [[NSUserDefaults standardUserDefaults] objectForKey:jbUSERDEFAULTS_PLAYER_NAME];
         self.localPlayer.skinID = [[NSUserDefaults standardUserDefaults] objectForKey:jbUSERDEFAULTS_SKIN];
@@ -170,7 +170,7 @@
     }
     lastEntityPackageNumber=packageNumber;
     for (NSDictionary *entityDict in allEntities) {
-        JBEntity *entity = [self.heroesInTavern objectForKey:[NSString stringWithFormat:@"%i",[(NSNumber*)[entityDict objectForKey:jbID] intValue]]];
+        JBEntity *entity = [self.entitiesInTavern objectAtIndex:[[entityDict objectForKey:@"index"] intValue]];
         if (entity) {
             entity.sprite.position=CGPointFromString([entityDict objectForKey:jbPOSITION]);
             entity.sprite.rotation=[[entityDict objectForKey:jbROTATION] floatValue];
@@ -186,6 +186,11 @@
     for (JBHero* hero in allHeroes) {
         if (!hero.body) {
             [gameLayer insertHero:hero atPosition:hero.sprite.position];
+        }
+    }
+    for (JBEntity* entity in self.entitiesInTavern) {
+        if (!entity.body) {
+            [gameLayer insertEntity:entity atPosition:entity.sprite.position];
         }
     }
 }

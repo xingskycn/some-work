@@ -17,6 +17,7 @@
 @class JBGameViewController;
 @class JBTavern;
 @class JBMap;
+@class JBEntity;
 
 @interface JBGameLayer : CCLayer {
     b2World* world;
@@ -43,12 +44,12 @@
 
 - (void)resetJumpForce;
 - (void)resetPositionAfterDeathForPlayer:(JBHero*)aHero;
+- (void)resetPositionForEntity:(JBEntity*)entity;
 
 - (void)setPositionForPlayer:(JBHero*)aPlayer withPosition:(CGPoint)position velocityX:(float)x andVelocityY:(float)y;
-- (void)setupSprites:(NSArray*)heroes;
-- (void)insertBallAtPosition:(CGPoint)position;
+- (void)setupHeroSprites:(NSArray*)heroes;
+- (void)setupEntitySprites:(NSArray*)entities;
 - (CGPoint)getSpawnPositionForID:(NSString *)spawnID;
-- (void)resetBall;
-- (void)setPhysicsForBallWithPosition:(CGPoint)position velocityX:(float)x andVelocityY:(float)y;
 - (void)performUserInputsOnHero:(JBHero *)hero withTimeDelta:(float)timeDelta;
+- (void)insertEntity:(JBEntity *)entity atPosition:(CGPoint)position;
 @end

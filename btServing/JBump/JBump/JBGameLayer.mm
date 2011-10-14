@@ -69,16 +69,16 @@ public:
                                 }
                             }
                         }
-                    }
-                }else if([(NSObject*)contact->GetFixtureA()->GetUserData() isKindOfClass:[JBBrush class]])
-                {
-                    JBBrush *brush = (JBBrush*)contact->GetFixtureA()->GetUserData();
-                    if ([brush.ID isEqualToString:jBBRUSH_GOALLINE_TEAM1]) {
-                        entity.hitGoalLine = 1;
-                        NSLog(@"HAS HIT GOAL LINE 1");
-                    }else if([brush.ID isEqualToString:jBBRUSH_GOALLINE_TEAM2]){
-                        entity.hitGoalLine = 2;
-                        NSLog(@"HAS HIT GOAL LINE 2");
+                    }else if([(NSObject*)contact->GetFixtureA()->GetUserData() isKindOfClass:[JBBrush class]])
+                    {
+                        JBBrush *brush = (JBBrush*)contact->GetFixtureA()->GetUserData();
+                        if ([brush.ID isEqualToString:jBBRUSH_GOALLINE_TEAM1]) {
+                            entity.hitGoalLine = 1;
+                            NSLog(@"HAS HIT GOAL LINE 1");
+                        }else if([brush.ID isEqualToString:jBBRUSH_GOALLINE_TEAM2]){
+                            entity.hitGoalLine = 2;
+                            NSLog(@"HAS HIT GOAL LINE 2");
+                        }
                     }
                 }
             }
@@ -112,16 +112,16 @@ public:
                                 }
                             }
                         }
-                    }
-                }else if([(NSObject*)contact->GetFixtureB()->GetUserData() isKindOfClass:[JBBrush class]])
-                {
-                    JBBrush *brush = (JBBrush*)contact->GetFixtureB()->GetUserData();
-                    if ([brush.ID isEqualToString:jBBRUSH_GOALLINE_TEAM1]) {
-                        entity.hitGoalLine = 1;
-                        NSLog(@"HAS HIT GOAL LINE 1");
-                    }else if([brush.ID isEqualToString:jBBRUSH_GOALLINE_TEAM2]){
-                        entity.hitGoalLine = 2;
-                        NSLog(@"HAS HIT GOAL LINE 2");
+                    }else if([(NSObject*)contact->GetFixtureB()->GetUserData() isKindOfClass:[JBBrush class]])
+                    {
+                        JBBrush *brush = (JBBrush*)contact->GetFixtureB()->GetUserData();
+                        if ([brush.ID isEqualToString:jBBRUSH_GOALLINE_TEAM1]) {
+                            entity.hitGoalLine = 1;
+                            NSLog(@"HAS HIT GOAL LINE 1");
+                        }else if([brush.ID isEqualToString:jBBRUSH_GOALLINE_TEAM2]){
+                            entity.hitGoalLine = 2;
+                            NSLog(@"HAS HIT GOAL LINE 2");
+                        }
                     }
                 }
             }
@@ -283,6 +283,8 @@ public:
 		m_debugDraw->SetFlags(flags);
 #endif
         
+        
+        
         self.spawnPoints = [NSMutableDictionary dictionary];
         
         [self schedule:@selector(tick:)];
@@ -333,16 +335,19 @@ public:
     
     self.mapSize = map.arenaImage.size;
     
-    /*for (NSDictionary* setting in map.settings) {
-        if ([[setting objectForKey:jbID] isEqualToString:jbMAPSETTINGS_SOCCER]&&[[setting objectForKey:jbMAPSETTINGS_DATA] boolValue]) {
-            [self insertBallAtPosition:CGPointMake(0, 0)];
-            [self resetBall];
-        }
-    }*/
-    
     [self insertHero:nil atPosition:CGPointMake(0, 0)];
     
-    [self setupSprites:[self.gameViewController.multiplayerAdapter.tavern getAllPlayers]];
+    for (NSDictionary* setting in map.settings) {
+        if ([[setting objectForKey:jbID] isEqualToString:jbMAPSETTINGS_SOCCER]&&[[setting objectForKey:jbMAPSETTINGS_DATA] boolValue])
+        {
+            JBEntity* ball = [JBEntityManager getEntityWithID:@"ball_04"];
+            [self.tavern.entitiesInTavern addObject:ball];
+            ball.shootable = YES;
+        }
+    }
+    
+    [self setupHeroSprites:[self.tavern getAllPlayers]];
+    [self setupEntitySprites:self.tavern.entitiesInTavern];
 }
 
 - (void)tick:(ccTime)deltaTime{
@@ -430,6 +435,13 @@ public:
             
             if (hero.isDead) {
                 [self resetPositionAfterDeathForPlayer:hero];
+            }
+        }
+        
+        for (JBEntity* entity in self.tavern.entitiesInTavern)
+        {
+            if (entity.hitGoalLine) {
+                [self resetPositionForEntity:entity];
             }
         }
         
@@ -570,39 +582,6 @@ public:
     player.jumpForce=0.0f;
 }
 
-/*
-- (void)insertBallAtPosition:(CGPoint)position
-{
-    if (self.tavern!=nil) {
-        tavern.ball = [JBEntityManager getEntityWithID:@"ball_04"];
-        tavern.ball.shootable = YES;
-        tavern.ball.sprite = [CCSprite spriteWithFile:tavern.ball.imageLocal];
-        tavern.ball.sprite.scale=(50.0/tavern.ball.sprite.textureRect.size.height);
-        [self addChild:tavern.ball.sprite z:0 tag:[tavern.ball.name hash]];
-        
-        b2BodyDef bodyDef;
-        bodyDef.type = b2_dynamicBody;
-        
-        bodyDef.position.Set(position.x/PTM_RATIO, position.y/PTM_RATIO);
-        bodyDef.userData = tavern.ball.sprite;
-        b2Body *body = world->CreateBody(&bodyDef);
-        
-        b2CircleShape shape;
-        shape.m_radius = 25/PTM_RATIO;
-        
-        b2FixtureDef fixtureDef;
-        fixtureDef.shape = &shape;	
-        fixtureDef.friction = 0.1f;
-        fixtureDef.density = 1.0f;
-        fixtureDef.restitution = 0.050f;
-        fixtureDef.userData = tavern.ball;
-        body->CreateFixture(&fixtureDef);
-        
-        tavern.ball.sprite.userData = tavern.ball;
-        tavern.ball.body=body;
-    }
-}*/
-
 - (void)insertHero:(JBHero *)hero atPosition:(CGPoint)position
 {
     if (!hero) {
@@ -627,9 +606,6 @@ public:
         }
     }
     
-    /*
-    
-    */
     position = [self getSpawnPositionForID:@"spawnpoint"];
     b2BodyDef bodyDef;
 	bodyDef.type = b2_dynamicBody;
@@ -654,42 +630,36 @@ public:
     
     hero.body=body;
 }
-/*
-- (void)setPositionForPlayer:(JBHero*)aPlayer withPosition:(CGPoint)position velocityX:(float)x andVelocityY:(float)y {
+
+- (void)insertEntity:(JBEntity *)entity atPosition:(CGPoint)position
+{
+    if (entity.shootable) {
+        position = [self getSpawnPositionForID:@"spawn_ball"];
+    }
     
     b2BodyDef bodyDef;
 	bodyDef.type = b2_dynamicBody;
     
-	bodyDef.position.Set(position.x, position.y);
-	bodyDef.userData = aPlayer.sprite;
+	bodyDef.position.Set(position.x/PTM_RATIO, position.y/PTM_RATIO);
+	bodyDef.userData = entity.sprite;
 	b2Body *body = world->CreateBody(&bodyDef);
 	
     b2CircleShape shape;
-    shape.m_radius = 0.45f;
+    shape.m_radius = entity.sprite.textureRect.size.width/2/PTM_RATIO;
     b2FixtureDef fixtureDef;
     fixtureDef.shape = &shape;	
 	fixtureDef.friction = 0.1f;
     fixtureDef.density = 1.0f;
     fixtureDef.restitution = 0.050f;
+    fixtureDef.userData = entity;
 	body->CreateFixture(&fixtureDef);
-    body->SetLinearVelocity(b2Vec2(x, y));
-    if(aPlayer.body!=nil)
-        world->DestroyBody(aPlayer.body);
-    aPlayer.body=nil;
-    aPlayer.body=body;
-
-}*/
-/*
-- (void)setPhysicsForBallWithPosition:(CGPoint)position velocityX:(float)x andVelocityY:(float)y 
-{
-    float newVX = 30*(position.x - self.tavern.ball.body->GetWorldCenter().x) +x;
-    float newVY = 30*(position.y - self.tavern.ball.body->GetWorldCenter().y) +y;
-    self.tavern.ball.body->SetLinearVelocity(b2Vec2(newVX,newVY));
-
+    
+    entity.sprite.userData = entity;
+    
+    entity.body=body;
 }
-*/
 
-- (void)setupSprites:(NSArray*)heroes {
+- (void)setupHeroSprites:(NSArray*)heroes {
     for (JBHero *aHero in heroes) {
         if(aHero.playerID == player.playerID){
             continue;
@@ -699,6 +669,16 @@ public:
         aHero.sprite.userData = aHero;
         [self addChild:aHero.sprite z:0 tag:[aHero.name hash]];
 
+    }
+}
+
+- (void)setupEntitySprites:(NSArray *)entities
+{
+    for (JBEntity *entity in entities) {
+        entity.sprite = [CCSprite spriteWithFile:entity.imageLocal];
+        entity.sprite.userData = entity;
+        [self addChild:entity.sprite z:0 tag:[entity.ID hash]];
+        
     }
 }
 
@@ -714,8 +694,6 @@ public:
 	
     b2CircleShape shape;
     shape.m_radius = 0.45f;
-    //b2PolygonShape shape;
-    //shape.SetAsBox(30.0f/2/PTM_RATIO, 30.0f/2/PTM_RATIO);
     b2FixtureDef fixtureDef;
     fixtureDef.shape = &shape;	
 	fixtureDef.friction = 0.1f;
@@ -731,6 +709,33 @@ public:
     aHero.isDeadSended=YES;
 }
 
+- (void)resetPositionForEntity:(JBEntity*)entity {
+    b2BodyDef bodyDef;
+	bodyDef.type = b2_dynamicBody;
+    CGPoint pos = [self getSpawnPositionForID:@"spawnpoint_ball"];
+    
+	bodyDef.position.Set(pos.x/PTM_RATIO, pos.y/PTM_RATIO);
+	bodyDef.userData = entity.sprite;
+	b2Body *body = world->CreateBody(&bodyDef);
+	
+    b2CircleShape shape;
+    shape.m_radius = entity.sprite.textureRect.size.width/2/PTM_RATIO;
+    b2FixtureDef fixtureDef;
+    fixtureDef.shape = &shape;	
+	fixtureDef.friction = 0.1f;
+    fixtureDef.density = 1.0f;
+    fixtureDef.restitution = 0.050f;
+    fixtureDef.userData = entity;
+	body->CreateFixture(&fixtureDef);
+    
+    world->DestroyBody(entity.body);
+    entity.body=nil;
+    entity.body=body;
+    entity.hitGoalLine = 0;
+    entity.needsSend = 0;
+}
+
+
 
 - (CGPoint)getSpawnPositionForID:(NSString *)spawnID
 {
@@ -742,33 +747,6 @@ public:
     }
     return CGPointMake(0, 0);
 }
-/*
-- (void)resetBall
-{
-    b2BodyDef bodyDef;
-	bodyDef.type = b2_dynamicBody;
-    CGPoint pos = [self getSpawnPositionForID:@"spawnpoint_ball"];
-    
-    bodyDef.position.Set(pos.x/PTM_RATIO, pos.y/PTM_RATIO);
-    bodyDef.userData = tavern.ball.sprite;
-    b2Body *body = world->CreateBody(&bodyDef);
-    
-    b2CircleShape shape;
-    shape.m_radius = 25/PTM_RATIO;
-    
-    b2FixtureDef fixtureDef;
-    fixtureDef.shape = &shape;	
-    fixtureDef.friction = 0.1f;
-    fixtureDef.density = 1.0f;
-    fixtureDef.restitution = 0.050f;
-    fixtureDef.userData = tavern.ball;
-    body->CreateFixture(&fixtureDef);
-    
-    world->DestroyBody(self.tavern.ball.body);
-    self.tavern.ball.body=nil;
-    self.tavern.ball.body=body;
-    self.tavern.ball.hitGoalLine = 0;
-}*/
 
 - (void)performUserInputsOnHero:(JBHero*)hero withTimeDelta:(float)timeDelta {
     NSString *userInput = hero.userInput;
