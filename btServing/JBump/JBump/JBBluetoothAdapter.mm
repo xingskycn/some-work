@@ -258,7 +258,8 @@
 - (void)sendUserInput:(NSString *)inputs
 {
     NSString* sendString = 
-	[NSString stringWithFormat:	@"|SUI:%d|%@",self.tavern.localPlayer.playerID ,inputs];
+	[NSString stringWithFormat:	@"|SUI:%d|%@",
+     self.tavern.localPlayer.playerID,inputs];
 	
 	NSData* sendData = [sendString dataUsingEncoding:NSUTF8StringEncoding];
 	if (self.activePeer) {

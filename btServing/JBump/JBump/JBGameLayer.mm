@@ -46,21 +46,26 @@ public:
             JBEntity* entity = (JBEntity*)contact->GetFixtureB()->GetUserData();
             if (entity.shootable) 
             {
-                if(contact->GetFixtureA()->GetBody()->GetUserData()!=nil&&[((NSObject*)contact->GetFixtureA()->GetBody()->GetUserData()) isKindOfClass:[JBHero class]])
-                {
-                    JBHero *hero = (JBHero*)contact->GetFixtureA()->GetBody()->GetUserData();
-                    if (hero.jumpTouched) 
-                    {
-                        if (hero.body->GetWorldCenter().y<entity.body->GetWorldCenter().y) {
-                            if (entity.shottime+0.2<[[NSDate date] timeIntervalSince1970]) 
-                            {    
-                                entity.shottime = [[NSDate date] timeIntervalSince1970];
-                                NSLog(@"playerA!");
-                                
-                                float forceX;
-                                if (worldManifold.normal.x!=0) {
-                                    forceX = worldManifold.normal.x;
-                                    forceX = forceX/fabs(forceX)*500;
+                if(contact->GetFixtureA()->GetBody()->GetUserData()) {
+                    if ([(NSObject *)contact->GetFixtureA()->GetBody()->GetUserData() isKindOfClass:[JBHero class]]) {
+                        JBHero* hero = (JBHero *)contact->GetFixtureA()->GetBody()->GetUserData();
+                        if (hero.jumpTouched) 
+                        {
+                            if (hero.body->GetWorldCenter().y<entity.body->GetWorldCenter().y) {
+                                if (entity.shottime+0.2<[[NSDate date] timeIntervalSince1970]) 
+                                {    
+                                    entity.shottime = [[NSDate date] timeIntervalSince1970];
+                                    NSLog(@"playerA!");
+                                    
+                                    float forceX;
+                                    if (worldManifold.normal.x!=0) {
+                                        forceX = worldManifold.normal.x;
+                                        forceX = forceX/fabs(forceX)*500;
+                                    }
+                                    entity.needsSend = TRUE;
+                                    
+                                    entity.body->ApplyForce(b2Vec2(forceX, 1000), entity.body->GetWorldCenter());
+                                    return;
                                 }
                             }
                         }
@@ -84,12 +89,10 @@ public:
             JBEntity* entity = (JBEntity*)contact->GetFixtureA()->GetUserData();
             if (entity.shootable) 
             {
-                if(contact->GetFixtureB()->GetBody()->GetUserData()!=nil&&[((NSObject*)contact->GetFixtureB()->GetBody()->GetUserData()) isKindOfClass:[JBHero class]])
-                {
-                    JBHero *hero = (JBHero*)contact->GetFixtureB()->GetBody()->GetUserData();
-                    if (hero.body->GetWorldCenter().y<entity.body->GetWorldCenter().y) 
-                    {
-                        if (hero.jumpTouched) 
+                if(contact->GetFixtureB()->GetBody()->GetUserData()) {
+                    if ([(NSObject *)contact->GetFixtureB()->GetBody()->GetUserData() isKindOfClass:[JBHero class]]) {
+                        JBHero* hero = (JBHero *)contact->GetFixtureB()->GetBody()->GetUserData(); 
+                        if (hero.body->GetWorldCenter().y<entity.body->GetWorldCenter().y) 
                         {
                             if (hero.jumpTouched) 
                             {
@@ -127,10 +130,8 @@ public:
         
         if ([(NSObject*)contact->GetFixtureB()->GetUserData() isKindOfClass:[JBBrush class]]
             &&worldManifold.points[0].y>contact->GetFixtureA()->GetBody()->GetWorldCenter().y
-            &&contact->GetFixtureA()->GetBody()->GetUserData()!=nil&&[((NSObject*)contact->GetFixtureA()->GetBody()->GetUserData()) isKindOfClass:[JBHero class]]) {
-            
-            JBHero *hero = (JBHero*)contact->GetFixtureA()->GetBody()->GetUserData();
-            
+            &&contact->GetFixtureA()->GetBody()->GetUserData()!=nil
+            &&[(NSObject *)contact->GetFixtureA()->GetBody()->GetUserData() isKindOfClass:[JBHero class]]) {
             JBBrush *brush = (JBBrush*)contact->GetFixtureB()->GetUserData();
             JBHero *hero = (JBHero *)contact->GetFixtureA()->GetBody()->GetUserData();
             if ([brush.ID isEqualToString:jbBRUSH_PLATFORM]||[brush.ID isEqualToString:jbBRUSH_HORIZONTAL_PLATFORM]) {
@@ -157,24 +158,28 @@ public:
             }
         }
 
-        //Rotate a Player acording to the ground
-        if(contact->GetFixtureA()->GetBody()->GetUserData()!=nil&&[((NSObject*)contact->GetFixtureA()->GetBody()->GetUserData()) isKindOfClass:[JBHero class]]) {
-            float product = -acosf(worldManifold.normal.x)*180/M_PI+90;
-            JBHero *hero = (JBHero*)contact->GetFixtureA()->GetBody()->GetUserData();
-            hero.desiredRotation = product;
-            
-            if (worldManifold.normal.y > 0.5f) {
-                hero.onGround=true; 
+        //Rotate a Player acording to the grounf
+        if(contact->GetFixtureA()->GetBody()->GetUserData()) {
+            if ([(NSObject *)contact->GetFixtureA()->GetBody()->GetUserData() isKindOfClass:[JBHero class]]) {
+                JBHero* hero = (JBHero *)contact->GetFixtureA()->GetBody()->GetUserData(); 
+                float product = -acosf(worldManifold.normal.x)*180/M_PI+90;
+                
+                hero.desiredRotation = product;
+                
+                if (worldManifold.normal.y > 0.5f) {
+                    hero.onGround=true; 
+                }
             }
-        }else if (contact->GetFixtureA()->GetBody()->GetUserData()!=nil&&[((NSObject*)contact->GetFixtureA()->GetBody()->GetUserData()) isKindOfClass:[JBHero class]]) {
-            float product = -acosf(worldManifold.normal.x)*180/M_PI+90;
-            
-            JBHero *hero = (JBHero*)contact->GetFixtureA()->GetBody()->GetUserData();
-            
-            hero.desiredRotation = product;
-            
-            if (worldManifold.normal.y > 0.5f) {
-                hero.onGround=true; 
+        }else if(contact->GetFixtureB()->GetBody()->GetUserData()) {
+            if ([(NSObject *)contact->GetFixtureB()->GetBody()->GetUserData() isKindOfClass:[JBHero class]]) {
+                JBHero* hero = (JBHero *)contact->GetFixtureB()->GetBody()->GetUserData(); 
+                float product = -acosf(worldManifold.normal.x)*180/M_PI+90;
+                
+                hero.desiredRotation = product;
+                
+                if (worldManifold.normal.y > 0.5f) {
+                    hero.onGround=true; 
+                }
             }
         }
         
@@ -341,10 +346,9 @@ public:
 
 - (void)tick:(ccTime)deltaTime{
     
-    
-    NSArray *allHeroeIDs = [[[tavern.heroesInTavern allKeys] retain] autorelease];
+    NSArray* allHeroIDs = [[[tavern.heroesInTavern allKeys] retain] autorelease];
     self.isServer = YES;
-    for(NSString* heroID in allHeroeIDs) {
+    for(NSString* heroID in allHeroIDs) {
         if (self.tavern.localPlayer.playerID>[heroID intValue]) {
             //[self.tavern.multiplayerAdapter sendBall];
             self.isServer=NO;
@@ -387,20 +391,18 @@ public:
             }	
         }
         
-        
-        
-        NSString *userInput = @"";
-        if (gameViewController.moveLeftButton.isTouchInside) {
+        NSString* userInput = @"";
+        if (self.gameViewController.moveLeftButton.isTouchInside) {
             userInput = [userInput stringByAppendingString:@"L"];
-        } else {
+        }else{
             userInput = [userInput stringByAppendingString:@"X"];
         }
-        if (gameViewController.moveRightButton.isTouchInside) {
+        if (self.gameViewController.moveRightButton.isTouchInside) {
             userInput = [userInput stringByAppendingString:@"R"];
-        } else {
+        }else{
             userInput = [userInput stringByAppendingString:@"X"];
         }
-        if (gameViewController.jumpButton.isTouchInside) {
+        if (self.gameViewController.jumpButton.isTouchInside) {
             userInput = [userInput stringByAppendingString:@"J"];
             
         } else {
@@ -411,56 +413,19 @@ public:
         }
         player.userInput = userInput;
         
-        player.userInput=userInput;
-        
-        NSArray *allHeroes = [[[self.tavern.heroesInTavern allValues] retain] autorelease];
-        
-        for (JBHero *hero in allHeroes) {
-            [self performUserInputsOnHero:hero withTimeDelta:deltaTime];
-            
+        NSArray* allHeroes = [[[self.tavern.heroesInTavern allValues] retain] autorelease];
+        for (JBHero* hero in allHeroes)
+        {
+            [self performUserInputsOnHero:hero withTimeDelta:(float)deltaTime];
             [hero.sprite setRotation:hero.desiredRotation+((hero.sprite.rotation-hero.desiredRotation)/1.14)];
             
             if (hero.body!=nil&&hero.body->GetLinearVelocity().y>6.5f) {
                 hero.body->SetLinearVelocity(b2Vec2(hero.body->GetLinearVelocity().x, 6.5f));
             }
-
         }
         
         [self.tavern sendPlayerUpdate];
-        /*
-        if (multiplayer){
-            for(NSString* heroID in [tavern.heroesInTavern allKeys]) {
-                if (self.tavern.localPlayer.playerID>[heroID intValue]) {
-                    //[self.tavern.multiplayerAdapter sendBall];
-                    self.isServer=false;
-                } else {
-                    self.isServer = YES;
-                }
-            }
-            if (self.isServer){
-                [self.tavern sendPlayerUpdate];
-            } else {
-                int i = 1;
-            }
-            /*
-             if (sendCounter>=1) {
-             sendCounter=1;
-             if (send) {
-             if (tavern.ball.hitGoalLine) {
-             [self resetBall];
-             [self.tavern.multiplayerAdapter sendBall];
-             self.tavern.ball.needsSend = FALSE;
-             }
-             if (tavern.ball.needsSend) {
-             [self.tavern.multiplayerAdapter sendBall];
-             self.tavern.ball.needsSend = FALSE;
-             }
-             }
-             } else {
-             sendCounter++;
-             }*/
-        //}
-    } else {
+    }else {
         NSString *userInput = @"";
         if (gameViewController.moveLeftButton.isTouchInside) {
             userInput = [userInput stringByAppendingString:@"L"];
@@ -790,6 +755,8 @@ public:
     if ([[userInput substringWithRange:NSMakeRange(2, 1)] isEqualToString:@"J"]) {
         [hero jump:(float)timeDelta timeOnGround:0.1f];
         hero.jumpTouched = YES;
+    }else{
+        hero.jumpTouched = NO;
     }
     
     if ([[userInput substringWithRange:NSMakeRange(0, 1)] isEqualToString:@"L"]) {
@@ -799,7 +766,7 @@ public:
     if ([[userInput substringWithRange:NSMakeRange(1, 1)] isEqualToString:@"R"]) {
         [hero moveRight:(float)timeDelta];
     }
-    if (!player.onGround) {
+    if (!hero.onGround) {
         if (hero.sprite.rotation<180) {
             hero.desiredRotation=0;
         }

@@ -17,7 +17,6 @@
     bool isLeft, isRight;
 }
 
-@property (nonatomic, retain) NSString *userInput;
 @property (nonatomic, retain) NSString* name;
 @property (nonatomic, retain) NSString* skinID;
 @property (nonatomic, retain) NSMutableDictionary* gameContext;
@@ -44,7 +43,7 @@
 @property(assign)float desiredRotation;
 
 @property(assign)CGPoint force;
-@property(nonatomic, assign)NSString* userInput;
+@property(nonatomic, retain)NSString* userInput;
 
 - (id)initWithPlayerId:(char)aPlayerID playerName:(NSString*)name gameContext:(NSDictionary*)context;
 - (void)jump:(float)time timeOnGround:(float)playerTimeOnGround;

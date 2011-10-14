@@ -36,8 +36,6 @@
 @synthesize force;
 @synthesize userInput;
 
-@synthesize userInput;
-
 - (id)init {
     self = [super init];
     
