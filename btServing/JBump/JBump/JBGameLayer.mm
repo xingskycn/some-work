@@ -755,8 +755,6 @@ public:
     if ([[userInput substringWithRange:NSMakeRange(2, 1)] isEqualToString:@"J"]) {
         [hero jump:(float)timeDelta timeOnGround:0.1f];
         hero.jumpTouched = YES;
-    }else{
-        hero.jumpTouched = NO;
     }
     
     if ([[userInput substringWithRange:NSMakeRange(0, 1)] isEqualToString:@"L"]) {
@@ -771,7 +769,6 @@ public:
             hero.desiredRotation=0;
         }
     }
-    
 }
 
 @end
