@@ -62,10 +62,6 @@ public:
                                     forceX = worldManifold.normal.x;
                                     forceX = forceX/fabs(forceX)*500;
                                 }
-                                entity.needsSend = TRUE;
-                                
-                                entity.body->ApplyForce(b2Vec2(forceX, 1000), entity.body->GetWorldCenter());
-                                return;
                             }
                         }
                     }
@@ -95,19 +91,22 @@ public:
                     {
                         if (hero.jumpTouched) 
                         {
-                            if (entity.shottime+0.2<[[NSDate date] timeIntervalSince1970]) 
-                            {                        
-                                entity.shottime = [[NSDate date] timeIntervalSince1970];
-                                NSLog(@"playerB! %f",worldManifold.normal.x);
-                                
-                                float forceX;
-                                if (worldManifold.normal.x!=0) {
-                                    forceX = worldManifold.normal.x;
-                                    forceX = forceX/fabs(forceX)*-1000;
+                            if (hero.jumpTouched) 
+                            {
+                                if (entity.shottime+0.2<[[NSDate date] timeIntervalSince1970]) 
+                                {                        
+                                    entity.shottime = [[NSDate date] timeIntervalSince1970];
+                                    NSLog(@"playerB! %f",worldManifold.normal.x);
+                                    
+                                    float forceX;
+                                    if (worldManifold.normal.x!=0) {
+                                        forceX = worldManifold.normal.x;
+                                        forceX = forceX/fabs(forceX)*-1000;
+                                    }
+                                    entity.needsSend = TRUE;
+                                    entity.body->ApplyForce(b2Vec2(forceX, 1000), entity.body->GetWorldCenter());
+                                    return;
                                 }
-                                entity.needsSend = TRUE;
-                                entity.body->ApplyForce(b2Vec2(forceX, 1000), entity.body->GetWorldCenter());
-                                return;
                             }
                         }
                     }
@@ -133,6 +132,7 @@ public:
             JBHero *hero = (JBHero*)contact->GetFixtureA()->GetBody()->GetUserData();
             
             JBBrush *brush = (JBBrush*)contact->GetFixtureB()->GetUserData();
+            JBHero *hero = (JBHero *)contact->GetFixtureA()->GetBody()->GetUserData();
             if ([brush.ID isEqualToString:jbBRUSH_PLATFORM]||[brush.ID isEqualToString:jbBRUSH_HORIZONTAL_PLATFORM]) {
                 //if (worldManifold.normal.y < 0.2f) {
                 if (contact->GetFixtureA()->GetBody()->GetLinearVelocity().y>0.0f) {
@@ -176,7 +176,6 @@ public:
             if (worldManifold.normal.y > 0.5f) {
                 hero.onGround=true; 
             }
-            
         }
         
         //Detect Colision between two Players
@@ -410,6 +409,7 @@ public:
             }
             userInput = [userInput stringByAppendingString:@"X"];
         }
+        player.userInput = userInput;
         
         player.userInput=userInput;
         
@@ -481,7 +481,6 @@ public:
         [self.tavern.multiplayerAdapter sendUserInput:userInput];
 
     }
-
     if (player) {
         float newX = player.sprite.position.x - [[CCDirector sharedDirector] winSize].width/2;
         float newY = player.sprite.position.y - [[CCDirector sharedDirector] winSize].height/2;

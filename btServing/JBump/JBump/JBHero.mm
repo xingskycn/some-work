@@ -34,6 +34,7 @@
 @synthesize isDeadSended;
 @synthesize killingPlayerID;
 @synthesize force;
+@synthesize userInput;
 
 @synthesize userInput;
 
