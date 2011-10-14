@@ -205,12 +205,12 @@
 	}
 }
 
-- (void)shoutPlayerGameContextChange
+- (void)shoutPlayerGameContextChange:(JBHero*)aHero 
 {	
 	NSString* sendString = 
 	[NSString stringWithFormat:	@"|PGC:%d|%@",
-     self.tavern.localPlayer.playerID,
-     self.tavern.localPlayer.gameContext];
+     aHero.playerID,
+     [jsonWriter stringWithObject:aHero.gameContext]];
 	
 	NSData* sendData = [sendString dataUsingEncoding:NSUTF8StringEncoding];
 	if (self.activePeer) {
@@ -235,7 +235,7 @@
 	}
 }
 
-- (void)playerKilledByChar:(JBHero *)player
+- (void)player:(JBHero*)killedPlayer KilledByChar:(JBHero *)player
 {
 	// Player Killed by Char
 	// 1st Killer
@@ -243,7 +243,7 @@
 	
 	NSString* sendString = 
 	[NSString stringWithFormat:	@"|PKC:%d|%d",
-     self.tavern.localPlayer.playerID,
+     killedPlayer.playerID,
      player.playerID];
 	
 	NSData* sendData = [sendString dataUsingEncoding:NSUTF8StringEncoding];
@@ -560,7 +560,7 @@ progressDelegate:(id<JBProgressDelegate>)pDelegate
         char killedPlayerID = [[parts objectAtIndex:0] intValue];
         char killingPlayerID = [[parts objectAtIndex:1] intValue];
         
-        [self.tavern receivedAKill:killingPlayerID];
+        [self.tavern receivedAKill:killingPlayerID forKilledPlayer:killedPlayerID];
         
         return TRUE;
     }else{
