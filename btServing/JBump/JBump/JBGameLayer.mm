@@ -697,7 +697,7 @@ public:
     CGPoint pos = [self getSpawnPositionForID:@"spawnpoint"];
     
 	bodyDef.position.Set(pos.x/PTM_RATIO, pos.y/PTM_RATIO);
-	bodyDef.userData = player.sprite;
+	bodyDef.userData = aHero.sprite;
 	b2Body *body = world->CreateBody(&bodyDef);
 	
     b2CircleShape shape;
